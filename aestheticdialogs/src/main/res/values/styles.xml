@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/animate_slide_down_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_slide_up_exit</item>
+    </style>
+
+    <!-- I will set many different dialog anim !-->
+
+</resources>

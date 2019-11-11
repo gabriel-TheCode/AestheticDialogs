@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_dialog"
+        android:layout_marginTop="10dp"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FLASH DIALOG"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="italic|bold"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:id="@+id/btn_flash_dialog_success"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show Flash success"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btn_flash_dialog_error"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show Flash error"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONNECTIFY DIALOG"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="italic|bold"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:id="@+id/btn_connectify_dialog_success"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show connectify success"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btn_connectify_dialog_error"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show connectify error"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TOASTER DIALOG"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="italic|bold"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:id="@+id/btn_toaster_dialog_error"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show toaster error"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+
+        <Button
+            android:id="@+id/btn_toaster_dialog_success"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show toaster success"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btn_toaster_dialog_warning"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show toaster warning"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btn_toaster_dialog_info"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show toaster info"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EMOTION DIALOG"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="italic|bold"
+            android:layout_marginBottom="5dp"/>
+
+
+        <Button
+            android:id="@+id/btn_emotion_dialog_success"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show emotion success"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btn_emotion_dialog_error"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show emotion error"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DRAKE DIALOG"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="italic|bold"
+            android:layout_marginBottom="5dp"/>
+
+
+        <Button
+            android:id="@+id/btn_drake_dialog_success"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show drake success"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btn_drake_dialog_error"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show drake error"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EMOJI DIALOG"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="italic|bold"
+            android:layout_marginBottom="5dp"/>
+
+
+        <Button
+            android:id="@+id/btn_emoji_dialog_success"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show emoji success"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btn_emoji_dialog_error"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show emoji error"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
+
+</ScrollView>

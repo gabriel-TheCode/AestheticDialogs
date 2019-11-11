@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AestheticDialogs</string>
+    <string name="no_avalaible_connection">NO AVALAIBLE CONNECTION</string>
+    <string name="error_connection_message">Connection could not be etablished.</string>
+    <string name="error">error</string>
+    <string name="success">success</string>
+    <string name="connection_found">Connection found</string>
+    <string name="success_connection_message">You have successfully reconnected</string>
+</resources>

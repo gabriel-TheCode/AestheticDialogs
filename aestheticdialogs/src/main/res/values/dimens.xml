@@ -1,0 +1,24 @@
+<resources>
+
+    <dimen name="text_size_title_activity">18sp</dimen>
+    <dimen name="text_size_date_message">10sp</dimen>
+    <dimen name="start_margin_card_border_radius">10dp</dimen>
+    <dimen name="edit_text_horizontal_padding">30dp</dimen>
+    <dimen name="edit_text_height_size">50dp</dimen>
+
+    <dimen name="activity_padding_horizontal">16dp</dimen>
+    <dimen name="padd_10">10dp</dimen>
+    <dimen name="ic_delete">30dp</dimen>
+
+    <dimen name="popup_width">300dp</dimen>
+    <dimen name="popup_height">310dp</dimen>
+
+    <dimen name="popup_height_toaster">100dp</dimen>
+
+    <dimen name="popup_height_drake">200dp</dimen>
+    <dimen name="popup_width_drake">350dp</dimen>
+    <dimen name="popup_height_emoji_dialog">100dp</dimen>
+    <dimen name="popup_height_emotion">120dp</dimen>
+    <dimen name="popup_width_emotion">350dp</dimen>
+
+</resources>

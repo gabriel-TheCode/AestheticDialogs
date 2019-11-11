@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/drake_error"/>
+
+    <LinearLayout
+        android:layout_width="@dimen/popup_width_drake"
+        android:minWidth="@dimen/popup_width_drake"
+        android:layout_height="@dimen/popup_height_drake"
+        android:minHeight="@dimen/popup_height_drake"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+
+
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oups !"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/md_white_1000"
+            android:layout_marginBottom="10dp"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dialog_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/md_white_1000"
+            android:text="An error occured on remote service, please try again later"/>
+
+        <Button
+            android:id="@+id/btn_action"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/rounded_border_white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:text="OK"
+            android:textColor="@color/md_white_1000"
+            android:focusable="true" />
+
+
+    </LinearLayout>
+
+</FrameLayout>
