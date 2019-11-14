@@ -18,6 +18,7 @@
 > - [ Implementation ](#implementation)
 >    - [ Prerequisite ](#prerequisite)
 >    - [ Create Dialog ](#createDialog)
+> - [ Demo ](#demo)
 > - [ Contribute ](#contribute)
 > - [ Credits ](#credits)
 
@@ -61,18 +62,22 @@ Implementation of Material Dialog library is so easy. You can check [/app](/app)
 
 Add it in your root `build.gradle` at the end of repositories:
 
-```	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	} ```
+```gradle
+allprojects {
+	repositories {
+		...
+		maven { url "https://jitpack.io" }
+	}
+}
+```
 
 Step 2. Add the dependency
 
-``` dependencies {
-	        implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.0.0'
-	}
+```gradle
+dependencies {
+	...
+	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.0.0'
+}
 ```
 
 <a name="createDialog"></a>
@@ -122,7 +127,7 @@ Emotion :
                 AestheticDialog.showEmotion(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
 ```
 
-<a name="credits"></a>
+<a name="demo"></a>
 ## Demo
 You can download the demo app on [PlayStore](https://play.google.com/store/apps/details?id=com.thecode.sample)
 
