@@ -12,11 +12,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 
-import org.w3c.dom.Text;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.TimeZone;
 
 public class AestheticDialog {
 
@@ -186,12 +183,7 @@ public class AestheticDialog {
         alertDialog.getWindow().setGravity(Gravity.CENTER);
         alertDialog.show();
         int height = activity.getResources().getDimensionPixelSize(R.dimen.popup_height_emotion);
-        int width = activity.getResources().getDimensionPixelSize(R.dimen.popup_width_emotion);
         alertDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT,height);
-
-
-
-
 
     }
 

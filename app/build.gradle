@@ -7,8 +7,8 @@ android {
         applicationId "com.thecode.sample"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 1001
+        versionName "1.0.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
