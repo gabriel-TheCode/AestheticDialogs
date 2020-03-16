@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![](https://jitpack.io/v/gabriel-TheCode/AestheticDialogs.svg)](https://jitpack.io/#gabriel-TheCode/AestheticDialogs)
 
-📱Android Library to implement *custom*, 😍*beautiful*, 🎨*awesome*  Dialog in android apps easily.
+📱Android Library to implement *custom*, 😍*beautiful*, 🎨*stylish*  Dialog in android apps easily.
 
 <a href="https://play.google.com/store/apps/details?id=com.thecode.sample">
     <img alt="Get it on Google Play"
@@ -103,7 +103,7 @@ Step 2. Add the dependency
 ```gradle
 dependencies {
 	...
-	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.1.0'
+	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.1.1'
 }
 ```
 
