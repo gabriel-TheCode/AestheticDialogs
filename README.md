@@ -65,16 +65,18 @@
 
 <a name="dark"></a>
 ## Dark Theme
-**AestheticDialog** Also provide Dark Theme mode for some dialogs i.e.
+**AestheticDialog** Also provides Dark Theme for some dialogs i.e.
 
 <table style="width:100%">
   <tr>
-    <th><b>1. Connectify Dialog<b></b></th>
-    <th>2. Toaster Dialog</th>
+    <th><b>1. Connectify Dark Dialog<b></b></th>
+    <th>2. Toaster Dark Dialog</th>
+    <th>3. Emoji Dark Dialog</th>
   </tr>
   <tr>
     <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/connectify-dark.png"/></td>
     <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/toaster-dark.png"/></td>
+     <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/emoji-dark.png"/></td>
   </tr>
 </table>
 
@@ -121,7 +123,7 @@ Connectify:
                 AestheticDialog.showConnectify(this,"Your message", AestheticDialog.SUCCESS);
                 AestheticDialog.showConnectify(this, "Your message", AestheticDialog.ERROR);
 
-                /// Dark Mode
+                /// Dark Theme
                 AestheticDialog.showConnectifyDark(this,"Your message",AestheticDialog.SUCCESS);
                 AestheticDialog.showConnectifyDark(this, "Your message", AestheticDialog.ERROR);
 ```
@@ -134,7 +136,7 @@ Toaster:
                 AestheticDialog.showToaster(this, "Your dialog Title", "Your message", AestheticDialog.WARNING);
                 AestheticDialog.showToaster(this, "Your dialog Title", "Your message", AestheticDialog.INFO);
 
-                /// Dark Mode 
+                /// Dark Theme
                 AestheticDialog.showToasterDark(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
                 AestheticDialog.showToasterDark(this, "Your dialog Title", "Your message", AestheticDialog.SUCCESS);
                 AestheticDialog.showToasterDark(this, "Your dialog Title", "Your message", AestheticDialog.WARNING);
@@ -153,6 +155,10 @@ Emoji :
 ``` java
                 AestheticDialog.showEmoji(this,"Your dialog Title", "Your message", AestheticDialog.SUCCESS);
                 AestheticDialog.showEmoji(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
+
+                /// Dark Theme
+                AestheticDialog.showEmojiDark(this,"Your dialog Title", "Your message", AestheticDialog.SUCCESS);
+                AestheticDialog.showEmojiDark(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
 ```
 
 Emotion :
