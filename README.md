@@ -58,8 +58,8 @@
   </tr>
 
    <tr>
-    <th><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/emoji.gif"/></th>
-    <th colspan="2"></th>
+    <th><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/rainbow.png"/></th>
+    <th colspan="2"><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/presentation.png"/></th>
   </tr>
 </table>
 
