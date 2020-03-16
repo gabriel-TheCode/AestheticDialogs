@@ -174,20 +174,25 @@ public class AestheticDialog {
         AlertDialog alertDialog;
         dialogBuilder = new AlertDialog.Builder(activity);
         View layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_rainbow, null);
+        ImageView icon = layoutView.findViewById(R.id.dialog_icon);
         RelativeLayout layoutDialog = layoutView.findViewById(R.id.dialog_layout);
 
         switch (dialogType){
             case ERROR:
                 layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.toaster_error));
+                icon.setImageResource(R.drawable.ic_error_red_24dp);
                 break;
             case SUCCESS:
                 layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.toaster_success));
+                icon.setImageResource(R.drawable.ic_check_circle_green_24dp);
                 break;
             case WARNING:
                 layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.toaster_warning));
+                icon.setImageResource(R.drawable.ic_warning_orange_24dp);
                 break;
             case INFO:
                 layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.toaster_info));
+                icon.setImageResource(R.drawable.ic_info_blue_24dp);
                 break;
 
         }
