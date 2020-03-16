@@ -236,6 +236,58 @@
             android:layout_marginBottom="10dp"
             android:onClick="onClick"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RAINBOW DIALOG"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="italic|bold"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:id="@+id/btn_rainbow_dialog_error"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show rainbow error"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+
+        <Button
+            android:id="@+id/btn_rainbow_dialog_success"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show rainbow success"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btn_rainbow_dialog_warning"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show rainbow warning"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btn_rainbow_dialog_info"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_blue_selector"
+            android:text="Show rainbow info"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
 
     </LinearLayout>
 

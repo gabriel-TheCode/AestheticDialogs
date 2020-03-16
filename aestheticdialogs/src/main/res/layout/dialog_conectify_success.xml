@@ -7,6 +7,7 @@
 
 
     <LinearLayout
+        android:id="@+id/dialog_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -48,7 +49,10 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:maxLines="2"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginStart="@dimen/padd_10"
+                    android:layout_marginEnd="@dimen/padd_10"
                     android:text="@string/success_connection_message" />
 
 
@@ -98,6 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/success"
+                android:ellipsize="end"
                 android:textAllCaps="true"
                 android:textColor="@color/md_white_1000"
                 android:textSize="18dp"/>

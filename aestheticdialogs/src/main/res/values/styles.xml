@@ -6,6 +6,5 @@
         <item name="android:windowExitAnimation">@anim/animate_slide_up_exit</item>
     </style>
 
-    <!-- I will set many different dialog anim !-->
 
 </resources>

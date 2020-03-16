@@ -44,7 +44,9 @@
             android:gravity="center_horizontal"
             android:layout_marginBottom="20dp"
             android:textColor="@color/md_white_1000"
-            android:text="The operation has been done successfully"/>
+            android:text="The operation has been done successfully"
+            android:maxLines="2"
+            android:ellipsize="end"/>
 
         <Button
             android:id="@+id/btn_action"

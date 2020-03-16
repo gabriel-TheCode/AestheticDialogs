@@ -6,6 +6,8 @@
     <color name="toaster_info">#3086EB</color>
     <color name="toaster_warning">#FFC122</color>
 
+    <color name="dark_background">#2F3032</color>
+
 
 
     <!-- google's material design colors from

@@ -57,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:text="Your message was delivered successfully"
                 android:maxLines="2"
+                android:ellipsize="end"
                 android:textColor="@color/md_white_1000"/>
 
 

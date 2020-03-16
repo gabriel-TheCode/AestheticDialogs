@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![](https://jitpack.io/v/gabriel-TheCode/AestheticDialogs.svg)](https://jitpack.io/#gabriel-TheCode/AestheticDialogs)
 
-📱Android Library to implement *custom*, 😍*beautiful*, 🎨*stylish*  Dialog in android apps easily.
+📱Android Library to implement *custom*, 😍*beautiful*, 🎨*awesome*  Dialog in android apps easily.
 
 <a href="https://play.google.com/store/apps/details?id=com.thecode.sample">
     <img alt="Get it on Google Play"
@@ -28,28 +28,53 @@
 
 <a name="types"></a>
 ## Types of Dialog
-**AestheticDialog** At this moment, library provides six types of dialog i.e.
+**AestheticDialog** At this moment, library provides seven types of dialog i.e.
 
 <table style="width:100%">
   <tr>
-    <th><b>1. Flash Dialog<b></b></th>
+    <th>1. Flash Dialog</th>
     <th>2. Connectify Dialog</th>
     <th>3. Toaster Dialog</th>
   </tr>
   <tr>
-    <td><img src="GIFs/flash.gif"/></td>
-    <td><img src="GIFs/connectify.gif"/></td>
-    <td><img src="GIFs/toaster.gif"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/flash.gif"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/connectify.gif"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/toaster.gif"/></td>
   </tr>
   <tr>
-    <th><b>1. Emotion Dialog<b></b></th>
-    <th>2. Drake Dialog</th>
-    <th>3. Emoji Dialog</th>
+    <th>4. Emotion Dialog</th>
+    <th>5. Drake Dialog</th>
+    <th>6. Emoji Dialog</th>
   </tr>
   <tr>
-    <td><img src="GIFs/emotion.gif"/></td>
-    <td><img src="GIFs/drake.gif"/></td>
-    <td><img src="GIFs/emoji.gif"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/emotion.gif"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/drake.gif"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/emoji.gif"/></td>
+  </tr>
+  
+   <tr>
+    <th>7. Rainbow Dialog</th>
+    <th colspan="2">LET's USE aesthetic Dialog !</th>
+  </tr>
+
+   <tr>
+    <th><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/emoji.gif"/></th>
+    <th colspan="2"></th>
+  </tr>
+</table>
+
+<a name="dark"></a>
+## Dark Theme
+**AestheticDialog** Also provide Dark Theme mode for some dialogs i.e.
+
+<table style="width:100%">
+  <tr>
+    <th><b>1. Connectify Dialog<b></b></th>
+    <th>2. Toaster Dialog</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/connectify-dark.png"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/toaster-dark.png"/></td>
   </tr>
 </table>
 
@@ -95,6 +120,10 @@ Connectify:
 ``` java
                 AestheticDialog.showConnectify(this,"Your message", AestheticDialog.SUCCESS);
                 AestheticDialog.showConnectify(this, "Your message", AestheticDialog.ERROR);
+
+                /// Dark Mode
+                AestheticDialog.showConnectifyDark(this,"Your message",AestheticDialog.SUCCESS);
+                AestheticDialog.showConnectifyDark(this, "Your message", AestheticDialog.ERROR);
 ```
 
 Toaster:
@@ -104,6 +133,12 @@ Toaster:
                 AestheticDialog.showToaster(this, "Your dialog Title", "Your message", AestheticDialog.SUCCESS);
                 AestheticDialog.showToaster(this, "Your dialog Title", "Your message", AestheticDialog.WARNING);
                 AestheticDialog.showToaster(this, "Your dialog Title", "Your message", AestheticDialog.INFO);
+
+                /// Dark Mode 
+                AestheticDialog.showToasterDark(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
+                AestheticDialog.showToasterDark(this, "Your dialog Title", "Your message", AestheticDialog.SUCCESS);
+                AestheticDialog.showToasterDark(this, "Your dialog Title", "Your message", AestheticDialog.WARNING);
+                AestheticDialog.showToasterDark(this, "Your dialog Title", "Your message", AestheticDialog.INFO);
 ```
 
 Drake :
