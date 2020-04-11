@@ -15,6 +15,7 @@
 # Table of Contents:
 > - [ Introduction ](#introduction)
 > - [ Types of Dialog ](#types)
+> - [ Dark Theme ](#dark)
 > - [ Implementation ](#implementation)
 >    - [ Prerequisite ](#prerequisite)
 >    - [ Create Dialog ](#createDialog)
@@ -166,6 +167,15 @@ Emotion :
 ``` java
                 AestheticDialog.showEmotion(this,"Your dialog Title", "Your message", AestheticDialog.SUCCESS);
                 AestheticDialog.showEmotion(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
+```
+
+Rainbow :
+
+``` java
+                AestheticDialog.showRainbow(this,"Your dialog Title", "Your message", AestheticDialog.SUCCESS);
+                AestheticDialog.showRainbow(this,"Your dialog Title", "Your message", AestheticDialog.ERROR);
+                AestheticDialog.showRainbow(this,"Your dialog Title", "Your message", AestheticDialog.WARNING);
+                AestheticDialog.showRainbow(this,"Your dialog Title", "Your message", AestheticDialog.INFO);
 ```
 
 <a name="demo"></a>
