@@ -7,7 +7,7 @@ android {
         applicationId "com.thecode.sample"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 1001
+        versionCode 1002
         versionName "1.0.0.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
