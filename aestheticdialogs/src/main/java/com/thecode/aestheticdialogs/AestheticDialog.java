@@ -27,10 +27,10 @@ import java.util.Calendar;
 public class AestheticDialog {
 
 
-    public final static String SUCCESS  = "TOASTER_SUCCESS";
-    public final static String ERROR  = "TOASTER_ERROR";
-    public final static String WARNING  = "TOASTER_WARNING";
-    public final static String INFO  = "TOASTER_INFO";
+    public final static String SUCCESS  = "SUCCESS";
+    public final static String ERROR  = "ERROR";
+    public final static String WARNING  = "WARNING";
+    public final static String INFO  = "INFO";
 
 
 
