@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -49,9 +50,9 @@ public class AestheticDialog {
         dialogBuilder = new AlertDialog.Builder(activity);
         View layoutView;
         if(dialogType.equals(AestheticDialog.SUCCESS)){
-            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_conectify_success, null);
+            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_connectify_success, null);
         }else {
-            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_conectify_error, null);
+            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_connectify_error, null);
         }
         ImageView imgClose = layoutView.findViewById(R.id.image_close);
         TextView textMessage = layoutView.findViewById(R.id.text_message);
@@ -93,19 +94,19 @@ public class AestheticDialog {
 
         switch (dialogType){
             case ERROR:
-                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.toaster_error));
+                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.dialog_error));
                 icon.setImageResource(R.drawable.ic_error_red_24dp);
                 break;
             case SUCCESS:
-                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.toaster_success));
+                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.dialog_success));
                 icon.setImageResource(R.drawable.ic_check_circle_green_24dp);
                 break;
             case WARNING:
-                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.toaster_warning));
+                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.dialog_warning));
                 icon.setImageResource(R.drawable.ic_warning_orange_24dp);
                 break;
             case INFO:
-                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.toaster_info));
+                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.dialog_info));
                 icon.setImageResource(R.drawable.ic_info_blue_24dp);
                 break;
 
@@ -136,16 +137,20 @@ public class AestheticDialog {
         AlertDialog.Builder dialogBuilder;
         AlertDialog alertDialog;
         dialogBuilder = new AlertDialog.Builder(activity);
-        View layoutView;
-
-        if(dialogType.equals(AestheticDialog.SUCCESS)){
-            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_emoji_sucess, null);
-        }else {
-            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_emoji_error, null);
-        }
+        View layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_emoji, null);
         ImageView imgClose = layoutView.findViewById(R.id.image_close);
         TextView textTitle = layoutView.findViewById(R.id.text_title);
         TextView textMessage = layoutView.findViewById(R.id.text_message);
+        ImageView icon = layoutView.findViewById(R.id.dialog_icon);
+
+        if(dialogType.equals(AestheticDialog.SUCCESS)){
+            textTitle.setTextColor(activity.getResources().getColor(R.color.dialog_success));
+            icon.setImageResource(R.drawable.thumbs_up_sign);
+        }else {
+            textTitle.setTextColor(activity.getResources().getColor(R.color.dialog_error));
+            icon.setImageResource(R.drawable.man_shrugging);
+        }
+
         textMessage.setText(message);
         textTitle.setText(title);
         dialogBuilder.setView(layoutView);
@@ -179,19 +184,19 @@ public class AestheticDialog {
 
         switch (dialogType){
             case ERROR:
-                layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.toaster_error));
+                layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.dialog_error));
                 icon.setImageResource(R.drawable.ic_error_red_24dp);
                 break;
             case SUCCESS:
-                layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.toaster_success));
+                layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.dialog_success));
                 icon.setImageResource(R.drawable.ic_check_circle_green_24dp);
                 break;
             case WARNING:
-                layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.toaster_warning));
+                layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.dialog_warning));
                 icon.setImageResource(R.drawable.ic_warning_orange_24dp);
                 break;
             case INFO:
-                layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.toaster_info));
+                layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.dialog_info));
                 icon.setImageResource(R.drawable.ic_info_blue_24dp);
                 break;
 
@@ -227,16 +232,21 @@ public class AestheticDialog {
         AlertDialog.Builder dialogBuilder;
         AlertDialog alertDialog;
         dialogBuilder = new AlertDialog.Builder(activity);
-        View layoutView;
-        if(dialogType.equals(AestheticDialog.SUCCESS)){
-            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_message_success, null);
-        }else {
-            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_message_error, null);
-        }
-
+        View layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_flash, null);
         Button btnOk = layoutView.findViewById(R.id.btn_action);
         TextView textTitle = layoutView.findViewById(R.id.dialog_title);
         TextView textMessage = layoutView.findViewById(R.id.dialog_message);
+        FrameLayout dialogFrame = layoutView.findViewById(R.id.dialog_frame);
+        ImageView icon = layoutView.findViewById(R.id.img_icon);
+
+        if(dialogType.equals(AestheticDialog.SUCCESS)){
+            dialogFrame.setBackgroundResource(R.drawable.rounded_green_gradient_bg);
+            icon.setImageResource(R.drawable.circle_validation_success);
+        }else {
+            dialogFrame.setBackgroundResource(R.drawable.rounded_red_gradient_bg);
+            icon.setImageResource(R.drawable.circle_validation_error);
+        }
+
         textMessage.setText(message);
         textTitle.setText(title);
         dialogBuilder.setView(layoutView);
@@ -264,18 +274,23 @@ public class AestheticDialog {
         AlertDialog.Builder dialogBuilder;
         AlertDialog alertDialog;
         dialogBuilder = new AlertDialog.Builder(activity);
-        View layoutView;
+        View  layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_emotion, null);
+        ImageView icon = layoutView.findViewById(R.id.img_icon);
+        RelativeLayout layoutDialog = layoutView.findViewById(R.id.dialog_layout);
+        TextView textTitle = layoutView.findViewById(R.id.dialog_title);
+        TextView textMessage = layoutView.findViewById(R.id.dialog_message);
+        TextView textHour = layoutView.findViewById(R.id.dialog_hour);
+
         if(dialogType.equals(AestheticDialog.SUCCESS)){
-            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_emotion_success, null);
+           icon.setImageResource(R.drawable.smiley_success);
+           layoutDialog.setBackgroundResource(R.drawable.background_emotion_success);
         }else {
-            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_emotion_error, null);
+            icon.setImageResource(R.drawable.smiley_error);
+            layoutDialog.setBackgroundResource(R.drawable.background_emotion_error);
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         String hour = sdf.format(Calendar.getInstance().getTime());
-        TextView textTitle = layoutView.findViewById(R.id.dialog_title);
-        TextView textMessage = layoutView.findViewById(R.id.dialog_message);
-        TextView textHour = layoutView.findViewById(R.id.dialog_hour);
         textMessage.setText(message);
         textTitle.setText(title);
         textHour.setText(hour);
@@ -319,6 +334,134 @@ public class AestheticDialog {
 
     }
 
+
+    /**
+     * Shows Flat Dialog.
+     *
+     *
+     * @param activity
+     * @param title
+     * @param message
+     * @param dialogType
+     */
+    public static void showFlat(Activity activity, String title, String message, String dialogType){
+
+        AlertDialog.Builder dialogBuilder;
+        AlertDialog alertDialog;
+        dialogBuilder = new AlertDialog.Builder(activity);
+        View layoutView;
+        layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_flat, null);
+        Button btnOk = layoutView.findViewById(R.id.btn_action);
+        TextView textTitle = layoutView.findViewById(R.id.dialog_title);
+        TextView textMessage = layoutView.findViewById(R.id.dialog_message);
+        ImageView icon = layoutView.findViewById(R.id.dialog_icon);
+        LinearLayout layoutDialog = layoutView.findViewById(R.id.dialog_layout);
+        FrameLayout frameLayout = layoutView.findViewById(R.id.dialog_frame);
+
+        switch (dialogType){
+            case ERROR:
+                icon.setImageResource(R.drawable.ic_error_red_24dp);
+                btnOk.setBackgroundResource(R.drawable.btn_red_selector);
+                frameLayout.setBackgroundResource(R.drawable.rounded_rect_red);
+                break;
+            case SUCCESS:
+                icon.setImageResource(R.drawable.ic_check_circle_green_24dp);
+                btnOk.setBackgroundResource(R.drawable.btn_green_selector);
+                frameLayout.setBackgroundResource(R.drawable.rounded_rect_green);
+                break;
+            case WARNING:
+                icon.setImageResource(R.drawable.ic_warning_orange_24dp);
+                btnOk.setBackgroundResource(R.drawable.btn_yellow_selector);
+                frameLayout.setBackgroundResource(R.drawable.rounded_rect_yellow);
+                break;
+            case INFO:
+                icon.setImageResource(R.drawable.ic_info_blue_24dp);
+                btnOk.setBackgroundResource(R.drawable.btn_blue_selector);
+                frameLayout.setBackgroundResource(R.drawable.rounded_rect_blue);
+                break;
+        }
+
+
+        layoutDialog.setBackgroundResource(R.drawable.rounded_white_bg);
+        textMessage.setText(message);
+        textTitle.setText(title);
+        dialogBuilder.setView(layoutView);
+        alertDialog = dialogBuilder.create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.getWindow().setGravity(Gravity.CENTER);
+        alertDialog.show();
+        int height = activity.getResources().getDimensionPixelSize(R.dimen.popup_height);
+        int width = activity.getResources().getDimensionPixelSize(R.dimen.popup_height);
+        alertDialog.getWindow().setLayout(width,height);
+        btnOk.setOnClickListener(view -> alertDialog.dismiss());
+    }
+
+
+    /**
+     * Shows Flat Dark Theme Dialog.
+     *
+     *
+     * @param activity
+     * @param title
+     * @param message
+     * @param dialogType
+     */
+    public static void showFlatDark(Activity activity, String title, String message, String dialogType){
+
+        AlertDialog.Builder dialogBuilder;
+        AlertDialog alertDialog;
+        dialogBuilder = new AlertDialog.Builder(activity);
+        View layoutView;
+        layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_flat, null);
+        Button btnOk = layoutView.findViewById(R.id.btn_action);
+        TextView textTitle = layoutView.findViewById(R.id.dialog_title);
+        TextView textMessage = layoutView.findViewById(R.id.dialog_message);
+        ImageView icon = layoutView.findViewById(R.id.dialog_icon);
+        LinearLayout layoutDialog = layoutView.findViewById(R.id.dialog_layout);
+        FrameLayout frameLayout = layoutView.findViewById(R.id.dialog_frame);
+
+        switch (dialogType){
+            case ERROR:
+                icon.setImageResource(R.drawable.ic_error_red_24dp);
+                btnOk.setBackgroundResource(R.drawable.btn_red_selector);
+                frameLayout.setBackgroundResource(R.drawable.rounded_rect_red);
+                break;
+            case SUCCESS:
+                icon.setImageResource(R.drawable.ic_check_circle_green_24dp);
+                btnOk.setBackgroundResource(R.drawable.btn_green_selector);
+                frameLayout.setBackgroundResource(R.drawable.rounded_rect_green);
+                break;
+            case WARNING:
+                icon.setImageResource(R.drawable.ic_warning_orange_24dp);
+                btnOk.setBackgroundResource(R.drawable.btn_yellow_selector);
+                frameLayout.setBackgroundResource(R.drawable.rounded_rect_yellow);
+                break;
+            case INFO:
+                icon.setImageResource(R.drawable.ic_info_blue_24dp);
+                btnOk.setBackgroundResource(R.drawable.btn_blue_selector);
+                frameLayout.setBackgroundResource(R.drawable.rounded_rect_blue);
+                break;
+        }
+
+
+        layoutDialog.setBackgroundResource(R.drawable.rounded_dark_bg);
+        textTitle.setTextColor(activity.getResources().getColor(R.color.md_white_1000));
+        textMessage.setTextColor(activity.getResources().getColor(R.color.md_white_1000));
+        textMessage.setText(message);
+        textTitle.setText(title);
+        dialogBuilder.setView(layoutView);
+        alertDialog = dialogBuilder.create();
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.getWindow().setGravity(Gravity.CENTER);
+        alertDialog.show();
+        int height = activity.getResources().getDimensionPixelSize(R.dimen.popup_height);
+        int width = activity.getResources().getDimensionPixelSize(R.dimen.popup_height);
+        alertDialog.getWindow().setLayout(width,height);
+        btnOk.setOnClickListener(view -> alertDialog.dismiss());
+    }
+
     /**
      * Shows Connectify Dark Theme Dialog.
      *
@@ -334,9 +477,9 @@ public class AestheticDialog {
         dialogBuilder = new AlertDialog.Builder(activity);
         View layoutView;
         if(dialogType.equals(AestheticDialog.SUCCESS)){
-            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_conectify_success, null);
+            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_connectify_success, null);
         }else {
-            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_conectify_error, null);
+            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_connectify_error, null);
         }
         LinearLayout layoutDialog = layoutView.findViewById(R.id.dialog_layout);
         ImageView imgClose = layoutView.findViewById(R.id.image_close);
@@ -384,23 +527,23 @@ public class AestheticDialog {
 
         switch (dialogType){
             case ERROR:
-                textTitle.setTextColor(activity.getResources().getColor(R.color.toaster_error));
-                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.toaster_error));
+                textTitle.setTextColor(activity.getResources().getColor(R.color.dialog_error));
+                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.dialog_error));
                 icon.setImageResource(R.drawable.ic_error_red_24dp);
                 break;
             case SUCCESS:
-                textTitle.setTextColor(activity.getResources().getColor(R.color.toaster_success));
-                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.toaster_success));
+                textTitle.setTextColor(activity.getResources().getColor(R.color.dialog_success));
+                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.dialog_success));
                 icon.setImageResource(R.drawable.ic_check_circle_green_24dp);
                 break;
             case WARNING:
-                textTitle.setTextColor(activity.getResources().getColor(R.color.toaster_warning));
-                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.toaster_warning));
+                textTitle.setTextColor(activity.getResources().getColor(R.color.dialog_warning));
+                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.dialog_warning));
                 icon.setImageResource(R.drawable.ic_warning_orange_24dp);
                 break;
             case INFO:
-                textTitle.setTextColor(activity.getResources().getColor(R.color.toaster_info));
-                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.toaster_info));
+                textTitle.setTextColor(activity.getResources().getColor(R.color.dialog_info));
+                verticalView.setBackgroundColor(activity.getResources().getColor(R.color.dialog_info));
                 icon.setImageResource(R.drawable.ic_info_blue_24dp);
                 break;
 
@@ -431,18 +574,21 @@ public class AestheticDialog {
         AlertDialog.Builder dialogBuilder;
         AlertDialog alertDialog;
         dialogBuilder = new AlertDialog.Builder(activity);
-        View layoutView;
-
-        if(dialogType.equals(AestheticDialog.SUCCESS)){
-            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_emoji_sucess, null);
-        }else {
-            layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_emoji_error, null);
-        }
+        View layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_emoji, null);
         RelativeLayout layoutDialog = layoutView.findViewById(R.id.dialog_layout);
         layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.dark_background));
         ImageView imgClose = layoutView.findViewById(R.id.image_close);
+        ImageView icon = layoutView.findViewById(R.id.dialog_icon);
         TextView textTitle = layoutView.findViewById(R.id.text_title);
         TextView textMessage = layoutView.findViewById(R.id.text_message);
+        if(dialogType.equals(AestheticDialog.SUCCESS)){
+            textTitle.setTextColor(activity.getResources().getColor(R.color.dialog_success));
+            icon.setImageResource(R.drawable.thumbs_up_sign);
+        }else {
+            textTitle.setTextColor(activity.getResources().getColor(R.color.dialog_error));
+            icon.setImageResource(R.drawable.man_shrugging);
+        }
+
         textMessage.setTextColor(activity.getResources().getColor(R.color.md_white_1000));
         textMessage.setText(message);
         textTitle.setText(title);

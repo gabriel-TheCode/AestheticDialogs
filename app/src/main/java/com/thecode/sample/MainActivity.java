@@ -11,7 +11,7 @@ import com.thecode.aestheticdialogs.AestheticDialog;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     String errorMessage, successMessage, warningMessage, infoMessage;
-    RadioButton rbEmojiLight, rbConnectifyLight, rbToasterLight;
+    RadioButton rbEmojiLight, rbConnectifyLight, rbToasterLight, rbFlatLight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rbEmojiLight = findViewById(R.id.rb_emoji_light);
         rbConnectifyLight = findViewById(R.id.rb_connectify_light);
         rbToasterLight = findViewById(R.id.rb_toaster_light);
+        rbFlatLight = findViewById(R.id.rb_flat_light);
 
     }
 
@@ -117,6 +118,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_rainbow_dialog_info:
                 AestheticDialog.showRainbow(this, "Info", infoMessage, AestheticDialog.INFO);
+                break;
+            case R.id.btn_flat_dialog_success:
+                if (rbFlatLight.isChecked()) {
+                    AestheticDialog.showFlat(this, "Success", successMessage, AestheticDialog.SUCCESS);
+                }else{
+                    AestheticDialog.showFlatDark(this, "Success", successMessage, AestheticDialog.SUCCESS);
+                }
+                break;
+            case R.id.btn_flat_dialog_error:
+                if (rbFlatLight.isChecked()) {
+                    AestheticDialog.showFlat(this, "Error", errorMessage, AestheticDialog.ERROR);
+                }else{
+                    AestheticDialog.showFlatDark(this, "Error", errorMessage, AestheticDialog.ERROR);
+                }
+                break;
+            case R.id.btn_flat_dialog_warning:
+                if (rbFlatLight.isChecked()) {
+                    AestheticDialog.showFlat(this, "Warning", warningMessage, AestheticDialog.WARNING);
+                }else{
+                    AestheticDialog.showFlatDark(this, "Warning", warningMessage, AestheticDialog.WARNING);
+                }
+                break;
+            case R.id.btn_flat_dialog_info:
+                if (rbFlatLight.isChecked()) {
+                    AestheticDialog.showFlat(this, "Info", infoMessage, AestheticDialog.INFO);
+                }else{
+                    AestheticDialog.showFlatDark(this, "Info", infoMessage, AestheticDialog.INFO);
+                }
                 break;
 
         }

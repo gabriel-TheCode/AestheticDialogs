@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. All rights reserved.
+  ~ Created by TEKOMBO Gabriel, Android Engineer, <tekombo.gabriel@gmail.com> on 16/10/19 22:32.
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid
+        android:angle="270"
+        android:color="@color/dialog_error" />
+    <corners android:radius="30dp" />
+</shape>

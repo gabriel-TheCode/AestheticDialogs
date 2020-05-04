@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="toaster_success">#48D865</color>
-    <color name="toaster_error">#FF6B5F</color>
-    <color name="toaster_info">#3086EB</color>
-    <color name="toaster_warning">#FFC122</color>
+    <color name="dialog_success">#48D865</color>
+    <color name="dialog_error">#FF6B5F</color>
+    <color name="dialog_info">#3086EB</color>
+    <color name="dialog_warning">#FFC122</color>
 
     <color name="dark_background">#2F3032</color>
 

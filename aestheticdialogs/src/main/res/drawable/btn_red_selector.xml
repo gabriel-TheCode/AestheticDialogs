@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. All rights reserved.
+  ~ Created by TEKOMBO Gabriel, Android Engineer, <tekombo.gabriel@gmail.com> on 16/10/19 22:33.
+  -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/btn_red_pressed" android:state_focused="true" android:state_pressed="true" />
+    <item android:drawable="@drawable/btn_red_pressed" android:state_focused="false" android:state_pressed="true" />
+    <item android:drawable="@drawable/btn_red_normal" />
+</selector>

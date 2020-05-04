@@ -40,7 +40,7 @@
             android:id="@+id/btn_flash_dialog_success"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show Flash success"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -51,7 +51,7 @@
             android:id="@+id/btn_flash_dialog_error"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show Flash error"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -97,7 +97,7 @@
             android:id="@+id/btn_connectify_dialog_success"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show connectify success"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -108,7 +108,7 @@
             android:id="@+id/btn_connectify_dialog_error"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show connectify error"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -155,7 +155,7 @@
             android:id="@+id/btn_toaster_dialog_error"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show toaster error"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -167,7 +167,7 @@
             android:id="@+id/btn_toaster_dialog_success"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show toaster success"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -178,7 +178,7 @@
             android:id="@+id/btn_toaster_dialog_warning"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show toaster warning"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -189,11 +189,11 @@
             android:id="@+id/btn_toaster_dialog_info"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show toaster info"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:onClick="onClick"/>
 
 
@@ -210,7 +210,7 @@
             android:id="@+id/btn_emotion_dialog_success"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show emotion success"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -221,11 +221,11 @@
             android:id="@+id/btn_emotion_dialog_error"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show emotion error"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:onClick="onClick"/>
 
         <TextView
@@ -241,7 +241,7 @@
             android:id="@+id/btn_drake_dialog_success"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show drake success"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -252,7 +252,7 @@
             android:id="@+id/btn_drake_dialog_error"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show drake error"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -299,7 +299,7 @@
             android:id="@+id/btn_emoji_dialog_success"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show emoji success"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -310,11 +310,11 @@
             android:id="@+id/btn_emoji_dialog_error"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show emoji error"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:onClick="onClick"/>
 
         <TextView
@@ -329,7 +329,7 @@
             android:id="@+id/btn_rainbow_dialog_error"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show rainbow error"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -341,7 +341,7 @@
             android:id="@+id/btn_rainbow_dialog_success"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show rainbow success"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -352,7 +352,7 @@
             android:id="@+id/btn_rainbow_dialog_warning"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show rainbow warning"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
@@ -363,12 +363,93 @@
             android:id="@+id/btn_rainbow_dialog_info"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/btn_blue_selector"
+            android:background="@drawable/btn_selector"
             android:text="Show rainbow info"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp"
+            android:onClick="onClick"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FLAT DIALOG"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="italic|bold"
+            android:layout_marginBottom="5dp"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rg_flat"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="10dp">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Light"
+                android:id="@+id/rb_flat_light"
+                android:layout_gravity="center_horizontal"
+                android:checked="true"
+                android:textSize="14dp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dark"
+                android:id="@+id/rb_flat_dark"
+                android:layout_gravity="center_horizontal"
+                android:checked="false"
+                android:textSize="14dp" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_flat_dialog_success"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_selector"
+            android:text="Show flat success"
             android:textColor="@color/md_white_1000"
             android:textSize="14sp"
             android:layout_marginBottom="10dp"
             android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btn_flat_dialog_error"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_selector"
+            android:text="Show flat error"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btn_flat_dialog_warning"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_selector"
+            android:text="Show flat warning"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btn_flat_dialog_info"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_selector"
+            android:text="Show flat info"
+            android:textColor="@color/md_white_1000"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp"
+            android:onClick="onClick"/>
+
 
     </LinearLayout>
 

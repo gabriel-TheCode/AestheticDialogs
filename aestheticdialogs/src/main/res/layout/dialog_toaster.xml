@@ -13,7 +13,7 @@
         android:id="@+id/vertical_view"
         android:layout_width="5dp"
         android:layout_height="wrap_content"
-        android:background="@color/toaster_success" />
+        android:background="@color/dialog_success" />
 
     <ImageView
         android:id="@+id/dialog_icon"
