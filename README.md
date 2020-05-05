@@ -38,9 +38,9 @@
     <th>3. Toaster Dialog</th>
   </tr>
   <tr>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/flash.gif"/></td>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/connectify.gif"/></td>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/toaster.gif"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/flash.gif"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/connectify.gif"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/toaster.gif"/></td>
   </tr>
   <tr>
     <th>4. Emotion Dialog</th>
@@ -48,19 +48,20 @@
     <th>6. Emoji Dialog</th>
   </tr>
   <tr>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/emotion.gif"/></td>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/drake.gif"/></td>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/emoji.gif"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/emotion.gif"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/drake.gif"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/emoji.gif"/></td>
   </tr>
   
    <tr>
     <th>7. Rainbow Dialog</th>
-    <th colspan="2">LET's USE aesthetic Dialog !</th>
+    <th>8. Flat Dialog</th>
   </tr>
 
    <tr>
-    <th><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/rainbow.png"/></th>
-    <th colspan="2"><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/presentation.png"/></th>
+    <th><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/rainbow.png"/></th>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/flat.png"/></td>
+
   </tr>
 </table>
 
@@ -70,14 +71,23 @@
 
 <table style="width:100%">
   <tr>
-    <th><b>1. Connectify Dark Dialog<b></b></th>
+    <th>1. Connectify Dark Dialog</th>
     <th>2. Toaster Dark Dialog</th>
     <th>3. Emoji Dark Dialog</th>
   </tr>
   <tr>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/connectify-dark.png"/></td>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/toaster-dark.png"/></td>
-     <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/blob/master/AestheticDialogs/emoji-dark.png"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/connectify-dark.png"/></td>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/toaster-dark.png"/></td>
+     <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/emoji-dark.png"/></td>
+  </tr>
+  <tr>
+    <th>4. Flat Dark Dialog</th>
+    <th colspan="2">LET's USE aesthetic Dialog !</th>
+    <tr>
+    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/flat-dark.png"/></td>
+    <td colspan="2"><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/presentation.png"/></td>
+     
+  </tr>
   </tr>
 </table>
 
@@ -104,7 +114,7 @@ Step 2. Add the dependency
 ```gradle
 dependencies {
 	...
-	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.1.0'
+	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.2.0'
 }
 ```
 
@@ -177,6 +187,22 @@ Rainbow :
                 AestheticDialog.showRainbow(this,"Your dialog Title", "Your message", AestheticDialog.WARNING);
                 AestheticDialog.showRainbow(this,"Your dialog Title", "Your message", AestheticDialog.INFO);
 ```
+
+Flat:
+
+``` java
+                AestheticDialog.showFlat(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
+                AestheticDialog.showFlat(this, "Your dialog Title", "Your message", AestheticDialog.SUCCESS);
+                AestheticDialog.showFlat(this, "Your dialog Title", "Your message", AestheticDialog.WARNING);
+                AestheticDialog.showFlat(this, "Your dialog Title", "Your message", AestheticDialog.INFO);
+
+                /// Dark Theme
+                AestheticDialog.showFlatDark(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
+                AestheticDialog.showFlatDark(this, "Your dialog Title", "Your message", AestheticDialog.SUCCESS);
+                AestheticDialog.showFlatDark(this, "Your dialog Title", "Your message", AestheticDialog.WARNING);
+                AestheticDialog.showFlatDark(this, "Your dialog Title", "Your message", AestheticDialog.INFO);
+```
+
 
 <a name="demo"></a>
 ## Demo
