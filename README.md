@@ -29,7 +29,7 @@
 
 <a name="types"></a>
 ## Types of Dialog
-**AestheticDialog** At this moment, library provides seven types of dialog i.e.
+**AestheticDialog** At this moment, library provides eight types of dialog i.e.
 
 <table style="width:100%">
   <tr>
