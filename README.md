@@ -124,34 +124,34 @@ dependencies {
 Flash:
 
 ``` java
-                AestheticDialog.showFlashDialog(this, "Your dialog Title", "Your message", AestheticDialog.SUCCESS);
-                AestheticDialog.showFlashDialog(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
+                AestheticDialog.showFlashDialog(this, "Title", "Message", AestheticDialog.SUCCESS);
+                AestheticDialog.showFlashDialog(this, "Title", "Message", AestheticDialog.ERROR);
 ```
 
 Connectify:
 
 ``` java
-                AestheticDialog.showConnectify(this,"Your message", AestheticDialog.SUCCESS);
-                AestheticDialog.showConnectify(this, "Your message", AestheticDialog.ERROR);
+                AestheticDialog.showConnectify(this,"Message", AestheticDialog.SUCCESS);
+                AestheticDialog.showConnectify(this, "Message", AestheticDialog.ERROR);
 
                 /// Dark Theme
-                AestheticDialog.showConnectifyDark(this,"Your message",AestheticDialog.SUCCESS);
-                AestheticDialog.showConnectifyDark(this, "Your message", AestheticDialog.ERROR);
+                AestheticDialog.showConnectifyDark(this,"Message",AestheticDialog.SUCCESS);
+                AestheticDialog.showConnectifyDark(this, "Message", AestheticDialog.ERROR);
 ```
 
 Toaster:
 
 ``` java
-                AestheticDialog.showToaster(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
-                AestheticDialog.showToaster(this, "Your dialog Title", "Your message", AestheticDialog.SUCCESS);
-                AestheticDialog.showToaster(this, "Your dialog Title", "Your message", AestheticDialog.WARNING);
-                AestheticDialog.showToaster(this, "Your dialog Title", "Your message", AestheticDialog.INFO);
+                AestheticDialog.showToaster(this, "Title", "Message", AestheticDialog.ERROR);
+                AestheticDialog.showToaster(this, "Title", "Message", AestheticDialog.SUCCESS);
+                AestheticDialog.showToaster(this, "Title", "Message", AestheticDialog.WARNING);
+                AestheticDialog.showToaster(this, "Title", "Message", AestheticDialog.INFO);
 
                 /// Dark Theme
-                AestheticDialog.showToasterDark(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
-                AestheticDialog.showToasterDark(this, "Your dialog Title", "Your message", AestheticDialog.SUCCESS);
-                AestheticDialog.showToasterDark(this, "Your dialog Title", "Your message", AestheticDialog.WARNING);
-                AestheticDialog.showToasterDark(this, "Your dialog Title", "Your message", AestheticDialog.INFO);
+                AestheticDialog.showToasterDark(this, "Title", "Message", AestheticDialog.ERROR);
+                AestheticDialog.showToasterDark(this, "Title", "Message", AestheticDialog.SUCCESS);
+                AestheticDialog.showToasterDark(this, "Title", "Message", AestheticDialog.WARNING);
+                AestheticDialog.showToasterDark(this, "Title", "Message", AestheticDialog.INFO);
 ```
 
 Drake :
@@ -164,43 +164,43 @@ Drake :
 Emoji :
 
 ``` java
-                AestheticDialog.showEmoji(this,"Your dialog Title", "Your message", AestheticDialog.SUCCESS);
-                AestheticDialog.showEmoji(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
+                AestheticDialog.showEmoji(this,"Title", "Message", AestheticDialog.SUCCESS);
+                AestheticDialog.showEmoji(this, "Title", "Message", AestheticDialog.ERROR);
 
                 /// Dark Theme
-                AestheticDialog.showEmojiDark(this,"Your dialog Title", "Your message", AestheticDialog.SUCCESS);
-                AestheticDialog.showEmojiDark(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
+                AestheticDialog.showEmojiDark(this,"Title", "Message", AestheticDialog.SUCCESS);
+                AestheticDialog.showEmojiDark(this, "Title", "Message", AestheticDialog.ERROR);
 ```
 
 Emotion :
 
 ``` java
-                AestheticDialog.showEmotion(this,"Your dialog Title", "Your message", AestheticDialog.SUCCESS);
-                AestheticDialog.showEmotion(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
+                AestheticDialog.showEmotion(this,"Title", "Message", AestheticDialog.SUCCESS);
+                AestheticDialog.showEmotion(this, "Title", "Message", AestheticDialog.ERROR);
 ```
 
 Rainbow :
 
 ``` java
-                AestheticDialog.showRainbow(this,"Your dialog Title", "Your message", AestheticDialog.SUCCESS);
-                AestheticDialog.showRainbow(this,"Your dialog Title", "Your message", AestheticDialog.ERROR);
-                AestheticDialog.showRainbow(this,"Your dialog Title", "Your message", AestheticDialog.WARNING);
-                AestheticDialog.showRainbow(this,"Your dialog Title", "Your message", AestheticDialog.INFO);
+                AestheticDialog.showRainbow(this,"Title", "Message", AestheticDialog.SUCCESS);
+                AestheticDialog.showRainbow(this,"Title", "Message", AestheticDialog.ERROR);
+                AestheticDialog.showRainbow(this,"Title", "Message", AestheticDialog.WARNING);
+                AestheticDialog.showRainbow(this,"Title", "Message", AestheticDialog.INFO);
 ```
 
 Flat:
 
 ``` java
-                AestheticDialog.showFlat(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
-                AestheticDialog.showFlat(this, "Your dialog Title", "Your message", AestheticDialog.SUCCESS);
-                AestheticDialog.showFlat(this, "Your dialog Title", "Your message", AestheticDialog.WARNING);
-                AestheticDialog.showFlat(this, "Your dialog Title", "Your message", AestheticDialog.INFO);
+                AestheticDialog.showFlat(this, "Title", "Message", AestheticDialog.ERROR);
+                AestheticDialog.showFlat(this, "Title", "Message", AestheticDialog.SUCCESS);
+                AestheticDialog.showFlat(this, "Title", "Message", AestheticDialog.WARNING);
+                AestheticDialog.showFlat(this, "Title", "Message", AestheticDialog.INFO);
 
                 /// Dark Theme
-                AestheticDialog.showFlatDark(this, "Your dialog Title", "Your message", AestheticDialog.ERROR);
-                AestheticDialog.showFlatDark(this, "Your dialog Title", "Your message", AestheticDialog.SUCCESS);
-                AestheticDialog.showFlatDark(this, "Your dialog Title", "Your message", AestheticDialog.WARNING);
-                AestheticDialog.showFlatDark(this, "Your dialog Title", "Your message", AestheticDialog.INFO);
+                AestheticDialog.showFlatDark(this, "Title", "Message", AestheticDialog.ERROR);
+                AestheticDialog.showFlatDark(this, "Title", "Message", AestheticDialog.SUCCESS);
+                AestheticDialog.showFlatDark(this, "Title", "Message", AestheticDialog.WARNING);
+                AestheticDialog.showFlatDark(this, "Title", "Message", AestheticDialog.INFO);
 ```
 
 
