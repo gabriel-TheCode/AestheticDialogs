@@ -11,13 +11,13 @@
     app:cardCornerRadius="15dp"
     android:gravity="center">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/drake_error"
         android:scaleType="fitXY"/>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -26,7 +26,7 @@
         android:gravity="center_horizontal">
 
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btn_action"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -47,6 +47,6 @@
             android:textColor="@color/md_white_1000"
             android:layout_marginBottom="10dp"/>
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.cardview.widget.CardView>

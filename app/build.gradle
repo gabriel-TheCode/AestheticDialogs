@@ -7,13 +7,13 @@ android {
         applicationId "com.thecode.sample"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 1003
-        versionName "1.0.0.3"
+        versionCode 1201
+        versionName "1.2.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

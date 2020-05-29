@@ -35,7 +35,7 @@
             android:layout_marginRight="20dp" />
 
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/layout_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:layout_toEndOf="@id/img_icon"
             android:layout_toRightOf="@id/img_icon">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/dialog_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/md_white_1000"/>
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/dialog_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,10 +63,10 @@
 
 
 
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/dialog_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

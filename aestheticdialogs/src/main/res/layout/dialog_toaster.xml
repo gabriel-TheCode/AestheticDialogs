@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:background="@color/dialog_success" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/dialog_icon"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -23,7 +23,7 @@
         app:srcCompat="@drawable/ic_check_circle_green_24dp"
        android:layout_margin="20dp"/>
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/dialog_icon"
@@ -31,7 +31,7 @@
         android:layout_centerVertical="true"
         android:gravity="center">
 
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/layout_text"
             android:orientation="vertical"
             android:layout_width="0dp"
@@ -39,7 +39,7 @@
             android:layout_weight="1"
             >
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -48,17 +48,17 @@
                 android:textStyle="bold"
                 android:textColor="@color/md_blue_grey_500"/>
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_message"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Anyone with access can view your invited visitors"
                 android:maxLines="2"
                 android:ellipsize="end"/>
-        </LinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_close"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -66,7 +66,7 @@
             android:layout_gravity="center"
             android:layout_margin="20dp"/>
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 

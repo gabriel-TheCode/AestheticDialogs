@@ -6,14 +6,13 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.LinearLayoutCompat;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -40,10 +39,11 @@ public class AestheticDialog {
      *
      *
      * @param activity
+     * @param title
      * @param message
      * @param dialogType
      */
-    public static void showConnectify(Activity activity, String message, String dialogType){
+    public static void showConnectify(Activity activity, String title, String message, String dialogType){
 
         AlertDialog.Builder dialogBuilder;
         AlertDialog alertDialog;
@@ -54,8 +54,10 @@ public class AestheticDialog {
         }else {
             layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_connectify_error, null);
         }
-        ImageView imgClose = layoutView.findViewById(R.id.image_close);
-        TextView textMessage = layoutView.findViewById(R.id.text_message);
+        AppCompatImageView imgClose = layoutView.findViewById(R.id.image_close);
+        AppCompatTextView textTitle = layoutView.findViewById(R.id.text_title);
+        AppCompatTextView textMessage = layoutView.findViewById(R.id.text_message);
+        textTitle.setText(title);
         textMessage.setText(message);
         dialogBuilder.setView(layoutView);
         alertDialog = dialogBuilder.create();
@@ -84,10 +86,10 @@ public class AestheticDialog {
         AlertDialog alertDialog;
         dialogBuilder = new AlertDialog.Builder(activity);
         View layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_toaster, null);
-        ImageView imgClose = layoutView.findViewById(R.id.image_close);
-        ImageView icon = layoutView.findViewById(R.id.dialog_icon);
-        TextView textTitle = layoutView.findViewById(R.id.text_title);
-        TextView textMessage = layoutView.findViewById(R.id.text_message);
+        AppCompatImageView imgClose = layoutView.findViewById(R.id.image_close);
+        AppCompatImageView icon = layoutView.findViewById(R.id.dialog_icon);
+        AppCompatTextView textTitle = layoutView.findViewById(R.id.text_title);
+        AppCompatTextView textMessage = layoutView.findViewById(R.id.text_message);
         View verticalView = layoutView.findViewById(R.id.vertical_view);
         textMessage.setText(message);
         textTitle.setText(title);
@@ -138,10 +140,10 @@ public class AestheticDialog {
         AlertDialog alertDialog;
         dialogBuilder = new AlertDialog.Builder(activity);
         View layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_emoji, null);
-        ImageView imgClose = layoutView.findViewById(R.id.image_close);
-        TextView textTitle = layoutView.findViewById(R.id.text_title);
-        TextView textMessage = layoutView.findViewById(R.id.text_message);
-        ImageView icon = layoutView.findViewById(R.id.dialog_icon);
+        AppCompatImageView imgClose = layoutView.findViewById(R.id.image_close);
+        AppCompatTextView textTitle = layoutView.findViewById(R.id.text_title);
+        AppCompatTextView textMessage = layoutView.findViewById(R.id.text_message);
+        AppCompatImageView icon = layoutView.findViewById(R.id.dialog_icon);
 
         if(dialogType.equals(AestheticDialog.SUCCESS)){
             textTitle.setTextColor(activity.getResources().getColor(R.color.dialog_success));
@@ -179,7 +181,7 @@ public class AestheticDialog {
         AlertDialog alertDialog;
         dialogBuilder = new AlertDialog.Builder(activity);
         View layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_rainbow, null);
-        ImageView icon = layoutView.findViewById(R.id.dialog_icon);
+        AppCompatImageView icon = layoutView.findViewById(R.id.dialog_icon);
         RelativeLayout layoutDialog = layoutView.findViewById(R.id.dialog_layout);
 
         switch (dialogType){
@@ -202,9 +204,9 @@ public class AestheticDialog {
 
         }
 
-        ImageView imgClose = layoutView.findViewById(R.id.image_close);
-        TextView textTitle = layoutView.findViewById(R.id.text_title);
-        TextView textMessage = layoutView.findViewById(R.id.text_message);
+        AppCompatImageView imgClose = layoutView.findViewById(R.id.image_close);
+        AppCompatTextView textTitle = layoutView.findViewById(R.id.text_title);
+        AppCompatTextView textMessage = layoutView.findViewById(R.id.text_message);
         textMessage.setText(message);
         textTitle.setText(title);
         dialogBuilder.setView(layoutView);
@@ -233,11 +235,11 @@ public class AestheticDialog {
         AlertDialog alertDialog;
         dialogBuilder = new AlertDialog.Builder(activity);
         View layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_flash, null);
-        Button btnOk = layoutView.findViewById(R.id.btn_action);
-        TextView textTitle = layoutView.findViewById(R.id.dialog_title);
-        TextView textMessage = layoutView.findViewById(R.id.dialog_message);
+        AppCompatButton btnOk = layoutView.findViewById(R.id.btn_action);
+        AppCompatTextView textTitle = layoutView.findViewById(R.id.dialog_title);
+        AppCompatTextView textMessage = layoutView.findViewById(R.id.dialog_message);
         FrameLayout dialogFrame = layoutView.findViewById(R.id.dialog_frame);
-        ImageView icon = layoutView.findViewById(R.id.img_icon);
+        AppCompatImageView icon = layoutView.findViewById(R.id.img_icon);
 
         if(dialogType.equals(AestheticDialog.SUCCESS)){
             dialogFrame.setBackgroundResource(R.drawable.rounded_green_gradient_bg);
@@ -275,11 +277,11 @@ public class AestheticDialog {
         AlertDialog alertDialog;
         dialogBuilder = new AlertDialog.Builder(activity);
         View  layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_emotion, null);
-        ImageView icon = layoutView.findViewById(R.id.img_icon);
+        AppCompatImageView icon = layoutView.findViewById(R.id.img_icon);
         RelativeLayout layoutDialog = layoutView.findViewById(R.id.dialog_layout);
-        TextView textTitle = layoutView.findViewById(R.id.dialog_title);
-        TextView textMessage = layoutView.findViewById(R.id.dialog_message);
-        TextView textHour = layoutView.findViewById(R.id.dialog_hour);
+        AppCompatTextView textTitle = layoutView.findViewById(R.id.dialog_title);
+        AppCompatTextView textMessage = layoutView.findViewById(R.id.dialog_message);
+        AppCompatTextView textHour = layoutView.findViewById(R.id.dialog_hour);
 
         if(dialogType.equals(AestheticDialog.SUCCESS)){
            icon.setImageResource(R.drawable.smiley_success);
@@ -351,11 +353,11 @@ public class AestheticDialog {
         dialogBuilder = new AlertDialog.Builder(activity);
         View layoutView;
         layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_flat, null);
-        Button btnOk = layoutView.findViewById(R.id.btn_action);
-        TextView textTitle = layoutView.findViewById(R.id.dialog_title);
-        TextView textMessage = layoutView.findViewById(R.id.dialog_message);
-        ImageView icon = layoutView.findViewById(R.id.dialog_icon);
-        LinearLayout layoutDialog = layoutView.findViewById(R.id.dialog_layout);
+        AppCompatButton btnOk = layoutView.findViewById(R.id.btn_action);
+        AppCompatTextView textTitle = layoutView.findViewById(R.id.dialog_title);
+        AppCompatTextView textMessage = layoutView.findViewById(R.id.dialog_message);
+        AppCompatImageView icon = layoutView.findViewById(R.id.dialog_icon);
+        LinearLayoutCompat layoutDialog = layoutView.findViewById(R.id.dialog_layout);
         FrameLayout frameLayout = layoutView.findViewById(R.id.dialog_frame);
 
         switch (dialogType){
@@ -414,11 +416,11 @@ public class AestheticDialog {
         dialogBuilder = new AlertDialog.Builder(activity);
         View layoutView;
         layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_flat, null);
-        Button btnOk = layoutView.findViewById(R.id.btn_action);
-        TextView textTitle = layoutView.findViewById(R.id.dialog_title);
-        TextView textMessage = layoutView.findViewById(R.id.dialog_message);
-        ImageView icon = layoutView.findViewById(R.id.dialog_icon);
-        LinearLayout layoutDialog = layoutView.findViewById(R.id.dialog_layout);
+        AppCompatButton btnOk = layoutView.findViewById(R.id.btn_action);
+        AppCompatTextView textTitle = layoutView.findViewById(R.id.dialog_title);
+        AppCompatTextView textMessage = layoutView.findViewById(R.id.dialog_message);
+        AppCompatImageView icon = layoutView.findViewById(R.id.dialog_icon);
+        LinearLayoutCompat layoutDialog = layoutView.findViewById(R.id.dialog_layout);
         FrameLayout frameLayout = layoutView.findViewById(R.id.dialog_frame);
 
         switch (dialogType){
@@ -467,10 +469,11 @@ public class AestheticDialog {
      *
      *
      * @param activity
+     * @param title
      * @param message
      * @param dialogType
      */
-    public static void showConnectifyDark(Activity activity, String message, String dialogType){
+    public static void showConnectifyDark(Activity activity, String title, String message, String dialogType){
 
         AlertDialog.Builder dialogBuilder;
         AlertDialog alertDialog;
@@ -481,11 +484,13 @@ public class AestheticDialog {
         }else {
             layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_connectify_error, null);
         }
-        LinearLayout layoutDialog = layoutView.findViewById(R.id.dialog_layout);
-        ImageView imgClose = layoutView.findViewById(R.id.image_close);
-        TextView textMessage = layoutView.findViewById(R.id.text_message);
+        LinearLayoutCompat layoutDialog = layoutView.findViewById(R.id.dialog_layout);
+        AppCompatImageView imgClose = layoutView.findViewById(R.id.image_close);
+        AppCompatTextView textTitle = layoutView.findViewById(R.id.text_title);
+        AppCompatTextView textMessage = layoutView.findViewById(R.id.text_message);
         layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.dark_background));
         textMessage.setTextColor(activity.getResources().getColor(R.color.md_white_1000));
+        textTitle.setText(title);
         textMessage.setText(message);
         dialogBuilder.setView(layoutView);
         alertDialog = dialogBuilder.create();
@@ -516,10 +521,10 @@ public class AestheticDialog {
         View layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_toaster, null);
         RelativeLayout layoutDialog = layoutView.findViewById(R.id.dialog_layout);
         layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.dark_background));
-        ImageView imgClose = layoutView.findViewById(R.id.image_close);
-        ImageView icon = layoutView.findViewById(R.id.dialog_icon);
-        TextView textTitle = layoutView.findViewById(R.id.text_title);
-        TextView textMessage = layoutView.findViewById(R.id.text_message);
+        AppCompatImageView imgClose = layoutView.findViewById(R.id.image_close);
+        AppCompatImageView icon = layoutView.findViewById(R.id.dialog_icon);
+        AppCompatTextView textTitle = layoutView.findViewById(R.id.text_title);
+        AppCompatTextView textMessage = layoutView.findViewById(R.id.text_message);
         textMessage.setTextColor(activity.getResources().getColor(R.color.md_white_1000));
         View verticalView = layoutView.findViewById(R.id.vertical_view);
         textMessage.setText(message);
@@ -577,10 +582,10 @@ public class AestheticDialog {
         View layoutView = activity.getLayoutInflater().inflate(R.layout.dialog_emoji, null);
         RelativeLayout layoutDialog = layoutView.findViewById(R.id.dialog_layout);
         layoutDialog.setBackgroundColor(activity.getResources().getColor(R.color.dark_background));
-        ImageView imgClose = layoutView.findViewById(R.id.image_close);
-        ImageView icon = layoutView.findViewById(R.id.dialog_icon);
-        TextView textTitle = layoutView.findViewById(R.id.text_title);
-        TextView textMessage = layoutView.findViewById(R.id.text_message);
+        AppCompatImageView imgClose = layoutView.findViewById(R.id.image_close);
+        AppCompatImageView icon = layoutView.findViewById(R.id.dialog_icon);
+        AppCompatTextView textTitle = layoutView.findViewById(R.id.text_title);
+        AppCompatTextView textMessage = layoutView.findViewById(R.id.text_message);
         if(dialogType.equals(AestheticDialog.SUCCESS)){
             textTitle.setTextColor(activity.getResources().getColor(R.color.dialog_success));
             icon.setImageResource(R.drawable.thumbs_up_sign);

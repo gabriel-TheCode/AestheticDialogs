@@ -10,7 +10,7 @@
     android:background="@drawable/rounded_rect_blue">
 
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/dialog_layout"
         android:layout_width="@dimen/popup_width"
         android:minWidth="@dimen/popup_width"
@@ -52,7 +52,7 @@
             android:ellipsize="end"
             android:text="An error occured on remote service, please try again later"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_action"
             android:layout_width="100dp"
             android:layout_height="40dp"
@@ -64,7 +64,6 @@
             android:textColor="@color/md_white_1000"
             android:focusable="true"/>
 
-
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </FrameLayout>

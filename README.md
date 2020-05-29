@@ -114,7 +114,7 @@ Step 2. Add the dependency
 ```gradle
 dependencies {
 	...
-	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.2.0'
+	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.2.1'
 }
 ```
 
@@ -131,12 +131,12 @@ Flash:
 Connectify:
 
 ``` java
-                AestheticDialog.showConnectify(this,"Message", AestheticDialog.SUCCESS);
-                AestheticDialog.showConnectify(this, "Message", AestheticDialog.ERROR);
+                AestheticDialog.showConnectify(this, "Title", "Message", AestheticDialog.SUCCESS);
+                AestheticDialog.showConnectify(this, "Title", "Message", AestheticDialog.ERROR);
 
                 /// Dark Theme
-                AestheticDialog.showConnectifyDark(this,"Message",AestheticDialog.SUCCESS);
-                AestheticDialog.showConnectifyDark(this, "Message", AestheticDialog.ERROR);
+                AestheticDialog.showConnectifyDark(this,"Title", "Message",AestheticDialog.SUCCESS);
+                AestheticDialog.showConnectifyDark(this, "Title", "Message", AestheticDialog.ERROR);
 ```
 
 Toaster:

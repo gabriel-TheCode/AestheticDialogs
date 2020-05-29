@@ -41,16 +41,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_connectify_dialog_success:
                 if (rbConnectifyLight.isChecked()){
-                    AestheticDialog.showConnectify(this,"Connection successfully restored", AestheticDialog.SUCCESS);
+                    AestheticDialog.showConnectify(this,"Network found", "Connection successfully restored", AestheticDialog.SUCCESS);
                 }else{
-                    AestheticDialog.showConnectifyDark(this,"Connection successfully restored", AestheticDialog.SUCCESS);
+                    AestheticDialog.showConnectifyDark(this,"Network found", "Connection successfully restored", AestheticDialog.SUCCESS);
                 }
                 break;
             case R.id.btn_connectify_dialog_error:
                 if (rbConnectifyLight.isChecked()){
-                    AestheticDialog.showConnectify(this, "Internet connection has been interrupted", AestheticDialog.ERROR);
+                    AestheticDialog.showConnectify(this, "Network unavailable", "Internet connection has been interrupted", AestheticDialog.ERROR);
                 }else{
-                    AestheticDialog.showConnectifyDark(this, "Internet connection has been interrupted", AestheticDialog.ERROR);
+                    AestheticDialog.showConnectifyDark(this, "Network unavailable","Internet connection has been interrupted", AestheticDialog.ERROR);
                 }
                 break;
             case R.id.btn_toaster_dialog_error:

@@ -11,7 +11,7 @@
     android:background="@drawable/rounded_red_gradient_bg">
 
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/dialog_layout"
         android:layout_width="@dimen/popup_width"
         android:minWidth="@dimen/popup_width"
@@ -51,7 +51,7 @@
             android:maxLines="2"
             android:ellipsize="end"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_action"
             android:layout_width="100dp"
             android:layout_height="40dp"
@@ -64,6 +64,6 @@
             android:focusable="true"/>
 
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </FrameLayout>
