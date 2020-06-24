@@ -396,6 +396,7 @@ public class AestheticDialog {
         int width = activity.getResources().getDimensionPixelSize(R.dimen.popup_height);
         alertDialog.getWindow().setLayout(width,height);
         btnOk.setOnClickListener(view -> alertDialog.dismiss());
+
     }
 
 
@@ -550,7 +551,6 @@ public class AestheticDialog {
                 verticalView.setBackgroundColor(activity.getResources().getColor(R.color.dialog_info));
                 icon.setImageResource(R.drawable.ic_info_blue_24dp);
                 break;
-
         }
 
         dialogBuilder.setView(layoutView);
@@ -607,6 +607,5 @@ public class AestheticDialog {
 
         imgClose.setOnClickListener(view -> alertDialog.dismiss());
     }
-
 
 }
