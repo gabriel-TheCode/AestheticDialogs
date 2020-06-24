@@ -111,7 +111,6 @@ public class AestheticDialog {
                 verticalView.setBackgroundColor(activity.getResources().getColor(R.color.dialog_info));
                 icon.setImageResource(R.drawable.ic_info_blue_24dp);
                 break;
-
         }
 
         dialogBuilder.setView(layoutView);

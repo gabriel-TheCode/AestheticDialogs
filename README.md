@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![](https://jitpack.io/v/gabriel-TheCode/AestheticDialogs.svg)](https://jitpack.io/#gabriel-TheCode/AestheticDialogs)
 
-📱Android Library to implement *custom*, 😍*beautiful*, 🎨*stylish*  Dialog in android apps easily.
+📱 Android Library for 💫*fluid*, 😍*beautiful*, 🎨*custom*  Dialogs.
 
 <a href="https://play.google.com/store/apps/details?id=com.thecode.sample">
     <img alt="Get it on Google Play"
@@ -131,12 +131,12 @@ Flash:
 Connectify:
 
 ``` java
-                AestheticDialog.showConnectify(this, "Title", "Message", AestheticDialog.SUCCESS);
-                AestheticDialog.showConnectify(this, "Title", "Message", AestheticDialog.ERROR);
+                AestheticDialog.showConnectify(this, "Message", AestheticDialog.SUCCESS);
+                AestheticDialog.showConnectify(this, "Message", AestheticDialog.ERROR);
 
                 /// Dark Theme
-                AestheticDialog.showConnectifyDark(this,"Title", "Message",AestheticDialog.SUCCESS);
-                AestheticDialog.showConnectifyDark(this, "Title", "Message", AestheticDialog.ERROR);
+                AestheticDialog.showConnectifyDark(this, "Message",AestheticDialog.SUCCESS);
+                AestheticDialog.showConnectifyDark(this, "Message", AestheticDialog.ERROR);
 ```
 
 Toaster:
