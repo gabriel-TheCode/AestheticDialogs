@@ -66,7 +66,7 @@
 </table>
 
 <a name="dark"></a>
-## Dark Theme
+## Dark Mode
 **AestheticDialog** Also provides Dark Theme for some dialogs i.e.
 
 <table style="width:100%">
@@ -114,95 +114,42 @@ Step 2. Add the dependency
 ```gradle
 dependencies {
 	...
-	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.2.1'
+	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.3.0'
 }
 ```
 
 <a name="createDialog"></a>
 ### Create Dialog
 
-Flash:
+You can create multiple dialogs by specifying the style (*RAINBOW, FLAT, CONNECTIFY, TOASTER, DRAKE, EMOJI, EMOTION*) of your component and the type (*SUCCESS, ERROR, WARNING, INFO*) of alert you want to display to the user.
+You can override the ```.setOnClickListener()``` method to add a particular event, however some dialogs do not need it.
 
-``` java
-                AestheticDialog.showFlashDialog(this, "Title", "Message", AestheticDialog.SUCCESS);
-                AestheticDialog.showFlashDialog(this, "Title", "Message", AestheticDialog.ERROR);
+Example 1: Flat Dialog
+
+``` kotlin
+                  AestheticDialog.Builder(this, DialogStyle.FLAT, DialogType.SUCCESS)
+                        .setTitle("Title")
+                        .setMessage("Message")
+                        .setCancelable(false)
+                        .setDarkMode(true)
+                        .setOnClickListener(object : OnDialogClickListener {
+                            override fun onClick(dialog: AestheticDialog.Builder) {
+                                dialog.dismiss()
+                                //actions...
+                            }
+                        })
+                        .show()
 ```
 
-Connectify:
+Example 2: Emotion Dialog
 
-``` java
-                AestheticDialog.showConnectify(this, "Title" "Message", AestheticDialog.SUCCESS);
-                AestheticDialog.showConnectify(this, "Title", "Message", AestheticDialog.ERROR);
 
-                /// Dark Theme
-                AestheticDialog.showConnectifyDark(this, "Title", "Message",AestheticDialog.SUCCESS);
-                AestheticDialog.showConnectifyDark(this, "Title", "Message", AestheticDialog.ERROR);
+``` kotlin
+  AestheticDialog.Builder(this, DialogStyle.EMOTION, DialogType.SUCCESS)
+                        .setTitle("Title")
+                        .setMessage("Message")
+                        .show()
 ```
-
-Toaster:
-
-``` java
-                AestheticDialog.showToaster(this, "Title", "Message", AestheticDialog.ERROR);
-                AestheticDialog.showToaster(this, "Title", "Message", AestheticDialog.SUCCESS);
-                AestheticDialog.showToaster(this, "Title", "Message", AestheticDialog.WARNING);
-                AestheticDialog.showToaster(this, "Title", "Message", AestheticDialog.INFO);
-
-                /// Dark Theme
-                AestheticDialog.showToasterDark(this, "Title", "Message", AestheticDialog.ERROR);
-                AestheticDialog.showToasterDark(this, "Title", "Message", AestheticDialog.SUCCESS);
-                AestheticDialog.showToasterDark(this, "Title", "Message", AestheticDialog.WARNING);
-                AestheticDialog.showToasterDark(this, "Title", "Message", AestheticDialog.INFO);
-```
-
-Drake :
-
-``` java
-                AestheticDialog.showDrake(this, AestheticDialog.SUCCESS);
-                AestheticDialog.showDrake(this, AestheticDialog.ERROR);
-```
-
-Emoji :
-
-``` java
-                AestheticDialog.showEmoji(this,"Title", "Message", AestheticDialog.SUCCESS);
-                AestheticDialog.showEmoji(this, "Title", "Message", AestheticDialog.ERROR);
-
-                /// Dark Theme
-                AestheticDialog.showEmojiDark(this,"Title", "Message", AestheticDialog.SUCCESS);
-                AestheticDialog.showEmojiDark(this, "Title", "Message", AestheticDialog.ERROR);
-```
-
-Emotion :
-
-``` java
-                AestheticDialog.showEmotion(this,"Title", "Message", AestheticDialog.SUCCESS);
-                AestheticDialog.showEmotion(this, "Title", "Message", AestheticDialog.ERROR);
-```
-
-Rainbow :
-
-``` java
-                AestheticDialog.showRainbow(this,"Title", "Message", AestheticDialog.SUCCESS);
-                AestheticDialog.showRainbow(this,"Title", "Message", AestheticDialog.ERROR);
-                AestheticDialog.showRainbow(this,"Title", "Message", AestheticDialog.WARNING);
-                AestheticDialog.showRainbow(this,"Title", "Message", AestheticDialog.INFO);
-```
-
-Flat:
-
-``` java
-                AestheticDialog.showFlat(this, "Title", "Message", AestheticDialog.ERROR);
-                AestheticDialog.showFlat(this, "Title", "Message", AestheticDialog.SUCCESS);
-                AestheticDialog.showFlat(this, "Title", "Message", AestheticDialog.WARNING);
-                AestheticDialog.showFlat(this, "Title", "Message", AestheticDialog.INFO);
-
-                /// Dark Theme
-                AestheticDialog.showFlatDark(this, "Title", "Message", AestheticDialog.ERROR);
-                AestheticDialog.showFlatDark(this, "Title", "Message", AestheticDialog.SUCCESS);
-                AestheticDialog.showFlatDark(this, "Title", "Message", AestheticDialog.WARNING);
-                AestheticDialog.showFlatDark(this, "Title", "Message", AestheticDialog.INFO);
-```
-
 
 <a name="demo"></a>
 ## Demo
