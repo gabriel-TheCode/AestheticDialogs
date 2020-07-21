@@ -1,6 +1,6 @@
 package com.thecode.aestheticdialogs
 
-class DialogThemes {
+class DialogStyle {
 
     companion object {
         const val EMOJI = "EMOJI_THEME"

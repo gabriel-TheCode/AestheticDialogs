@@ -24,7 +24,7 @@ class AestheticDialog {
     class Builder(
             //Necessary parameters
             private val activity: Activity,
-            private val dialogTheme: String,
+            private val dialogStyle: String,
             private val dialogType: String) {
 
         lateinit var alertDialog: AlertDialog
@@ -95,8 +95,8 @@ class AestheticDialog {
         //
         fun show(): AestheticDialog {
 
-            when (dialogTheme) {
-                DialogThemes.EMOJI -> {
+            when (dialogStyle) {
+                DialogStyle.EMOJI -> {
                     layoutView = activity.layoutInflater.inflate(R.layout.dialog_emoji, null)
                     var layoutDialog = layoutView.findViewById<RelativeLayout>(R.id.dialog_layout)
                     val imgClose: AppCompatImageView = layoutView.findViewById(R.id.image_close)
@@ -106,7 +106,7 @@ class AestheticDialog {
                     textMessage.text = message
                     textTitle.text = title
 
-                    if (dialogType == DialogTypes.SUCCESS) {
+                    if (dialogType == DialogType.SUCCESS) {
                         textTitle.setTextColor(ContextCompat.getColor(activity, R.color.dialog_success))
                         icon.setImageResource(R.drawable.thumbs_up_sign)
                     } else {
@@ -134,8 +134,8 @@ class AestheticDialog {
                     }
 
 
-                DialogThemes.DRAKE -> {
-                    layoutView = if (dialogType == DialogTypes.SUCCESS) {
+                DialogStyle.DRAKE -> {
+                    layoutView = if (dialogType == DialogType.SUCCESS) {
                         activity.layoutInflater.inflate(R.layout.dialog_drake_success, null)
                     } else {
                         activity.layoutInflater.inflate(R.layout.dialog_drake_error, null)
@@ -151,7 +151,7 @@ class AestheticDialog {
                     alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
                 }
 
-                DialogThemes.TOASTER -> {
+                DialogStyle.TOASTER -> {
                     if(isDarkMode){
                         layoutView = activity.layoutInflater.inflate(R.layout.dialog_toaster, null)
                         val layoutDialog = layoutView.findViewById<RelativeLayout>(R.id.dialog_layout)
@@ -165,22 +165,22 @@ class AestheticDialog {
                         textMessage.text = message
                         textTitle.text = title
                         when (dialogType) {
-                            DialogTypes.ERROR -> {
+                            DialogType.ERROR -> {
                                 textTitle.setTextColor(ContextCompat.getColor(activity, R.color.dialog_error))
                                 verticalView.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_error))
                                 icon.setImageResource(R.drawable.ic_error_red_24dp)
                             }
-                            DialogTypes.SUCCESS -> {
+                            DialogType.SUCCESS -> {
                                 textTitle.setTextColor(ContextCompat.getColor(activity, R.color.dialog_success))
                                 verticalView.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_success))
                                 icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
                             }
-                            DialogTypes.WARNING -> {
+                            DialogType.WARNING -> {
                                 textTitle.setTextColor(ContextCompat.getColor(activity, R.color.dialog_warning))
                                 verticalView.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_warning))
                                 icon.setImageResource(R.drawable.ic_warning_orange_24dp)
                             }
-                            DialogTypes.INFO -> {
+                            DialogType.INFO -> {
                                 textTitle.setTextColor(ContextCompat.getColor(activity, R.color.dialog_info))
                                 verticalView.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_info))
                                 icon.setImageResource(R.drawable.ic_info_blue_24dp)
@@ -209,19 +209,19 @@ class AestheticDialog {
                         textMessage.text = message
                         textTitle.text = title
                         when (dialogType) {
-                            DialogTypes.ERROR -> {
+                            DialogType.ERROR -> {
                                 verticalView.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_error))
                                 icon.setImageResource(R.drawable.ic_error_red_24dp)
                             }
-                            DialogTypes.SUCCESS -> {
+                            DialogType.SUCCESS -> {
                                 verticalView.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_success))
                                 icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
                             }
-                            DialogTypes.WARNING -> {
+                            DialogType.WARNING -> {
                                 verticalView.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_warning))
                                 icon.setImageResource(R.drawable.ic_warning_orange_24dp)
                             }
-                            DialogTypes.INFO -> {
+                            DialogType.INFO -> {
                                 verticalView.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_info))
                                 icon.setImageResource(R.drawable.ic_info_blue_24dp)
                             }
@@ -240,24 +240,24 @@ class AestheticDialog {
 
                 }
 
-                DialogThemes.RAINBOW -> {
+                DialogStyle.RAINBOW -> {
                     layoutView = activity.layoutInflater.inflate(R.layout.dialog_rainbow, null)
                     val icon: AppCompatImageView = layoutView.findViewById(R.id.dialog_icon)
                     val layoutDialog = layoutView.findViewById<RelativeLayout>(R.id.dialog_layout)
                     when (dialogType) {
-                        DialogTypes.ERROR -> {
+                        DialogType.ERROR -> {
                             layoutDialog.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_error))
                             icon.setImageResource(R.drawable.ic_error_red_24dp)
                         }
-                        DialogTypes.SUCCESS -> {
+                        DialogType.SUCCESS -> {
                             layoutDialog.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_success))
                             icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
                         }
-                        DialogTypes.WARNING -> {
+                        DialogType.WARNING -> {
                             layoutDialog.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_warning))
                             icon.setImageResource(R.drawable.ic_warning_orange_24dp)
                         }
-                        DialogTypes.INFO -> {
+                        DialogType.INFO -> {
                             layoutDialog.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_info))
                             icon.setImageResource(R.drawable.ic_info_blue_24dp)
                         }
@@ -279,8 +279,8 @@ class AestheticDialog {
                     imgClose.setOnClickListener { onClickListener.onClick(this) }
                 }
 
-                DialogThemes.CONNECTIFY -> {
-                    layoutView = if (dialogType == DialogTypes.SUCCESS) {
+                DialogStyle.CONNECTIFY -> {
+                    layoutView = if (dialogType == DialogType.SUCCESS) {
                         activity.layoutInflater.inflate(R.layout.dialog_connectify_success, null)
                     } else {
                         activity.layoutInflater.inflate(R.layout.dialog_connectify_error, null)
@@ -308,14 +308,14 @@ class AestheticDialog {
                 }
 
 
-                DialogThemes.FLASH -> {
+                DialogStyle.FLASH -> {
                     layoutView = activity.layoutInflater.inflate(R.layout.dialog_flash, null)
                     val btnOk: AppCompatButton = layoutView.findViewById(R.id.btn_action)
                     val textTitle: AppCompatTextView = layoutView.findViewById(R.id.dialog_title)
                     val textMessage: AppCompatTextView = layoutView.findViewById(R.id.dialog_message)
                     val dialogFrame = layoutView.findViewById<FrameLayout>(R.id.dialog_frame)
                     val icon: AppCompatImageView = layoutView.findViewById(R.id.img_icon)
-                    if (dialogType == DialogTypes.SUCCESS) {
+                    if (dialogType == DialogType.SUCCESS) {
                         dialogFrame.setBackgroundResource(R.drawable.rounded_green_gradient_bg)
                         icon.setImageResource(R.drawable.circle_validation_success)
                     } else {
@@ -337,14 +337,14 @@ class AestheticDialog {
                     btnOk.setOnClickListener { onClickListener.onClick(this) }
                 }
 
-                DialogThemes.EMOTION -> {
+                DialogStyle.EMOTION -> {
                     layoutView = activity.layoutInflater.inflate(R.layout.dialog_emotion, null)
                     val icon: AppCompatImageView = layoutView.findViewById(R.id.img_icon)
                     val layoutDialog = layoutView.findViewById<RelativeLayout>(R.id.dialog_layout)
                     val textTitle: AppCompatTextView = layoutView.findViewById(R.id.dialog_title)
                     val textMessage: AppCompatTextView = layoutView.findViewById(R.id.dialog_message)
                     val textHour: AppCompatTextView = layoutView.findViewById(R.id.dialog_hour)
-                    if (dialogType == DialogTypes.SUCCESS) {
+                    if (dialogType == DialogType.SUCCESS) {
                         icon.setImageResource(R.drawable.smiley_success)
                         layoutDialog.setBackgroundResource(R.drawable.background_emotion_success)
                     } else {
@@ -367,7 +367,7 @@ class AestheticDialog {
                     alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
                 }
 
-                DialogThemes.FLAT -> {
+                DialogStyle.FLAT -> {
                     if (isDarkMode) {
                         layoutView = activity.layoutInflater.inflate(R.layout.dialog_flat, null)
                         val btnOk: AppCompatButton = layoutView.findViewById(R.id.btn_action)
@@ -377,22 +377,22 @@ class AestheticDialog {
                         val layoutDialog: LinearLayoutCompat = layoutView.findViewById(R.id.dialog_layout)
                         val frameLayout = layoutView.findViewById<FrameLayout>(R.id.dialog_frame)
                         when (dialogType) {
-                            DialogTypes.ERROR -> {
+                            DialogType.ERROR -> {
                                 icon.setImageResource(R.drawable.ic_error_red_24dp)
                                 btnOk.setBackgroundResource(R.drawable.btn_red_selector)
                                 frameLayout.setBackgroundResource(R.drawable.rounded_rect_red)
                             }
-                            DialogTypes.SUCCESS -> {
+                            DialogType.SUCCESS -> {
                                 icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
                                 btnOk.setBackgroundResource(R.drawable.btn_green_selector)
                                 frameLayout.setBackgroundResource(R.drawable.rounded_rect_green)
                             }
-                            DialogTypes.WARNING -> {
+                            DialogType.WARNING -> {
                                 icon.setImageResource(R.drawable.ic_warning_orange_24dp)
                                 btnOk.setBackgroundResource(R.drawable.btn_yellow_selector)
                                 frameLayout.setBackgroundResource(R.drawable.rounded_rect_yellow)
                             }
-                            DialogTypes.INFO -> {
+                            DialogType.INFO -> {
                                 icon.setImageResource(R.drawable.ic_info_blue_24dp)
                                 btnOk.setBackgroundResource(R.drawable.btn_blue_selector)
                                 frameLayout.setBackgroundResource(R.drawable.rounded_rect_blue)
@@ -425,22 +425,22 @@ class AestheticDialog {
                         val layoutDialog: LinearLayoutCompat = layoutView.findViewById(R.id.dialog_layout)
                         val frameLayout = layoutView.findViewById<FrameLayout>(R.id.dialog_frame)
                         when (dialogType) {
-                            DialogTypes.ERROR -> {
+                            DialogType.ERROR -> {
                                 icon.setImageResource(R.drawable.ic_error_red_24dp)
                                 btnOk.setBackgroundResource(R.drawable.btn_red_selector)
                                 frameLayout.setBackgroundResource(R.drawable.rounded_rect_red)
                             }
-                            DialogTypes.SUCCESS -> {
+                            DialogType.SUCCESS -> {
                                 icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
                                 btnOk.setBackgroundResource(R.drawable.btn_green_selector)
                                 frameLayout.setBackgroundResource(R.drawable.rounded_rect_green)
                             }
-                            DialogTypes.WARNING -> {
+                            DialogType.WARNING -> {
                                 icon.setImageResource(R.drawable.ic_warning_orange_24dp)
                                 btnOk.setBackgroundResource(R.drawable.btn_yellow_selector)
                                 frameLayout.setBackgroundResource(R.drawable.rounded_rect_yellow)
                             }
-                            DialogTypes.INFO -> {
+                            DialogType.INFO -> {
                                 icon.setImageResource(R.drawable.ic_info_blue_24dp)
                                 btnOk.setBackgroundResource(R.drawable.btn_blue_selector)
                                 frameLayout.setBackgroundResource(R.drawable.rounded_rect_blue)

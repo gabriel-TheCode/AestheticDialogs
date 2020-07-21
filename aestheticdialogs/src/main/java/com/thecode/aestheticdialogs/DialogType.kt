@@ -1,6 +1,6 @@
 package com.thecode.aestheticdialogs
 
-class DialogTypes {
+class DialogType {
 
     companion object {
         const val SUCCESS = "DIALOG_SUCCESS"
