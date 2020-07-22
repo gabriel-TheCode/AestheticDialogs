@@ -93,7 +93,7 @@
 
 <a name="implementation"></a>
 ## Implementation
-Implementation of Material Dialog library is so easy. You can check [/app](/app) directory for demo. Let's have look on basic steps of implementation.
+Implementation of Aesthetic Dialogs is simple. You can check [/app](/app) directory for demo. Let's have look on basic steps of implementation.
 <a name="prerequisite"></a>
 ### Prerequisite
 #### i. Gradle
@@ -121,7 +121,7 @@ dependencies {
 <a name="createDialog"></a>
 ### Create Dialog
 
-You can create multiple dialogs by specifying the style (*RAINBOW, FLAT, CONNECTIFY, TOASTER, DRAKE, EMOJI, EMOTION*) of your component and the type (*SUCCESS, ERROR, WARNING, INFO*) of alert you want to display to the user.
+You can create multiple dialogs by specifying the style (**RAINBOW, FLAT, CONNECTIFY, TOASTER, DRAKE, EMOJI, EMOTION**) of your component and the type (**SUCCESS, ERROR, WARNING, INFO**) of alert you want to display to the user.
 You can override the ```.setOnClickListener()``` method to add a particular event, however some dialogs do not need it.
 
 Example 1: Flat Dialog
@@ -145,7 +145,7 @@ Example 2: Emotion Dialog
 
 
 ``` kotlin
-  AestheticDialog.Builder(this, DialogStyle.EMOTION, DialogType.SUCCESS)
+  AestheticDialog.Builder(this, DialogStyle.EMOTION, DialogType.ERROR)
                         .setTitle("Title")
                         .setMessage("Message")
                         .show()
