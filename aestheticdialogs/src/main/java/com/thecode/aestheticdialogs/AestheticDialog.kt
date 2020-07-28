@@ -153,7 +153,6 @@ class AestheticDialog {
 
                     if (isDarkMode) {
                         textMessage.setTextColor(ContextCompat.getColor(activity, R.color.md_white_1000))
-                        layoutDialog = layoutView.findViewById(R.id.dialog_layout)
                         layoutDialog.setBackgroundColor(ContextCompat.getColor(activity, R.color.dark_background))
                     }
                     dialogBuilder.setView(layoutView)
