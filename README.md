@@ -3,6 +3,8 @@
 [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=plastic)](https://android-arsenal.com/api?level=14)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![](https://jitpack.io/v/gabriel-TheCode/AestheticDialogs.svg)](https://jitpack.io/#gabriel-TheCode/AestheticDialogs)
+[![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
+
 
 📱 Android Library for 💫*fluid*, 😍*beautiful*, 🎨*custom*  Dialogs.
 
@@ -114,7 +116,7 @@ Step 2. Add the dependency
 ```gradle
 dependencies {
 	...
-	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.3.0'
+	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.3.1'
 }
 ```
 
@@ -166,4 +168,7 @@ This library is built using following open-source libraries.
 - [Material Components for Android](https://github.com/material-components/material-components-android)
 
 ## License
+
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+
 Project is published under the Apache 2.0 license. Feel free to clone and modify repo as you want, but don't forget to add reference to authors :)
