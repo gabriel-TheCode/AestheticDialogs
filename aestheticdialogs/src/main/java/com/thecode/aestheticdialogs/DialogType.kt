@@ -1,5 +1,8 @@
 package com.thecode.aestheticdialogs
 
+import androidx.annotation.Keep
+
+@Keep
 class DialogType {
 
     companion object {

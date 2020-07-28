@@ -6,9 +6,10 @@ import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
-import android.view.animation.Animation
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
+import androidx.annotation.Keep
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageView
@@ -19,13 +20,21 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class AestheticDialog {
+/**
+ * Aesthetic Dialog class
+ * Use Builder to create a new instance.
+ *
+ * @author Gabriel The Code
+ */
 
+@Keep
+class AestheticDialog {
+    
     class Builder(
             //Necessary parameters
-            private val activity: Activity,
-            private val dialogStyle: String,
-            private val dialogType: String) {
+            @NonNull private val activity: Activity,
+            @NonNull private val dialogStyle: String,
+            @NonNull private val dialogType: String) {
 
         lateinit var alertDialog: AlertDialog
         private val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(activity)
@@ -35,8 +44,6 @@ class AestheticDialog {
         private var message: String = "Message"
         private var isDarkMode: Boolean = false
         private var isCancelable: Boolean = true
-        private lateinit var animationIn: Animation
-        private lateinit var animationOut: Animation
         private lateinit var layoutView: View
         private var onClickListener: OnDialogClickListener = object : OnDialogClickListener {
             override fun onClick(dialog: Builder) {
@@ -45,54 +52,84 @@ class AestheticDialog {
         }
 
 
-        fun setTitle(title: String): Builder {
+        /**
+         * Set dialog title
+         *
+         *
+         * @param title
+         */
+        @NonNull
+        fun setTitle(@NonNull title: String): Builder {
             this.title = title
             return this
         }
 
-
-        fun setMessage(message: String): Builder {
+        /**
+         * Set dialog message
+         *
+         *
+         * @param message
+         */
+        @NonNull
+        fun setMessage(@NonNull message: String): Builder {
             this.message = message
             return this
         }
 
-        fun setDarkMode(isDarkMode: Boolean): Builder {
+        /**
+         * Set dialog mode. Define by default to false
+         *
+         *
+         * @param isDarkMode
+         */
+        @NonNull
+        fun setDarkMode(@NonNull isDarkMode: Boolean): Builder {
             this.isDarkMode = isDarkMode
             return this
         }
 
+        /**
+         * Set an OnClickListener to the dialog
+         *
+         *
+         * @param onDialogClickListener interface for callback event on click of button.
+         */
+        @NonNull
         fun setOnClickListener(onDialogClickListener: OnDialogClickListener): Builder {
             this.onClickListener = onDialogClickListener
             return this
         }
 
-
-        /* Animation methods
-
-        fun setAnimationIn(animationIn: Animation): Builder {
-            this.animationIn = animationIn
-            return this
-        }
-
-        fun setAnimationOut(animationOut: Animation): Builder {
-            this.animationOut = animationOut
-            return this
-        }
-
-        */
-
-
+        /**
+         * Define if a dialog can be cancel
+         *
+         *
+         * @param isCancelable
+         */
+        @NonNull
         fun setCancelable(isCancelable: Boolean): Builder {
             this.isCancelable = isCancelable
             return this
         }
 
+        /**
+         * Dismiss the dialog
+         *
+         *
+         */
+        @NonNull
         fun dismiss(): AestheticDialog {
             alertDialog.dismiss()
             return AestheticDialog()
         }
 
-        //
+
+        /**
+         * Displays the dialog according to the parameters of the Builder
+         *
+         *
+         */
+        @NonNull
         fun show(): AestheticDialog {
 
             when (dialogStyle) {
@@ -461,16 +498,9 @@ class AestheticDialog {
                         alertDialog.window!!.setLayout(width, height)
                         btnOk.setOnClickListener { onClickListener.onClick(this) }
                     }
-
                 }
-
             }
-
             return AestheticDialog()
         }
-
     }
-
-
-
 }
