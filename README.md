@@ -116,7 +116,7 @@ Step 2. Add the dependency
 ```gradle
 dependencies {
 	...
-	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.3.0'
+	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.3.2'
 }
 ```
 
@@ -126,7 +126,7 @@ dependencies {
 You can create multiple dialogs by specifying the style (**RAINBOW, FLAT, CONNECTIFY, TOASTER, DRAKE, EMOJI, EMOTION**) of your component and the type (**SUCCESS, ERROR, WARNING, INFO**) of alert you want to display to the user.
 You can override the ```.setOnClickListener()``` method to add a particular event, however some dialogs do not need it.
 
-Example 1: Flat Dialog
+**Example 1**: Flat Dialog
 
 ``` kotlin
                   AestheticDialog.Builder(this, DialogStyle.FLAT, DialogType.SUCCESS)
@@ -134,6 +134,7 @@ Example 1: Flat Dialog
                         .setMessage("Message")
                         .setCancelable(false)
                         .setDarkMode(true)
+                        .setGravity(Gravity.CENTER)
                         .setOnClickListener(object : OnDialogClickListener {
                             override fun onClick(dialog: AestheticDialog.Builder) {
                                 dialog.dismiss()
@@ -143,7 +144,7 @@ Example 1: Flat Dialog
                         .show()
 ```
 
-Example 2: Emotion Dialog
+**Example 2**: Emotion Dialog
 
 
 ``` kotlin
@@ -152,6 +153,12 @@ Example 2: Emotion Dialog
                         .setMessage("Message")
                         .show()
 ```
+
+**Optional methods**
+- setCancelable()
+- setDarkMode()
+- setDuration()
+- setGravity()
 
 <a name="demo"></a>
 ## Demo

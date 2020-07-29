@@ -60,13 +60,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn_connectify_dialog_success -> if (rbConnectifyLight.isChecked) {
                AestheticDialog.Builder(this, DialogStyle.CONNECTIFY, DialogType.SUCCESS)
-                        .setTitle(successTitle)
-                        .setMessage(successMessage)
+                        .setTitle("Network found")
+                        .setMessage("Internet connection established")
+                        .setCancelable(false)
+                        .setDuration(2000)
                         .show()
             } else {
                 AestheticDialog.Builder(this, DialogStyle.CONNECTIFY, DialogType.SUCCESS)
-                        .setTitle(successTitle)
-                        .setMessage(successMessage)
+                        .setTitle("Network found")
+                        .setMessage("Internet connection established")
+                        .setCancelable(false)
+                        .setDuration(2000)
                         .setDarkMode(true)
                         .setOnClickListener(object : OnDialogClickListener {
                             override fun onClick(dialog: AestheticDialog.Builder) {
@@ -77,8 +81,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn_connectify_dialog_error -> if (rbConnectifyLight.isChecked) {
                 AestheticDialog.Builder(this, DialogStyle.CONNECTIFY, DialogType.ERROR)
-                        .setTitle(errorTitle)
-                        .setMessage(errorMessage)
+                        .setTitle("Network unavailable")
+                        .setMessage("No internet connection")
+                        .setDuration(2000)
                         .setOnClickListener(object : OnDialogClickListener {
                             override fun onClick(dialog: AestheticDialog.Builder) {
                                 dialog.dismiss()
@@ -87,8 +92,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         .show()
             } else {
                 AestheticDialog.Builder(this, DialogStyle.CONNECTIFY, DialogType.ERROR)
-                        .setTitle(errorTitle)
-                        .setMessage(errorMessage)
+                        .setTitle("Network unavailable")
+                        .setMessage("No internet connection")
                         .setDarkMode(true)
                         .setOnClickListener(object : OnDialogClickListener {
                             override fun onClick(dialog: AestheticDialog.Builder) {
@@ -386,6 +391,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             } else {
                 AestheticDialog.Builder(this, DialogStyle.FLAT, DialogType.INFO)
                         .setTitle(infoTitle)
+                        .setDuration(2000)
                         .setMessage(infoMessage)
                         .setDarkMode(true)
                         .setOnClickListener(object : OnDialogClickListener {

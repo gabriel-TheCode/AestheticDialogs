@@ -3,6 +3,7 @@ package com.thecode.aestheticdialogs
 import android.app.Activity
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Handler
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
@@ -44,6 +45,8 @@ class AestheticDialog {
         private var message: String = "Message"
         private var isDarkMode: Boolean = false
         private var isCancelable: Boolean = true
+        private var duration: Int = 0
+        private var gravity: Int = Gravity.NO_GRAVITY
         private lateinit var layoutView: View
         private var onClickListener: OnDialogClickListener = object : OnDialogClickListener {
             override fun onClick(dialog: Builder) {
@@ -77,7 +80,7 @@ class AestheticDialog {
         }
 
         /**
-         * Set dialog mode. Define by default to false
+         * Set dialog mode. Defined by default to false
          *
          *
          * @param isDarkMode
@@ -101,7 +104,7 @@ class AestheticDialog {
         }
 
         /**
-         * Define if a dialog can be cancel
+         * Define if the dialog is cancelable
          *
          *
          * @param isCancelable
@@ -113,13 +116,45 @@ class AestheticDialog {
         }
 
         /**
+         * Define the display duration of the dialog
+         *
+         *
+         * @param duration in milliseconds
+         */
+        @NonNull
+        fun setDuration(duration: Int): Builder {
+            if(duration!=0) {
+                this.duration = duration
+                Handler().postDelayed({
+                    this.dismiss()
+                }, duration.toLong())
+            }
+            return this
+        }
+
+        /**
+         * Set the gravity duration of the dialog
+         *
+         *
+         * @param gravity in milliseconds
+         */
+        @NonNull
+        fun setGravity(gravity: Int): Builder {
+            this.gravity = gravity
+            return this
+        }
+
+
+        /**
          * Dismiss the dialog
          *
          *
          */
         @NonNull
         fun dismiss(): AestheticDialog {
-            alertDialog.dismiss()
+            if(alertDialog.isShowing){
+                alertDialog.dismiss()
+            }
             return AestheticDialog()
         }
 
@@ -135,7 +170,7 @@ class AestheticDialog {
             when (dialogStyle) {
                 DialogStyle.EMOJI -> {
                     layoutView = activity.layoutInflater.inflate(R.layout.dialog_emoji, null)
-                    var layoutDialog = layoutView.findViewById<RelativeLayout>(R.id.dialog_layout)
+                    val layoutDialog = layoutView.findViewById<RelativeLayout>(R.id.dialog_layout)
                     val imgClose: AppCompatImageView = layoutView.findViewById(R.id.image_close)
                     val icon: AppCompatImageView = layoutView.findViewById(R.id.dialog_icon)
                     val textTitle: AppCompatTextView = layoutView.findViewById(R.id.text_title)
@@ -160,7 +195,6 @@ class AestheticDialog {
                     alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     alertDialog.window!!.setGravity(Gravity.TOP)
-                    alertDialog.setCancelable(isCancelable)
                     alertDialog.show()
                     val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height_emoji_dialog)
                     alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
@@ -178,7 +212,6 @@ class AestheticDialog {
                     }
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.setCancelable(isCancelable)
                     alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     alertDialog.window!!.setGravity(Gravity.CENTER)
@@ -224,7 +257,6 @@ class AestheticDialog {
                         }
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.setCancelable(isCancelable)
                         alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         alertDialog.window!!.setGravity(Gravity.TOP)
@@ -264,7 +296,6 @@ class AestheticDialog {
                         }
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.setCancelable(isCancelable)
                         alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         alertDialog.window!!.setGravity(Gravity.TOP)
@@ -305,7 +336,6 @@ class AestheticDialog {
                     textTitle.text = title
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.setCancelable(isCancelable)
                     alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     alertDialog.window!!.setGravity(Gravity.TOP)
@@ -334,7 +364,6 @@ class AestheticDialog {
                     }
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.setCancelable(isCancelable)
                         alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         alertDialog.window!!.setGravity(Gravity.TOP)
@@ -362,7 +391,6 @@ class AestheticDialog {
                     textTitle.text = title
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.setCancelable(isCancelable)
                     alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     alertDialog.window!!.setGravity(Gravity.CENTER)
@@ -394,7 +422,6 @@ class AestheticDialog {
                     textHour.text = hour
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.setCancelable(isCancelable)
                     alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     alertDialog.window!!.setGravity(Gravity.CENTER)
@@ -441,7 +468,6 @@ class AestheticDialog {
                         textTitle.text = title
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.setCancelable(isCancelable)
                         alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         alertDialog.window!!.setGravity(Gravity.CENTER)
@@ -487,7 +513,6 @@ class AestheticDialog {
                         textTitle.text = title
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.setCancelable(isCancelable)
                         alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         alertDialog.window!!.setGravity(Gravity.CENTER)
@@ -498,6 +523,10 @@ class AestheticDialog {
                         btnOk.setOnClickListener { onClickListener.onClick(this) }
                     }
                 }
+            }
+            alertDialog.setCancelable(isCancelable)
+            if(gravity!=Gravity.NO_GRAVITY){
+                alertDialog.window!!.setGravity(gravity)
             }
             return AestheticDialog()
         }
