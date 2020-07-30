@@ -47,6 +47,7 @@ class AestheticDialog {
         private var isCancelable: Boolean = true
         private var duration: Int = 0
         private var gravity: Int = Gravity.NO_GRAVITY
+        private var animation: Int = DialogAnimation.DEFAULT
         private lateinit var layoutView: View
         private var onClickListener: OnDialogClickListener = object : OnDialogClickListener {
             override fun onClick(dialog: Builder) {
@@ -56,7 +57,7 @@ class AestheticDialog {
 
 
         /**
-         * Set dialog title
+         * Set dialog title text
          *
          *
          * @param title
@@ -68,7 +69,7 @@ class AestheticDialog {
         }
 
         /**
-         * Set dialog message
+         * Set dialog message text
          *
          *
          * @param message
@@ -144,6 +145,17 @@ class AestheticDialog {
             return this
         }
 
+        /**
+         * Set the gravity duration of the dialog
+         *
+         *
+         * @param gravity in milliseconds
+         */
+        @NonNull
+        fun setAnimation(animation: Int): Builder {
+            this.animation = animation
+            return this
+        }
 
         /**
          * Dismiss the dialog
@@ -156,6 +168,67 @@ class AestheticDialog {
                 alertDialog.dismiss()
             }
             return AestheticDialog()
+        }
+
+
+        /**
+         * Define the dialog animation
+         *
+         *
+         */
+        @NonNull
+        private fun chooseAnimation(){
+            if(animation == DialogAnimation.DEFAULT){
+                alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
+            }else{
+                when (animation) {
+                    DialogAnimation.ZOOM -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationZoom
+                    }
+                    DialogAnimation.FADE -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationFade
+                    }
+                    DialogAnimation.CARD -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationCard
+                    }
+                    DialogAnimation.SHRINK -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationShrink
+                    }
+                    DialogAnimation.SWIPE_LEFT -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSwipeLeft
+                    }
+                    DialogAnimation.SWIPE_RIGHT -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSwipeRight
+                    }
+                    DialogAnimation.IN_OUT -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationInOut
+                    }
+                    DialogAnimation.SPIN -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSpin
+                    }
+                    DialogAnimation.SPLIT -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSplit
+                    }
+                    DialogAnimation.DIAGONAL -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationDiagonal
+                    }
+                    DialogAnimation.WINDMILL -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationWindMill
+                    }
+                    DialogAnimation.SLIDE_UP -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSlideUp
+                    }
+                    DialogAnimation.SLIDE_DOWN -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSlideDown
+                    }
+                    DialogAnimation.SLIDE_LEFT -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSlideLeft
+                    }
+                    DialogAnimation.SLIDE_RIGHT -> {
+                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSlideRight
+                    }
+                }
+            }
         }
 
 
@@ -192,9 +265,9 @@ class AestheticDialog {
                     }
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     alertDialog.window!!.setGravity(Gravity.TOP)
+                    this.chooseAnimation()
                     alertDialog.show()
                     val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height_emoji_dialog)
                     alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
@@ -212,9 +285,9 @@ class AestheticDialog {
                     }
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     alertDialog.window!!.setGravity(Gravity.CENTER)
+                    this.chooseAnimation()
                     alertDialog.show()
                     val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height_drake)
                     alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
@@ -257,9 +330,9 @@ class AestheticDialog {
                         }
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         alertDialog.window!!.setGravity(Gravity.TOP)
+                        this.chooseAnimation()
                         alertDialog.show()
                         val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height_toaster)
                         alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
@@ -296,9 +369,9 @@ class AestheticDialog {
                         }
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         alertDialog.window!!.setGravity(Gravity.TOP)
+                        this.chooseAnimation()
                         alertDialog.show()
                         val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height_toaster)
                         alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
@@ -336,9 +409,9 @@ class AestheticDialog {
                     textTitle.text = title
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     alertDialog.window!!.setGravity(Gravity.TOP)
+                    this.chooseAnimation()
                     alertDialog.show()
                     val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height_emoji_dialog)
                     alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
@@ -364,9 +437,9 @@ class AestheticDialog {
                     }
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         alertDialog.window!!.setGravity(Gravity.TOP)
+                        this.chooseAnimation()
                         alertDialog.show()
                         alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
                         imgClose.setOnClickListener { onClickListener.onClick(this) }
@@ -391,9 +464,9 @@ class AestheticDialog {
                     textTitle.text = title
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     alertDialog.window!!.setGravity(Gravity.CENTER)
+                    this.chooseAnimation()
                     alertDialog.show()
                     val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height)
                     val width = activity.resources.getDimensionPixelSize(R.dimen.popup_height)
@@ -422,9 +495,9 @@ class AestheticDialog {
                     textHour.text = hour
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                     alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                     alertDialog.window!!.setGravity(Gravity.CENTER)
+                    this.chooseAnimation()
                     alertDialog.show()
                     val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height_emotion)
                     alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
@@ -468,10 +541,9 @@ class AestheticDialog {
                         textTitle.text = title
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         alertDialog.window!!.setGravity(Gravity.CENTER)
-
+                        this.chooseAnimation()
                         alertDialog.show()
                         val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height)
                         val width = activity.resources.getDimensionPixelSize(R.dimen.popup_height)
@@ -513,9 +585,9 @@ class AestheticDialog {
                         textTitle.text = title
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                         alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                         alertDialog.window!!.setGravity(Gravity.CENTER)
+                        this.chooseAnimation()
                         alertDialog.show()
                         val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height)
                         val width = activity.resources.getDimensionPixelSize(R.dimen.popup_height)
@@ -524,6 +596,7 @@ class AestheticDialog {
                     }
                 }
             }
+
             alertDialog.setCancelable(isCancelable)
             if(gravity!=Gravity.NO_GRAVITY){
                 alertDialog.window!!.setGravity(gravity)

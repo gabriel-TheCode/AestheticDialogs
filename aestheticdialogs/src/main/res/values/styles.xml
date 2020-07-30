@@ -6,5 +6,80 @@
         <item name="android:windowExitAnimation">@anim/animate_slide_up_exit</item>
     </style>
 
+    <style name="DialogAnimationFade">
+        <item name="android:windowEnterAnimation">@anim/animate_fade_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_fade_exit</item>
+    </style>
+
+    <style name="DialogAnimationZoom">
+        <item name="android:windowEnterAnimation">@anim/animate_zoom_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_zoom_exit</item>
+    </style>
+
+    <style name="DialogAnimationCard">
+        <item name="android:windowEnterAnimation">@anim/animate_card_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_card_exit</item>
+    </style>
+
+    <style name="DialogAnimationShrink">
+        <item name="android:windowEnterAnimation">@anim/animate_shrink_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_shrink_exit</item>
+    </style>
+
+    <style name="DialogAnimationSwipeLeft">
+        <item name="android:windowEnterAnimation">@anim/animate_swipe_left_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_swipe_left_exit</item>
+    </style>
+
+    <style name="DialogAnimationSwipeRight">
+        <item name="android:windowEnterAnimation">@anim/animate_swipe_right_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_swipe_right_exit</item>
+    </style>
+
+    <style name="DialogAnimationInOut">
+        <item name="android:windowEnterAnimation">@anim/animate_in_out_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_in_out_exit</item>
+    </style>
+
+    <style name="DialogAnimationSpin">
+        <item name="android:windowEnterAnimation">@anim/animate_spin_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_spin_exit</item>
+    </style>
+
+    <style name="DialogAnimationSplit">
+        <item name="android:windowEnterAnimation">@anim/animate_split_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_split_exit</item>
+    </style>
+
+    <style name="DialogAnimationDiagonal">
+        <item name="android:windowEnterAnimation">@anim/animate_diagonal_right_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_diagonal_right_exit</item>
+    </style>
+
+    <style name="DialogAnimationWindMill">
+        <item name="android:windowEnterAnimation">@anim/animate_windmill_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_windmill_exit</item>
+    </style>
+
+    <style name="DialogAnimationSlideUp">
+        <item name="android:windowEnterAnimation">@anim/animate_slide_up_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_slide_up_exit</item>
+    </style>
+
+    <style name="DialogAnimationSlideDown">
+        <item name="android:windowEnterAnimation">@anim/animate_slide_down_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_slide_down_exit</item>
+    </style>
+
+    <style name="DialogAnimationSlideRight">
+        <item name="android:windowEnterAnimation">@anim/animate_slide_in_left</item>
+        <item name="android:windowExitAnimation">@anim/animate_slide_out_right</item>
+    </style>
+
+    <style name="DialogAnimationSlideLeft">
+        <item name="android:windowEnterAnimation">@anim/animate_slide_left_enter</item>
+        <item name="android:windowExitAnimation">@anim/animate_slide_left_exit</item>
+    </style>
+
 
 </resources>
