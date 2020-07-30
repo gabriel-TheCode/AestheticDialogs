@@ -5,10 +5,7 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.thecode.aestheticdialogs.AestheticDialog
-import com.thecode.aestheticdialogs.DialogStyle
-import com.thecode.aestheticdialogs.DialogType
-import com.thecode.aestheticdialogs.OnDialogClickListener
+import com.thecode.aestheticdialogs.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -40,6 +37,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 AestheticDialog.Builder(this, DialogStyle.FLASH, DialogType.SUCCESS)
                         .setTitle(successTitle)
                         .setMessage(successMessage)
+                        .setAnimation(DialogAnimation.DIAGONAL)
                         .setOnClickListener(object : OnDialogClickListener {
                             override fun onClick(dialog: AestheticDialog.Builder) {
                                 dialog.dismiss()
@@ -51,6 +49,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 AestheticDialog.Builder(this, DialogStyle.FLASH, DialogType.ERROR)
                         .setTitle(errorTitle)
                         .setMessage(errorMessage)
+                        .setAnimation(DialogAnimation.SPLIT)
                         .setOnClickListener(object : OnDialogClickListener {
                             override fun onClick(dialog: AestheticDialog.Builder) {
                                 dialog.dismiss()
