@@ -116,15 +116,17 @@ Step 2. Add the dependency
 ```gradle
 dependencies {
 	...
-	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.3.2'
+	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.3.3'
 }
 ```
 
 <a name="createDialog"></a>
 ### Create Dialog
 
-You can create multiple dialogs by specifying the style (**RAINBOW, FLAT, CONNECTIFY, TOASTER, DRAKE, EMOJI, EMOTION**) of your component and the type (**SUCCESS, ERROR, WARNING, INFO**) of alert you want to display to the user.
+You can create multiple dialogs by specifying the style of your component, the type, and the animation of alert you want to display to the user.
 You can override the ```.setOnClickListener()``` method to add a particular event, however some dialogs do not need it.
+
+
 
 **Example 1**: Flat Dialog
 
@@ -135,6 +137,7 @@ You can override the ```.setOnClickListener()``` method to add a particular even
                         .setCancelable(false)
                         .setDarkMode(true)
                         .setGravity(Gravity.CENTER)
+                        .setAnimation(DialogAnimation.SHRINK)
                         .setOnClickListener(object : OnDialogClickListener {
                             override fun onClick(dialog: AestheticDialog.Builder) {
                                 dialog.dismiss()
@@ -154,11 +157,29 @@ You can override the ```.setOnClickListener()``` method to add a particular even
                         .show()
 ```
 
+
 **Optional methods**
 - setCancelable()
 - setDarkMode()
 - setDuration()
 - setGravity()
+- setAnimation()
+
+**Constants**
+
+<table style="width:100%">
+  <tr>
+    <th>DIALOG STYLE</th>
+    <th>DIALOG TYPE</th>
+    <th>DIALOG ANIMATION</th>
+  </tr>
+  <tr>
+    <td>RAINBOW<br/>FLAT<br/>CONNECTIFY<br/>TOASTER<br/>DRAKE<br/>EMOJI<br/>EMOTION<br/>
+    </td>
+    <td>SUCCESS<br/>ERROR<br/>WARNING<br/>INFO</td>
+     <td>DEFAULT<br/>SLIDE_UP, SLIDE_DOWN<br/>SLIDE_LEFT, SLIDE_RIGHT, SWIPE_LEFT, SWIPE_RIGHT<br/>IN_OUT<br/>CARD<br/> SHRINK<br/>SPLIT<br/>DIAGON<br/>SPIN<br/>WINDMILL<br/>FADE<br/>ZOOM</td>
+  </tr>
+</table>
 
 <a name="demo"></a>
 ## Demo
