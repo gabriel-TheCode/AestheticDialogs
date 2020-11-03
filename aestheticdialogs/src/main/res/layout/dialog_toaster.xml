@@ -2,21 +2,20 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dialog_layout"
+    android:id="@+id/dialog_layout_toaster"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:background="@color/md_white_1000">
 
-
     <View
-        android:id="@+id/vertical_view"
+        android:id="@+id/vertical_view_toaster"
         android:layout_width="5dp"
         android:layout_height="wrap_content"
         android:background="@color/dialog_success" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/dialog_icon"
+        android:id="@+id/dialog_icon_toaster"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_centerVertical="true"
@@ -26,21 +25,20 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/dialog_icon"
-        android:layout_toRightOf="@id/dialog_icon"
+        android:layout_toEndOf="@id/dialog_icon_toaster"
+        android:layout_toRightOf="@id/dialog_icon_toaster"
         android:layout_centerVertical="true"
         android:gravity="center">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/layout_text"
+            android:id="@+id/layout_text_toaster"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            >
+            android:layout_weight="1">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_title"
+                android:id="@+id/text_title_toaster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Success"
@@ -49,7 +47,7 @@
                 android:textColor="@color/md_blue_grey_500"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_message"
+                android:id="@+id/text_message_toaster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Anyone with access can view your invited visitors"
@@ -57,9 +55,8 @@
                 android:ellipsize="end"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_close"
+            android:id="@+id/image_close_toaster"
             android:layout_width="30dp"
             android:layout_height="30dp"
             app:srcCompat="@drawable/ic_close_gray_24dp"
@@ -67,7 +64,5 @@
             android:layout_margin="20dp"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-
 
 </RelativeLayout>

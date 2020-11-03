@@ -7,8 +7,6 @@ import android.os.Handler
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
-import android.widget.FrameLayout
-import android.widget.RelativeLayout
 import androidx.annotation.Keep
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AlertDialog
@@ -17,6 +15,14 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.content.ContextCompat
+import kotlinx.android.synthetic.main.dialog_connectify_error.view.*
+import kotlinx.android.synthetic.main.dialog_connectify_success.view.*
+import kotlinx.android.synthetic.main.dialog_emoji.view.*
+import kotlinx.android.synthetic.main.dialog_emotion.view.*
+import kotlinx.android.synthetic.main.dialog_flash.view.*
+import kotlinx.android.synthetic.main.dialog_flat.view.*
+import kotlinx.android.synthetic.main.dialog_rainbow.view.*
+import kotlinx.android.synthetic.main.dialog_toaster.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -30,7 +36,7 @@ import java.util.*
 
 @Keep
 class AestheticDialog {
-    
+
     class Builder(
             //Necessary parameters
             @NonNull private val activity: Activity,
@@ -124,7 +130,7 @@ class AestheticDialog {
          */
         @NonNull
         fun setDuration(duration: Int): Builder {
-            if(duration!=0) {
+            if (duration != 0) {
                 this.duration = duration
                 Handler().postDelayed({
                     this.dismiss()
@@ -164,7 +170,7 @@ class AestheticDialog {
          */
         @NonNull
         fun dismiss(): AestheticDialog {
-            if(alertDialog.isShowing){
+            if (alertDialog.isShowing) {
                 alertDialog.dismiss()
             }
             return AestheticDialog()
@@ -177,55 +183,55 @@ class AestheticDialog {
          *
          */
         @NonNull
-        private fun chooseAnimation(){
-            if(animation == DialogAnimation.DEFAULT){
-                alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
-            }else{
+        private fun chooseAnimation() {
+            if (animation == DialogAnimation.DEFAULT) {
+                alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+            } else {
                 when (animation) {
                     DialogAnimation.ZOOM -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationZoom
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationZoom
                     }
                     DialogAnimation.FADE -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationFade
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationFade
                     }
                     DialogAnimation.CARD -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationCard
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationCard
                     }
                     DialogAnimation.SHRINK -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationShrink
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationShrink
                     }
                     DialogAnimation.SWIPE_LEFT -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSwipeLeft
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSwipeLeft
                     }
                     DialogAnimation.SWIPE_RIGHT -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSwipeRight
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSwipeRight
                     }
                     DialogAnimation.IN_OUT -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationInOut
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationInOut
                     }
                     DialogAnimation.SPIN -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSpin
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSpin
                     }
                     DialogAnimation.SPLIT -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSplit
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSplit
                     }
                     DialogAnimation.DIAGONAL -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationDiagonal
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationDiagonal
                     }
                     DialogAnimation.WINDMILL -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationWindMill
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationWindMill
                     }
                     DialogAnimation.SLIDE_UP -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSlideUp
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideUp
                     }
                     DialogAnimation.SLIDE_DOWN -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSlideDown
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideDown
                     }
                     DialogAnimation.SLIDE_LEFT -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSlideLeft
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideLeft
                     }
                     DialogAnimation.SLIDE_RIGHT -> {
-                        alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimationSlideRight
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideRight
                     }
                 }
             }
@@ -243,11 +249,11 @@ class AestheticDialog {
             when (dialogStyle) {
                 DialogStyle.EMOJI -> {
                     layoutView = activity.layoutInflater.inflate(R.layout.dialog_emoji, null)
-                    val layoutDialog = layoutView.findViewById<RelativeLayout>(R.id.dialog_layout)
-                    val imgClose: AppCompatImageView = layoutView.findViewById(R.id.image_close)
-                    val icon: AppCompatImageView = layoutView.findViewById(R.id.dialog_icon)
-                    val textTitle: AppCompatTextView = layoutView.findViewById(R.id.text_title)
-                    val textMessage: AppCompatTextView = layoutView.findViewById(R.id.text_message)
+                    val layoutDialog = layoutView.dialog_layout_emoji
+                    val imgClose: AppCompatImageView = layoutView.image_close_emoji
+                    val icon: AppCompatImageView = layoutView.dialog_icon_emoji
+                    val textTitle: AppCompatTextView = layoutView.text_title_emoji
+                    val textMessage: AppCompatTextView = layoutView.text_message_emoji
                     textMessage.text = message
                     textTitle.text = title
 
@@ -261,21 +267,20 @@ class AestheticDialog {
 
                     if (isDarkMode) {
                         textMessage.setTextColor(ContextCompat.getColor(activity, R.color.md_white_1000))
-                        layoutDialog = layoutView.findViewById(R.id.dialog_layout)
                         layoutDialog.setBackgroundColor(ContextCompat.getColor(activity, R.color.dark_background))
                     }
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    alertDialog.window!!.setGravity(Gravity.TOP)
+                    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    alertDialog.window?.setGravity(Gravity.TOP)
                     this.chooseAnimation()
                     alertDialog.show()
                     val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height_emoji_dialog)
-                    alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
+                    alertDialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
 
                     imgClose.setOnClickListener { onClickListener.onClick(this) }
 
-                    }
+                }
 
 
                 DialogStyle.DRAKE -> {
@@ -286,25 +291,25 @@ class AestheticDialog {
                     }
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    alertDialog.window!!.setGravity(Gravity.CENTER)
+                    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    alertDialog.window?.setGravity(Gravity.CENTER)
                     this.chooseAnimation()
                     alertDialog.show()
                     val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height_drake)
-                    alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
+                    alertDialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
                 }
 
                 DialogStyle.TOASTER -> {
-                    if(isDarkMode){
+                    if (isDarkMode) {
                         layoutView = activity.layoutInflater.inflate(R.layout.dialog_toaster, null)
-                        val layoutDialog = layoutView.findViewById<RelativeLayout>(R.id.dialog_layout)
+                        val layoutDialog = layoutView.dialog_layout_toaster
                         layoutDialog.setBackgroundColor(ContextCompat.getColor(activity, R.color.dark_background))
-                        val imgClose: AppCompatImageView = layoutView.findViewById(R.id.image_close)
-                        val icon: AppCompatImageView = layoutView.findViewById(R.id.dialog_icon)
-                        val textTitle: AppCompatTextView = layoutView.findViewById(R.id.text_title)
-                        val textMessage: AppCompatTextView = layoutView.findViewById(R.id.text_message)
+                        val imgClose: AppCompatImageView = layoutView.image_close_toaster
+                        val icon: AppCompatImageView = layoutView.dialog_icon_toaster
+                        val textTitle: AppCompatTextView = layoutView.text_title_toaster
+                        val textMessage: AppCompatTextView = layoutView.text_message_toaster
                         textMessage.setTextColor(ContextCompat.getColor(activity, R.color.md_white_1000))
-                        val verticalView = layoutView.findViewById<View>(R.id.vertical_view)
+                        val verticalView = layoutView.vertical_view_toaster
                         textMessage.text = message
                         textTitle.text = title
                         when (dialogType) {
@@ -331,23 +336,23 @@ class AestheticDialog {
                         }
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                        alertDialog.window!!.setGravity(Gravity.TOP)
+                        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        alertDialog.window?.setGravity(Gravity.TOP)
                         this.chooseAnimation()
                         alertDialog.show()
                         val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height_toaster)
-                        alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
+                        alertDialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
                         imgClose.setOnClickListener { onClickListener.onClick(this) }
 
-                    }else{
+                    } else {
 
                         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(activity)
                         layoutView = activity.layoutInflater.inflate(R.layout.dialog_toaster, null)
-                        val imgClose: AppCompatImageView = layoutView.findViewById(R.id.image_close)
-                        val icon: AppCompatImageView = layoutView.findViewById(R.id.dialog_icon)
-                        val textTitle: AppCompatTextView = layoutView.findViewById(R.id.text_title)
-                        val textMessage: AppCompatTextView = layoutView.findViewById(R.id.text_message)
-                        val verticalView = layoutView.findViewById<View>(R.id.vertical_view)
+                        val imgClose: AppCompatImageView = layoutView.image_close_toaster
+                        val icon: AppCompatImageView = layoutView.dialog_icon_toaster
+                        val textTitle: AppCompatTextView = layoutView.text_title_toaster
+                        val textMessage: AppCompatTextView = layoutView.text_message_toaster
+                        val verticalView = layoutView.vertical_view_toaster
                         textMessage.text = message
                         textTitle.text = title
                         when (dialogType) {
@@ -370,12 +375,12 @@ class AestheticDialog {
                         }
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                        alertDialog.window!!.setGravity(Gravity.TOP)
+                        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        alertDialog.window?.setGravity(Gravity.TOP)
                         this.chooseAnimation()
                         alertDialog.show()
                         val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height_toaster)
-                        alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
+                        alertDialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
                         imgClose.setOnClickListener { onClickListener.onClick(this) }
                     }
 
@@ -383,8 +388,8 @@ class AestheticDialog {
 
                 DialogStyle.RAINBOW -> {
                     layoutView = activity.layoutInflater.inflate(R.layout.dialog_rainbow, null)
-                    val icon: AppCompatImageView = layoutView.findViewById(R.id.dialog_icon)
-                    val layoutDialog = layoutView.findViewById<RelativeLayout>(R.id.dialog_layout)
+                    val icon: AppCompatImageView = layoutView.dialog_icon_rainbow
+                    val layoutDialog = layoutView.dialog_layout_rainbow
                     when (dialogType) {
                         DialogType.ERROR -> {
                             layoutDialog.setBackgroundColor(ContextCompat.getColor(activity, R.color.dialog_error))
@@ -403,32 +408,41 @@ class AestheticDialog {
                             icon.setImageResource(R.drawable.ic_info_blue_24dp)
                         }
                     }
-                    val imgClose: AppCompatImageView = layoutView.findViewById(R.id.image_close)
-                    val textTitle: AppCompatTextView = layoutView.findViewById(R.id.text_title)
-                    val textMessage: AppCompatTextView = layoutView.findViewById(R.id.text_message)
+                    val imgClose: AppCompatImageView = layoutView.image_close_rainbow
+                    val textTitle: AppCompatTextView = layoutView.text_title_rainbow
+                    val textMessage: AppCompatTextView = layoutView.text_message_rainbow
                     textMessage.text = message
                     textTitle.text = title
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    alertDialog.window!!.setGravity(Gravity.TOP)
+                    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    alertDialog.window?.setGravity(Gravity.TOP)
                     this.chooseAnimation()
                     alertDialog.show()
                     val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height_emoji_dialog)
-                    alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
+                    alertDialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
                     imgClose.setOnClickListener { onClickListener.onClick(this) }
                 }
 
                 DialogStyle.CONNECTIFY -> {
-                    layoutView = if (dialogType == DialogType.SUCCESS) {
-                        activity.layoutInflater.inflate(R.layout.dialog_connectify_success, null)
+                    val imgClose: AppCompatImageView
+                    val textTitle: AppCompatTextView
+                    val textMessage: AppCompatTextView
+                    val layoutDialog: LinearLayoutCompat
+                    if (dialogType == DialogType.SUCCESS) {
+                        layoutView = activity.layoutInflater.inflate(R.layout.dialog_connectify_success, null)
+                        layoutDialog = layoutView.dialog_layout_connectify_success
+                        imgClose = layoutView.image_close_connectify_success
+                        textTitle = layoutView.text_title_connectify_success
+                        textMessage = layoutView.text_message_connectify_success
                     } else {
-                        activity.layoutInflater.inflate(R.layout.dialog_connectify_error, null)
+                        layoutView = activity.layoutInflater.inflate(R.layout.dialog_connectify_error, null)
+                        layoutDialog = layoutView.dialog_layout_connectify_error
+                        imgClose = layoutView.image_close_connectify_error
+                        textTitle = layoutView.text_title_connectify_error
+                        textMessage = layoutView.text_message_connectify_error
                     }
-                    val layoutDialog: LinearLayoutCompat = layoutView.findViewById(R.id.dialog_layout)
-                    val imgClose: AppCompatImageView = layoutView.findViewById(R.id.image_close)
-                    val textTitle: AppCompatTextView = layoutView.findViewById(R.id.text_title)
-                    val textMessage: AppCompatTextView = layoutView.findViewById(R.id.text_message)
+
                     textTitle.text = title
                     textMessage.text = message
 
@@ -436,24 +450,24 @@ class AestheticDialog {
                         layoutDialog.setBackgroundColor(ContextCompat.getColor(activity, R.color.dark_background))
                         textMessage.setTextColor(ContextCompat.getColor(activity, R.color.md_white_1000))
                     }
-                        dialogBuilder.setView(layoutView)
-                        alertDialog = dialogBuilder.create()
-                        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                        alertDialog.window!!.setGravity(Gravity.TOP)
-                        this.chooseAnimation()
-                        alertDialog.show()
-                        alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
-                        imgClose.setOnClickListener { onClickListener.onClick(this) }
+                    dialogBuilder.setView(layoutView)
+                    alertDialog = dialogBuilder.create()
+                    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    alertDialog.window?.setGravity(Gravity.TOP)
+                    this.chooseAnimation()
+                    alertDialog.show()
+                    alertDialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT)
+                    imgClose.setOnClickListener { onClickListener.onClick(this) }
                 }
 
 
                 DialogStyle.FLASH -> {
                     layoutView = activity.layoutInflater.inflate(R.layout.dialog_flash, null)
-                    val btnOk: AppCompatButton = layoutView.findViewById(R.id.btn_action)
-                    val textTitle: AppCompatTextView = layoutView.findViewById(R.id.dialog_title)
-                    val textMessage: AppCompatTextView = layoutView.findViewById(R.id.dialog_message)
-                    val dialogFrame = layoutView.findViewById<FrameLayout>(R.id.dialog_frame)
-                    val icon: AppCompatImageView = layoutView.findViewById(R.id.img_icon)
+                    val btnOk: AppCompatButton = layoutView.btn_action_flash
+                    val textTitle: AppCompatTextView = layoutView.dialog_title_flash
+                    val textMessage: AppCompatTextView = layoutView.dialog_message_flash
+                    val dialogFrame = layoutView.dialog_frame_flash
+                    val icon: AppCompatImageView = layoutView.img_icon_flash
                     if (dialogType == DialogType.SUCCESS) {
                         dialogFrame.setBackgroundResource(R.drawable.rounded_green_gradient_bg)
                         icon.setImageResource(R.drawable.circle_validation_success)
@@ -465,23 +479,23 @@ class AestheticDialog {
                     textTitle.text = title
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    alertDialog.window!!.setGravity(Gravity.CENTER)
+                    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    alertDialog.window?.setGravity(Gravity.CENTER)
                     this.chooseAnimation()
                     alertDialog.show()
                     val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height)
                     val width = activity.resources.getDimensionPixelSize(R.dimen.popup_height)
-                    alertDialog.window!!.setLayout(width, height)
+                    alertDialog.window?.setLayout(width, height)
                     btnOk.setOnClickListener { onClickListener.onClick(this) }
                 }
 
                 DialogStyle.EMOTION -> {
                     layoutView = activity.layoutInflater.inflate(R.layout.dialog_emotion, null)
-                    val icon: AppCompatImageView = layoutView.findViewById(R.id.img_icon)
-                    val layoutDialog = layoutView.findViewById<RelativeLayout>(R.id.dialog_layout)
-                    val textTitle: AppCompatTextView = layoutView.findViewById(R.id.dialog_title)
-                    val textMessage: AppCompatTextView = layoutView.findViewById(R.id.dialog_message)
-                    val textHour: AppCompatTextView = layoutView.findViewById(R.id.dialog_hour)
+                    val icon: AppCompatImageView = layoutView.img_icon_emotion
+                    val layoutDialog = layoutView.dialog_layout_emotion
+                    val textTitle: AppCompatTextView = layoutView.dialog_title_emotion
+                    val textMessage: AppCompatTextView = layoutView.dialog_message_emotion
+                    val textHour: AppCompatTextView = layoutView.dialog_hour_emotion
                     if (dialogType == DialogType.SUCCESS) {
                         icon.setImageResource(R.drawable.smiley_success)
                         layoutDialog.setBackgroundResource(R.drawable.background_emotion_success)
@@ -496,23 +510,23 @@ class AestheticDialog {
                     textHour.text = hour
                     dialogBuilder.setView(layoutView)
                     alertDialog = dialogBuilder.create()
-                    alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    alertDialog.window!!.setGravity(Gravity.CENTER)
+                    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    alertDialog.window?.setGravity(Gravity.CENTER)
                     this.chooseAnimation()
                     alertDialog.show()
                     val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height_emotion)
-                    alertDialog.window!!.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
+                    alertDialog.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, height)
                 }
 
                 DialogStyle.FLAT -> {
                     if (isDarkMode) {
                         layoutView = activity.layoutInflater.inflate(R.layout.dialog_flat, null)
-                        val btnOk: AppCompatButton = layoutView.findViewById(R.id.btn_action)
-                        val textTitle: AppCompatTextView = layoutView.findViewById(R.id.dialog_title)
-                        val textMessage: AppCompatTextView = layoutView.findViewById(R.id.dialog_message)
-                        val icon: AppCompatImageView = layoutView.findViewById(R.id.dialog_icon)
-                        val layoutDialog: LinearLayoutCompat = layoutView.findViewById(R.id.dialog_layout)
-                        val frameLayout = layoutView.findViewById<FrameLayout>(R.id.dialog_frame)
+                        val btnOk: AppCompatButton = layoutView.btn_action_flat
+                        val textTitle: AppCompatTextView = layoutView.dialog_title_flat
+                        val textMessage: AppCompatTextView = layoutView.dialog_message_flat
+                        val icon: AppCompatImageView = layoutView.dialog_icon_flat
+                        val layoutDialog: LinearLayoutCompat = layoutView.dialog_layout_flat
+                        val frameLayout = layoutView.dialog_frame_flat
                         when (dialogType) {
                             DialogType.ERROR -> {
                                 icon.setImageResource(R.drawable.ic_error_red_24dp)
@@ -542,23 +556,23 @@ class AestheticDialog {
                         textTitle.text = title
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                        alertDialog.window!!.setGravity(Gravity.CENTER)
+                        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        alertDialog.window?.setGravity(Gravity.CENTER)
                         this.chooseAnimation()
                         alertDialog.show()
                         val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height)
                         val width = activity.resources.getDimensionPixelSize(R.dimen.popup_height)
-                        alertDialog.window!!.setLayout(width, height)
+                        alertDialog.window?.setLayout(width, height)
                         btnOk.setOnClickListener { onClickListener.onClick(this) }
 
                     } else {
                         layoutView = activity.layoutInflater.inflate(R.layout.dialog_flat, null)
-                        val btnOk: AppCompatButton = layoutView.findViewById(R.id.btn_action)
-                        val textTitle: AppCompatTextView = layoutView.findViewById(R.id.dialog_title)
-                        val textMessage: AppCompatTextView = layoutView.findViewById(R.id.dialog_message)
-                        val icon: AppCompatImageView = layoutView.findViewById(R.id.dialog_icon)
-                        val layoutDialog: LinearLayoutCompat = layoutView.findViewById(R.id.dialog_layout)
-                        val frameLayout = layoutView.findViewById<FrameLayout>(R.id.dialog_frame)
+                        val btnOk: AppCompatButton = layoutView.btn_action_flat
+                        val textTitle: AppCompatTextView = layoutView.dialog_title_flat
+                        val textMessage: AppCompatTextView = layoutView.dialog_message_flat
+                        val icon: AppCompatImageView = layoutView.dialog_icon_flat
+                        val layoutDialog: LinearLayoutCompat = layoutView.dialog_layout_flat
+                        val frameLayout = layoutView.dialog_frame_flat
                         when (dialogType) {
                             DialogType.ERROR -> {
                                 icon.setImageResource(R.drawable.ic_error_red_24dp)
@@ -586,21 +600,21 @@ class AestheticDialog {
                         textTitle.text = title
                         dialogBuilder.setView(layoutView)
                         alertDialog = dialogBuilder.create()
-                        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                        alertDialog.window!!.setGravity(Gravity.CENTER)
+                        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                        alertDialog.window?.setGravity(Gravity.CENTER)
                         this.chooseAnimation()
                         alertDialog.show()
                         val height = activity.resources.getDimensionPixelSize(R.dimen.popup_height)
                         val width = activity.resources.getDimensionPixelSize(R.dimen.popup_height)
-                        alertDialog.window!!.setLayout(width, height)
+                        alertDialog.window?.setLayout(width, height)
                         btnOk.setOnClickListener { onClickListener.onClick(this) }
                     }
                 }
             }
 
             alertDialog.setCancelable(isCancelable)
-            if(gravity!=Gravity.NO_GRAVITY){
-                alertDialog.window!!.setGravity(gravity)
+            if (gravity != Gravity.NO_GRAVITY) {
+                alertDialog.window?.setGravity(gravity)
             }
             return AestheticDialog()
         }

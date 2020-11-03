@@ -4,5 +4,5 @@ import androidx.annotation.Keep
 
 @Keep
 interface OnDialogClickListener {
-    fun onClick(dialog : AestheticDialog.Builder)
+    fun onClick(dialog: AestheticDialog.Builder)
 }

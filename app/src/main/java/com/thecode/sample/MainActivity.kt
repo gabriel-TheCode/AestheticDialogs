@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         .show()
             }
             R.id.btn_connectify_dialog_success -> if (rbConnectifyLight.isChecked) {
-               AestheticDialog.Builder(this, DialogStyle.CONNECTIFY, DialogType.SUCCESS)
+                AestheticDialog.Builder(this, DialogStyle.CONNECTIFY, DialogType.SUCCESS)
                         .setTitle("Network found")
                         .setMessage("Internet connection established")
                         .setCancelable(false)
@@ -371,7 +371,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         .setDarkMode(true)
                         .setOnClickListener(object : OnDialogClickListener {
                             override fun onClick(dialog: AestheticDialog.Builder) {
-                                Toast.makeText(applicationContext, "test", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(applicationContext, "Good !", Toast.LENGTH_SHORT).show()
                                 dialog.dismiss()
                             }
                         })
