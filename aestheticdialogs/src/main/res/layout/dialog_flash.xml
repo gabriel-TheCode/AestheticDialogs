@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout
-    android:id="@+id/dialog_frame"
+    android:id="@+id/dialog_frame_flash"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
@@ -10,9 +9,8 @@
     android:gravity="center"
     android:background="@drawable/rounded_red_gradient_bg">
 
-
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/dialog_layout"
+        android:id="@+id/dialog_layout_flash"
         android:layout_width="@dimen/popup_width"
         android:minWidth="@dimen/popup_width"
         android:layout_height="@dimen/popup_height"
@@ -22,16 +20,15 @@
         android:padding="20dp"
         android:layout_gravity="center">
 
-
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/img_icon"
+            android:id="@+id/img_icon_flash"
             android:layout_width="120dp"
             android:layout_height="120dp"
             app:srcCompat="@drawable/circle_validation_error"
             android:layout_marginBottom="10dp"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/dialog_title"
+            android:id="@+id/dialog_title_flash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Oups !"
@@ -39,9 +36,8 @@
             android:textColor="@color/md_white_1000"
             android:layout_marginBottom="10dp"/>
 
-
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/dialog_message"
+            android:id="@+id/dialog_message_flash"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
@@ -52,7 +48,7 @@
             android:ellipsize="end"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_action"
+            android:id="@+id/btn_action_flash"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:background="@drawable/rounded_border_white"
@@ -62,7 +58,6 @@
             android:text="OK"
             android:textColor="@color/md_white_1000"
             android:focusable="true"/>
-
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

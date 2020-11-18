@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/dialog_layout"
+        android:id="@+id/dialog_layout_connectify_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -25,7 +24,7 @@
             android:gravity="center_horizontal">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/layout_text"
+                android:id="@+id/layout_text_connectify_error"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -33,7 +32,7 @@
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/text_title"
+                    android:id="@+id/text_title_connectify_error"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -45,7 +44,7 @@
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/text_message"
+                    android:id="@+id/text_message_connectify_error"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -56,10 +55,8 @@
                     android:layout_marginEnd="@dimen/padd_10"
                     android:text="Connection could not be etablished." />
 
-
-
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/image_close"
+                    android:id="@+id/image_close_connectify_error"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_margin="5dp"
@@ -68,12 +65,9 @@
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="80dp"
@@ -94,6 +88,6 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-
     </androidx.appcompat.widget.LinearLayoutCompat>
+
 </FrameLayout>

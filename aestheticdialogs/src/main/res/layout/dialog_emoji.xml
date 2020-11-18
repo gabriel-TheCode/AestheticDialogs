@@ -2,15 +2,14 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dialog_layout"
+    android:id="@+id/dialog_layout_emoji"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:background="@color/md_white_1000">
 
-
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/dialog_icon"
+        android:id="@+id/dialog_icon_emoji"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_centerVertical="true"
@@ -20,20 +19,20 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toEndOf="@id/dialog_icon"
-        android:layout_toRightOf="@id/dialog_icon"
+        android:layout_toEndOf="@id/dialog_icon_emoji"
+        android:layout_toRightOf="@id/dialog_icon_emoji"
         android:layout_centerVertical="true"
         android:gravity="center">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/layout_text"
+            android:id="@+id/layout_text_emoji"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_title"
+                android:id="@+id/text_title_emoji"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/success"
@@ -41,7 +40,7 @@
                 android:textColor="@color/dialog_success"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text_message"
+                android:id="@+id/text_message_emoji"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Anyone with access can view your invited visitors"
@@ -50,9 +49,8 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_close"
+            android:id="@+id/image_close_emoji"
             android:layout_width="30dp"
             android:layout_height="30dp"
             app:srcCompat="@drawable/ic_close_gray_24dp"
@@ -60,7 +58,5 @@
             android:layout_margin="20dp"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-
 
 </RelativeLayout>
