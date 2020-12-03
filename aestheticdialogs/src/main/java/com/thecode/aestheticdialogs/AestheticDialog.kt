@@ -40,8 +40,8 @@ class AestheticDialog {
     class Builder(
             //Necessary parameters
             @NonNull private val activity: Activity,
-            @NonNull private val dialogStyle: String,
-            @NonNull private val dialogType: String) {
+            @NonNull private val dialogStyle: DialogStyle,
+            @NonNull private val dialogType: DialogType) {
 
         lateinit var alertDialog: AlertDialog
         private val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(activity)
@@ -53,7 +53,7 @@ class AestheticDialog {
         private var isCancelable: Boolean = true
         private var duration: Int = 0
         private var gravity: Int = Gravity.NO_GRAVITY
-        private var animation: Int = DialogAnimation.DEFAULT
+        private var animation: DialogAnimation = DialogAnimation.DEFAULT
         private lateinit var layoutView: View
         private var onClickListener: OnDialogClickListener = object : OnDialogClickListener {
             override fun onClick(dialog: Builder) {
@@ -158,7 +158,7 @@ class AestheticDialog {
          * @return this, for chaining.
          */
         @NonNull
-        fun setAnimation(animation: Int): Builder {
+        fun setAnimation(animation: DialogAnimation): Builder {
             this.animation = animation
             return this
         }
@@ -183,9 +183,6 @@ class AestheticDialog {
          */
         @NonNull
         private fun chooseAnimation() {
-            if (animation == DialogAnimation.DEFAULT) {
-                alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
-            } else {
                 when (animation) {
                     DialogAnimation.ZOOM -> {
                         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationZoom
@@ -232,8 +229,10 @@ class AestheticDialog {
                     DialogAnimation.SLIDE_RIGHT -> {
                         alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimationSlideRight
                     }
+                    DialogAnimation.DEFAULT ->{
+                        alertDialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+                    }
                 }
-            }
         }
 
 
