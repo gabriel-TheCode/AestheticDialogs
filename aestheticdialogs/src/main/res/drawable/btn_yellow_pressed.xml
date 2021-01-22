@@ -8,6 +8,6 @@
     android:shape="rectangle">
     <solid
         android:angle="270"
-        android:color="@color/md_yellow_800" />
+        android:color="@color/dialog_warning_darker" />
     <corners android:radius="30dp" />
 </shape>
