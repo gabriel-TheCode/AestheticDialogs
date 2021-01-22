@@ -8,8 +8,8 @@ android {
         applicationId "com.thecode.sample"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 1304
-        versionName "1.3.4"
+        versionCode 1305
+        versionName "1.3.5"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

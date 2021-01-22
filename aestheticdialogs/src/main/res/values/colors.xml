@@ -2,6 +2,10 @@
 <resources>
     <color name="md_white_1000">#FFFFFF</color>
     <color name="md_blue_grey_500">#607D8B</color>
+    <color name="dialog_error_darker">#E53935</color>
+    <color name="dialog_warning_darker">#F9A825</color>
+    <color name="dialog_info_darker">#1565C0</color>
+    <color name="dialog_success_darker">#43A047</color>
     <color name="dialog_success">#48D865</color>
     <color name="dialog_error">#FF6B5F</color>
     <color name="dialog_info">#3086EB</color>
