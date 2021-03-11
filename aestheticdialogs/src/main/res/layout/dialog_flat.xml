@@ -45,7 +45,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:maxLines="2"
+            android:maxLines="3"
             android:ellipsize="end"
             android:text="An error occured on remote service, please try again later"/>
 
