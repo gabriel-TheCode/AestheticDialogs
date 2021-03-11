@@ -3,6 +3,8 @@
 [![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=plastic)](https://android-arsenal.com/api?level=14)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![](https://jitpack.io/v/gabriel-TheCode/AestheticDialogs.svg)](https://jitpack.io/#gabriel-TheCode/AestheticDialogs)
+[![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
+
 
 📱 Android Library for 💫*fluid*, 😍*beautiful*, 🎨*custom*  Dialogs.
 
@@ -93,7 +95,7 @@
 
 <a name="implementation"></a>
 ## Implementation
-Implementation of Material Dialog library is so easy. You can check [/app](/app) directory for demo. Let's have look on basic steps of implementation.
+Implementation of Aesthetic Dialogs is simple. You can check [/app](/app) directory for demo. Let's have look on basic steps of implementation.
 <a name="prerequisite"></a>
 ### Prerequisite
 #### i. Gradle
@@ -121,8 +123,10 @@ dependencies {
 <a name="createDialog"></a>
 ### Create Dialog
 
-You can create multiple dialogs by specifying the style (*RAINBOW, FLAT, CONNECTIFY, TOASTER, DRAKE, EMOJI, EMOTION*) of your component and the type (*SUCCESS, ERROR, WARNING, INFO*) of alert you want to display to the user.
+You can create multiple dialogs by specifying the style of your component, the type, and the animation of alert you want to display to the user.
 You can override the ```.setOnClickListener()``` method to add a particular event, however some dialogs do not need it.
+
+
 
 **Example 1**: Flat Dialog
 
@@ -133,6 +137,7 @@ You can override the ```.setOnClickListener()``` method to add a particular even
                         .setCancelable(false)
                         .setDarkMode(true)
                         .setGravity(Gravity.CENTER)
+                        .setAnimation(DialogAnimation.SHRINK)
                         .setOnClickListener(object : OnDialogClickListener {
                             override fun onClick(dialog: AestheticDialog.Builder) {
                                 dialog.dismiss()
@@ -146,17 +151,35 @@ You can override the ```.setOnClickListener()``` method to add a particular even
 
 
 ``` kotlin
-  AestheticDialog.Builder(this, DialogStyle.EMOTION, DialogType.SUCCESS)
+  AestheticDialog.Builder(this, DialogStyle.EMOTION, DialogType.ERROR)
                         .setTitle("Title")
                         .setMessage("Message")
                         .show()
 ```
+
 
 **Optional methods**
 - setCancelable()
 - setDarkMode()
 - setDuration()
 - setGravity()
+- setAnimation()
+
+**Constants**
+
+<table style="width:100%">
+  <tr>
+    <th>DIALOG STYLE</th>
+    <th>DIALOG TYPE</th>
+    <th>DIALOG ANIMATION</th>
+  </tr>
+  <tr>
+    <td>RAINBOW<br/>FLAT<br/>CONNECTIFY<br/>TOASTER<br/>DRAKE<br/>EMOJI<br/>EMOTION<br/>
+    </td>
+    <td>SUCCESS<br/>ERROR<br/>WARNING<br/>INFO</td>
+     <td>DEFAULT<br/>SLIDE_UP, SLIDE_DOWN<br/>SLIDE_LEFT, SLIDE_RIGHT<br/> SWIPE_LEFT, SWIPE_RIGHT<br/>IN_OUT<br/>CARD<br/> SHRINK<br/>SPLIT<br/>DIAGONAL<br/>SPIN<br/>WINDMILL<br/>FADE<br/>ZOOM</td>
+  </tr>
+</table>
 
 <a name="demo"></a>
 ## Demo
@@ -173,4 +196,7 @@ This library is built using following open-source libraries.
 - [Material Components for Android](https://github.com/material-components/material-components-android)
 
 ## License
+
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+
 Project is published under the Apache 2.0 license. Feel free to clone and modify repo as you want, but don't forget to add reference to authors :)
