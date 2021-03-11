@@ -46,9 +46,9 @@ class AestheticDialog {
         lateinit var alertDialog: AlertDialog
         private val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(activity)
 
-        // optional features
         private var title: String = "Title"
         private var message: String = "Message"
+        // Optional features
         private var isDarkMode: Boolean = false
         private var isCancelable: Boolean = true
         private var duration: Int = 0
@@ -65,8 +65,8 @@ class AestheticDialog {
         /**
          * Set dialog title text
          *
-         *
          * @param title
+         * @return this, for chaining.
          */
         @NonNull
         fun setTitle(@NonNull title: String): Builder {
@@ -77,8 +77,8 @@ class AestheticDialog {
         /**
          * Set dialog message text
          *
-         *
          * @param message
+         * @return this, for chaining.
          */
         @NonNull
         fun setMessage(@NonNull message: String): Builder {
@@ -89,8 +89,8 @@ class AestheticDialog {
         /**
          * Set dialog mode. Defined by default to false
          *
-         *
          * @param isDarkMode
+         * @return this, for chaining.
          */
         @NonNull
         fun setDarkMode(@NonNull isDarkMode: Boolean): Builder {
@@ -101,8 +101,8 @@ class AestheticDialog {
         /**
          * Set an OnClickListener to the dialog
          *
-         *
          * @param onDialogClickListener interface for callback event on click of button.
+         * @return this, for chaining.
          */
         @NonNull
         fun setOnClickListener(onDialogClickListener: OnDialogClickListener): Builder {
@@ -113,8 +113,8 @@ class AestheticDialog {
         /**
          * Define if the dialog is cancelable
          *
-         *
          * @param isCancelable
+         * @return this, for chaining.
          */
         @NonNull
         fun setCancelable(isCancelable: Boolean): Builder {
@@ -125,8 +125,8 @@ class AestheticDialog {
         /**
          * Define the display duration of the dialog
          *
-         *
          * @param duration in milliseconds
+         * @return this, for chaining.
          */
         @NonNull
         fun setDuration(duration: Int): Builder {
@@ -140,10 +140,10 @@ class AestheticDialog {
         }
 
         /**
-         * Set the gravity duration of the dialog
-         *
+         * Set the gravity of the dialog
          *
          * @param gravity in milliseconds
+         * @return this, for chaining.
          */
         @NonNull
         fun setGravity(gravity: Int): Builder {
@@ -152,10 +152,10 @@ class AestheticDialog {
         }
 
         /**
-         * Set the gravity duration of the dialog
+         * Set the animation of the dialog
          *
-         *
-         * @param gravity in milliseconds
+         * @param animation in milliseconds
+         * @return this, for chaining.
          */
         @NonNull
         fun setAnimation(animation: DialogAnimation): Builder {
@@ -166,7 +166,7 @@ class AestheticDialog {
         /**
          * Dismiss the dialog
          *
-         *
+         * @return Aesthetic Dialog instance.
          */
         @NonNull
         fun dismiss(): AestheticDialog {
@@ -178,8 +178,7 @@ class AestheticDialog {
 
 
         /**
-         * Define the dialog animation
-         *
+         * Choose the dialog animation according to the parameter
          *
          */
         @NonNull
@@ -240,7 +239,7 @@ class AestheticDialog {
         /**
          * Displays the dialog according to the parameters of the Builder
          *
-         *
+         * @return Aesthetic Dialog instance.
          */
         @NonNull
         fun show(): AestheticDialog {
