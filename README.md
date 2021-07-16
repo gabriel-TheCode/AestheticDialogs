@@ -24,6 +24,7 @@
 > - [ Demo ](#demo)
 > - [ Contribute ](#contribute)
 > - [ Credits ](#credits)
+> - [ License ](#license)
 
 <a name="introduction"></a>
 ## Introduction
@@ -195,8 +196,26 @@ See [Contributing Guidelines](CONTRIBUTING.md).
 This library is built using following open-source libraries.
 - [Material Components for Android](https://github.com/material-components/material-components-android)
 
+<a name="license"></a>
 ## License
 
 [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-Project is published under the Apache 2.0 license. Feel free to clone and modify repo as you want, but don't forget to add reference to authors :)
+```
+
+
+    Copyright 2019 TEKOMBO Gabriel
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+```
