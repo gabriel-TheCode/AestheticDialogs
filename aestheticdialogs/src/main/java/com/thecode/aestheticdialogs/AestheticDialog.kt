@@ -4,6 +4,7 @@ import android.app.Activity
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Handler
+import android.os.Looper
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
@@ -134,7 +135,7 @@ class AestheticDialog {
         fun setDuration(duration: Int): Builder {
             if (duration != 0) {
                 this.duration = duration
-                Handler().postDelayed({
+                Handler(Looper.getMainLooper()).postDelayed({
                     this.dismiss()
                 }, duration.toLong())
             }
@@ -251,59 +252,65 @@ class AestheticDialog {
 
             when (dialogStyle) {
                 DialogStyle.EMOJI -> {
-                    layoutView = activity.layoutInflater.inflate(R.layout.dialog_emoji, null)
-                    val layoutDialog = layoutView.dialog_layout_emoji
-                    val imgClose: AppCompatImageView = layoutView.image_close_emoji
-                    val icon: AppCompatImageView = layoutView.dialog_icon_emoji
-                    val textTitle: AppCompatTextView = layoutView.text_title_emoji
-                    val textMessage: AppCompatTextView = layoutView.text_message_emoji
-                    textMessage.text = message
-                    textTitle.text = title
+                    layoutView = activity.layoutInflater.inflate(R.layout.dialog_emoji, null).apply {
+                        val layoutDialog = dialog_layout_emoji
+                        val imgClose: AppCompatImageView = image_close_emoji
+                        val icon: AppCompatImageView = dialog_icon_emoji
+                        val textTitle: AppCompatTextView = text_title_emoji
+                        val textMessage: AppCompatTextView = text_message_emoji
+                        textMessage.text = message
+                        textTitle.text = title
 
-                    if (dialogType == DialogType.SUCCESS) {
-                        textTitle.setTextColor(
-                            ContextCompat.getColor(
-                                activity,
-                                R.color.dialog_success
+                        if (dialogType == DialogType.SUCCESS) {
+                            textTitle.setTextColor(
+                                ContextCompat.getColor(
+                                    activity,
+                                    R.color.dialog_success
+                                )
                             )
-                        )
-                        icon.setImageResource(R.drawable.thumbs_up_sign)
-                    } else {
-                        textTitle.setTextColor(
-                            ContextCompat.getColor(
-                                activity,
-                                R.color.dialog_error
+                            icon.setImageResource(R.drawable.thumbs_up_sign)
+                        } else {
+                            textTitle.setTextColor(
+                                ContextCompat.getColor(
+                                    activity,
+                                    R.color.dialog_error
+                                )
                             )
-                        )
-                        icon.setImageResource(R.drawable.man_shrugging)
+                            icon.setImageResource(R.drawable.man_shrugging)
+                        }
+
+                        if (isDarkMode) {
+                            textMessage.setTextColor(
+                                ContextCompat.getColor(
+                                    activity,
+                                    R.color.md_white_1000
+                                )
+                            )
+                            layoutDialog.setBackgroundColor(
+                                ContextCompat.getColor(
+                                    activity,
+                                    R.color.dark_background
+                                )
+                            )
+                        }
+                        dialogBuilder.setView(this)
+                        alertDialog = dialogBuilder.create().apply {
+                            window?.apply {
+                                setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                setGravity(Gravity.TOP)
+                                this@Builder.chooseAnimation()
+                                show()
+                                setLayout(
+                                    WindowManager.LayoutParams.WRAP_CONTENT,
+                                    activity.resources.getDimensionPixelSize(R.dimen.popup_height_emoji_dialog)
+                                )
+                            }
+
+                        }
+
+                        imgClose.setOnClickListener { onClickListener.onClick(this@Builder) }
                     }
 
-                    if (isDarkMode) {
-                        textMessage.setTextColor(
-                            ContextCompat.getColor(
-                                activity,
-                                R.color.md_white_1000
-                            )
-                        )
-                        layoutDialog.setBackgroundColor(
-                            ContextCompat.getColor(
-                                activity,
-                                R.color.dark_background
-                            )
-                        )
-                    }
-                    dialogBuilder.setView(layoutView)
-                    alertDialog = dialogBuilder.create()
-                    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    alertDialog.window?.setGravity(Gravity.TOP)
-                    this.chooseAnimation()
-                    alertDialog.show()
-                    alertDialog.window?.setLayout(
-                        WindowManager.LayoutParams.WRAP_CONTENT,
-                        activity.resources.getDimensionPixelSize(R.dimen.popup_height_emoji_dialog)
-                    )
-
-                    imgClose.setOnClickListener { onClickListener.onClick(this) }
                 }
 
 
@@ -327,223 +334,242 @@ class AestheticDialog {
 
                 DialogStyle.TOASTER -> {
                     if (isDarkMode) {
-                        layoutView = activity.layoutInflater.inflate(R.layout.dialog_toaster, null)
-                        val layoutDialog = layoutView.dialog_layout_toaster
-                        layoutDialog.setBackgroundColor(
-                            ContextCompat.getColor(
-                                activity,
-                                R.color.dark_background
+                        layoutView = activity.layoutInflater.inflate(R.layout.dialog_toaster, null).apply {
+                            dialog_layout_toaster.setBackgroundColor(
+                                ContextCompat.getColor(
+                                    activity,
+                                    R.color.dark_background
+                                )
                             )
-                        )
-                        val imgClose: AppCompatImageView = layoutView.image_close_toaster
-                        val icon: AppCompatImageView = layoutView.dialog_icon_toaster
-                        val textTitle: AppCompatTextView = layoutView.text_title_toaster
-                        val textMessage: AppCompatTextView = layoutView.text_message_toaster
-                        textMessage.setTextColor(
-                            ContextCompat.getColor(
-                                activity,
-                                R.color.md_white_1000
+                            val imgClose: AppCompatImageView = image_close_toaster
+                            val icon: AppCompatImageView = dialog_icon_toaster
+                            val textTitle: AppCompatTextView = text_title_toaster
+                            val textMessage: AppCompatTextView = text_message_toaster
+                            textMessage.setTextColor(
+                                ContextCompat.getColor(
+                                    activity,
+                                    R.color.md_white_1000
+                                )
                             )
-                        )
-                        val verticalView = layoutView.vertical_view_toaster
-                        textMessage.text = message
-                        textTitle.text = title
-                        when (dialogType) {
-                            DialogType.ERROR -> {
-                                textTitle.setTextColor(
-                                    ContextCompat.getColor(
-                                        activity,
-                                        R.color.dialog_error
-                                    )
-                                )
-                                verticalView.setBackgroundColor(
-                                    ContextCompat.getColor(
-                                        activity,
-                                        R.color.dialog_error
-                                    )
-                                )
-                                icon.setImageResource(R.drawable.ic_error_red_24dp)
-                            }
-                            DialogType.SUCCESS -> {
-                                textTitle.setTextColor(
-                                    ContextCompat.getColor(
-                                        activity,
-                                        R.color.dialog_success
-                                    )
-                                )
-                                verticalView.setBackgroundColor(
-                                    ContextCompat.getColor(
-                                        activity,
-                                        R.color.dialog_success
-                                    )
-                                )
-                                icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
-                            }
-                            DialogType.WARNING -> {
-                                textTitle.setTextColor(
-                                    ContextCompat.getColor(
-                                        activity,
-                                        R.color.dialog_warning
-                                    )
-                                )
-                                verticalView.setBackgroundColor(
-                                    ContextCompat.getColor(
-                                        activity,
-                                        R.color.dialog_warning
-                                    )
-                                )
-                                icon.setImageResource(R.drawable.ic_warning_orange_24dp)
-                            }
-                            DialogType.INFO -> {
-                                textTitle.setTextColor(
-                                    ContextCompat.getColor(
-                                        activity,
-                                        R.color.dialog_info
-                                    )
-                                )
-                                verticalView.setBackgroundColor(
-                                    ContextCompat.getColor(
-                                        activity,
-                                        R.color.dialog_info
-                                    )
-                                )
-                                icon.setImageResource(R.drawable.ic_info_blue_24dp)
-                            }
-                        }
-                        dialogBuilder.setView(layoutView)
-                        alertDialog = dialogBuilder.create()
-                        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                        alertDialog.window?.setGravity(Gravity.TOP)
-                        this.chooseAnimation()
-                        alertDialog.show()
-                        alertDialog.window?.setLayout(
-                            WindowManager.LayoutParams.WRAP_CONTENT,
-                            activity.resources.getDimensionPixelSize(R.dimen.popup_height_toaster)
-                        )
-                        imgClose.setOnClickListener { onClickListener.onClick(this) }
+                            val verticalView = vertical_view_toaster
 
+
+                            textMessage.text = message
+                            textTitle.text = title
+                            when (dialogType) {
+                                DialogType.ERROR -> {
+                                    textTitle.setTextColor(
+                                        ContextCompat.getColor(
+                                            activity,
+                                            R.color.dialog_error
+                                        )
+                                    )
+                                    verticalView.setBackgroundColor(
+                                        ContextCompat.getColor(
+                                            activity,
+                                            R.color.dialog_error
+                                        )
+                                    )
+                                    icon.setImageResource(R.drawable.ic_error_red_24dp)
+                                }
+                                DialogType.SUCCESS -> {
+                                    textTitle.setTextColor(
+                                        ContextCompat.getColor(
+                                            activity,
+                                            R.color.dialog_success
+                                        )
+                                    )
+                                    verticalView.setBackgroundColor(
+                                        ContextCompat.getColor(
+                                            activity,
+                                            R.color.dialog_success
+                                        )
+                                    )
+                                    icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
+                                }
+                                DialogType.WARNING -> {
+                                    textTitle.setTextColor(
+                                        ContextCompat.getColor(
+                                            activity,
+                                            R.color.dialog_warning
+                                        )
+                                    )
+                                    verticalView.setBackgroundColor(
+                                        ContextCompat.getColor(
+                                            activity,
+                                            R.color.dialog_warning
+                                        )
+                                    )
+                                    icon.setImageResource(R.drawable.ic_warning_orange_24dp)
+                                }
+                                DialogType.INFO -> {
+                                    textTitle.setTextColor(
+                                        ContextCompat.getColor(
+                                            activity,
+                                            R.color.dialog_info
+                                        )
+                                    )
+                                    verticalView.setBackgroundColor(
+                                        ContextCompat.getColor(
+                                            activity,
+                                            R.color.dialog_info
+                                        )
+                                    )
+                                    icon.setImageResource(R.drawable.ic_info_blue_24dp)
+                                }
+                            }
+
+                            dialogBuilder.setView(this)
+                            alertDialog = dialogBuilder.create().apply {
+                                window?.apply {
+                                    setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                    setGravity(Gravity.TOP)
+                                    this@Builder.chooseAnimation()
+                                    show()
+                                    setLayout(
+                                        WindowManager.LayoutParams.WRAP_CONTENT,
+                                        activity.resources.getDimensionPixelSize(R.dimen.popup_height_toaster)
+                                    )
+                                }
+                            }
+
+                            imgClose.setOnClickListener { onClickListener.onClick(this@Builder) }
+                        }
                     } else {
 
                         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(activity)
-                        layoutView = activity.layoutInflater.inflate(R.layout.dialog_toaster, null)
-                        val imgClose: AppCompatImageView = layoutView.image_close_toaster
-                        val icon: AppCompatImageView = layoutView.dialog_icon_toaster
-                        val textTitle: AppCompatTextView = layoutView.text_title_toaster
-                        val textMessage: AppCompatTextView = layoutView.text_message_toaster
-                        val verticalView = layoutView.vertical_view_toaster
-                        textMessage.text = message
-                        textTitle.text = title
-                        when (dialogType) {
-                            DialogType.ERROR -> {
-                                verticalView.setBackgroundColor(
-                                    ContextCompat.getColor(
-                                        activity,
-                                        R.color.dialog_error
+                        layoutView = activity.layoutInflater.inflate(R.layout.dialog_toaster, null).apply {
+                            val imgClose: AppCompatImageView = image_close_toaster
+                            val icon: AppCompatImageView = dialog_icon_toaster
+                            val textTitle: AppCompatTextView = text_title_toaster
+                            val textMessage: AppCompatTextView = text_message_toaster
+                            val verticalView = vertical_view_toaster
+                            textMessage.text = message
+                            textTitle.text = title
+                            when (dialogType) {
+                                DialogType.ERROR -> {
+                                    verticalView.setBackgroundColor(
+                                        ContextCompat.getColor(
+                                            activity,
+                                            R.color.dialog_error
+                                        )
                                     )
-                                )
-                                icon.setImageResource(R.drawable.ic_error_red_24dp)
-                            }
-                            DialogType.SUCCESS -> {
-                                verticalView.setBackgroundColor(
-                                    ContextCompat.getColor(
-                                        activity,
-                                        R.color.dialog_success
+                                    icon.setImageResource(R.drawable.ic_error_red_24dp)
+                                }
+                                DialogType.SUCCESS -> {
+                                    verticalView.setBackgroundColor(
+                                        ContextCompat.getColor(
+                                            activity,
+                                            R.color.dialog_success
+                                        )
                                     )
-                                )
-                                icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
-                            }
-                            DialogType.WARNING -> {
-                                verticalView.setBackgroundColor(
-                                    ContextCompat.getColor(
-                                        activity,
-                                        R.color.dialog_warning
+                                    icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
+                                }
+                                DialogType.WARNING -> {
+                                    verticalView.setBackgroundColor(
+                                        ContextCompat.getColor(
+                                            activity,
+                                            R.color.dialog_warning
+                                        )
                                     )
-                                )
-                                icon.setImageResource(R.drawable.ic_warning_orange_24dp)
-                            }
-                            DialogType.INFO -> {
-                                verticalView.setBackgroundColor(
-                                    ContextCompat.getColor(
-                                        activity,
-                                        R.color.dialog_info
+                                    icon.setImageResource(R.drawable.ic_warning_orange_24dp)
+                                }
+                                DialogType.INFO -> {
+                                    verticalView.setBackgroundColor(
+                                        ContextCompat.getColor(
+                                            activity,
+                                            R.color.dialog_info
+                                        )
                                     )
-                                )
-                                icon.setImageResource(R.drawable.ic_info_blue_24dp)
+                                    icon.setImageResource(R.drawable.ic_info_blue_24dp)
+                                }
                             }
+                            dialogBuilder.setView(this)
+                            alertDialog = dialogBuilder.create().apply {
+                                window?.apply {
+                                    setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                    setGravity(Gravity.TOP)
+                                    this@Builder.chooseAnimation()
+                                    show()
+                                    setLayout(
+                                        WindowManager.LayoutParams.WRAP_CONTENT,
+                                        activity.resources.getDimensionPixelSize(R.dimen.popup_height_toaster)
+                                    )
+                                }
+
+                            }
+
+                            imgClose.setOnClickListener { onClickListener.onClick(this@Builder) }
                         }
-                        dialogBuilder.setView(layoutView)
-                        alertDialog = dialogBuilder.create()
-                        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                        alertDialog.window?.setGravity(Gravity.TOP)
-                        this.chooseAnimation()
-                        alertDialog.show()
-                        alertDialog.window?.setLayout(
-                            WindowManager.LayoutParams.WRAP_CONTENT,
-                            activity.resources.getDimensionPixelSize(R.dimen.popup_height_toaster)
-                        )
-                        imgClose.setOnClickListener { onClickListener.onClick(this) }
+
                     }
 
                 }
 
                 DialogStyle.RAINBOW -> {
-                    layoutView = activity.layoutInflater.inflate(R.layout.dialog_rainbow, null)
-                    val icon: AppCompatImageView = layoutView.dialog_icon_rainbow
-                    val layoutDialog = layoutView.dialog_layout_rainbow
-                    when (dialogType) {
-                        DialogType.ERROR -> {
-                            layoutDialog.setBackgroundColor(
-                                ContextCompat.getColor(
-                                    activity,
-                                    R.color.dialog_error
+                    layoutView = activity.layoutInflater.inflate(R.layout.dialog_rainbow, null).apply {
+                        val icon: AppCompatImageView = dialog_icon_rainbow
+                        val layoutDialog = dialog_layout_rainbow
+                        when (dialogType) {
+                            DialogType.ERROR -> {
+                                layoutDialog.setBackgroundColor(
+                                    ContextCompat.getColor(
+                                        activity,
+                                        R.color.dialog_error
+                                    )
                                 )
-                            )
-                            icon.setImageResource(R.drawable.ic_error_red_24dp)
-                        }
-                        DialogType.SUCCESS -> {
-                            layoutDialog.setBackgroundColor(
-                                ContextCompat.getColor(
-                                    activity,
-                                    R.color.dialog_success
+                                icon.setImageResource(R.drawable.ic_error_red_24dp)
+                            }
+                            DialogType.SUCCESS -> {
+                                layoutDialog.setBackgroundColor(
+                                    ContextCompat.getColor(
+                                        activity,
+                                        R.color.dialog_success
+                                    )
                                 )
-                            )
-                            icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
-                        }
-                        DialogType.WARNING -> {
-                            layoutDialog.setBackgroundColor(
-                                ContextCompat.getColor(
-                                    activity,
-                                    R.color.dialog_warning
+                                icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
+                            }
+                            DialogType.WARNING -> {
+                                layoutDialog.setBackgroundColor(
+                                    ContextCompat.getColor(
+                                        activity,
+                                        R.color.dialog_warning
+                                    )
                                 )
-                            )
-                            icon.setImageResource(R.drawable.ic_warning_orange_24dp)
-                        }
-                        DialogType.INFO -> {
-                            layoutDialog.setBackgroundColor(
-                                ContextCompat.getColor(
-                                    activity,
-                                    R.color.dialog_info
+                                icon.setImageResource(R.drawable.ic_warning_orange_24dp)
+                            }
+                            DialogType.INFO -> {
+                                layoutDialog.setBackgroundColor(
+                                    ContextCompat.getColor(
+                                        activity,
+                                        R.color.dialog_info
+                                    )
                                 )
-                            )
-                            icon.setImageResource(R.drawable.ic_info_blue_24dp)
+                                icon.setImageResource(R.drawable.ic_info_blue_24dp)
+                            }
                         }
+                        val imgClose: AppCompatImageView = image_close_rainbow
+                        val textTitle: AppCompatTextView = text_title_rainbow
+                        val textMessage: AppCompatTextView = text_message_rainbow
+                        textMessage.text = message
+                        textTitle.text = title
+                        dialogBuilder.setView(this)
+                        alertDialog = dialogBuilder.create().apply {
+                            window?.apply {
+                                setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                setGravity(Gravity.TOP)
+                                this@Builder.chooseAnimation()
+                                show()
+                                setLayout(
+                                    WindowManager.LayoutParams.WRAP_CONTENT,
+                                    activity.resources.getDimensionPixelSize(R.dimen.popup_height_emoji_dialog)
+                                )
+                            }
+                        }
+
+                        imgClose.setOnClickListener { onClickListener.onClick(this@Builder) }
                     }
-                    val imgClose: AppCompatImageView = layoutView.image_close_rainbow
-                    val textTitle: AppCompatTextView = layoutView.text_title_rainbow
-                    val textMessage: AppCompatTextView = layoutView.text_message_rainbow
-                    textMessage.text = message
-                    textTitle.text = title
-                    dialogBuilder.setView(layoutView)
-                    alertDialog = dialogBuilder.create()
-                    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    alertDialog.window?.setGravity(Gravity.TOP)
-                    this.chooseAnimation()
-                    alertDialog.show()
-                    alertDialog.window?.setLayout(
-                        WindowManager.LayoutParams.WRAP_CONTENT,
-                        activity.resources.getDimensionPixelSize(R.dimen.popup_height_emoji_dialog)
-                    )
-                    imgClose.setOnClickListener { onClickListener.onClick(this) }
+
                 }
 
                 DialogStyle.CONNECTIFY -> {
@@ -555,18 +581,23 @@ class AestheticDialog {
                         layoutView = activity.layoutInflater.inflate(
                             R.layout.dialog_connectify_success,
                             null
-                        )
-                        layoutDialog = layoutView.dialog_layout_connectify_success
-                        imgClose = layoutView.image_close_connectify_success
-                        textTitle = layoutView.text_title_connectify_success
-                        textMessage = layoutView.text_message_connectify_success
+                        ).apply {
+                            layoutDialog = dialog_layout_connectify_success
+                            imgClose = image_close_connectify_success
+                            textTitle = text_title_connectify_success
+                            textMessage = text_message_connectify_success
+                        }
+
                     } else {
                         layoutView =
                             activity.layoutInflater.inflate(R.layout.dialog_connectify_error, null)
-                        layoutDialog = layoutView.dialog_layout_connectify_error
-                        imgClose = layoutView.image_close_connectify_error
-                        textTitle = layoutView.text_title_connectify_error
-                        textMessage = layoutView.text_message_connectify_error
+                                .apply {
+                                    layoutDialog = dialog_layout_connectify_error
+                                    imgClose = image_close_connectify_error
+                                    textTitle = text_title_connectify_error
+                                    textMessage = text_message_connectify_error
+
+                                }
                     }
 
                     textTitle.text = title
@@ -587,181 +618,209 @@ class AestheticDialog {
                         )
                     }
                     dialogBuilder.setView(layoutView)
-                    alertDialog = dialogBuilder.create()
-                    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    alertDialog.window?.setGravity(Gravity.TOP)
+                    alertDialog = dialogBuilder.create().apply {
+                        window?.apply {
+                            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                            setGravity(Gravity.TOP)
+                            show()
+                            setLayout(
+                                WindowManager.LayoutParams.WRAP_CONTENT,
+                                WindowManager.LayoutParams.WRAP_CONTENT
+                            )
+                        }
+                    }
                     this.chooseAnimation()
-                    alertDialog.show()
-                    alertDialog.window?.setLayout(
-                        WindowManager.LayoutParams.WRAP_CONTENT,
-                        WindowManager.LayoutParams.WRAP_CONTENT
-                    )
                     imgClose.setOnClickListener { onClickListener.onClick(this) }
                 }
 
 
                 DialogStyle.FLASH -> {
-                    layoutView = activity.layoutInflater.inflate(R.layout.dialog_flash, null)
-                    val btnOk: AppCompatButton = layoutView.btn_action_flash
-                    val textTitle: AppCompatTextView = layoutView.dialog_title_flash
-                    val textMessage: AppCompatTextView = layoutView.dialog_message_flash
-                    val dialogFrame = layoutView.dialog_frame_flash
-                    val icon: AppCompatImageView = layoutView.img_icon_flash
-                    if (dialogType == DialogType.SUCCESS) {
-                        dialogFrame.setBackgroundResource(R.drawable.rounded_green_gradient_bg)
-                        icon.setImageResource(R.drawable.circle_validation_success)
-                    } else {
-                        dialogFrame.setBackgroundResource(R.drawable.rounded_red_gradient_bg)
-                        icon.setImageResource(R.drawable.circle_validation_error)
+                    layoutView = activity.layoutInflater.inflate(R.layout.dialog_flash, null).apply {
+                        val btnOk: AppCompatButton = btn_action_flash
+                        val textTitle: AppCompatTextView = dialog_title_flash
+                        val textMessage: AppCompatTextView = dialog_message_flash
+                        val dialogFrame = dialog_frame_flash
+                        val icon: AppCompatImageView = img_icon_flash
+                        if (dialogType == DialogType.SUCCESS) {
+                            dialogFrame.setBackgroundResource(R.drawable.rounded_green_gradient_bg)
+                            icon.setImageResource(R.drawable.circle_validation_success)
+                        } else {
+                            dialogFrame.setBackgroundResource(R.drawable.rounded_red_gradient_bg)
+                            icon.setImageResource(R.drawable.circle_validation_error)
+                        }
+                        textMessage.text = message
+                        textTitle.text = title
+                        dialogBuilder.setView(this)
+                        alertDialog = dialogBuilder.create().apply {
+                            window?.apply {
+                                setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                setGravity(Gravity.CENTER)
+                                this@Builder.chooseAnimation()
+                                show()
+                                setLayout(
+                                    activity.resources.getDimensionPixelSize(R.dimen.popup_width),
+                                    activity.resources.getDimensionPixelSize(R.dimen.popup_height)
+                                )
+                            }
+
+                        }
+                        btnOk.setOnClickListener { onClickListener.onClick(this@Builder) }
                     }
-                    textMessage.text = message
-                    textTitle.text = title
-                    dialogBuilder.setView(layoutView)
-                    alertDialog = dialogBuilder.create()
-                    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    alertDialog.window?.setGravity(Gravity.CENTER)
-                    this.chooseAnimation()
-                    alertDialog.show()
-                    alertDialog.window?.setLayout(
-                        activity.resources.getDimensionPixelSize(R.dimen.popup_width),
-                        activity.resources.getDimensionPixelSize(R.dimen.popup_height)
-                    )
-                    btnOk.setOnClickListener { onClickListener.onClick(this) }
+
                 }
 
                 DialogStyle.EMOTION -> {
-                    layoutView = activity.layoutInflater.inflate(R.layout.dialog_emotion, null)
-                    val icon: AppCompatImageView = layoutView.img_icon_emotion
-                    val layoutDialog = layoutView.dialog_layout_emotion
-                    val textTitle: AppCompatTextView = layoutView.dialog_title_emotion
-                    val textMessage: AppCompatTextView = layoutView.dialog_message_emotion
-                    val textHour: AppCompatTextView = layoutView.dialog_hour_emotion
-                    if (dialogType == DialogType.SUCCESS) {
-                        icon.setImageResource(R.drawable.smiley_success)
-                        layoutDialog.setBackgroundResource(R.drawable.background_emotion_success)
-                    } else {
-                        icon.setImageResource(R.drawable.smiley_error)
-                        layoutDialog.setBackgroundResource(R.drawable.background_emotion_error)
+                    layoutView = activity.layoutInflater.inflate(R.layout.dialog_emotion, null).apply {
+                        val icon: AppCompatImageView = img_icon_emotion
+                        val layoutDialog = dialog_layout_emotion
+                        val textTitle: AppCompatTextView = dialog_title_emotion
+                        val textMessage: AppCompatTextView = dialog_message_emotion
+                        val textHour: AppCompatTextView = dialog_hour_emotion
+                        if (dialogType == DialogType.SUCCESS) {
+                            icon.setImageResource(R.drawable.smiley_success)
+                            layoutDialog.setBackgroundResource(R.drawable.background_emotion_success)
+                        } else {
+                            icon.setImageResource(R.drawable.smiley_error)
+                            layoutDialog.setBackgroundResource(R.drawable.background_emotion_error)
+                        }
+                        val sdf = SimpleDateFormat("HH:mm")
+                        val hour = sdf.format(Calendar.getInstance().time)
+                        textMessage.text = message
+                        textTitle.text = title
+                        textHour.text = hour
+                        dialogBuilder.setView(this)
+                        alertDialog = dialogBuilder.create().apply {
+                            window?.apply {
+                                setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                setGravity(Gravity.CENTER)
+                                this@Builder.chooseAnimation()
+                                show()
+                                setLayout(
+                                    WindowManager.LayoutParams.WRAP_CONTENT,
+                                    activity.resources.getDimensionPixelSize(R.dimen.popup_height_emotion)
+                                )
+                            }
+
+                        }
+
                     }
-                    val sdf = SimpleDateFormat("HH:mm")
-                    val hour = sdf.format(Calendar.getInstance().time)
-                    textMessage.text = message
-                    textTitle.text = title
-                    textHour.text = hour
-                    dialogBuilder.setView(layoutView)
-                    alertDialog = dialogBuilder.create()
-                    alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    alertDialog.window?.setGravity(Gravity.CENTER)
-                    this.chooseAnimation()
-                    alertDialog.show()
-                    alertDialog.window?.setLayout(
-                        WindowManager.LayoutParams.WRAP_CONTENT,
-                        activity.resources.getDimensionPixelSize(R.dimen.popup_height_emotion)
-                    )
+
                 }
 
                 DialogStyle.FLAT -> {
                     if (isDarkMode) {
-                        layoutView = activity.layoutInflater.inflate(R.layout.dialog_flat, null)
-                        val btnOk: AppCompatButton = layoutView.btn_action_flat
-                        val textTitle: AppCompatTextView = layoutView.dialog_title_flat
-                        val textMessage: AppCompatTextView = layoutView.dialog_message_flat
-                        val icon: AppCompatImageView = layoutView.dialog_icon_flat
-                        val layoutDialog: LinearLayoutCompat = layoutView.dialog_layout_flat
-                        val frameLayout = layoutView.dialog_frame_flat
-                        when (dialogType) {
-                            DialogType.ERROR -> {
-                                icon.setImageResource(R.drawable.ic_error_red_24dp)
-                                btnOk.setBackgroundResource(R.drawable.btn_red_selector)
-                                frameLayout.setBackgroundResource(R.drawable.rounded_rect_red)
+                        layoutView = activity.layoutInflater.inflate(R.layout.dialog_flat, null).apply {
+                            val btnOk: AppCompatButton = btn_action_flat
+                            val textTitle: AppCompatTextView = dialog_title_flat
+                            val textMessage: AppCompatTextView = dialog_message_flat
+                            val icon: AppCompatImageView = dialog_icon_flat
+                            val layoutDialog: LinearLayoutCompat = dialog_layout_flat
+                            val frameLayout = dialog_frame_flat
+                            when (dialogType) {
+                                DialogType.ERROR -> {
+                                    icon.setImageResource(R.drawable.ic_error_red_24dp)
+                                    btnOk.setBackgroundResource(R.drawable.btn_red_selector)
+                                    frameLayout.setBackgroundResource(R.drawable.rounded_rect_red)
+                                }
+                                DialogType.SUCCESS -> {
+                                    icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
+                                    btnOk.setBackgroundResource(R.drawable.btn_green_selector)
+                                    frameLayout.setBackgroundResource(R.drawable.rounded_rect_green)
+                                }
+                                DialogType.WARNING -> {
+                                    icon.setImageResource(R.drawable.ic_warning_orange_24dp)
+                                    btnOk.setBackgroundResource(R.drawable.btn_yellow_selector)
+                                    frameLayout.setBackgroundResource(R.drawable.rounded_rect_yellow)
+                                }
+                                DialogType.INFO -> {
+                                    icon.setImageResource(R.drawable.ic_info_blue_24dp)
+                                    btnOk.setBackgroundResource(R.drawable.btn_blue_selector)
+                                    frameLayout.setBackgroundResource(R.drawable.rounded_rect_blue)
+                                }
                             }
-                            DialogType.SUCCESS -> {
-                                icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
-                                btnOk.setBackgroundResource(R.drawable.btn_green_selector)
-                                frameLayout.setBackgroundResource(R.drawable.rounded_rect_green)
+                            layoutDialog.setBackgroundResource(R.drawable.rounded_dark_bg)
+                            textTitle.setTextColor(
+                                ContextCompat.getColor(
+                                    activity,
+                                    R.color.md_white_1000
+                                )
+                            )
+                            textMessage.setTextColor(
+                                ContextCompat.getColor(
+                                    activity,
+                                    R.color.md_white_1000
+                                )
+                            )
+                            textMessage.text = message
+                            textTitle.text = title
+                            dialogBuilder.setView(this)
+                            alertDialog = dialogBuilder.create().apply {
+                                window?.apply {
+                                    setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                    setGravity(Gravity.CENTER)
+                                    this@Builder.chooseAnimation()
+                                    show()
+                                    setLayout(
+                                        activity.resources.getDimensionPixelSize(R.dimen.popup_width),
+                                        activity.resources.getDimensionPixelSize(R.dimen.popup_height)
+                                    )
+                                }
                             }
-                            DialogType.WARNING -> {
-                                icon.setImageResource(R.drawable.ic_warning_orange_24dp)
-                                btnOk.setBackgroundResource(R.drawable.btn_yellow_selector)
-                                frameLayout.setBackgroundResource(R.drawable.rounded_rect_yellow)
-                            }
-                            DialogType.INFO -> {
-                                icon.setImageResource(R.drawable.ic_info_blue_24dp)
-                                btnOk.setBackgroundResource(R.drawable.btn_blue_selector)
-                                frameLayout.setBackgroundResource(R.drawable.rounded_rect_blue)
-                            }
+
+                            btnOk.setOnClickListener { onClickListener.onClick(this@Builder) }
+
                         }
-                        layoutDialog.setBackgroundResource(R.drawable.rounded_dark_bg)
-                        textTitle.setTextColor(
-                            ContextCompat.getColor(
-                                activity,
-                                R.color.md_white_1000
-                            )
-                        )
-                        textMessage.setTextColor(
-                            ContextCompat.getColor(
-                                activity,
-                                R.color.md_white_1000
-                            )
-                        )
-                        textMessage.text = message
-                        textTitle.text = title
-                        dialogBuilder.setView(layoutView)
-                        alertDialog = dialogBuilder.create()
-                        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                        alertDialog.window?.setGravity(Gravity.CENTER)
-                        this.chooseAnimation()
-                        alertDialog.show()
-                        alertDialog.window?.setLayout(
-                            activity.resources.getDimensionPixelSize(R.dimen.popup_width),
-                            activity.resources.getDimensionPixelSize(R.dimen.popup_height)
-                        )
-                        btnOk.setOnClickListener { onClickListener.onClick(this) }
 
                     } else {
-                        layoutView = activity.layoutInflater.inflate(R.layout.dialog_flat, null)
-                        val btnOk: AppCompatButton = layoutView.btn_action_flat
-                        val textTitle: AppCompatTextView = layoutView.dialog_title_flat
-                        val textMessage: AppCompatTextView = layoutView.dialog_message_flat
-                        val icon: AppCompatImageView = layoutView.dialog_icon_flat
-                        val layoutDialog: LinearLayoutCompat = layoutView.dialog_layout_flat
-                        val frameLayout = layoutView.dialog_frame_flat
-                        when (dialogType) {
-                            DialogType.ERROR -> {
-                                icon.setImageResource(R.drawable.ic_error_red_24dp)
-                                btnOk.setBackgroundResource(R.drawable.btn_red_selector)
-                                frameLayout.setBackgroundResource(R.drawable.rounded_rect_red)
+                        layoutView = activity.layoutInflater.inflate(R.layout.dialog_flat, null).apply {
+                            val btnOk: AppCompatButton = btn_action_flat
+                            val textTitle: AppCompatTextView = dialog_title_flat
+                            val textMessage: AppCompatTextView = dialog_message_flat
+                            val icon: AppCompatImageView = dialog_icon_flat
+                            val layoutDialog: LinearLayoutCompat = dialog_layout_flat
+                            val frameLayout = dialog_frame_flat
+                            when (dialogType) {
+                                DialogType.ERROR -> {
+                                    icon.setImageResource(R.drawable.ic_error_red_24dp)
+                                    btnOk.setBackgroundResource(R.drawable.btn_red_selector)
+                                    frameLayout.setBackgroundResource(R.drawable.rounded_rect_red)
+                                }
+                                DialogType.SUCCESS -> {
+                                    icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
+                                    btnOk.setBackgroundResource(R.drawable.btn_green_selector)
+                                    frameLayout.setBackgroundResource(R.drawable.rounded_rect_green)
+                                }
+                                DialogType.WARNING -> {
+                                    icon.setImageResource(R.drawable.ic_warning_orange_24dp)
+                                    btnOk.setBackgroundResource(R.drawable.btn_yellow_selector)
+                                    frameLayout.setBackgroundResource(R.drawable.rounded_rect_yellow)
+                                }
+                                DialogType.INFO -> {
+                                    icon.setImageResource(R.drawable.ic_info_blue_24dp)
+                                    btnOk.setBackgroundResource(R.drawable.btn_blue_selector)
+                                    frameLayout.setBackgroundResource(R.drawable.rounded_rect_blue)
+                                }
                             }
-                            DialogType.SUCCESS -> {
-                                icon.setImageResource(R.drawable.ic_check_circle_green_24dp)
-                                btnOk.setBackgroundResource(R.drawable.btn_green_selector)
-                                frameLayout.setBackgroundResource(R.drawable.rounded_rect_green)
+                            layoutDialog.setBackgroundResource(R.drawable.rounded_white_bg)
+                            textMessage.text = message
+                            textTitle.text = title
+                            dialogBuilder.setView(this)
+                            alertDialog = dialogBuilder.create().apply {
+                                window?.apply {
+                                    setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                    setGravity(Gravity.CENTER)
+                                    this@Builder.chooseAnimation()
+                                    show()
+                                    setLayout(
+                                        activity.resources.getDimensionPixelSize(R.dimen.popup_width),
+                                        activity.resources.getDimensionPixelSize(R.dimen.popup_height)
+                                    )
+                                }
                             }
-                            DialogType.WARNING -> {
-                                icon.setImageResource(R.drawable.ic_warning_orange_24dp)
-                                btnOk.setBackgroundResource(R.drawable.btn_yellow_selector)
-                                frameLayout.setBackgroundResource(R.drawable.rounded_rect_yellow)
-                            }
-                            DialogType.INFO -> {
-                                icon.setImageResource(R.drawable.ic_info_blue_24dp)
-                                btnOk.setBackgroundResource(R.drawable.btn_blue_selector)
-                                frameLayout.setBackgroundResource(R.drawable.rounded_rect_blue)
-                            }
+
+                            btnOk.setOnClickListener { onClickListener.onClick(this@Builder) }
                         }
-                        layoutDialog.setBackgroundResource(R.drawable.rounded_white_bg)
-                        textMessage.text = message
-                        textTitle.text = title
-                        dialogBuilder.setView(layoutView)
-                        alertDialog = dialogBuilder.create()
-                        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                        alertDialog.window?.setGravity(Gravity.CENTER)
-                        this.chooseAnimation()
-                        alertDialog.show()
-                        alertDialog.window?.setLayout(
-                            activity.resources.getDimensionPixelSize(R.dimen.popup_width),
-                            activity.resources.getDimensionPixelSize(R.dimen.popup_height)
-                        )
-                        btnOk.setOnClickListener { onClickListener.onClick(this) }
+
                     }
                 }
             }
