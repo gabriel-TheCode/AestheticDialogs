@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 AestheticDialog.Builder(this, DialogStyle.FLASH, DialogType.ERROR)
                         .setTitle(errorTitle)
                         .setMessage(errorMessage)
-                        .setAnimation(DialogAnimation.SPLIT)
+                        .setAnimation(DialogAnimation.SHRINK)
                         .setOnClickListener(object : OnDialogClickListener {
                             override fun onClick(dialog: AestheticDialog.Builder) {
                                 dialog.dismiss()
@@ -82,6 +82,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 AestheticDialog.Builder(this, DialogStyle.CONNECTIFY, DialogType.ERROR)
                         .setTitle("Network unavailable")
                         .setMessage("No internet connection")
+                        .setAnimation(DialogAnimation.SWIPE_LEFT)
                         .setDuration(2000)
                         .setOnClickListener(object : OnDialogClickListener {
                             override fun onClick(dialog: AestheticDialog.Builder) {
@@ -197,16 +198,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 AestheticDialog.Builder(this, DialogStyle.DRAKE, DialogType.SUCCESS)
                         .setTitle(successTitle)
                         .setMessage(successMessage)
-                        .setDarkMode(true)
+                        .setAnimation(DialogAnimation.CARD)
                         .show()
             }
 
             R.id.btn_drake_dialog_error -> {
                 AestheticDialog.Builder(this, DialogStyle.DRAKE, DialogType.ERROR)
                         .setTitle(errorTitle)
+                    .setAnimation(DialogAnimation.CARD)
                         .setMessage(errorMessage)
                         .show()
             }
+
             R.id.btn_emoji_dialog_success -> if (rbEmojiLight.isChecked) {
                 AestheticDialog.Builder(this, DialogStyle.EMOJI, DialogType.SUCCESS)
                         .setTitle(successTitle)
@@ -229,6 +232,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         })
                         .show()
             }
+
             R.id.btn_emoji_dialog_error -> if (rbEmojiLight.isChecked) {
                 AestheticDialog.Builder(this, DialogStyle.EMOJI, DialogType.ERROR)
                         .setTitle(errorTitle)
