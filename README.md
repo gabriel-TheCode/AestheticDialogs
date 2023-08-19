@@ -117,7 +117,7 @@ Step 2. Add the dependency
 ```gradle
 dependencies {
 	...
-	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.3.7'
+	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.3.8'
 }
 ```
 
