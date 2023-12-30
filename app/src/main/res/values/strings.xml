@@ -1,3 +1,53 @@
 <resources>
     <string name="app_name">Aesthetic Dialogs !</string>
+
+    <!-- Flat -->
+    <string name="flat_dialog">FLAT DIALOG</string>
+    <string name="show_flat_warning">Show flat warning</string>
+    <string name="show_flat_error">Show flat error</string>
+    <string name="show_flat_success">Show flat success</string>
+    <string name="show_flat_info">Show flat info</string>
+
+    <!-- Rainbow -->
+    <string name="rainbow_dialog">RAINBOW DIALOG</string>
+    <string name="show_rainbow_info">Show rainbow info</string>
+    <string name="show_rainbow_warning">Show rainbow warning</string>
+    <string name="show_rainbow_success">Show rainbow success</string>
+    <string name="show_rainbow_error">Show rainbow error</string>
+
+    <!-- Emoji -->
+    <string name="emoji_dialog">EMOJI DIALOG</string>
+    <string name="show_emoji_error">Show emoji error</string>
+    <string name="show_emoji_success">Show emoji success</string>
+
+    <!-- Drake -->
+    <string name="drake_dialog">DRAKE DIALOG</string>
+    <string name="show_drake_error">Show drake error</string>
+    <string name="show_drake_success">Show drake success</string>
+
+    <!-- Emotion -->
+    <string name="emotion_dialog">EMOTION DIALOG</string>
+    <string name="show_emotion_error">Show emotion error</string>
+    <string name="show_emotion_success">Show emotion success</string>
+
+    <!-- Toaster -->
+    <string name="toaster_dialog">TOASTER DIALOG</string>
+    <string name="show_toaster_info">Show toaster info</string>
+    <string name="show_toaster_warning">Show toaster warning</string>
+    <string name="show_toaster_success">Show toaster success</string>
+    <string name="show_toaster_error">Show toaster error</string>
+
+    <!-- Connectify -->
+    <string name="connectify_dialog">CONNECTIFY DIALOG</string>
+    <string name="show_connectify_error">Show connectify error</string>
+    <string name="show_connectify_success">Show connectify success</string>
+
+    <!-- Flash -->
+    <string name="flash_dialog">FLASH DIALOG</string>
+    <string name="show_flash_error">Show Flash error</string>
+    <string name="show_flash_success">Show Flash success</string>
+
+    <!-- Theme -->
+    <string name="light_theme">Light</string>
+    <string name="dark_theme">Dark</string>
 </resources>

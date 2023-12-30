@@ -11,7 +11,7 @@
     <dimen name="ic_delete">30dp</dimen>
 
     <dimen name="popup_width">300dp</dimen>
-    <dimen name="popup_height">310dp</dimen>
+    <dimen name="popup_height">290dp</dimen>
 
     <dimen name="popup_height_toaster">100dp</dimen>
 

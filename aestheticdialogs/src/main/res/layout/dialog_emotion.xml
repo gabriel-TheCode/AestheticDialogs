@@ -37,13 +37,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_toEndOf="@id/img_icon_emotion"
-            android:layout_toRightOf="@id/img_icon_emotion">
+            android:layout_toRightOf="@id/img_icon_emotion"
+            android:layout_toLeftOf="@id/dialog_hour_emotion">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/dialog_title_emotion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Success !"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textSize="26sp"
                 android:textStyle="bold"
                 android:textColor="@color/md_white_1000"/>
