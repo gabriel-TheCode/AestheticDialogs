@@ -16,22 +16,21 @@
         android:layout_height="@dimen/popup_height"
         android:minHeight="@dimen/popup_height"
         android:orientation="vertical"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:layout_gravity="center">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_icon_flash"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             app:srcCompat="@drawable/circle_validation_error"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginBottom="10dp"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/dialog_title_flash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oups !"
+            android:text="Oops !"
             android:textSize="20sp"
             android:textColor="@color/md_white_1000"
             android:layout_marginBottom="10dp"/>
@@ -45,7 +44,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:textColor="@color/md_white_1000"
-            android:text="An error occured on remote service, please try again later"
+            android:text="An error occured on remote service, please try again later."
             android:maxLines="3"
             android:ellipsize="end"/>
 
