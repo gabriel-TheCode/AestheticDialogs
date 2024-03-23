@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![](https://jitpack.io/v/gabriel-TheCode/AestheticDialogs.svg)](https://jitpack.io/#gabriel-TheCode/AestheticDialogs)
 [![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
+![Downloads](https://jitpack.io/v/gabriel-TheCode/AestheticDialogs/month.svg)
 
 
 📱 Android Library for 💫*fluid*, 😍*beautiful*, 🎨*custom*  Dialogs.
