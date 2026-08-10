@@ -1,222 +1,366 @@
-# Aesthetic Dialogs for Android 📱
+# AestheticDialogs
+
 [![platform](https://img.shields.io/badge/platform-Android-yellow.svg)](https://www.android.com)
-[![API](https://img.shields.io/badge/API-15%2B-brightgreen.svg?style=plastic)](https://android-arsenal.com/api?level=14)
+[![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat-square)](https://android-arsenal.com/api?level=24)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
-[![](https://jitpack.io/v/gabriel-TheCode/AestheticDialogs.svg)](https://jitpack.io/#gabriel-TheCode/AestheticDialogs)
-[![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)](https://github.com/Naereen/badges/)
-![Downloads](https://jitpack.io/v/gabriel-TheCode/AestheticDialogs/month.svg)
 
+A **Jetpack Compose dialog design system**, built on the three-layer UI
+architecture (Component → Variant → Primitive → Tokens).
 
-📱 Android Library for 💫*fluid*, 😍*beautiful*, 🎨*custom*  Dialogs.
+Version 2.0 is a rewrite. Where 1.x offered eight decorated `AlertDialog`s, 2.0
+offers seven dialog families that share one frame, one theme and one set of
+accessibility guarantees — plus the visual identity the library has always had.
 
-<a href="https://play.google.com/store/apps/details?id=com.thecode.sample">
-    <img alt="Get it on Google Play"
-        height="80"
-        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
-</a>
+> Coming from 1.x? Start with the [migration guide](docs/MIGRATION.md).
 
-# Table of Contents:
-> - [ Introduction ](#introduction)
-> - [ Types of Dialog ](#types)
-> - [ Dark Theme ](#dark)
-> - [ Implementation ](#implementation)
->    - [ Prerequisite ](#prerequisite)
->    - [ Create Dialog ](#createDialog)
-> - [ Demo ](#demo)
-> - [ Contribute ](#contribute)
-> - [ Credits ](#credits)
-> - [ License ](#license)
+---
 
-<a name="introduction"></a>
-## Introduction
-**AestheticDialogs** is a library that provides beautiful and custom Dialog inspired by [Laravel Notify](https://github.com/mckenziearts/laravel-notify)
+## Contents
 
-<a name="types"></a>
-## Types of Dialog
-**AestheticDialog** At this moment, library provides eight types of dialog i.e.
+- [Why it exists](#why-it-exists)
+- [Install](#install)
+- [Quick start](#quick-start)
+- [The dialogs](#the-dialogs)
+- [Notifications](#notifications)
+- [Theming](#theming)
+- [Architecture](#architecture)
+- [Accessibility](#accessibility)
+- [Catalog](#catalog)
+- [Contributing](#contributing)
+- [License](#license)
 
-<table style="width:100%">
-  <tr>
-    <th>1. Flash Dialog</th>
-    <th>2. Connectify Dialog</th>
-    <th>3. Toaster Dialog</th>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/flash.gif"/></td>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/connectify.gif"/></td>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/toaster.gif"/></td>
-  </tr>
-  <tr>
-    <th>4. Emotion Dialog</th>
-    <th>5. Drake Dialog</th>
-    <th>6. Emoji Dialog</th>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/emotion.gif"/></td>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/drake.gif"/></td>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/emoji.gif"/></td>
-  </tr>
-  
-   <tr>
-    <th>7. Rainbow Dialog</th>
-    <th>8. Flat Dialog</th>
-  </tr>
+---
 
-   <tr>
-    <th><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/rainbow.png"/></th>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/flat.png"/></td>
+## Why it exists
 
-  </tr>
-</table>
+Every Android app writes the same dialogs, and writes them slightly differently
+each time: one forgets the loading state, another lets you cancel a half-finished
+delete, a third is 300dp wide on a tablet, a fourth announces nothing to
+TalkBack.
 
-<a name="dark"></a>
-## Dark Mode
-**AestheticDialog** Also provides Dark Theme for some dialogs i.e.
+AestheticDialogs does that work once. What it gives you is not "a nicer
+`AlertDialog`" — it is a set of dialogs that are already correct about the
+things that are easy to get wrong:
 
-<table style="width:100%">
-  <tr>
-    <th>1. Connectify Dark Dialog</th>
-    <th>2. Toaster Dark Dialog</th>
-    <th>3. Emoji Dark Dialog</th>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/connectify-dark.png"/></td>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/toaster-dark.png"/></td>
-     <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/emoji-dark.png"/></td>
-  </tr>
-  <tr>
-    <th>4. Flat Dark Dialog</th>
-    <th colspan="2">LET's USE aesthetic Dialog !</th>
-    <tr>
-    <td><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/flat-dark.png"/></td>
-    <td colspan="2"><img src="https://github.com/gabriel-TheCode/AndroidLibrariesAssets/raw/master/AestheticDialogs/presentation.png"/></td>
-     
-  </tr>
-  </tr>
-</table>
+- **adaptive** — the width comes from the space available, not from a device check;
+- **accessible** — pane titles, headings, live regions, 48dp targets, 200% font;
+- **stateless** — the library never decides that your dialog should close;
+- **themed** — one wrapper, light and dark, brandable by copying a value;
+- **quiet under reduced motion** — transitions become cuts when the user asks;
+- **light** — no icon library, no drawable assets, Material 3 kept off your classpath.
 
-<a name="implementation"></a>
-## Implementation
-Implementation of Aesthetic Dialogs is simple. You can check [/app](/app) directory for demo. Let's have look on basic steps of implementation.
-<a name="prerequisite"></a>
-### Prerequisite
-#### i. Gradle
+---
 
-Add it in your root `build.gradle` at the end of repositories:
+## Install
 
-```gradle
-allprojects {
-	repositories {
-		...
-		maven { url "https://jitpack.io" }
-	}
+```kotlin
+// settings.gradle.kts — Maven Central is already there in most projects
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
 ```
 
-Step 2. Add the dependency
-
-```gradle
+```kotlin
+// build.gradle.kts
 dependencies {
-	...
-	implementation 'com.github.gabriel-TheCode:AestheticDialogs:1.3.8'
+    implementation("com.thecode.aestheticdialogs:aestheticdialogs:2.0.0")
 }
 ```
 
-<a name="createDialog"></a>
-### Create Dialog
+Requires `minSdk 24` and a Compose-enabled module. Material 3 is *not* forced on
+you — the library keeps it as an implementation detail.
 
-You can create multiple dialogs by specifying the style of your component, the type, and the animation of alert you want to display to the user.
-You can override the ```.setOnClickListener()``` method to add a particular event, however some dialogs do not need it.
+---
 
+## Quick start
 
+Wrap your app once:
 
-**Example 1**: Flat Dialog
-
-``` kotlin
-                  AestheticDialog.Builder(this, DialogStyle.FLAT, DialogType.SUCCESS)
-                        .setTitle("Title")
-                        .setMessage("Message")
-                        .setCancelable(false)
-                        .setDarkMode(true)
-                        .setGravity(Gravity.CENTER)
-                        .setAnimation(DialogAnimation.SHRINK)
-                        .setOnClickListener(object : OnDialogClickListener {
-                            override fun onClick(dialog: AestheticDialog.Builder) {
-                                dialog.dismiss()
-                                //actions...
-                            }
-                        })
-                        .show()
+```kotlin
+setContent {
+    AestheticDialogsTheme {
+        AppNavHost()
+    }
+}
 ```
 
-**Example 2**: Emotion Dialog
+Then a dialog is a function of your state:
 
-
-``` kotlin
-  AestheticDialog.Builder(this, DialogStyle.EMOTION, DialogType.ERROR)
-                        .setTitle("Title")
-                        .setMessage("Message")
-                        .show()
+```kotlin
+if (uiState.showDeleteConfirmation) {
+    AestheticConfirmationDialog(
+        uiModel = ConfirmationDialogUiModel.Destructive(
+            title = "Delete this album?",
+            message = "The 24 photos inside it will be deleted too.",
+            confirmLabel = "Delete album",
+            cancelLabel = "Keep it",
+            isConfirming = uiState.isDeleting,
+        ),
+        onSignal = { signal ->
+            when (signal) {
+                ConfirmationDialogSignal.Confirmed -> viewModel.deleteAlbum()
+                ConfirmationDialogSignal.Cancelled,
+                ConfirmationDialogSignal.Dismissed -> viewModel.dismissDialog()
+            }
+        },
+    )
+}
 ```
 
+There is no `show()` and no `dismiss()`. The dialog is on screen while it is in
+the composition, and every signal — including `Dismissed` — is a request you
+decide what to do with.
 
-**Optional methods**
-- setCancelable()
-- setDarkMode()
-- setDuration()
-- setGravity()
-- setAnimation()
+---
 
-**Constants**
+## The dialogs
 
-<table style="width:100%">
-  <tr>
-    <th>DIALOG STYLE</th>
-    <th>DIALOG TYPE</th>
-    <th>DIALOG ANIMATION</th>
-  </tr>
-  <tr>
-    <td>RAINBOW<br/>FLAT<br/>CONNECTIFY<br/>TOASTER<br/>DRAKE<br/>EMOJI<br/>EMOTION<br/>
-    </td>
-    <td>SUCCESS<br/>ERROR<br/>WARNING<br/>INFO</td>
-     <td>DEFAULT<br/>SLIDE_UP, SLIDE_DOWN<br/>SLIDE_LEFT, SLIDE_RIGHT<br/> SWIPE_LEFT, SWIPE_RIGHT<br/>IN_OUT<br/>CARD<br/> SHRINK<br/>SPLIT<br/>DIAGONAL<br/>SPIN<br/>WINDMILL<br/>FADE<br/>ZOOM</td>
-  </tr>
-</table>
+### Confirmation — ask before doing something
 
-<a name="demo"></a>
-## Demo
-You can download the demo app on [PlayStore](https://play.google.com/store/apps/details?id=com.thecode.sample)
+Two variants: `Default` for ordinary questions, `Destructive` for things that
+cannot be undone. The destructive treatment is guaranteed rather than
+configured, so a delete confirmation cannot accidentally ship with a neutral
+button.
 
-<a name="contribute"></a>
-## Contribute
-Let's develop with collaborations. We would love to have contributions by raising issues and opening PRs. Filing an issue before PR is must.
-See [Contributing Guidelines](CONTRIBUTING.md).
+```kotlin
+ConfirmationDialogUiModel.Default(
+    title = "Leave without saving?",
+    message = "Your draft has unsaved changes.",
+    confirmLabel = "Leave",
+    cancelLabel = "Keep editing",
+)
+```
 
-<a name="credits"></a>
-## Credits
-This library is built using following open-source libraries.
-- [Material Components for Android](https://github.com/material-components/material-components-android)
+`isConfirming = true` puts a spinner on the confirm button and locks the rest of
+the dialog — including cancel, so a half-finished operation cannot be abandoned
+mid-flight.
 
-<a name="license"></a>
+### Alert — tell them something, offer a way forward
+
+```kotlin
+AlertDialogUiModel.Default(
+    title = "You are offline",
+    message = "We will sync your changes as soon as you reconnect.",
+    tone = DialogTone.Warning,
+    primaryAction = DialogAction("Retry"),
+    secondaryAction = DialogAction("Dismiss", DialogActionEmphasis.Text),
+)
+```
+
+This is also the error, offline and permission-required pattern. They are the
+same dialog with a different tone and action label, and shipping three
+near-identical components would have been three ways to get one thing wrong.
+
+### Selection — pick one, or several
+
+```kotlin
+SelectionDialogUiModel.Multiple(
+    title = "Notify me about",
+    items = uiState.filteredTopics,     // you filter
+    selectedIds = uiState.selectedIds,  // you own the selection
+    searchQuery = uiState.query,        // you own the query
+    confirmLabel = "Save",
+    cancelLabel = "Cancel",
+    emptyText = "Nothing matches “${uiState.query}”.",
+)
+```
+
+The dialog renders and reports; it never filters, sorts or toggles. That is what
+lets the same component handle five static options and a remote search over ten
+thousand rows. Long lists are lazy, and the action row stays pinned.
+
+### Input — ask for one value
+
+`Text` and `Password` variants. The field takes focus on open, the keyboard's
+done action confirms, the dialog lifts above the keyboard, and the reveal toggle
+survives rotation. Validation is yours: pass `errorText` and set
+`isConfirmEnabled`.
+
+```kotlin
+InputDialogUiModel.Text(
+    title = "Rename album",
+    value = uiState.name,
+    label = "Album name",
+    errorText = uiState.nameError,
+    confirmLabel = "Rename",
+    cancelLabel = "Cancel",
+    isConfirmEnabled = uiState.nameError == null,
+)
+```
+
+### Rich content — your content, our frame
+
+```kotlin
+AestheticContentDialog(
+    uiModel = ContentDialogUiModel.Default(
+        title = "Before you continue",
+        primaryAction = DialogAction("I agree"),
+        secondaryAction = DialogAction("Not now", DialogActionEmphasis.Text),
+    ),
+    onSignal = { … },
+) {
+    ConsentSummary(uiState.consent)
+}
+```
+
+The middle is yours. The window, adaptive width, scrim, dismissal contract,
+header, actions and accessibility pane stay with the design system — which is the
+difference between an escape hatch and a raw `Dialog {}`.
+
+### Feedback — the 1.x dialogs, rebuilt
+
+`Flat` (card) and `Flash` (gradient panel), in all five tones. The Flash gradient
+is derived from the tone accent, so a rebranded theme keeps it consistent — and
+warning and info finally have one.
+
+```kotlin
+FeedbackDialogUiModel.Flash(
+    title = "Message sent",
+    message = "It will arrive even if you close the app.",
+    tone = DialogTone.Success,
+    actionLabel = "Nice",
+)
+```
+
+---
+
+## Notifications
+
+The five edge-anchored 1.x styles — Toaster, Rainbow, Connectify, Emoji, Emotion
+— are no longer dialogs. They were never modal in spirit, and rendering them as
+windows meant an informational toast dimmed the screen, stole focus and swallowed
+the back gesture.
+
+```kotlin
+Box(Modifier.fillMaxSize()) {
+    HomeContent()
+
+    AestheticNotificationHost(
+        notification = uiState.banner,
+        onSignal = { viewModel.dismissBanner() },
+        alignment = NotificationAlignment.Top,
+        animation = AestheticNotificationAnimation.Slide,
+        autoDismissMillis = 4_000,
+    )
+}
+```
+
+Banners are live regions, so screen readers announce them without the user having
+to go looking. Because the host owns nothing but the exit transition, they are
+the one place in the library with a full enter *and* exit animation.
+
+---
+
+## Theming
+
+```kotlin
+AestheticDialogsTheme(
+    colors = aestheticLightColors().copy(
+        action = aestheticLightColors().action.copy(primary = BrandBlue),
+    ),
+    shapes = AestheticShapes(dialog = RoundedCornerShape(4.dp)),
+    typography = AestheticTypography(title = MyBrandTitleStyle),
+) {
+    AppNavHost()
+}
+```
+
+Precedence is `library defaults → theme → UI model`. Colour, type, shape and
+motion are themeable because they express a brand; spacing and dimensions are not,
+because they express the structure of the components.
+
+Tokens are public and semantic: `AestheticDialogsTheme.colors.status.error.accent`,
+`AestheticSpacing.lg`, `AestheticDimens.minTouchTarget`. Raw hues are internal, so
+dark mode is a remapping rather than a second implementation.
+
+No dynamic colour, deliberately: a design system exists so a warning looks like a
+warning.
+
+---
+
+## Architecture
+
+```
+Component  (public)    AestheticConfirmationDialog — dispatches on the UI model
+    ↓
+Variant    (internal)  ConfirmationDialogDestructive — resolves semantics
+    ↓
+Primitive  (internal)  DialogFramePrimitive — window, scrim, width, a11y, layout
+    ↓
+Tokens     (public)    AestheticColors, AestheticSpacing, AestheticMotion …
+```
+
+`explicitApi()` plus `internal` makes the boundary a compiler rule: consumers
+*cannot* import a variant or a primitive.
+
+Full detail in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), including why modal
+dialogs animate in but not out, why the selection model is not `@Immutable`, and
+why two dialogs express their actions differently. The audit of 1.x that drove
+the rewrite is in [docs/ARCHITECTURE_AUDIT.md](docs/ARCHITECTURE_AUDIT.md).
+
+---
+
+## Accessibility
+
+Not a checklist item — it is most of why the rewrite happened.
+
+| | |
+|---|---|
+| Screen readers | `paneTitle` on every dialog, headings on titles, live regions on banners (assertive for errors) |
+| Selection | Row-level `selectable`/`toggleable` with roles, so a row is announced once and correctly |
+| Targets | Every interactive element at least 48dp |
+| Text | All type in `sp`; layouts verified at 200% font scale |
+| Motion | Transitions become cuts when the platform animation scale is zero |
+| Colour | Every tone carries a distinct drawn mark as well as a hue; accents clear 4.5:1 in both shipped schemes |
+| Focus | The input dialog moves focus to its field on open |
+
+---
+
+## Catalog
+
+The `:app` module is a component catalog that consumes the library through its
+published API only — which makes it the cheapest test of whether that API is
+sufficient. It covers every component, every tone, both themes, long content,
+loading, empty and error states.
+
+```
+./gradlew :app:installDebug
+```
+
+---
+
+## Contributing
+
+```
+./gradlew build                    # compile, lint, unit + interaction tests
+./gradlew recordRoborazziDebug     # record screenshot baselines
+./gradlew verifyRoborazziDebug     # check them
+./gradlew apiDump                  # update api/aestheticdialogs.api after an API change
+./gradlew spotlessApply            # format
+```
+
+Adding a dialog or a variant: [docs/ARCHITECTURE.md §12](docs/ARCHITECTURE.md).
+General guidelines: [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
 ## License
 
-[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
-
 ```
+Copyright 2019 TEKOMBO Gabriel
 
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-    Copyright 2019 TEKOMBO Gabriel
+   http://www.apache.org/licenses/LICENSE-2.0
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 ```

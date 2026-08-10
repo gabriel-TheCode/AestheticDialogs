@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      The catalog draws everything with Compose, so the platform theme only has
+      to get out of the way: no action bar, transparent system bars for the
+      edge-to-edge layout the activity opts into.
+    -->
+    <style name="Theme.AestheticDialogsCatalog" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+</resources>

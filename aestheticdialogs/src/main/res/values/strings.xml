@@ -1,5 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The only strings the library owns are accessibility affordances that have no
+  visible text of their own. Everything a user reads — titles, messages, action
+  labels — is supplied by the caller, because the caller knows the product's
+  voice and ships the translations for it.
+
+  Applications can override any of these by declaring the same name in their own
+  resources.
+-->
 <resources>
-    <string name="app_name">AestheticDialogs</string>
-    <string name="error">error</string>
-    <string name="success">success</string>
+    <string name="aesthetic_dialogs_close">Close</string>
+    <string name="aesthetic_dialogs_dismiss">Dismiss</string>
+    <string name="aesthetic_dialogs_loading">Loading</string>
+    <string name="aesthetic_dialogs_search">Search</string>
+    <string name="aesthetic_dialogs_clear_search">Clear search</string>
+    <string name="aesthetic_dialogs_clear_text">Clear text</string>
+    <string name="aesthetic_dialogs_show_password">Show password</string>
+    <string name="aesthetic_dialogs_hide_password">Hide password</string>
+    <string name="aesthetic_dialogs_selected">Selected</string>
+    <string name="aesthetic_dialogs_not_selected">Not selected</string>
+    <string name="aesthetic_dialogs_no_results">No results</string>
 </resources>
