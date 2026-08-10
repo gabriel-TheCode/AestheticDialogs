@@ -25,18 +25,34 @@ import androidx.compose.runtime.Immutable
  */
 @Immutable
 public data class AestheticMotion(
+    /** The reduced-motion switch. When `false`, every transition becomes an instant cut. */
     val enabled: Boolean = true,
+    /** Duration of a leaving transition, in milliseconds. */
     val durationFast: Int = 120,
+    /** Duration of an arriving transition, in milliseconds. */
     val durationMedium: Int = 220,
+    /** Duration reserved for transitions that cross the whole screen, in milliseconds. */
     val durationSlow: Int = 320,
+    /** Easing of an arriving transition: decelerating, so the surface settles. */
     val easingEnter: Easing = LinearOutSlowInEasing,
+    /** Easing of a leaving transition: accelerating, so it gets out of the way. */
     val easingExit: Easing = CubicBezierEasing(0.4f, 0.0f, 1.0f, 1.0f),
 ) {
-    /** Spec for content appearing: medium duration, decelerating. */
+    /**
+     * Spec for content appearing: medium duration, decelerating.
+     *
+     * @param T the animated value type, inferred from the transition it is passed to.
+     * @return a tween, or a zero-duration cut when [enabled] is `false`.
+     */
     public fun <T> enterSpec(): FiniteAnimationSpec<T> =
         tween(durationMillis = if (enabled) durationMedium else 0, easing = easingEnter)
 
-    /** Spec for content leaving: fast duration, accelerating. */
+    /**
+     * Spec for content leaving: fast duration, accelerating.
+     *
+     * @param T the animated value type, inferred from the transition it is passed to.
+     * @return a tween, or a zero-duration cut when [enabled] is `false`.
+     */
     public fun <T> exitSpec(): FiniteAnimationSpec<T> =
         tween(durationMillis = if (enabled) durationFast else 0, easing = easingExit)
 

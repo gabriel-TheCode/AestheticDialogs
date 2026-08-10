@@ -39,7 +39,6 @@ extensions.configure<LibraryExtension> {
     }
 }
 
-
 kotlin {
     // Primitives and variants are internal. explicitApi() turns the layer
     // boundary into a compiler rule instead of a review convention.

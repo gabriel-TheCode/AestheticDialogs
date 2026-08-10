@@ -16,10 +16,15 @@ import androidx.compose.ui.graphics.Color
  */
 @Immutable
 public data class AestheticColors(
+    /** Container and overlay roles. */
     val surface: Surface,
+    /** Text and icon roles. */
     val content: Content,
+    /** Outline and focus-ring roles. */
     val border: Border,
+    /** The five status tones. */
     val status: Status,
+    /** Button roles. */
     val action: Action,
     /** Whether this scheme is meant for a dark background. Used to pick assets and scrim opacity. */
     val isDark: Boolean,
@@ -56,7 +61,9 @@ public data class AestheticColors(
     /** Outline roles. */
     @Immutable
     public data class Border(
+        /** Hairlines between rows, where a full-strength line would be noise. */
         val subtle: Color,
+        /** The default outline: secondary buttons, text fields, cards. */
         val default: Color,
         /** Focus ring, drawn for keyboard and D-pad navigation. */
         val focus: Color,
@@ -70,12 +77,23 @@ public data class AestheticColors(
      */
     @Immutable
     public data class Status(
+        /** Something completed. */
         val success: Tone,
+        /** Something failed, and the user has to know. */
         val error: Tone,
+        /** Something needs attention but has not failed. */
         val warning: Tone,
+        /** Something is worth knowing and carries no urgency. */
         val info: Tone,
+        /** No status at all: confirmations, pickers, forms. */
         val neutral: Tone,
     ) {
+        /**
+         * Resolves the colours for [tone].
+         *
+         * @param tone the semantic tone carried by the dialog or banner.
+         * @return the four colour roles for that tone in the current scheme.
+         */
         public fun forTone(tone: DialogTone): Tone = when (tone) {
             DialogTone.Success -> success
             DialogTone.Error -> error
@@ -97,20 +115,30 @@ public data class AestheticColors(
      */
     @Immutable
     public data class Tone(
+        /** The hue itself: marks, bars, filled buttons. */
         val accent: Color,
+        /** Content drawn on top of [accent]. */
         val onAccent: Color,
+        /** A tinted backdrop for the tone, such as the badge disc. */
         val container: Color,
+        /** Content drawn on top of [container]. */
         val onContainer: Color,
     )
 
     /** Action (button) roles. */
     @Immutable
     public data class Action(
+        /** Fill of the primary button. */
         val primary: Color,
+        /** Label of the primary button. */
         val onPrimary: Color,
+        /** Label of the secondary (outlined) and text buttons. */
         val secondaryContent: Color,
+        /** Outline of the secondary button. */
         val secondaryBorder: Color,
+        /** Fill of a disabled primary button. */
         val disabledContainer: Color,
+        /** Label of any disabled button. */
         val disabledContent: Color,
     )
 }

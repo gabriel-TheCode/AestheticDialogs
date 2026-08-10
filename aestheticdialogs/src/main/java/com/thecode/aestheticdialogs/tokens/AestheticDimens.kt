@@ -11,7 +11,6 @@ import androidx.compose.ui.unit.dp
  * variant is a review failure.
  */
 public object AestheticDimens {
-
     /** Minimum size of any interactive target, per the Android accessibility guidance. */
     public val minTouchTarget: Dp = 48.dp
 
@@ -33,8 +32,17 @@ public object AestheticDimens {
 
     // Structure
     public val borderWidth: Dp = 1.dp
+
+    /** Thickness of the tone bar down the leading edge of a banner. */
     public val accentBarWidth: Dp = 4.dp
-    public val accentBarHeight: Dp = 4.dp
+
+    /**
+     * Thickness of the tone rim along the top edge of a banner.
+     *
+     * Slightly heavier than [accentBarWidth] because the rim follows the corner
+     * radius and thins out towards the sides; at 4dp it read as a hairline.
+     */
+    public val accentBarHeight: Dp = 6.dp
     public val progressIndicatorSize: Dp = 20.dp
     public val progressIndicatorStroke: Dp = 2.dp
 

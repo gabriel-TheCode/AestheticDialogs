@@ -19,9 +19,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.PathOperation
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.addOutline
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
@@ -77,15 +83,13 @@ internal fun BannerPrimitive(
                 .then(
                     if (containerBrush != null) Modifier.background(containerBrush) else Modifier,
                 )
+                .then(
+                    if (topAccentBrush != null) Modifier.topAccentRim(shape, topAccentBrush) else Modifier,
+                )
                 .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier),
         ) {
-            topAccentBrush?.let { brush ->
-                Box(
-                    Modifier
-                        .fillMaxWidth()
-                        .height(AestheticDimens.accentBarHeight)
-                        .background(brush),
-                )
+            if (topAccentBrush != null) {
+                Spacer(Modifier.height(AestheticDimens.accentBarHeight))
             }
 
             Row(
@@ -155,6 +159,42 @@ internal fun BannerPrimitive(
             }
         }
     }
+}
+
+/**
+ * Paints the accent along the top edge of [shape] instead of across a rectangle.
+ *
+ * A straight `accentBarHeight`-tall strip is the obvious implementation and it is
+ * the wrong one: the banner clips to a 16dp corner radius, so the strip is eaten
+ * away at both ends and reads as a short line floating above the card rather than
+ * as part of it. The rim is the difference between the banner outline and the
+ * same outline pushed down by the bar height, so it keeps a constant thickness
+ * across the top and tapers into the corners as the silhouette turns vertical.
+ *
+ * Deriving both paths from [shape] rather than from a radius constant means a
+ * rebranded [com.thecode.aestheticdialogs.tokens.AestheticShapes] — square
+ * corners, or a much rounder banner — stays correct with no further work.
+ */
+private fun Modifier.topAccentRim(shape: Shape, brush: Brush): Modifier = drawWithCache {
+    val thickness = AestheticDimens.accentBarHeight.toPx()
+    if (size.height <= thickness || size.width <= 0f) return@drawWithCache onDrawBehind {}
+
+    val outer = Path().apply {
+        addOutline(shape.createOutline(size, layoutDirection, this@drawWithCache))
+    }
+    val inner = Path().apply {
+        addOutline(
+            shape.createOutline(
+                Size(size.width, size.height - thickness),
+                layoutDirection,
+                this@drawWithCache,
+            ),
+        )
+        translate(Offset(0f, thickness))
+    }
+    val rim = Path.combine(PathOperation.Difference, outer, inner)
+
+    onDrawBehind { drawPath(rim, brush) }
 }
 
 private const val BANNER_MESSAGE_MAX_LINES = 2

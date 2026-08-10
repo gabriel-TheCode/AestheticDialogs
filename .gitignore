@@ -89,3 +89,4 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 .hotswan/
+.DS_Store

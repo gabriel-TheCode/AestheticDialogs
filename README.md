@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/images/banner.png" alt="AestheticDialogs 2.0 — a Jetpack Compose dialog design system" width="100%">
+</p>
+
 # AestheticDialogs
 
 [![platform](https://img.shields.io/badge/platform-Android-yellow.svg)](https://www.android.com)
@@ -12,6 +16,8 @@ offers seven dialog families that share one frame, one theme and one set of
 accessibility guarantees — plus the visual identity the library has always had.
 
 > Coming from 1.x? Start with the [migration guide](docs/MIGRATION.md).
+> Want to see everything first? The [gallery](docs/GALLERY.md) shows every dialog
+> and every banner, in both themes.
 
 ---
 
@@ -20,6 +26,7 @@ accessibility guarantees — plus the visual identity the library has always had
 - [Why it exists](#why-it-exists)
 - [Install](#install)
 - [Quick start](#quick-start)
+- [Gallery](docs/GALLERY.md)
 - [The dialogs](#the-dialogs)
 - [Notifications](#notifications)
 - [Theming](#theming)
@@ -118,6 +125,11 @@ decide what to do with.
 
 ## The dialogs
 
+Every image below is rendered from the real component by
+`scripts/generate-docs-images.sh`, so it cannot drift from the library. The full
+set — every variant, every state, both themes — is in the
+**[gallery](docs/GALLERY.md)**.
+
 ### Confirmation — ask before doing something
 
 Two variants: `Default` for ordinary questions, `Destructive` for things that
@@ -138,6 +150,10 @@ ConfirmationDialogUiModel.Default(
 the dialog — including cancel, so a half-finished operation cannot be abandoned
 mid-flight.
 
+| Default | Destructive | Confirming |
+|---|---|---|
+| ![Default confirmation](docs/images/confirmation-default.png) | ![Destructive confirmation](docs/images/confirmation-destructive.png) | ![Confirmation in progress](docs/images/confirmation-loading.png) |
+
 ### Alert — tell them something, offer a way forward
 
 ```kotlin
@@ -153,6 +169,10 @@ AlertDialogUiModel.Default(
 This is also the error, offline and permission-required pattern. They are the
 same dialog with a different tone and action label, and shipping three
 near-identical components would have been three ways to get one thing wrong.
+
+| Warning | Error |
+|---|---|
+| ![Warning alert](docs/images/alert-default.png) | ![Error alert](docs/images/alert-error.png) |
 
 ### Selection — pick one, or several
 
@@ -171,6 +191,10 @@ SelectionDialogUiModel.Multiple(
 The dialog renders and reports; it never filters, sorts or toggles. That is what
 lets the same component handle five static options and a remote search over ten
 thousand rows. Long lists are lazy, and the action row stays pinned.
+
+| Single | Multiple, with search |
+|---|---|
+| ![Single selection](docs/images/selection-single.png) | ![Multiple selection](docs/images/selection-multiple.png) |
 
 ### Input — ask for one value
 
@@ -191,6 +215,10 @@ InputDialogUiModel.Text(
 )
 ```
 
+| Text | Invalid | Password |
+|---|---|---|
+| ![Text input](docs/images/input-text.png) | ![Input with an error](docs/images/input-error.png) | ![Password input](docs/images/input-password.png) |
+
 ### Rich content — your content, our frame
 
 ```kotlin
@@ -210,6 +238,10 @@ The middle is yours. The window, adaptive width, scrim, dismissal contract,
 header, actions and accessibility pane stay with the design system — which is the
 difference between an escape hatch and a raw `Dialog {}`.
 
+<p align="center">
+  <img src="docs/images/content-rich.png" alt="Rich content dialog" width="320">
+</p>
+
 ### Feedback — the 1.x dialogs, rebuilt
 
 `Flat` (card) and `Flash` (gradient panel), in all five tones. The Flash gradient
@@ -224,6 +256,10 @@ FeedbackDialogUiModel.Flash(
     actionLabel = "Nice",
 )
 ```
+
+| Flat | Flash, success | Flash, error |
+|---|---|---|
+| ![Flat feedback](docs/images/feedback-flat.png) | ![Flash feedback](docs/images/feedback-flash.png) | ![Flash feedback, error](docs/images/feedback-flash-error.png) |
 
 ---
 
@@ -248,9 +284,21 @@ Box(Modifier.fillMaxSize()) {
 }
 ```
 
+| | |
+|---|---|
+| **Toaster** — tone bar down the leading edge | ![Toaster](docs/images/notification-toaster.png) |
+| **Rainbow** — tone-filled, inverted copy | ![Rainbow](docs/images/notification-rainbow.png) |
+| **Connectify** — centred, under a tone rim | ![Connectify](docs/images/notification-connectify.png) |
+| **Emoji** — a character, not a bitmap | ![Emoji](docs/images/notification-emoji.png) |
+| **Emotion** — gradient card with a timestamp | ![Emotion](docs/images/notification-emotion.png) |
+
 Banners are live regions, so screen readers announce them without the user having
 to go looking. Because the host owns nothing but the exit transition, they are
-the one place in the library with a full enter *and* exit animation.
+the one place in the library with a full enter *and* exit animation:
+
+| `Slide` | `Fade` | `Scale` |
+|---|---|---|
+| ![Slide](docs/images/notification-slide.gif) | ![Fade](docs/images/notification-fade.gif) | ![Scale](docs/images/notification-scale.gif) |
 
 ---
 
@@ -335,12 +383,18 @@ loading, empty and error states.
 ## Contributing
 
 ```
-./gradlew build                    # compile, lint, unit + interaction tests
-./gradlew recordRoborazziDebug     # record screenshot baselines
-./gradlew verifyRoborazziDebug     # check them
-./gradlew apiDump                  # update api/aestheticdialogs.api after an API change
-./gradlew spotlessApply            # format
+./gradlew build                     # compile, lint, unit + interaction tests
+./gradlew recordRoborazziDebug      # record screenshot baselines
+./gradlew verifyRoborazziDebug      # check them
+./gradlew apiDump                   # update api/aestheticdialogs.api after an API change
+./gradlew spotlessApply             # format
+scripts/generate-docs-images.sh     # redraw everything in docs/images
 ```
+
+The documentation images are rendered on the JVM from the real components — no
+emulator, no screen recorder, byte-identical on every machine. Adding a dialog
+means adding a case to `Docs*.kt` in the library's test source set; the README and
+the [gallery](docs/GALLERY.md) then update themselves.
 
 Adding a dialog or a variant: [docs/ARCHITECTURE.md §12](docs/ARCHITECTURE.md).
 General guidelines: [CONTRIBUTING.md](CONTRIBUTING.md).

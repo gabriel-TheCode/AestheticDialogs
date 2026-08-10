@@ -17,6 +17,7 @@ import com.thecode.aestheticdialogs.primitives.StatusBadgePrimitive
 import com.thecode.aestheticdialogs.tokens.AestheticDimens
 import com.thecode.aestheticdialogs.tokens.AestheticSpacing
 import com.thecode.aestheticdialogs.variants.toneGradient
+import com.thecode.aestheticdialogs.variants.toneRimGradient
 
 /** Card with a tone bar down the leading edge. */
 @Composable
@@ -72,10 +73,13 @@ internal fun NotificationRainbow(
         modifier = modifier,
         liveRegionMode = uiModel.tone.liveRegionMode(),
         leading = {
+            // The banner is already painted in the tone, so the badge inverts:
+            // the disc takes the on-accent colour and the mark takes the accent.
+            // Passing `onAccent` for both is what left the disc empty.
             StatusBadgePrimitive(
                 mark = GlyphMark.forTone(uiModel.tone),
-                accentColor = tone.onAccent,
-                onAccentColor = tone.accent,
+                accentColor = tone.accent,
+                onAccentColor = tone.onAccent,
                 containerColor = tone.onAccent,
                 size = AestheticDimens.statusGlyphCompact,
                 filled = false,
@@ -104,7 +108,7 @@ internal fun NotificationConnectify(
         containerColor = colors.surface.container,
         shape = AestheticDialogsTheme.shapes.banner,
         modifier = modifier,
-        topAccentBrush = toneGradient(uiModel.tone),
+        topAccentBrush = toneRimGradient(uiModel.tone),
         liveRegionMode = uiModel.tone.liveRegionMode(),
         centered = true,
         trailing = closeAffordance(uiModel.showCloseButton, colors.content.muted, onSignal),

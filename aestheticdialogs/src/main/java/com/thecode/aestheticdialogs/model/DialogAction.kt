@@ -17,7 +17,9 @@ import androidx.compose.runtime.Immutable
 public data class DialogAction(
     /** The label shown on the button. Supplied by the caller, so it is localised by the caller. */
     val label: String,
+    /** How much visual weight the button carries, and whether it reads as destructive. */
     val emphasis: DialogActionEmphasis = DialogActionEmphasis.Primary,
+    /** Whether the button accepts input. A disabled button is still announced, and still readable. */
     val enabled: Boolean = true,
     /**
      * Replaces the label with a progress indicator and blocks input on this
@@ -62,7 +64,9 @@ public enum class DialogActionEmphasis {
  */
 @Immutable
 public data class DialogDismissBehavior(
+    /** Whether the back gesture requests dismissal. */
     val dismissOnBackPress: Boolean = true,
+    /** Whether a tap on the scrim requests dismissal. */
     val dismissOnClickOutside: Boolean = true,
 ) {
     public companion object {

@@ -10,6 +10,8 @@ import com.thecode.aestheticdialogs.tokens.AestheticPalette
  * scheme. There is no dynamic colour: a design system exists to guarantee that
  * a warning looks like a warning, and a wallpaper-derived palette cannot make
  * that promise.
+ *
+ * @return the light colour scheme.
  */
 public fun aestheticLightColors(): AestheticColors = AestheticColors(
     surface = AestheticColors.Surface(
@@ -73,6 +75,11 @@ public fun aestheticLightColors(): AestheticColors = AestheticColors(
     isDark = false,
 )
 
+/**
+ * The dark counterpart of [aestheticLightColors], role for role.
+ *
+ * @return the dark colour scheme.
+ */
 public fun aestheticDarkColors(): AestheticColors = AestheticColors(
     surface = AestheticColors.Surface(
         container = AestheticPalette.Grey900,

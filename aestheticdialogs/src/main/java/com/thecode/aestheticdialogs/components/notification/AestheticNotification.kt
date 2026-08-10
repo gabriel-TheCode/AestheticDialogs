@@ -27,6 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.IntOffset
+import com.android.tools.screenshot.PreviewTest
 import com.thecode.aestheticdialogs.components.notification.models.NotificationAlignment
 import com.thecode.aestheticdialogs.components.notification.models.NotificationSignal
 import com.thecode.aestheticdialogs.components.notification.models.NotificationUiModel
@@ -206,6 +207,7 @@ private fun exitTransitionFor(
 
 private const val SCALE_FROM = 0.92f
 
+@PreviewTest
 @ThemePreviews
 @Composable
 private fun NotificationToasterPreview() {
@@ -221,6 +223,7 @@ private fun NotificationToasterPreview() {
     }
 }
 
+@PreviewTest
 @ThemePreviews
 @Composable
 private fun NotificationRainbowPreview() {
@@ -236,6 +239,7 @@ private fun NotificationRainbowPreview() {
     }
 }
 
+@PreviewTest
 @ThemePreviews
 @Composable
 private fun NotificationConnectifyPreview() {
@@ -251,6 +255,7 @@ private fun NotificationConnectifyPreview() {
     }
 }
 
+@PreviewTest
 @ThemePreviews
 @Composable
 private fun NotificationEmojiPreview() {
@@ -266,6 +271,7 @@ private fun NotificationEmojiPreview() {
     }
 }
 
+@PreviewTest
 @ThemePreviews
 @Composable
 private fun NotificationEmotionPreview() {

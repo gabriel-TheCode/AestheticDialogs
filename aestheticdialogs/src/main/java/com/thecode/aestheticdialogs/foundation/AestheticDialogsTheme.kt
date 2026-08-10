@@ -64,6 +64,18 @@ internal val LocalAestheticMotion = staticCompositionLocalOf<AestheticMotion?> {
  * dark scheme is chosen from the system setting. Nothing crashes, nothing
  * renders light-on-light. Wrapping is still recommended, because that is the
  * only place branding can be applied.
+ *
+ * @param darkTheme whether to resolve the dark scheme. Defaults to the system
+ *   setting; pass it explicitly if your application has its own theme switch.
+ * @param colors the semantic colour roles. Copy [aestheticLightColors] or
+ *   [aestheticDarkColors] rather than building one from scratch.
+ * @param typography the six type roles the library renders.
+ * @param shapes the silhouette of dialogs, banners and controls.
+ * @param motion durations, easing, and the reduced-motion switch. Defaults to
+ *   [AestheticDialogsTheme.defaultMotion], which reads the platform animation
+ *   scale.
+ * @param content your application content. Every AestheticDialogs component
+ *   composed inside it resolves against these values.
  */
 @Composable
 public fun AestheticDialogsTheme(
@@ -123,6 +135,9 @@ public object AestheticDialogsTheme {
      * dialogs everywhere, without every application having to plumb the setting
      * through. Pass an explicit [AestheticMotion] to [AestheticDialogsTheme] to
      * override the decision.
+     *
+     * @return the default motion tokens, with `enabled = false` when the user has
+     *   asked the system to remove animations.
      */
     @Composable
     public fun defaultMotion(): AestheticMotion {

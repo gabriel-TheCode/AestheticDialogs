@@ -1,0 +1,39 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{kt,kts}]
+indent_style = space
+indent_size = 4
+max_line_length = 120
+
+# Keep this list in sync with `ktlintRules` in the root build.gradle.kts, which
+# is what Spotless actually enforces — Spotless resolves ktlint's configuration
+# itself and does not read this file. These values exist so the IDE agrees with
+# `./gradlew spotlessApply`.
+
+# ktlint 1.x defaults to `ktlint_official`, whose wrapping rules would rewrite
+# the whole library for no reader benefit.
+ktlint_code_style = intellij_idea
+
+# Composables are PascalCase across the Compose ecosystem, and the naming rule
+# cannot know that on its own.
+ktlint_function_naming_ignore_when_annotated_with = Composable, Preview, Test
+
+# Signatures are written one parameter per line whether or not they would fit,
+# because that is how they are read and reviewed.
+ktlint_standard_function-signature = disabled
+ktlint_standard_class-signature = disabled
+ktlint_standard_function-expression-body = disabled
+ktlint_standard_multiline-expression-wrapping = disabled
+ktlint_standard_string-template-indent = disabled
+ktlint_standard_chain-method-continuation = disabled
+ktlint_standard_blank-line-before-declaration = disabled
+ktlint_standard_blank-line-between-when-conditions = disabled
+ktlint_standard_no-empty-first-line-in-class-body = disabled
+ktlint_standard_if-else-wrapping = disabled
+ktlint_standard_condition-wrapping = disabled
