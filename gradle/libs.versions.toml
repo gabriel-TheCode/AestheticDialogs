@@ -5,6 +5,8 @@ kotlin = "2.4.10"
 compileSdk = "37"
 minSdk = "24"
 targetSdk = "37"
+versionCode = "2000"
+versionName = "2.0.0"
 
 # AndroidX / Compose
 composeBom = "2026.06.01"
@@ -61,10 +63,9 @@ screenshot-validation-api = { group = "com.android.tools.screenshot", name = "sc
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binaryCompatibilityValidator" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
+maven-publish = { id = "com.vanniktech.maven.publish.base", version.ref = "mavenPublish" }
 roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }

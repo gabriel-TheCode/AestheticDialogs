@@ -63,12 +63,8 @@ internal fun ContentDialogDefault(
         },
     ) {
         Spacer(Modifier.height(AestheticSpacing.lg))
-        // Caller content is inset to the same measure as the header, so the
-        // dialog reads as one column rather than as a frame around a stranger.
-        Column(
-            modifier = Modifier.padding(horizontal = AestheticSpacing.xxl),
-            content = content,
-        )
+
+        content()
         // Without an action row the content would otherwise sit on the rounded
         // bottom edge of the surface.
         Spacer(Modifier.height(if (hasActions) AestheticSpacing.sm else AestheticSpacing.xxl))

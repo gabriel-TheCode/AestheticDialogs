@@ -283,6 +283,19 @@ class DocsGalleryTest {
     }
 
     @Test
+    fun feedbackFlatNeutral() = screen("feedback-flat-neutral") {
+        AestheticFeedbackDialog(
+            uiModel = FeedbackDialogUiModel.Flat(
+                title = "Album archived",
+                message = "You will find it under Archived in Settings.",
+                tone = DialogTone.Neutral,
+                actionLabel = "Got it",
+            ),
+            onSignal = {},
+        )
+    }
+
+    @Test
     fun feedbackFlash() = screen("feedback-flash") {
         AestheticFeedbackDialog(
             uiModel = FeedbackDialogUiModel.Flash(

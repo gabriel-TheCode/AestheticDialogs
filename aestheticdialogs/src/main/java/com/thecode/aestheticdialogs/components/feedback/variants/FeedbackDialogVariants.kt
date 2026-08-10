@@ -16,6 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import com.thecode.aestheticdialogs.components.feedback.models.FeedbackDialogSignal
 import com.thecode.aestheticdialogs.components.feedback.models.FeedbackDialogUiModel
 import com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme
+import com.thecode.aestheticdialogs.foundation.DialogTone
 import com.thecode.aestheticdialogs.model.DialogAction
 import com.thecode.aestheticdialogs.model.DialogActionEmphasis
 import com.thecode.aestheticdialogs.primitives.DialogActionsPrimitive
@@ -70,15 +71,19 @@ internal fun FeedbackDialogFlat(
             message = uiModel.message,
             titleColor = colors.content.primary,
             messageColor = colors.content.secondary,
-            badge = {
-                StatusBadgePrimitive(
-                    mark = GlyphMark.forTone(uiModel.tone),
-                    accentColor = toneColors.accent,
-                    onAccentColor = toneColors.onAccent,
-                    containerColor = toneColors.container,
-                    size = AestheticDimens.statusGlyph,
-                    filled = true,
-                )
+            badge = if (uiModel.tone != DialogTone.Neutral) {
+                {
+                    StatusBadgePrimitive(
+                        mark = GlyphMark.forTone(uiModel.tone),
+                        accentColor = toneColors.accent,
+                        onAccentColor = toneColors.onAccent,
+                        containerColor = toneColors.container,
+                        size = AestheticDimens.statusGlyph,
+                        filled = true,
+                    )
+                }
+            } else {
+                null
             },
             hasAction = actionLabel != null,
         )
@@ -136,15 +141,19 @@ internal fun FeedbackDialogFlash(
             message = uiModel.message,
             titleColor = onGradient,
             messageColor = onGradient,
-            badge = {
-                StatusBadgePrimitive(
-                    mark = GlyphMark.forTone(uiModel.tone),
-                    accentColor = onGradient,
-                    onAccentColor = toneColors.accent,
-                    containerColor = onGradient,
-                    size = AestheticDimens.statusGlyph,
-                    filled = true,
-                )
+            badge = if (uiModel.tone != DialogTone.Neutral) {
+                {
+                    StatusBadgePrimitive(
+                        mark = GlyphMark.forTone(uiModel.tone),
+                        accentColor = onGradient,
+                        onAccentColor = toneColors.accent,
+                        containerColor = onGradient,
+                        size = AestheticDimens.statusGlyph,
+                        filled = true,
+                    )
+                }
+            } else {
+                null
             },
             hasAction = actionLabel != null,
         )
@@ -158,7 +167,7 @@ private fun FeedbackBody(
     message: String?,
     titleColor: Color,
     messageColor: Color,
-    badge: @Composable () -> Unit,
+    badge: (@Composable () -> Unit)?,
     hasAction: Boolean,
 ) {
     val typography = AestheticDialogsTheme.typography
@@ -175,8 +184,13 @@ private fun FeedbackBody(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        badge()
-        Spacer(Modifier.height(AestheticSpacing.xl))
+        // A neutral dialog carries no status, so it gets no status mark: the
+        // glyph for `Neutral` is the info mark, and drawing it would say the one
+        // thing the tone exists to not say.
+        badge?.let {
+            it()
+            Spacer(Modifier.height(AestheticSpacing.xl))
+        }
 
         Text(
             text = title,

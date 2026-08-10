@@ -12,10 +12,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -28,7 +28,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.thecode.aestheticdialogs.components.alert.AestheticAlertDialog
 import com.thecode.aestheticdialogs.components.alert.models.AlertDialogSignal
@@ -113,6 +114,10 @@ fun CatalogScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
+                // The catalog makes the same adaptive promise the library does: a
+                // column of rows stretched across a tablet is not a layout.
+                .widthIn(max = CONTENT_MAX_WIDTH)
+                .align(Alignment.TopCenter)
                 .windowInsetsPadding(WindowInsets.safeDrawing),
             contentPadding = PaddingValues(AestheticSpacing.lg),
             verticalArrangement = Arrangement.spacedBy(AestheticSpacing.sm),
@@ -385,22 +390,26 @@ private fun CatalogHeader(
 ) {
     val colors = AestheticDialogsTheme.colors
 
-    Column(modifier = Modifier.padding(vertical = AestheticSpacing.lg)) {
-        Text(
-            text = "AestheticDialogs 2.0",
-            style = AestheticDialogsTheme.typography.title,
-            color = colors.content.primary,
-        )
-        Text(
-            text = "A Compose dialog design system.",
-            style = AestheticDialogsTheme.typography.message,
-            color = colors.content.secondary,
-        )
-        DarkThemeSwitch(
-            checked = darkTheme,
-            onCheckedChange = onDarkThemeChange,
-            modifier = Modifier.padding(top = AestheticSpacing.md),
-        )
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = AestheticSpacing.lg),
+        horizontalArrangement = Arrangement.spacedBy(AestheticSpacing.lg),
+        verticalAlignment = Alignment.Top,
+    ) {
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = "AestheticDialogs 2.0",
+                style = AestheticDialogsTheme.typography.title,
+                color = colors.content.primary,
+            )
+            Text(
+                text = "A Compose dialog design system.",
+                style = AestheticDialogsTheme.typography.message,
+                color = colors.content.secondary,
+            )
+        }
+        DarkThemeSwitch(checked = darkTheme, onCheckedChange = onDarkThemeChange)
     }
 }
 
@@ -411,36 +420,23 @@ private fun DarkThemeSwitch(
     modifier: Modifier = Modifier,
 ) {
     val colors = AestheticDialogsTheme.colors
+    val label = "Dark theme"
 
-    Row(
-        modifier = modifier
-            .toggleable(
-                value = checked,
-                role = Role.Switch,
-                onValueChange = onCheckedChange,
-            )
-            .padding(vertical = AestheticSpacing.sm),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(AestheticSpacing.md),
-    ) {
-        Text(
-            text = "Dark theme",
-            style = AestheticDialogsTheme.typography.itemLabel,
-            color = colors.content.primary,
-        )
-        Switch(
-            checked = checked,
-            onCheckedChange = null,
-            colors = SwitchDefaults.colors(
-                checkedThumbColor = colors.action.onPrimary,
-                checkedTrackColor = colors.action.primary,
-                checkedBorderColor = colors.action.primary,
-                uncheckedThumbColor = colors.content.muted,
-                uncheckedTrackColor = colors.surface.container,
-                uncheckedBorderColor = colors.border.default,
-            ),
-        )
-    }
+    // No visible label, so the control needs a name of its own: what a sighted
+    // user reads from the position has to reach TalkBack some other way.
+    Switch(
+        checked = checked,
+        onCheckedChange = onCheckedChange,
+        modifier = modifier.semantics { contentDescription = label },
+        colors = SwitchDefaults.colors(
+            checkedThumbColor = colors.action.onPrimary,
+            checkedTrackColor = colors.action.primary,
+            checkedBorderColor = colors.action.primary,
+            uncheckedThumbColor = colors.content.muted,
+            uncheckedTrackColor = colors.surface.container,
+            uncheckedBorderColor = colors.border.default,
+        ),
+    )
 }
 
 @Composable
@@ -527,3 +523,5 @@ private fun CatalogRow(
         }
     }
 }
+
+private val CONTENT_MAX_WIDTH = 640.dp
