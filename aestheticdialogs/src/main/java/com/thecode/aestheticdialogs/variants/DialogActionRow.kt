@@ -36,8 +36,8 @@ internal fun DialogActionRow(
 ) {
     if (primary == null && secondary == null) return
 
-    // While one action is running, the other must not be pressable: a dialog
-    // that lets you cancel a half-finished delete is a bug factory.
+    // While one action runs the other must not be pressable: cancelling a
+    // half-finished delete leaves the caller with no defined outcome.
     val busy = primary?.loading == true || secondary?.loading == true
 
     DialogActionsPrimitive(modifier = modifier) {

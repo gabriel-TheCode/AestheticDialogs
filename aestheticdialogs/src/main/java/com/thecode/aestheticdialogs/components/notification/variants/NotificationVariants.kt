@@ -73,9 +73,7 @@ internal fun NotificationRainbow(
         modifier = modifier,
         liveRegionMode = uiModel.tone.liveRegionMode(),
         leading = {
-            // The banner is already painted in the tone, so the badge inverts:
-            // the disc takes the on-accent colour and the mark takes the accent.
-            // Passing `onAccent` for both is what left the disc empty.
+            // The card already carries the tone, so the badge inverts.
             StatusBadgePrimitive(
                 mark = GlyphMark.forTone(uiModel.tone),
                 accentColor = tone.accent,

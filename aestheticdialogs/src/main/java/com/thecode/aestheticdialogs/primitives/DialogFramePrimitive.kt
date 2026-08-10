@@ -86,18 +86,16 @@ internal fun DialogFramePrimitive(
         properties = DialogProperties(
             dismissOnBackPress = dismissBehavior.dismissOnBackPress,
             dismissOnClickOutside = dismissBehavior.dismissOnClickOutside,
-            // The library sizes its own surface: platform default width would
-            // clamp every dialog to the Material minimum and defeat the
-            // adaptive buckets below.
+            // The library sizes its own surface; the platform default would clamp
+            // every dialog to the Material minimum.
             usePlatformDefaultWidth = false,
         ),
     ) {
         DialogScrimEffect(scrimAlpha)
 
-        // BoxWithConstraints reports the window the dialog was actually given,
-        // which is the right question to ask: a phone in landscape, a foldable
-        // half-open and a freeform window all answer it correctly, where an
-        // `isTablet` check answers all three wrong.
+        // The constraints report the window the dialog was actually given, which
+        // is the question that has a correct answer on foldables and in freeform
+        // windows.
         BoxWithConstraints {
             val availableWidth = maxWidth
             val availableHeight = maxHeight
@@ -113,9 +111,8 @@ internal fun DialogFramePrimitive(
                 } else {
                     EnterTransition.None
                 },
-                // The caller owns whether the dialog is in the composition, so
-                // by the time an exit could run the node is already gone. See
-                // `docs/ARCHITECTURE.md` for why that trade-off is deliberate.
+                // The caller owns whether the dialog is composed, so by the time
+                // an exit could run the node is already gone.
                 exit = ExitTransition.None,
             ) {
                 Surface(
@@ -129,9 +126,6 @@ internal fun DialogFramePrimitive(
                         },
                     shape = shape,
                     color = containerColor,
-                    // Stated rather than derived from a Material scheme: the
-                    // library owns no `MaterialTheme` and must not read the host
-                    // application's.
                     contentColor = AestheticDialogsTheme.colors.content.primary,
                     tonalElevation = AestheticElevation.none,
                     shadowElevation = AestheticElevation.dialog,
@@ -145,9 +139,9 @@ internal fun DialogFramePrimitive(
                     ) {
                         header?.invoke(this)
 
-                        // `fill = false` lets short content stay short while long
-                        // content is capped and scrolls, keeping the action row
-                        // reachable on a small screen or at a large font size.
+                        // Short content stays short; long content is capped and
+                        // scrolls, so the action row stays reachable at any font
+                        // size.
                         Column(
                             modifier = Modifier
                                 .weight(weight = 1f, fill = false)

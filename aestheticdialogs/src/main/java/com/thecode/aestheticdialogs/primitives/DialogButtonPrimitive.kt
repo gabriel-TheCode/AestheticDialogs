@@ -72,9 +72,8 @@ internal fun DialogButtonPrimitive(
             contentAlignment = Alignment.Center,
         ) {
             if (loading) {
-                // The label is kept in the tree, transparent, so the button does
-                // not change width when it starts loading — a resizing action row
-                // moves the button the user is reaching for.
+                // The label stays in the tree, transparent, so the button keeps
+                // its width and the row does not move under the user's finger.
                 Text(
                     text = label,
                     style = AestheticDialogsTheme.typography.action,

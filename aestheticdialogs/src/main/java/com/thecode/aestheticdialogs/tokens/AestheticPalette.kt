@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.Color
  */
 internal object AestheticPalette {
 
-    // Neutrals
     val White: Color = Color(0xFFFFFFFF)
     val Grey50: Color = Color(0xFFF6F7F9)
     val Grey100: Color = Color(0xFFEDEFF2)
@@ -32,7 +31,6 @@ internal object AestheticPalette {
     val Grey950: Color = Color(0xFF121316)
     val Black: Color = Color(0xFF000000)
 
-    // Status hues, bright ("on dark") and deep ("on light")
     val GreenBright: Color = Color(0xFF48D865)
     val GreenDeep: Color = Color(0xFF2F7D3C)
     val GreenTintLight: Color = Color(0xFFE6F7EA)

@@ -69,9 +69,6 @@ internal fun SelectionRowPrimitive(
             .padding(horizontal = AestheticSpacing.xxl, vertical = AestheticSpacing.md),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        // Colours are passed rather than inherited: the library does not install a
-        // `MaterialTheme` over the caller's content, so a control that read one
-        // would pick up the host application's palette instead of the dialog's.
         if (multiSelect) {
             Checkbox(
                 checked = selected,

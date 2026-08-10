@@ -41,7 +41,7 @@ class CatalogActivity : ComponentActivity() {
                 AestheticDialogsTheme(darkTheme = resolvedDark) {
                     CatalogScreen(
                         darkTheme = resolvedDark,
-                        onToggleTheme = { darkTheme = !resolvedDark },
+                        onDarkThemeChange = { darkTheme = it },
                     )
                 }
             }

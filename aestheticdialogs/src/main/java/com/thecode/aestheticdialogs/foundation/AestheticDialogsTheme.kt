@@ -97,12 +97,6 @@ public fun AestheticDialogsTheme(
     motion: AestheticMotion = AestheticDialogsTheme.defaultMotion(),
     content: @Composable () -> Unit,
 ) {
-    // Four CompositionLocals and nothing else. In particular this does *not*
-    // install a `MaterialTheme`: the composable is meant to be wrapped around an
-    // application, and a library that replaced the host's colour scheme and type
-    // scale for that whole subtree would be restyling code it does not own. The
-    // few Material components the library draws with are passed their colours
-    // explicitly instead — see `TextFieldPrimitive` and `SelectionRowPrimitive`.
     CompositionLocalProvider(
         LocalAestheticColors provides colors,
         LocalAestheticTypography provides typography,

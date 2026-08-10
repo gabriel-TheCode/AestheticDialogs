@@ -122,13 +122,10 @@ private fun InputDialogFrame(
     val focusRequester = remember { FocusRequester() }
     val canConfirm = uiModel.isConfirmEnabled && !uiModel.isConfirming
 
-    // The field is why the dialog exists, so it takes focus and raises the
-    // keyboard as soon as the dialog opens. This also puts the accessibility
-    // focus where the user needs it instead of on the title.
-    //
-    // The frame wait is load-bearing: a FocusRequester throws if it is asked for
-    // focus before its node has been placed, and the dialog's enter transition
-    // makes that race real rather than theoretical.
+    // The field takes focus on open, which is also where accessibility focus
+    // belongs. The frame wait is load-bearing: a FocusRequester throws if asked
+    // for focus before its node is placed, and the enter transition makes that
+    // race real.
     LaunchedEffect(focusRequester) {
         withFrameNanos { }
         runCatching { focusRequester.requestFocus() }

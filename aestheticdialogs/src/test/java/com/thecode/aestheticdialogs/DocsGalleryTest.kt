@@ -338,6 +338,15 @@ class DocsGalleryTest {
     }
 
     @Test
+    fun notificationConnectifyLongCopy() = banner("notification-connectify-long") {
+        NotificationUiModel.Connectify(
+            title = "Reconnected to the office network after a long outage",
+            message = "Syncing the twenty-four items that changed while you were away.",
+            tone = DialogTone.Info,
+        )
+    }
+
+    @Test
     fun notificationEmoji() = banner("notification-emoji") {
         NotificationUiModel.Emoji(
             title = "Nice one",

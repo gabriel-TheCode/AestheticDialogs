@@ -15,7 +15,10 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -25,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import com.thecode.aestheticdialogs.components.alert.AestheticAlertDialog
 import com.thecode.aestheticdialogs.components.alert.models.AlertDialogSignal
@@ -71,7 +75,7 @@ private const val LOREM = "Albums are stored on your device and encrypted before
 @Composable
 fun CatalogScreen(
     darkTheme: Boolean,
-    onToggleTheme: () -> Unit,
+    onDarkThemeChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val colors = AestheticDialogsTheme.colors
@@ -114,7 +118,7 @@ fun CatalogScreen(
             verticalArrangement = Arrangement.spacedBy(AestheticSpacing.sm),
         ) {
             item {
-                CatalogHeader(darkTheme = darkTheme, onToggleTheme = onToggleTheme)
+                CatalogHeader(darkTheme = darkTheme, onDarkThemeChange = onDarkThemeChange)
             }
 
             item {
@@ -377,7 +381,7 @@ fun CatalogScreen(
 @Composable
 private fun CatalogHeader(
     darkTheme: Boolean,
-    onToggleTheme: () -> Unit,
+    onDarkThemeChange: (Boolean) -> Unit,
 ) {
     val colors = AestheticDialogsTheme.colors
 
@@ -392,13 +396,50 @@ private fun CatalogHeader(
             style = AestheticDialogsTheme.typography.message,
             color = colors.content.secondary,
         )
-        Box(modifier = Modifier.padding(top = AestheticSpacing.md)) {
-            Pill(
-                label = if (darkTheme) "Dark theme" else "Light theme",
-                selected = true,
-                onClick = onToggleTheme,
+        DarkThemeSwitch(
+            checked = darkTheme,
+            onCheckedChange = onDarkThemeChange,
+            modifier = Modifier.padding(top = AestheticSpacing.md),
+        )
+    }
+}
+
+@Composable
+private fun DarkThemeSwitch(
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val colors = AestheticDialogsTheme.colors
+
+    Row(
+        modifier = modifier
+            .toggleable(
+                value = checked,
+                role = Role.Switch,
+                onValueChange = onCheckedChange,
             )
-        }
+            .padding(vertical = AestheticSpacing.sm),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(AestheticSpacing.md),
+    ) {
+        Text(
+            text = "Dark theme",
+            style = AestheticDialogsTheme.typography.itemLabel,
+            color = colors.content.primary,
+        )
+        Switch(
+            checked = checked,
+            onCheckedChange = null,
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = colors.action.onPrimary,
+                checkedTrackColor = colors.action.primary,
+                checkedBorderColor = colors.action.primary,
+                uncheckedThumbColor = colors.content.muted,
+                uncheckedTrackColor = colors.surface.container,
+                uncheckedBorderColor = colors.border.default,
+            ),
+        )
     }
 }
 

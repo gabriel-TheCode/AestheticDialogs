@@ -75,8 +75,6 @@ internal fun BannerPrimitive(
             .semantics { liveRegion = liveRegionMode },
         shape = shape,
         color = containerColor,
-        // Stated rather than derived from a Material scheme: the library owns no
-        // `MaterialTheme` and must not read the host application's.
         contentColor = messageColor,
         shadowElevation = AestheticElevation.banner,
     ) {
@@ -124,13 +122,19 @@ internal fun BannerPrimitive(
                         Arrangement.Start
                     },
                 ) {
+                    // Without this mirror the copy centres in the space left of
+                    // the close button rather than in the card.
+                    if (centered && trailing != null) {
+                        Spacer(Modifier.width(AestheticDimens.bannerAffordanceSlot))
+                    }
+
                     leading?.let {
                         it()
                         Spacer(Modifier.width(AestheticSpacing.lg))
                     }
 
                     Column(
-                        modifier = if (centered) Modifier else Modifier.weight(1f),
+                        modifier = Modifier.weight(1f, fill = !centered),
                         horizontalAlignment = if (centered) {
                             Alignment.CenterHorizontally
                         } else {

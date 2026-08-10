@@ -14,12 +14,10 @@ public object AestheticDimens {
     /** Minimum size of any interactive target, per the Android accessibility guidance. */
     public val minTouchTarget: Dp = 48.dp
 
-    // Controls
     public val buttonHeight: Dp = 48.dp
     public val buttonMinWidth: Dp = 88.dp
     public val fieldHeight: Dp = 56.dp
 
-    // Icons
     public val iconSm: Dp = 16.dp
     public val iconMd: Dp = 24.dp
     public val iconLg: Dp = 32.dp
@@ -30,7 +28,6 @@ public object AestheticDimens {
     /** The compact status glyph used by notification banners. */
     public val statusGlyphCompact: Dp = 32.dp
 
-    // Structure
     public val borderWidth: Dp = 1.dp
 
     /** Thickness of the tone bar down the leading edge of a banner. */
@@ -46,10 +43,9 @@ public object AestheticDimens {
     public val progressIndicatorSize: Dp = 20.dp
     public val progressIndicatorStroke: Dp = 2.dp
 
-    // Adaptive width buckets. The dialog measures the space it was given and
-    // picks a bucket from it, rather than asking the device whether it is a
-    // "tablet": a phone in landscape, a foldable and a freeform window all
-    // resolve correctly this way.
+    // Width buckets are chosen from the space the dialog was given, never from a
+    // device class: a phone in landscape, a foldable and a freeform window all
+    // resolve correctly that way.
     public val breakpointMedium: Dp = 600.dp
     public val breakpointExpanded: Dp = 840.dp
 
@@ -63,4 +59,13 @@ public object AestheticDimens {
 
     /** Minimum height of a notification banner, so a one-line message still reads as a surface. */
     public val bannerMinHeight: Dp = 64.dp
+
+    /**
+     * Width a banner reserves for its trailing affordance.
+     *
+     * Mirrored on the leading edge when a banner centres its copy, so "centred"
+     * means centred in the card rather than in the space left over next to the
+     * close button.
+     */
+    public val bannerAffordanceSlot: Dp = minTouchTarget + AestheticSpacing.sm
 }
