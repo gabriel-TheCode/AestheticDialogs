@@ -2,10 +2,6 @@ package com.thecode.aestheticdialogs.foundation
 
 import android.provider.Settings
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Typography
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
@@ -25,21 +21,36 @@ internal val LocalAestheticMotion = staticCompositionLocalOf<AestheticMotion?> {
 /**
  * The AestheticDialogs theme.
  *
- * Wrap your application content once — usually next to your own `MaterialTheme`
+ * Wrap your application content once — inside your own theme, not instead of it
  * — and every dialog picks up the same colours, type, shapes and motion:
  *
  * ```
- * AestheticDialogsTheme {
- *     AppNavHost()
+ * MyAppTheme {                 // yours: untouched
+ *     AestheticDialogsTheme {  // ours: four CompositionLocals
+ *         AppNavHost()
+ *     }
  * }
  * ```
  *
- * Branding is done by copying a scheme rather than by implementing one:
+ * ### It does not restyle your application
+ *
+ * This composable provides four CompositionLocals and nothing else. It installs
+ * no `MaterialTheme`, so your colour scheme, type scale and shapes survive it,
+ * and any of your own components rendered inside a
+ * [com.thecode.aestheticdialogs.components.content.AestheticContentDialog] still
+ * look like yours. Wrapping the whole application is safe; wrapping only the
+ * screens that show dialogs is equally fine.
+ *
+ * ### Branding
+ *
+ * Branding is done by copying a scheme rather than by implementing one. To make
+ * dialogs follow a brand you already have, see [withBrand]:
  *
  * ```
  * AestheticDialogsTheme(
- *     colors = aestheticLightColors().copy(
- *         action = aestheticLightColors().action.copy(primary = BrandBlue),
+ *     colors = aestheticLightColors().withBrand(
+ *         primary = MaterialTheme.colorScheme.primary,
+ *         onPrimary = MaterialTheme.colorScheme.onPrimary,
  *     ),
  *     shapes = AestheticShapes(dialog = RoundedCornerShape(4.dp)),
  * ) { ... }
@@ -86,22 +97,19 @@ public fun AestheticDialogsTheme(
     motion: AestheticMotion = AestheticDialogsTheme.defaultMotion(),
     content: @Composable () -> Unit,
 ) {
+    // Four CompositionLocals and nothing else. In particular this does *not*
+    // install a `MaterialTheme`: the composable is meant to be wrapped around an
+    // application, and a library that replaced the host's colour scheme and type
+    // scale for that whole subtree would be restyling code it does not own. The
+    // few Material components the library draws with are passed their colours
+    // explicitly instead — see `TextFieldPrimitive` and `SelectionRowPrimitive`.
     CompositionLocalProvider(
         LocalAestheticColors provides colors,
         LocalAestheticTypography provides typography,
         LocalAestheticShapes provides shapes,
         LocalAestheticMotion provides motion,
-    ) {
-        // Material 3 powers a handful of internal primitives (text fields,
-        // checkboxes, progress indicators). Bridging the scheme here means those
-        // primitives inherit Aesthetic colours instead of the host app's, so a
-        // dialog looks the same in every application that embeds it.
-        MaterialTheme(
-            colorScheme = colors.toMaterialColorScheme(),
-            typography = typography.toMaterialTypography(),
-            content = content,
-        )
-    }
+        content = content,
+    )
 }
 
 /** Accessor for the current theme values. */
@@ -159,52 +167,3 @@ public object AestheticDialogsTheme {
         return remember(animationsEnabled) { AestheticMotion(enabled = animationsEnabled) }
     }
 }
-
-private fun AestheticColors.toMaterialColorScheme() = if (isDark) {
-    darkColorScheme(
-        primary = action.primary,
-        onPrimary = action.onPrimary,
-        surface = surface.container,
-        onSurface = content.primary,
-        surfaceVariant = surface.sunken,
-        onSurfaceVariant = content.secondary,
-        background = surface.container,
-        onBackground = content.primary,
-        outline = border.default,
-        outlineVariant = border.subtle,
-        error = status.error.accent,
-        onError = status.error.onAccent,
-        errorContainer = status.error.container,
-        onErrorContainer = status.error.onContainer,
-        scrim = surface.scrim,
-    )
-} else {
-    lightColorScheme(
-        primary = action.primary,
-        onPrimary = action.onPrimary,
-        surface = surface.container,
-        onSurface = content.primary,
-        surfaceVariant = surface.sunken,
-        onSurfaceVariant = content.secondary,
-        background = surface.container,
-        onBackground = content.primary,
-        outline = border.default,
-        outlineVariant = border.subtle,
-        error = status.error.accent,
-        onError = status.error.onAccent,
-        errorContainer = status.error.container,
-        onErrorContainer = status.error.onContainer,
-        scrim = surface.scrim,
-    )
-}
-
-private fun AestheticTypography.toMaterialTypography() = Typography(
-    titleLarge = title,
-    titleMedium = itemLabel,
-    bodyLarge = message,
-    bodyMedium = message,
-    bodySmall = supporting,
-    labelLarge = action,
-    labelMedium = caption,
-    labelSmall = caption,
-)

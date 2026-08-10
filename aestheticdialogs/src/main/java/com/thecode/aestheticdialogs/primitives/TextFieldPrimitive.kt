@@ -3,10 +3,14 @@ package com.thecode.aestheticdialogs.primitives
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.VisualTransformation
 import com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme
 
@@ -16,10 +20,13 @@ import com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme
  * Built on Material 3's `OutlinedTextField` rather than on `BasicTextField`:
  * the platform component already gets IME actions, text selection handles,
  * autofill hints, right-to-left layout and TalkBack editing behaviour right, and
- * a design system that reimplements those loses more than it gains. What
- * AestheticDialogs contributes is the shape and the surrounding layout, and the
- * colours come from the theme bridge, so the field looks like the rest of the
- * dialog without a colour mapping of its own.
+ * a design system that reimplements those loses more than it gains.
+ *
+ * Every colour is passed explicitly. The library used to install its own
+ * `MaterialTheme` over the caller's content and let the field inherit from it,
+ * which meant a host application's theme was silently replaced for its whole
+ * subtree. A library may style the components it draws; it may not restyle the
+ * application that embeds it.
  */
 @Composable
 internal fun TextFieldPrimitive(
@@ -61,7 +68,56 @@ internal fun TextFieldPrimitive(
         keyboardOptions = keyboardOptions,
         keyboardActions = keyboardActions,
         visualTransformation = visualTransformation,
+        colors = aestheticTextFieldColors(),
+    )
+}
+
+/** Maps the semantic colour roles onto every state Material exposes for a field. */
+@Composable
+private fun aestheticTextFieldColors(): TextFieldColors {
+    val colors = AestheticDialogsTheme.colors
+    val error = colors.status.error.accent
+    return OutlinedTextFieldDefaults.colors(
+        focusedTextColor = colors.content.primary,
+        unfocusedTextColor = colors.content.primary,
+        disabledTextColor = colors.content.disabled,
+        errorTextColor = colors.content.primary,
+        focusedContainerColor = Color.Transparent,
+        unfocusedContainerColor = Color.Transparent,
+        disabledContainerColor = Color.Transparent,
+        errorContainerColor = Color.Transparent,
+        cursorColor = colors.action.primary,
+        errorCursorColor = error,
+        selectionColors = TextSelectionColors(
+            handleColor = colors.action.primary,
+            backgroundColor = colors.action.primary.copy(alpha = SELECTION_ALPHA),
+        ),
+        focusedBorderColor = colors.border.focus,
+        unfocusedBorderColor = colors.border.default,
+        disabledBorderColor = colors.border.subtle,
+        errorBorderColor = error,
+        focusedLeadingIconColor = colors.content.secondary,
+        unfocusedLeadingIconColor = colors.content.muted,
+        disabledLeadingIconColor = colors.content.disabled,
+        errorLeadingIconColor = colors.content.secondary,
+        focusedTrailingIconColor = colors.content.secondary,
+        unfocusedTrailingIconColor = colors.content.muted,
+        disabledTrailingIconColor = colors.content.disabled,
+        errorTrailingIconColor = error,
+        focusedLabelColor = colors.action.primary,
+        unfocusedLabelColor = colors.content.secondary,
+        disabledLabelColor = colors.content.disabled,
+        errorLabelColor = error,
+        focusedPlaceholderColor = colors.content.muted,
+        unfocusedPlaceholderColor = colors.content.muted,
+        disabledPlaceholderColor = colors.content.disabled,
+        errorPlaceholderColor = colors.content.muted,
+        focusedSupportingTextColor = colors.content.secondary,
+        unfocusedSupportingTextColor = colors.content.secondary,
+        disabledSupportingTextColor = colors.content.disabled,
+        errorSupportingTextColor = error,
     )
 }
 
 private const val MULTILINE_MAX_LINES = 6
+private const val SELECTION_ALPHA = 0.3f

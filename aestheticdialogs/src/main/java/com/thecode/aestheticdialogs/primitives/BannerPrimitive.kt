@@ -75,6 +75,9 @@ internal fun BannerPrimitive(
             .semantics { liveRegion = liveRegionMode },
         shape = shape,
         color = containerColor,
+        // Stated rather than derived from a Material scheme: the library owns no
+        // `MaterialTheme` and must not read the host application's.
+        contentColor = messageColor,
         shadowElevation = AestheticElevation.banner,
     ) {
         Column(

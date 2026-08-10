@@ -129,6 +129,10 @@ internal fun DialogFramePrimitive(
                         },
                     shape = shape,
                     color = containerColor,
+                    // Stated rather than derived from a Material scheme: the
+                    // library owns no `MaterialTheme` and must not read the host
+                    // application's.
+                    contentColor = AestheticDialogsTheme.colors.content.primary,
                     tonalElevation = AestheticElevation.none,
                     shadowElevation = AestheticElevation.dialog,
                 ) {

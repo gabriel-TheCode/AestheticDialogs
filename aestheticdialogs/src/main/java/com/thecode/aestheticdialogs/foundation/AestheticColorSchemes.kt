@@ -1,5 +1,6 @@
 package com.thecode.aestheticdialogs.foundation
 
+import androidx.compose.ui.graphics.Color
 import com.thecode.aestheticdialogs.tokens.AestheticPalette
 
 /**
@@ -140,4 +141,51 @@ public fun aestheticDarkColors(): AestheticColors = AestheticColors(
         disabledContent = AestheticPalette.Grey500,
     ),
     isDark = true,
+)
+
+/**
+ * Re-brands a scheme from the handful of roles an application actually owns.
+ *
+ * Most applications arriving at AestheticDialogs already have a brand, and want
+ * the dialogs to look like the rest of the product without rewriting a colour
+ * scheme by hand. This is the one-liner for that. It takes plain [Color] values
+ * rather than a Material `ColorScheme`, so Material 3 stays an implementation
+ * detail of the library rather than leaking into its public API — a Material
+ * host simply passes its own scheme's values in:
+ *
+ * ```
+ * AestheticDialogsTheme(
+ *     colors = aestheticLightColors().withBrand(
+ *         primary = MaterialTheme.colorScheme.primary,
+ *         onPrimary = MaterialTheme.colorScheme.onPrimary,
+ *         surface = MaterialTheme.colorScheme.surface,
+ *         onSurface = MaterialTheme.colorScheme.onSurface,
+ *     ),
+ * ) {
+ *     AppNavHost()
+ * }
+ * ```
+ *
+ * The status tones are deliberately **not** re-brandable here: an error has to
+ * look like an error in every application, and a brand that repainted it would
+ * be removing the one thing a design system is for. Override
+ * [AestheticColors.status] explicitly if you really mean to.
+ *
+ * @param primary the fill of the primary action, and the accent of selection
+ *   controls, focus rings and text cursors.
+ * @param onPrimary content drawn on [primary].
+ * @param surface the dialog and banner container.
+ * @param onSurface titles and primary body copy.
+ * @return a copy of this scheme carrying the brand.
+ */
+public fun AestheticColors.withBrand(
+    primary: Color,
+    onPrimary: Color,
+    surface: Color = this.surface.container,
+    onSurface: Color = this.content.primary,
+): AestheticColors = copy(
+    surface = this.surface.copy(container = surface, raised = surface),
+    content = content.copy(primary = onSurface),
+    border = border.copy(focus = primary),
+    action = action.copy(primary = primary, onPrimary = onPrimary),
 )

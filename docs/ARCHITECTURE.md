@@ -291,7 +291,26 @@ nobody reviews and a diff everybody approves without looking.
 runtime, `ui`, `ui-graphics`, `ui-text` and `foundation`. **Material 3 is
 `implementation`** — it powers the internal primitives but never appears in an
 AestheticDialogs signature, so consumers are free to use a different Material
-version, or none at all.
+version, or none at all. `AestheticColors.withBrand` takes plain `Color`s for
+exactly that reason: taking a Material `ColorScheme` would have been one line
+shorter at the call site and would have dragged Material 3 into the public API.
+
+### The library does not install a `MaterialTheme`
+
+`AestheticDialogsTheme` provides four CompositionLocals and nothing else.
+
+An earlier revision bridged the Aesthetic palette into a `MaterialTheme` there,
+so the internal Material primitives would inherit the right colours. It worked,
+and it was wrong: the composable is documented as something you wrap around an
+application, so it was replacing the host's colour scheme and type scale for that
+entire subtree — including the host's own components, and including whatever a
+caller passed into `AestheticContentDialog`. A library may style what it draws;
+it may not restyle the application that embeds it.
+
+The three Material components that actually need colours — `OutlinedTextField`,
+`Checkbox`, `RadioButton` — are passed them explicitly, and both `Surface`s state
+their `contentColor` rather than deriving it from a scheme. The guarantee is
+covered by `ThemeIsolationTest`.
 
 The library ships **no icon dependency and no drawable resources**. Every mark is
 geometry on a unit square (`AestheticGlyph`), which is why a consumer does not

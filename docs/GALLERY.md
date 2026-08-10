@@ -63,12 +63,21 @@ permission-required pattern: same dialog, different tone and label.
 | ![Warning alert](images/alert-default.png) | ![Error alert](images/alert-error.png) |
 
 ```kotlin
-AlertDialogUiModel.Default(
-    title = "You are offline",
-    message = "We will sync your changes as soon as you reconnect.",
-    tone = DialogTone.Warning,
-    primaryAction = DialogAction("Retry"),
-    secondaryAction = DialogAction("Dismiss", DialogActionEmphasis.Text),
+AestheticAlertDialog(
+    uiModel = AlertDialogUiModel.Default(
+        title = "You are offline",
+        message = "We will sync your changes as soon as you reconnect.",
+        tone = DialogTone.Warning,
+        primaryAction = DialogAction("Retry"),
+        secondaryAction = DialogAction("Dismiss", DialogActionEmphasis.Text),
+    ),
+    onSignal = { signal ->
+        when (signal) {
+            AlertDialogSignal.PrimaryActionClicked -> viewModel.retry()
+            AlertDialogSignal.SecondaryActionClicked,
+            AlertDialogSignal.Dismissed -> viewModel.dismissDialog()
+        }
+    },
 )
 ```
 
@@ -85,13 +94,24 @@ remote search over ten thousand rows.
 | ![Single selection](images/selection-single.png) | ![Multiple selection](images/selection-multiple.png) |
 
 ```kotlin
-SelectionDialogUiModel.Multiple(
-    title = "Notify me about",
-    items = uiState.filteredTopics,     // you filter
-    selectedIds = uiState.selectedIds,  // you own the selection
-    searchQuery = uiState.query,        // you own the query
-    confirmLabel = "Save",
-    cancelLabel = "Cancel",
+AestheticSelectionDialog(
+    uiModel = SelectionDialogUiModel.Multiple(
+        title = "Notify me about",
+        items = uiState.filteredTopics,     // you filter
+        selectedIds = uiState.selectedIds,  // you own the selection
+        searchQuery = uiState.query,        // you own the query
+        confirmLabel = "Save",
+        cancelLabel = "Cancel",
+    ),
+    onSignal = { signal ->
+        when (signal) {
+            is SelectionDialogSignal.ItemClicked -> viewModel.toggleTopic(signal.id)
+            is SelectionDialogSignal.SearchQueryChanged -> viewModel.search(signal.query)
+            SelectionDialogSignal.Confirmed -> viewModel.saveTopics()
+            SelectionDialogSignal.Cancelled,
+            SelectionDialogSignal.Dismissed -> viewModel.dismissDialog()
+        }
+    },
 )
 ```
 
@@ -111,14 +131,24 @@ rotation.
 | ![Text input](images/input-text.png) | ![Input with an error](images/input-error.png) | ![Password input](images/input-password.png) |
 
 ```kotlin
-InputDialogUiModel.Text(
-    title = "Add a recipient",
-    value = uiState.email,
-    label = "Email",
-    errorText = uiState.emailError,     // validation is yours
-    confirmLabel = "Add",
-    cancelLabel = "Cancel",
-    isConfirmEnabled = uiState.emailError == null,
+AestheticInputDialog(
+    uiModel = InputDialogUiModel.Text(
+        title = "Add a recipient",
+        value = uiState.email,
+        label = "Email",
+        errorText = uiState.emailError,     // validation is yours
+        confirmLabel = "Add",
+        cancelLabel = "Cancel",
+        isConfirmEnabled = uiState.emailError == null,
+    ),
+    onValueChange = viewModel::onEmailChange,
+    onSignal = { signal ->
+        when (signal) {
+            InputDialogSignal.Confirmed -> viewModel.addRecipient()
+            InputDialogSignal.Cancelled,
+            InputDialogSignal.Dismissed -> viewModel.dismissDialog()
+        }
+    },
 )
 ```
 
@@ -159,11 +189,14 @@ info and neutral finally have one.
 | ![Flat feedback](images/feedback-flat.png) | ![Flash feedback](images/feedback-flash.png) | ![Flash feedback, error](images/feedback-flash-error.png) |
 
 ```kotlin
-FeedbackDialogUiModel.Flash(
-    title = "Message sent",
-    message = "It will arrive even if you close the app.",
-    tone = DialogTone.Success,
-    actionLabel = "Nice",
+AestheticFeedbackDialog(
+    uiModel = FeedbackDialogUiModel.Flash(
+        title = "Message sent",
+        message = "It will arrive even if you close the app.",
+        tone = DialogTone.Success,
+        actionLabel = "Nice",
+    ),
+    onSignal = { viewModel.dismissDialog() },
 )
 ```
 

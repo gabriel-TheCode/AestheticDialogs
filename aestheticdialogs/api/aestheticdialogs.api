@@ -752,6 +752,8 @@ public final class com/thecode/aestheticdialogs/components/selection/models/Sele
 public final class com/thecode/aestheticdialogs/foundation/AestheticColorSchemesKt {
 	public static final fun aestheticDarkColors ()Lcom/thecode/aestheticdialogs/foundation/AestheticColors;
 	public static final fun aestheticLightColors ()Lcom/thecode/aestheticdialogs/foundation/AestheticColors;
+	public static final fun withBrand--hDc7uY (Lcom/thecode/aestheticdialogs/foundation/AestheticColors;JJJJ)Lcom/thecode/aestheticdialogs/foundation/AestheticColors;
+	public static synthetic fun withBrand--hDc7uY$default (Lcom/thecode/aestheticdialogs/foundation/AestheticColors;JJJJILjava/lang/Object;)Lcom/thecode/aestheticdialogs/foundation/AestheticColors;
 }
 
 public final class com/thecode/aestheticdialogs/foundation/AestheticColors {

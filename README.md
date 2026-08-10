@@ -138,11 +138,20 @@ configured, so a delete confirmation cannot accidentally ship with a neutral
 button.
 
 ```kotlin
-ConfirmationDialogUiModel.Default(
-    title = "Leave without saving?",
-    message = "Your draft has unsaved changes.",
-    confirmLabel = "Leave",
-    cancelLabel = "Keep editing",
+AestheticConfirmationDialog(
+    uiModel = ConfirmationDialogUiModel.Default(
+        title = "Leave without saving?",
+        message = "Your draft has unsaved changes.",
+        confirmLabel = "Leave",
+        cancelLabel = "Keep editing",
+    ),
+    onSignal = { signal ->
+        when (signal) {
+            ConfirmationDialogSignal.Confirmed -> viewModel.discardDraft()
+            ConfirmationDialogSignal.Cancelled,
+            ConfirmationDialogSignal.Dismissed -> viewModel.dismissDialog()
+        }
+    },
 )
 ```
 
@@ -157,12 +166,21 @@ mid-flight.
 ### Alert — tell them something, offer a way forward
 
 ```kotlin
-AlertDialogUiModel.Default(
-    title = "You are offline",
-    message = "We will sync your changes as soon as you reconnect.",
-    tone = DialogTone.Warning,
-    primaryAction = DialogAction("Retry"),
-    secondaryAction = DialogAction("Dismiss", DialogActionEmphasis.Text),
+AestheticAlertDialog(
+    uiModel = AlertDialogUiModel.Default(
+        title = "You are offline",
+        message = "We will sync your changes as soon as you reconnect.",
+        tone = DialogTone.Warning,
+        primaryAction = DialogAction("Retry"),
+        secondaryAction = DialogAction("Dismiss", DialogActionEmphasis.Text),
+    ),
+    onSignal = { signal ->
+        when (signal) {
+            AlertDialogSignal.PrimaryActionClicked -> viewModel.retry()
+            AlertDialogSignal.SecondaryActionClicked,
+            AlertDialogSignal.Dismissed -> viewModel.dismissDialog()
+        }
+    },
 )
 ```
 
@@ -177,14 +195,25 @@ near-identical components would have been three ways to get one thing wrong.
 ### Selection — pick one, or several
 
 ```kotlin
-SelectionDialogUiModel.Multiple(
-    title = "Notify me about",
-    items = uiState.filteredTopics,     // you filter
-    selectedIds = uiState.selectedIds,  // you own the selection
-    searchQuery = uiState.query,        // you own the query
-    confirmLabel = "Save",
-    cancelLabel = "Cancel",
-    emptyText = "Nothing matches “${uiState.query}”.",
+AestheticSelectionDialog(
+    uiModel = SelectionDialogUiModel.Multiple(
+        title = "Notify me about",
+        items = uiState.filteredTopics,     // you filter
+        selectedIds = uiState.selectedIds,  // you own the selection
+        searchQuery = uiState.query,        // you own the query
+        confirmLabel = "Save",
+        cancelLabel = "Cancel",
+        emptyText = "Nothing matches “${uiState.query}”.",
+    ),
+    onSignal = { signal ->
+        when (signal) {
+            is SelectionDialogSignal.ItemClicked -> viewModel.toggleTopic(signal.id)
+            is SelectionDialogSignal.SearchQueryChanged -> viewModel.search(signal.query)
+            SelectionDialogSignal.Confirmed -> viewModel.saveTopics()
+            SelectionDialogSignal.Cancelled,
+            SelectionDialogSignal.Dismissed -> viewModel.dismissDialog()
+        }
+    },
 )
 ```
 
@@ -204,14 +233,24 @@ survives rotation. Validation is yours: pass `errorText` and set
 `isConfirmEnabled`.
 
 ```kotlin
-InputDialogUiModel.Text(
-    title = "Rename album",
-    value = uiState.name,
-    label = "Album name",
-    errorText = uiState.nameError,
-    confirmLabel = "Rename",
-    cancelLabel = "Cancel",
-    isConfirmEnabled = uiState.nameError == null,
+AestheticInputDialog(
+    uiModel = InputDialogUiModel.Text(
+        title = "Rename album",
+        value = uiState.name,
+        label = "Album name",
+        errorText = uiState.nameError,
+        confirmLabel = "Rename",
+        cancelLabel = "Cancel",
+        isConfirmEnabled = uiState.nameError == null,
+    ),
+    onValueChange = viewModel::onNameChange,
+    onSignal = { signal ->
+        when (signal) {
+            InputDialogSignal.Confirmed -> viewModel.renameAlbum()
+            InputDialogSignal.Cancelled,
+            InputDialogSignal.Dismissed -> viewModel.dismissDialog()
+        }
+    },
 )
 ```
 
@@ -249,11 +288,14 @@ is derived from the tone accent, so a rebranded theme keeps it consistent — an
 warning and info finally have one.
 
 ```kotlin
-FeedbackDialogUiModel.Flash(
-    title = "Message sent",
-    message = "It will arrive even if you close the app.",
-    tone = DialogTone.Success,
-    actionLabel = "Nice",
+AestheticFeedbackDialog(
+    uiModel = FeedbackDialogUiModel.Flash(
+        title = "Message sent",
+        message = "It will arrive even if you close the app.",
+        tone = DialogTone.Success,
+        actionLabel = "Nice",
+    ),
+    onSignal = { viewModel.dismissDialog() },
 )
 ```
 
@@ -303,6 +345,42 @@ the one place in the library with a full enter *and* exit animation:
 ---
 
 ## Theming
+
+Wrap once, **inside** your own theme:
+
+```kotlin
+MyAppTheme {                 // yours: untouched
+    AestheticDialogsTheme {  // ours: four CompositionLocals, nothing else
+        AppNavHost()
+    }
+}
+```
+
+`AestheticDialogsTheme` installs no `MaterialTheme`. It provides the library's
+own tokens and leaves your colour scheme, type scale and shapes exactly as they
+were — so wrapping your whole application is safe, and your own composables
+inside an `AestheticContentDialog` still look like yours. The handful of Material
+components the library draws with are passed their colours explicitly.
+
+Already have a brand? One line:
+
+```kotlin
+AestheticDialogsTheme(
+    colors = aestheticLightColors().withBrand(
+        primary = MaterialTheme.colorScheme.primary,
+        onPrimary = MaterialTheme.colorScheme.onPrimary,
+    ),
+) {
+    AppNavHost()
+}
+```
+
+`withBrand` takes plain `Color`s, not a Material `ColorScheme`, so Material 3
+stays off your classpath if you are not using it. It moves the action colour, the
+surface and the focus ring — and deliberately **not** the status tones: an error
+has to look like an error in every application.
+
+For finer control, copy the scheme:
 
 ```kotlin
 AestheticDialogsTheme(

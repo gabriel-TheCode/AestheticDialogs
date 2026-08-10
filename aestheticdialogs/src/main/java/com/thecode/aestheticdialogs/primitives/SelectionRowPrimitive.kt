@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -67,10 +69,35 @@ internal fun SelectionRowPrimitive(
             .padding(horizontal = AestheticSpacing.xxl, vertical = AestheticSpacing.md),
         verticalAlignment = Alignment.CenterVertically,
     ) {
+        // Colours are passed rather than inherited: the library does not install a
+        // `MaterialTheme` over the caller's content, so a control that read one
+        // would pick up the host application's palette instead of the dialog's.
         if (multiSelect) {
-            Checkbox(checked = selected, onCheckedChange = null, enabled = enabled)
+            Checkbox(
+                checked = selected,
+                onCheckedChange = null,
+                enabled = enabled,
+                colors = CheckboxDefaults.colors(
+                    checkedColor = colors.action.primary,
+                    uncheckedColor = colors.border.default,
+                    checkmarkColor = colors.action.onPrimary,
+                    disabledCheckedColor = colors.action.disabledContainer,
+                    disabledUncheckedColor = colors.border.subtle,
+                    disabledIndeterminateColor = colors.action.disabledContainer,
+                ),
+            )
         } else {
-            RadioButton(selected = selected, onClick = null, enabled = enabled)
+            RadioButton(
+                selected = selected,
+                onClick = null,
+                enabled = enabled,
+                colors = RadioButtonDefaults.colors(
+                    selectedColor = colors.action.primary,
+                    unselectedColor = colors.border.default,
+                    disabledSelectedColor = colors.action.disabledContainer,
+                    disabledUnselectedColor = colors.border.subtle,
+                ),
+            )
         }
 
         Spacer(Modifier.width(AestheticSpacing.lg))
