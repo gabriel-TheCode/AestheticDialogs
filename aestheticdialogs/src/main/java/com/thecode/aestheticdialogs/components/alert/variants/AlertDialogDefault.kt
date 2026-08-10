@@ -35,7 +35,8 @@ internal fun AlertDialogDefault(
 
     DialogFramePrimitive(
         onDismissRequest = { onSignal(AlertDialogSignal.Dismissed) },
-        dismissBehavior = uiModel.dismissBehavior,
+        dismissOnBackPress = uiModel.dismissBehavior.dismissOnBackPress,
+        dismissOnClickOutside = uiModel.dismissBehavior.dismissOnClickOutside,
         accessibilityPaneTitle = uiModel.title,
         modifier = modifier,
         header = {

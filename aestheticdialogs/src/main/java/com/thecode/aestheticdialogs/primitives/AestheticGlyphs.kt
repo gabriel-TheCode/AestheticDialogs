@@ -16,17 +16,12 @@ import com.thecode.aestheticdialogs.foundation.DialogTone
 /**
  * The marks AestheticDialogs draws itself.
  *
- * The library ships no icon dependency and no drawable resources. Every glyph is
- * geometry on a unit square, scaled at draw time, which means:
+ * Every glyph is geometry on a unit square, scaled at draw time, so the library
+ * ships no icon dependency and no drawable resources: consumers do not inherit a
+ * few thousand vectors for the four marks a dialog needs, and the marks scale to
+ * any size without a density bucket.
  *
- * - consumers do not inherit `material-icons-extended` (a few thousand vectors
- *   for the four marks a dialog actually needs);
- * - the marks scale to any size without a density bucket, unlike the PNG assets
- *   1.x shipped for its emoji and meme dialogs;
- * - the stroke weight is a token, so the iconography is part of the design
- *   system rather than borrowed from another one.
- *
- * Consumers who want a different icon pass an `ImageVector` through the
+ * Callers who want a different icon pass an `ImageVector` through the
  * component's UI model; those are rendered with the platform `Icon`.
  */
 internal enum class GlyphMark {

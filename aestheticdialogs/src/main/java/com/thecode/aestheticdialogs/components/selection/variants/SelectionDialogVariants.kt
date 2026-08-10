@@ -78,7 +78,8 @@ private fun SelectionDialogFrame(
 
     DialogFramePrimitive(
         onDismissRequest = { onSignal(SelectionDialogSignal.Dismissed) },
-        dismissBehavior = uiModel.dismissBehavior,
+        dismissOnBackPress = uiModel.dismissBehavior.dismissOnBackPress,
+        dismissOnClickOutside = uiModel.dismissBehavior.dismissOnClickOutside,
         accessibilityPaneTitle = uiModel.title,
         modifier = modifier,
         // The list scrolls itself; the frame must not wrap it in a second

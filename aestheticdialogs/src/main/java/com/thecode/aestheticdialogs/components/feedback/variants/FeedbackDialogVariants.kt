@@ -44,7 +44,8 @@ internal fun FeedbackDialogFlat(
 
     DialogFramePrimitive(
         onDismissRequest = { onSignal(FeedbackDialogSignal.Dismissed) },
-        dismissBehavior = uiModel.dismissBehavior,
+        dismissOnBackPress = uiModel.dismissBehavior.dismissOnBackPress,
+        dismissOnClickOutside = uiModel.dismissBehavior.dismissOnClickOutside,
         accessibilityPaneTitle = uiModel.title,
         modifier = modifier,
         actions = if (actionLabel != null) {
@@ -106,7 +107,8 @@ internal fun FeedbackDialogFlash(
 
     DialogFramePrimitive(
         onDismissRequest = { onSignal(FeedbackDialogSignal.Dismissed) },
-        dismissBehavior = uiModel.dismissBehavior,
+        dismissOnBackPress = uiModel.dismissBehavior.dismissOnBackPress,
+        dismissOnClickOutside = uiModel.dismissBehavior.dismissOnClickOutside,
         accessibilityPaneTitle = uiModel.title,
         modifier = modifier,
         containerColor = Color.Transparent,

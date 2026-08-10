@@ -106,12 +106,10 @@ public data class AestheticColors(
     /**
      * One status tone, in the four roles a dialog needs.
      *
-     * [accent] is reserved for icons, bars and other non-text marks: it is
-     * guaranteed to reach 3:1 against [Surface.container], which is the
-     * graphical-object contrast requirement. Titles are drawn with
-     * [Content.primary] instead of the accent, because a coloured title cannot
-     * hit 4.5:1 for every tone — that is exactly what made 1.x's yellow warning
-     * title unreadable on white.
+     * [accent] is reserved for icons, bars and other non-text marks: it clears
+     * 3:1 against [Surface.container], the graphical-object contrast
+     * requirement. Titles use [Content.primary] instead, because no coloured
+     * title reaches 4.5:1 for every tone.
      */
     @Immutable
     public data class Tone(
@@ -146,9 +144,8 @@ public data class AestheticColors(
 /**
  * The semantic meaning carried by a dialog.
  *
- * This is the only "type" concept in the public API. AestheticDialogs 1.x
- * exposed `DialogType` with the same four values; `Neutral` is new, for dialogs
- * that carry no status at all (a confirmation, a picker, a form).
+ * The only "type" concept in the public API. [Neutral] is for dialogs that
+ * carry no status at all — a confirmation, a picker, a form.
  */
 public enum class DialogTone {
     Success,

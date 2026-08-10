@@ -83,7 +83,8 @@ private fun ConfirmationDialogFrame(
 
     DialogFramePrimitive(
         onDismissRequest = { onSignal(ConfirmationDialogSignal.Dismissed) },
-        dismissBehavior = uiModel.dismissBehavior,
+        dismissOnBackPress = uiModel.dismissBehavior.dismissOnBackPress,
+        dismissOnClickOutside = uiModel.dismissBehavior.dismissOnClickOutside,
         accessibilityPaneTitle = uiModel.title,
         modifier = modifier,
         header = {

@@ -10,11 +10,8 @@ import com.thecode.aestheticdialogs.foundation.DialogTone
 /**
  * The gradient used by the colour-filled variants (Flash, Connectify).
  *
- * 1.x hard-coded one gradient per style and per status — eight drawables that
- * had no relationship to the palette, so rebranding meant editing XML. Here the
- * gradient is *derived* from the tone accent, which means a theme that changes
- * `status.error.accent` gets a matching error gradient for free, and a tone that
- * did not have a gradient in 1.x (warning, info, neutral) now has one.
+ * Derived from the tone accent rather than hand-drawn, so a rebranded theme
+ * gets a matching gradient for every tone without touching this file.
  */
 @Composable
 internal fun toneGradient(tone: DialogTone): Brush = Brush.verticalGradient(toneRamp(tone))

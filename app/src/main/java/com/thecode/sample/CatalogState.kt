@@ -58,11 +58,11 @@ enum class CatalogDemo(val label: String, val description: String) {
     ),
     FeedbackFlat(
         label = "Feedback · flat",
-        description = "The 1.x FLAT dialog, rebuilt.",
+        description = "Quiet card, tone mark, one action.",
     ),
     FeedbackFlash(
         label = "Feedback · flash",
-        description = "The 1.x FLASH dialog, gradient derived from the tone.",
+        description = "Gradient panel, inverted copy.",
     ),
 }
 

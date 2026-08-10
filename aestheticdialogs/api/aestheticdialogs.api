@@ -974,6 +974,7 @@ public final class com/thecode/aestheticdialogs/tokens/AestheticDimens {
 	public static final field INSTANCE Lcom/thecode/aestheticdialogs/tokens/AestheticDimens;
 	public final fun getAccentBarHeight-D9Ej5fM ()F
 	public final fun getAccentBarWidth-D9Ej5fM ()F
+	public final fun getBannerAffordanceSlot-D9Ej5fM ()F
 	public final fun getBannerMinHeight-D9Ej5fM ()F
 	public final fun getBorderWidth-D9Ej5fM ()F
 	public final fun getBreakpointExpanded-D9Ej5fM ()F

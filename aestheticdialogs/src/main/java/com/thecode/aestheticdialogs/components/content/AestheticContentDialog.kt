@@ -44,7 +44,8 @@ import com.thecode.aestheticdialogs.tokens.AestheticSpacing
  * @param onSignal receives what the user did.
  * @param modifier applied to the dialog surface.
  * @param content your content, laid out in a column between the header and the
- *   action row. Pad it yourself: the frame does not guess at your rhythm.
+ *   action row, inset to the same measure as the title. Add vertical spacing
+ *   yourself; the horizontal rhythm is the dialog's.
  */
 @Composable
 public fun AestheticContentDialog(

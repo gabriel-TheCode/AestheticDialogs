@@ -1,8 +1,10 @@
 package com.thecode.aestheticdialogs.components.content.variants
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.thecode.aestheticdialogs.components.content.models.ContentDialogSignal
@@ -26,7 +28,8 @@ internal fun ContentDialogDefault(
 
     DialogFramePrimitive(
         onDismissRequest = { onSignal(ContentDialogSignal.Dismissed) },
-        dismissBehavior = uiModel.dismissBehavior,
+        dismissOnBackPress = uiModel.dismissBehavior.dismissOnBackPress,
+        dismissOnClickOutside = uiModel.dismissBehavior.dismissOnClickOutside,
         accessibilityPaneTitle = uiModel.title,
         modifier = modifier,
         scrollableContent = uiModel.scrollContent,
@@ -60,7 +63,12 @@ internal fun ContentDialogDefault(
         },
     ) {
         Spacer(Modifier.height(AestheticSpacing.lg))
-        content()
+        // Caller content is inset to the same measure as the header, so the
+        // dialog reads as one column rather than as a frame around a stranger.
+        Column(
+            modifier = Modifier.padding(horizontal = AestheticSpacing.xxl),
+            content = content,
+        )
         // Without an action row the content would otherwise sit on the rounded
         // bottom edge of the surface.
         Spacer(Modifier.height(if (hasActions) AestheticSpacing.sm else AestheticSpacing.xxl))

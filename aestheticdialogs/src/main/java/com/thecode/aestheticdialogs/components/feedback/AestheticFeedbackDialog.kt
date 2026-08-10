@@ -11,8 +11,7 @@ import com.thecode.aestheticdialogs.preview.AestheticPreviewSurface
 import com.thecode.aestheticdialogs.preview.ThemePreviews
 
 /**
- * The modal "here is what happened" dialog: the direct successor to the
- * AestheticDialogs 1.x styles.
+ * The modal "here is what happened" dialog.
  *
  * ```
  * AestheticFeedbackDialog(

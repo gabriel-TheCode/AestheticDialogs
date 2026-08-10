@@ -32,7 +32,6 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.DialogWindowProvider
 import com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme
-import com.thecode.aestheticdialogs.model.DialogDismissBehavior
 import com.thecode.aestheticdialogs.tokens.AestheticDimens
 import com.thecode.aestheticdialogs.tokens.AestheticElevation
 
@@ -49,15 +48,14 @@ import com.thecode.aestheticdialogs.tokens.AestheticElevation
  * - the accessibility pane, so screen readers announce the dialog and trap
  *   traversal inside it.
  *
- * Variants supply the three slots and nothing else. That is what stops eight
- * dialogs from growing eight subtly different dismiss behaviours, which is
- * exactly what happened in 1.x: every style re-set its own window gravity,
- * background and size.
+ * Variants supply the three slots and nothing else, which is what stops seven
+ * dialogs from growing seven subtly different dismiss behaviours.
  */
 @Composable
 internal fun DialogFramePrimitive(
     onDismissRequest: () -> Unit,
-    dismissBehavior: DialogDismissBehavior,
+    dismissOnBackPress: Boolean,
+    dismissOnClickOutside: Boolean,
     accessibilityPaneTitle: String,
     modifier: Modifier = Modifier,
     containerColor: Color = AestheticDialogsTheme.colors.surface.container,
@@ -84,8 +82,8 @@ internal fun DialogFramePrimitive(
     Dialog(
         onDismissRequest = onDismissRequest,
         properties = DialogProperties(
-            dismissOnBackPress = dismissBehavior.dismissOnBackPress,
-            dismissOnClickOutside = dismissBehavior.dismissOnClickOutside,
+            dismissOnBackPress = dismissOnBackPress,
+            dismissOnClickOutside = dismissOnClickOutside,
             // The library sizes its own surface; the platform default would clamp
             // every dialog to the Material minimum.
             usePlatformDefaultWidth = false,

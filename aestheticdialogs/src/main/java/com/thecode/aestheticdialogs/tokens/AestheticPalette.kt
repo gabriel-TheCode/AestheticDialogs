@@ -11,11 +11,8 @@ import androidx.compose.ui.graphics.Color
  * [com.thecode.aestheticdialogs.foundation.AestheticColors], which is what makes
  * theming a pure remapping exercise.
  *
- * The hues are inherited from AestheticDialogs 1.x so the library keeps its
- * visual identity. The 1.x palette shipped a bright value *and* a `_darker`
- * value for every status but only ever used the bright one, which failed
- * contrast checks on white. 2.0 uses the darker values on light surfaces and
- * the bright values on dark surfaces, which is what those pairs were for.
+ * Every status hue comes as a bright and a deep value: the deep one is used on
+ * light surfaces and the bright one on dark surfaces, so both clear contrast.
  */
 internal object AestheticPalette {
 
@@ -42,7 +39,7 @@ internal object AestheticPalette {
     val RedTintDark: Color = Color(0xFF3A1613)
 
     val AmberBright: Color = Color(0xFFFFC122)
-    val AmberDeep: Color = Color(0xFF8A5300)
+    val AmberDeep: Color = Color(0xFFB45309)
     val AmberTintLight: Color = Color(0xFFFFF4DB)
     val AmberTintDark: Color = Color(0xFF33240A)
 

@@ -18,11 +18,9 @@ public object AestheticRadius {
 /**
  * Shapes used by the dialog surfaces and controls.
  *
- * This is a value class rather than an object because shape is part of a brand:
- * passing a copy to [com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme]
- * re-skins every dialog at once. The default silhouette is generous — 24dp on
- * dialog surfaces, fully rounded buttons — which is the rounded look
- * AestheticDialogs has had since 1.x.
+ * A value class rather than an object because shape is part of a brand: passing
+ * a copy to [com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme]
+ * re-skins every dialog at once.
  */
 @Immutable
 public data class AestheticShapes(

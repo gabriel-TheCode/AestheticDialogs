@@ -57,10 +57,8 @@ public enum class DialogActionEmphasis {
 /**
  * What counts as a request to dismiss.
  *
- * Replaces 1.x's single `setCancelable` flag, which conflated the back gesture
- * with tapping outside. Blocking a dialog is a deliberate choice, and a blocked
- * dialog must always offer a visible way out — see the accessibility notes in
- * `docs/ARCHITECTURE.md`.
+ * The back gesture and a tap outside are separate decisions. Blocking both is a
+ * deliberate choice, and a blocked dialog must still offer a visible way out.
  */
 @Immutable
 public data class DialogDismissBehavior(

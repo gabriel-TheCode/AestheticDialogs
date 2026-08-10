@@ -13,9 +13,8 @@ import androidx.compose.ui.unit.sp
  * action label, a list row and a caption. Shipping a full Material scale would
  * mean carrying styles the library never renders.
  *
- * Line heights are expressed in `sp` so they scale with the user's font size
- * setting. Nothing in the library pins a text size in `dp`, which is how 1.x's
- * `18dp` title ended up ignoring accessibility text scaling.
+ * Sizes and line heights are in `sp`, so type scales with the user's font size
+ * setting. Nothing in the library pins text in `dp`.
  */
 @Immutable
 public data class AestheticTypography(

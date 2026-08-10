@@ -70,9 +70,8 @@ private const val GLYPH_SIZE_RATIO = 0.55f
 /**
  * A borderless close affordance sized to the minimum touch target.
  *
- * 1.x drew a 30dp close icon with no padding, below the 48dp target the
- * accessibility guidance asks for. Here the glyph stays small and the touch area
- * grows around it.
+ * The glyph stays small and the touch area grows around it, so the control
+ * meets the 48dp target without looking like it.
  */
 @Composable
 internal fun CloseButtonPrimitive(
@@ -103,10 +102,9 @@ internal fun CloseButtonPrimitive(
  * The header of a modal dialog: an optional mark, a title, and an optional close
  * affordance.
  *
- * The title is marked as a heading so screen reader users can jump to it, and it
- * is drawn in the primary content colour rather than the status accent.
- * Colouring a title with the status hue is what made 1.x's warning dialogs
- * unreadable: no usable yellow reaches 4.5:1 on white.
+ * The title is marked as a heading so screen reader users can jump to it, and
+ * is drawn in the primary content colour rather than the status accent — no
+ * usable yellow reaches 4.5:1 on white.
  */
 @Composable
 internal fun DialogHeaderPrimitive(

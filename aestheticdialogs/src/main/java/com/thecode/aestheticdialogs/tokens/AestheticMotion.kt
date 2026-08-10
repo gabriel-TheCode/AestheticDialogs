@@ -10,12 +10,6 @@ import androidx.compose.runtime.Immutable
 /**
  * Motion tokens.
  *
- * AestheticDialogs 1.x shipped sixteen window animations (spin, windmill,
- * diagonal, split, …). 2.0 keeps five, chosen because each one communicates
- * something: where the surface came from, or that it simply appeared. Rotation
- * and split animations were decoration, they could not be reduced for users who
- * ask for less motion, and they made the library's identity feel dated.
- *
  * [enabled] is the reduced-motion switch. It is resolved from the platform
  * animation scale by default (see
  * [com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme]) and can be

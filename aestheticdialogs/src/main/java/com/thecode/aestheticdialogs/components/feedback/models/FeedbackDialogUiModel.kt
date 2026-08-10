@@ -6,16 +6,13 @@ import com.thecode.aestheticdialogs.model.DialogDismissBehavior
 
 /**
  * The visual state of a feedback dialog — the modal "here is what happened"
- * surface AestheticDialogs has shipped since 1.0.
+ * surface.
  *
- * The two variants are the two treatments that earned their place: a card that
- * sits quietly on the surface, and a colour-filled panel that does not. Both
- * carry a tone, a title, a message and one way out.
+ * Two treatments: a card that sits quietly on the surface, and a colour-filled
+ * panel that does not. Both carry a tone, a title, a message and one way out.
  *
- * The 1.x styles that are not here went for reasons documented in
- * `docs/MIGRATION.md`: `DRAKE` shipped meme bitmaps the library had no licence
- * to redistribute, and the remaining styles were banners rather than dialogs and
- * now live on [com.thecode.aestheticdialogs.components.notification.models.NotificationUiModel].
+ * The edge-anchored styles are banners rather than dialogs and live on
+ * [com.thecode.aestheticdialogs.components.notification.models.NotificationUiModel].
  */
 public sealed interface FeedbackDialogUiModel {
 
@@ -29,7 +26,7 @@ public sealed interface FeedbackDialogUiModel {
 
     /**
      * A card on the dialog surface, with the tone carried by the mark and the
-     * action button. The successor to 1.x's `FLAT`.
+     * action button.
      */
     @Immutable
     public data class Flat(
@@ -41,11 +38,9 @@ public sealed interface FeedbackDialogUiModel {
     ) : FeedbackDialogUiModel
 
     /**
-     * A gradient-filled panel: the loud one, for moments that deserve it. The
-     * successor to 1.x's `FLASH`.
+     * A gradient-filled panel: the loud one, for moments that deserve it.
      *
-     * Where 1.x had two hand-drawn gradients (success and error only), the
-     * gradient is now derived from the tone, so all five tones are available and
+     * The gradient is derived from the tone, so all five tones are available and
      * a rebranded theme keeps them consistent.
      */
     @Immutable

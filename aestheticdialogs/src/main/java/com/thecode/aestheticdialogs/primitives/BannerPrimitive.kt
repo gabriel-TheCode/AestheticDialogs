@@ -41,14 +41,11 @@ import com.thecode.aestheticdialogs.tokens.AestheticSpacing
 /**
  * The banner every notification variant is built from.
  *
- * A banner is not a dialog: it does not open a window, does not take focus and
- * does not block input. AestheticDialogs 1.x rendered these as `AlertDialog`s
- * pinned to the top of the screen, which meant an informational toast stole
- * focus, swallowed the back button and dimmed the app behind it. Here they are
- * ordinary composables the host places in the layout.
+ * A banner is not a dialog: it opens no window, takes no focus and blocks no
+ * input. It is an ordinary composable the host places in its own layout.
  *
- * The whole banner is one live region so a screen reader announces the message
- * when it appears, without the user having to find it.
+ * The whole banner is one live region, so a screen reader announces the message
+ * when it appears instead of waiting for the user to find it.
  */
 @Composable
 internal fun BannerPrimitive(

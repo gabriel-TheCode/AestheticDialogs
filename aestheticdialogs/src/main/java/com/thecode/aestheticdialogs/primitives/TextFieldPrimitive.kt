@@ -18,15 +18,11 @@ import com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme
  * The text field used by the search and input dialogs.
  *
  * Built on Material 3's `OutlinedTextField` rather than on `BasicTextField`:
- * the platform component already gets IME actions, text selection handles,
- * autofill hints, right-to-left layout and TalkBack editing behaviour right, and
- * a design system that reimplements those loses more than it gains.
+ * the platform component already gets IME actions, selection handles, autofill
+ * hints, right-to-left layout and TalkBack editing right.
  *
- * Every colour is passed explicitly. The library used to install its own
- * `MaterialTheme` over the caller's content and let the field inherit from it,
- * which meant a host application's theme was silently replaced for its whole
- * subtree. A library may style the components it draws; it may not restyle the
- * application that embeds it.
+ * Every colour is passed explicitly, because the library installs no
+ * `MaterialTheme` for the field to inherit from.
  */
 @Composable
 internal fun TextFieldPrimitive(

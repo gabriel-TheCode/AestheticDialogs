@@ -9,13 +9,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -50,12 +43,14 @@ internal fun InputDialogText(
     uiModel: InputDialogUiModel.Text,
     onValueChange: (String) -> Unit,
     onSignal: (InputDialogSignal) -> Unit,
+    focusRequester: FocusRequester,
     modifier: Modifier = Modifier,
 ) {
     InputDialogFrame(
         uiModel = uiModel,
         onValueChange = onValueChange,
         onSignal = onSignal,
+        focusRequester = focusRequester,
         modifier = modifier,
         keyboardType = uiModel.keyboardType,
         singleLine = uiModel.singleLine,
@@ -70,9 +65,11 @@ internal fun InputDialogPassword(
     uiModel: InputDialogUiModel.Password,
     onValueChange: (String) -> Unit,
     onSignal: (InputDialogSignal) -> Unit,
+    focusRequester: FocusRequester,
+    revealed: Boolean,
+    onRevealToggle: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    var revealed by rememberSaveable { mutableStateOf(false) }
     val showLabel = stringResource(R.string.aesthetic_dialogs_show_password)
     val hideLabel = stringResource(R.string.aesthetic_dialogs_hide_password)
     val colors = AestheticDialogsTheme.colors
@@ -81,6 +78,7 @@ internal fun InputDialogPassword(
         uiModel = uiModel,
         onValueChange = onValueChange,
         onSignal = onSignal,
+        focusRequester = focusRequester,
         modifier = modifier,
         keyboardType = KeyboardType.Password,
         singleLine = true,
@@ -94,7 +92,7 @@ internal fun InputDialogPassword(
             Box(
                 modifier = Modifier
                     .size(AestheticDimens.minTouchTarget)
-                    .clickable(role = Role.Button, onClick = { revealed = !revealed })
+                    .clickable(role = Role.Button, onClick = onRevealToggle)
                     .semantics { contentDescription = toggleLabel },
                 contentAlignment = Alignment.Center,
             ) {
@@ -117,23 +115,15 @@ private fun InputDialogFrame(
     singleLine: Boolean,
     visualTransformation: VisualTransformation,
     trailingContent: @Composable (() -> Unit)?,
+    focusRequester: FocusRequester,
     modifier: Modifier = Modifier,
 ) {
-    val focusRequester = remember { FocusRequester() }
     val canConfirm = uiModel.isConfirmEnabled && !uiModel.isConfirming
-
-    // The field takes focus on open, which is also where accessibility focus
-    // belongs. The frame wait is load-bearing: a FocusRequester throws if asked
-    // for focus before its node is placed, and the enter transition makes that
-    // race real.
-    LaunchedEffect(focusRequester) {
-        withFrameNanos { }
-        runCatching { focusRequester.requestFocus() }
-    }
 
     DialogFramePrimitive(
         onDismissRequest = { onSignal(InputDialogSignal.Dismissed) },
-        dismissBehavior = uiModel.dismissBehavior,
+        dismissOnBackPress = uiModel.dismissBehavior.dismissOnBackPress,
+        dismissOnClickOutside = uiModel.dismissBehavior.dismissOnClickOutside,
         accessibilityPaneTitle = uiModel.title,
         modifier = modifier,
         header = { DialogHeaderPrimitive(title = uiModel.title) },
