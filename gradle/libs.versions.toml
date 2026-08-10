@@ -1,24 +1,24 @@
 [versions]
 # Build
-agp = "8.13.0"
-kotlin = "2.3.21"
-compileSdk = "36"
+agp = "9.2.1"
+kotlin = "2.4.10"
+compileSdk = "37"
 minSdk = "24"
-targetSdk = "36"
+targetSdk = "37"
 
 # AndroidX / Compose
 composeBom = "2026.06.01"
-androidxActivityCompose = "1.9.3"
-androidxCoreKtx = "1.15.0"
-androidxLifecycle = "2.8.7"
+androidxActivityCompose = "1.13.0"
+androidxCoreKtx = "1.19.0"
+androidxLifecycle = "2.11.0"
 
 # Testing
 junit = "4.13.2"
 truth = "1.4.5"
 robolectric = "4.16.1"
 roborazzi = "1.71.0"
-androidxTestCore = "1.6.1"
-androidxTestExtJunit = "1.2.1"
+androidxTestCore = "1.7.0"
+androidxTestExtJunit = "1.3.0"
 
 # Quality / release tooling
 spotless = "8.9.0"
@@ -26,6 +26,7 @@ ktlint = "1.8.0"
 binaryCompatibilityValidator = "0.18.1"
 dokka = "2.2.0"
 mavenPublish = "0.37.0"
+screenshotValidationApi = "0.0.1-alpha16"
 
 [libraries]
 # Compose (versions come from the BOM)
@@ -55,6 +56,7 @@ roborazzi-compose = { group = "io.github.takahirom.roborazzi", name = "roborazzi
 roborazzi-junit-rule = { group = "io.github.takahirom.roborazzi", name = "roborazzi-junit-rule", version.ref = "roborazzi" }
 androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTestCore" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxTestExtJunit" }
+screenshot-validation-api = { group = "com.android.tools.screenshot", name = "screenshot-validation-api", version.ref = "screenshotValidationApi" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

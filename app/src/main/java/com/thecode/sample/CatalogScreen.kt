@@ -53,6 +53,7 @@ import com.thecode.aestheticdialogs.model.DialogAction
 import com.thecode.aestheticdialogs.model.DialogActionEmphasis
 import com.thecode.aestheticdialogs.tokens.AestheticSpacing
 import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
 
 private const val LOREM = "Albums are stored on your device and encrypted before they leave it. " +
     "You can revoke access at any time from Settings, and revoking access deletes every copy " +
@@ -93,7 +94,7 @@ fun CatalogScreen(
     // A fake request, so the loading state can be seen doing something.
     LaunchedEffect(isConfirming) {
         if (isConfirming) {
-            delay(1_500)
+            delay(1_500.milliseconds)
             isConfirming = false
             activeDemo = null
             banner = NotificationUiModel.Toaster(

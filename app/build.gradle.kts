@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.ApplicationExtension
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -6,7 +7,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
-android {
+extensions.configure<ApplicationExtension> {
     namespace = "com.thecode.sample"
     compileSdk = libs.versions.compileSdk.get().toInt()
 

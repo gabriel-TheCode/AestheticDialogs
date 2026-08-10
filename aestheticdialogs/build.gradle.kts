@@ -1,3 +1,4 @@
+import com.android.build.api.dsl.LibraryExtension
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -9,17 +10,19 @@ plugins {
     alias(libs.plugins.maven.publish)
 }
 
-android {
+extensions.configure<LibraryExtension> {
     namespace = "com.thecode.aestheticdialogs"
     compileSdk = libs.versions.compileSdk.get().toInt()
+
+    buildFeatures {
+        resValues = true
+        buildConfig = true
+        compose = true
+    }
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
         consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildFeatures {
-        compose = true
     }
 
     compileOptions {
@@ -36,6 +39,7 @@ android {
     }
 }
 
+
 kotlin {
     // Primitives and variants are internal. explicitApi() turns the layer
     // boundary into a compiler rule instead of a review convention.
@@ -50,26 +54,18 @@ kotlin {
 }
 
 dependencies {
+    implementation(libs.screenshot.validation.api)
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     testImplementation(composeBom)
 
-    // `api` is reserved for types that appear in the public API surface.
-    // Composable functions, Modifier, Color, TextStyle, RoundedCornerShape and
-    // ImageVector all leak into public signatures, so their artifacts must be
-    // visible to consumers.
     api(libs.androidx.compose.runtime)
     api(libs.androidx.compose.ui)
     api(libs.androidx.compose.ui.graphics)
     api(libs.androidx.compose.ui.text)
     api(libs.androidx.compose.foundation)
 
-    // Material 3 is an implementation detail: it powers the internal primitives
-    // but never appears in an AestheticDialogs signature. Keeping it off the
-    // `api` configuration means consumers are free to use a different Material
-    // version, or none at all.
     implementation(libs.androidx.compose.material3)
-
     implementation(libs.androidx.compose.ui.tooling.preview)
     debugImplementation(libs.androidx.compose.ui.tooling)
 
@@ -85,9 +81,6 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
 
-// The Maven coordinates, POM metadata and signing credentials come from
-// gradle.properties (and ORG_GRADLE_PROJECT_* environment variables on CI),
-// so no publication details are hard-coded here.
 mavenPublishing {
     publishToMavenCentral()
     signAllPublications()

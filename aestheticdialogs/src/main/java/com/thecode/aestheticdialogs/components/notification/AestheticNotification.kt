@@ -42,6 +42,7 @@ import com.thecode.aestheticdialogs.preview.ThemePreviews
 import com.thecode.aestheticdialogs.tokens.AestheticNotificationAnimation
 import com.thecode.aestheticdialogs.tokens.AestheticSpacing
 import kotlinx.coroutines.delay
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * A notification banner, rendered where you put it.
@@ -121,7 +122,7 @@ public fun AestheticNotificationHost(
 
     if (notification != null && autoDismissMillis != null) {
         LaunchedEffect(notification, autoDismissMillis) {
-            delay(autoDismissMillis)
+            delay(autoDismissMillis.milliseconds)
             currentOnSignal(NotificationSignal.Dismissed)
         }
     }
