@@ -106,10 +106,10 @@ public data class AestheticColors(
     /**
      * One status tone, in the four roles a dialog needs.
      *
-     * [accent] is reserved for icons, bars and other non-text marks: it clears
-     * 3:1 against [Surface.container], the graphical-object contrast
-     * requirement. Titles use [Content.primary] instead, because no coloured
-     * title reaches 4.5:1 for every tone.
+     * [accent] is guaranteed to clear 3:1 against [Surface.container], the
+     * graphical-object contrast requirement; the shipped schemes are well above
+     * it. Dialog titles still use [Content.primary] rather than the accent, so a
+     * rebranded scheme cannot make a title unreadable by moving one hue.
      */
     @Immutable
     public data class Tone(

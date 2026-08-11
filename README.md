@@ -12,8 +12,8 @@ A **Jetpack Compose dialog design system**, built on the three-layer UI
 architecture (Component → Variant → Primitive → Tokens).
 
 Version 2.x is a rewrite. Where 1.x offered eight decorated `AlertDialog`s, 2.x
-offers seven dialog families that share one frame, one theme and one set of
-accessibility guarantees — plus the visual identity the library has always had.
+offers seven component families — six dialogs and a set of banners — that share
+one frame, one theme and one set of accessibility guarantees — plus the visual identity the library has always had.
 
 > Coming from 1.x? Start with the [migration guide](docs/MIGRATION.md).
 
@@ -51,7 +51,8 @@ things that are easy to get wrong:
 - **stateless** — the library never decides that your dialog should close;
 - **themed** — one wrapper, light and dark, brandable by copying a value;
 - **quiet under reduced motion** — transitions become cuts when the user asks;
-- **light** — no icon library, no drawable assets, Material 3 kept off your classpath.
+- **light** — no icon library, no drawable resources, and Material 3 never in a
+  public signature, so you never have to write Material to use the library.
 
 ---
 
@@ -98,15 +99,20 @@ you — the library keeps it as an implementation detail.
 
 ## Quick start
 
-Wrap your app once:
+Wrap your app once, **inside** your own theme:
 
 ```kotlin
 setContent {
-    AestheticDialogsTheme {
-        AppNavHost()
+    MyAppTheme {                 // yours: untouched
+        AestheticDialogsTheme {  // ours: four CompositionLocals, nothing else
+            AppNavHost()
+        }
     }
 }
 ```
+
+Optional, in fact — components resolve light or dark from the system setting when
+no theme is present. Wrapping is what lets you brand them.
 
 Then a dialog is a function of your state:
 
@@ -388,7 +394,7 @@ AestheticDialogsTheme(
 ```
 
 `withBrand` takes plain `Color`s, not a Material `ColorScheme`, so Material 3
-stays off your classpath if you are not using it. It moves the action colour, the
+stays out of your compile classpath and out of this library's API. It moves the action colour, the
 surface and the focus ring — and deliberately **not** the status tones: an error
 has to look like an error in every application.
 
@@ -454,7 +460,7 @@ Not a checklist item — it is most of why the rewrite happened.
 | Screen readers | `paneTitle` on every dialog, headings on titles, live regions on banners (assertive for errors) |
 | Selection | Row-level `selectable`/`toggleable` with roles, so a row is announced once and correctly |
 | Targets | Every interactive element at least 48dp |
-| Text | All type in `sp`; layouts verified at 200% font scale |
+| Text | All type in `sp`; the layouts most likely to break carry a 200% font-scale preview, and one is held by a screenshot baseline |
 | Motion | Transitions become cuts when the platform animation scale is zero |
 | Colour | Every tone carries a distinct drawn mark as well as a hue; accents clear 4.5:1 in both shipped schemes |
 | Focus | The input dialog moves focus to its field on open |

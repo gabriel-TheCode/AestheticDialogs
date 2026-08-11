@@ -47,7 +47,7 @@ import com.thecode.aestheticdialogs.tokens.AestheticSpacing
  *   action row. Pad it yourself: the frame does not guess at your rhythm.
  */
 @Composable
-public fun AestheticContentDialog(
+fun AestheticContentDialog(
     uiModel: ContentDialogUiModel,
     onSignal: (ContentDialogSignal) -> Unit,
     modifier: Modifier = Modifier,

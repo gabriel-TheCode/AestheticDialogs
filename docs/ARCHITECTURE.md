@@ -100,7 +100,9 @@ The boundary is a compiler rule, not a convention:
 ## 3. UI models
 
 Sealed hierarchies of `@Immutable` data classes, one subclass per variant, no
-lambdas, no `Dp`, no `Color`, no `FontWeight`.
+lambdas, no `Dp`, no `Color`, no `FontWeight`. One rendering type is admitted:
+`AlertDialogUiModel.Default.icon` takes an `ImageVector`, because an icon the
+caller owns cannot be expressed any other way.
 
 ```kotlin
 ConfirmationDialogUiModel.Destructive(
@@ -290,8 +292,10 @@ nobody reviews and a diff everybody approves without looking.
 `api` is reserved for types that appear in a public signature: the Compose
 runtime, `ui`, `ui-graphics`, `ui-text` and `foundation`. **Material 3 is
 `implementation`** — it powers the internal primitives but never appears in an
-AestheticDialogs signature, so consumers are free to use a different Material
-version, or none at all. `AestheticColors.withBrand` takes plain `Color`s for
+AestheticDialogs signature, so nothing forces you to write Material code to use
+this library. It remains a transitive runtime dependency: it takes part in
+version resolution and it ships in your APK, like any other `implementation`
+dependency. `AestheticColors.withBrand` takes plain `Color`s for
 exactly that reason: taking a Material `ColorScheme` would have been one line
 shorter at the call site and would have dragged Material 3 into the public API.
 
