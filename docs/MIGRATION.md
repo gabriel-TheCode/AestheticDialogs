@@ -57,7 +57,7 @@ Three things moved:
 ```kotlin
 // build.gradle.kts
 dependencies {
-    implementation("com.thecode.aestheticdialogs:aestheticdialogs:2.0.0")
+    implementation("com.gabrielthecode:aestheticdialogs:2.0.0")
 }
 ```
 

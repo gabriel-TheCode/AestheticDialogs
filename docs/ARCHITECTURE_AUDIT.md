@@ -193,10 +193,12 @@ that assumes a phone; `Gravity.TOP` banners that assume no display cutout;
 | Screenshot tests | — | ✓ | ✓ | High | — |
 | API compatibility tracking | — | ✓ | ✓ | High | — |
 | Maven Central publishing | — | ✓ | ✓ | High | — |
-| CI | — | ✓ | ✓ | High | — |
+| CI | — | planned | ✓ | High | — |
 
 "Rebuilt" means the capability exists in 2.0 with a new implementation and a new
-API, not that the old code was ported.
+API, not that the old code was ported. "Planned" means the decision is made and
+the work is not: there is no `.github/workflows` yet, and the row stays in the
+matrix so the gap is visible rather than forgotten.
 
 ## 5. What did not change
 

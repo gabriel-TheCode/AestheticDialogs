@@ -47,7 +47,7 @@ import org.robolectric.annotation.GraphicsMode
  * along with everything else in `docs/images`.
  *
  * One banner per status tone, so the header doubles as the palette: success,
- * warning, info, error.
+ * info, warning, error.
  */
 @RunWith(AndroidJUnit4::class)
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
@@ -111,8 +111,6 @@ class DocsHeroImageTest {
                         color = colors.content.primary,
                     ),
                 )
-                Spacer(Modifier.width(AestheticSpacing.lg))
-                VersionChip()
             }
 
             Spacer(Modifier.height(AestheticSpacing.xl))
@@ -125,25 +123,6 @@ class DocsHeroImageTest {
             Text(
                 text = "Component → Variant → Primitive → Tokens",
                 style = TextStyle(fontSize = SUBTAGLINE_SIZE, color = colors.content.muted),
-            )
-        }
-    }
-
-    @Composable
-    private fun VersionChip() {
-        val tone = AestheticDialogsTheme.colors.status.forTone(DialogTone.Info)
-        Box(
-            modifier = Modifier
-                .background(color = tone.container, shape = AestheticDialogsTheme.shapes.button)
-                .padding(horizontal = AestheticSpacing.lg, vertical = AestheticSpacing.xs),
-        ) {
-            Text(
-                text = "2.0",
-                style = TextStyle(
-                    fontSize = CHIP_SIZE,
-                    fontWeight = FontWeight.SemiBold,
-                    color = tone.accent,
-                ),
             )
         }
     }
@@ -165,8 +144,8 @@ class DocsHeroImageTest {
             )
             AestheticNotification(
                 uiModel = NotificationUiModel.Rainbow(
-                    title = "Version 2.0 is out",
-                    message = "Seven dialog families, one design system.",
+                    title = "Seven dialog families",
+                    message = "One frame, one theme, one set of guarantees.",
                     tone = DialogTone.Info,
                 ),
                 onSignal = {},
@@ -201,7 +180,6 @@ class DocsHeroImageTest {
         val TITLE_SIZE = 54.sp
         val TAGLINE_SIZE = 20.sp
         val SUBTAGLINE_SIZE = 15.sp
-        val CHIP_SIZE = 18.sp
 
         const val BACKDROP_SPAN = 1400f
     }

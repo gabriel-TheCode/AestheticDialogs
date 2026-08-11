@@ -73,3 +73,26 @@ change that caused them**, so the review can see both together.
 Keep the suite narrow. One representative state per component per theme, plus the
 states that break layouts. A suite nobody reviews is a suite that catches
 nothing.
+
+### Releasing
+
+Maintainers only. Coordinates are `com.gabrielthecode:aestheticdialogs:<version>`,
+from `GROUP` / `POM_ARTIFACT_ID` / `VERSION_NAME` in `gradle.properties`.
+
+**Credentials never go in `gradle.properties` — that file is tracked.** They live
+in `~/.gradle/gradle.properties` (`chmod 600`), which sits outside every
+repository and so cannot be committed: `mavenCentralUsername` and
+`mavenCentralPassword` are a Central Portal *user token*, not an account
+password. CI passes the same names as `ORG_GRADLE_PROJECT_*` environment
+variables and signs with `signingInMemoryKey`.
+
+The `com.gabrielthecode` namespace is verified on the Central Portal through a
+DNS TXT record on `gabrielthecode.com`; publishing to an unverified namespace is
+rejected.
+
+```bash
+./gradlew apiCheck                 # the public API is unchanged, or the diff is intended
+./gradlew build                    # tests, lint, screenshot baselines
+./gradlew publishToMavenCentral    # staged, then released from the portal
+```
+

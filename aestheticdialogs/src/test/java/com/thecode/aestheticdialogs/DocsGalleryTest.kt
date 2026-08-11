@@ -507,8 +507,13 @@ class DocsGalleryTest {
     @Composable
     private fun ConsentPlaceholder() {
         val colors = AestheticDialogsTheme.colors
+        // The content dialog hands over an unpadded column on purpose, so the
+        // gallery pads like any other caller. Rendering it flush to the surface
+        // is what made the screenshot look misaligned against the header.
         Column(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = AestheticSpacing.xxl),
             verticalArrangement = Arrangement.spacedBy(AestheticSpacing.md),
         ) {
             CONSENT_LINES.forEach { line ->

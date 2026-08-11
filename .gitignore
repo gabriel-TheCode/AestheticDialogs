@@ -90,3 +90,11 @@ lint/tmp/
 # lint/reports/
 .hotswan/
 .DS_Store
+
+# Never let a key or a credential store into the repository
+*.gpg
+*.kbx
+secring.*
+*.jks
+*.keystore
+credentials.properties

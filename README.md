@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/banner.png" alt="AestheticDialogs 2.0 — a Jetpack Compose dialog design system" width="100%">
+  <img src="docs/images/banner.png" alt="AestheticDialogs — a Jetpack Compose dialog design system" width="100%">
 </p>
 
 # AestheticDialogs
@@ -11,13 +11,11 @@
 A **Jetpack Compose dialog design system**, built on the three-layer UI
 architecture (Component → Variant → Primitive → Tokens).
 
-Version 2.0 is a rewrite. Where 1.x offered eight decorated `AlertDialog`s, 2.0
+Version 2.x is a rewrite. Where 1.x offered eight decorated `AlertDialog`s, 2.x
 offers seven dialog families that share one frame, one theme and one set of
 accessibility guarantees — plus the visual identity the library has always had.
 
 > Coming from 1.x? Start with the [migration guide](docs/MIGRATION.md).
-> Want to see everything first? The [gallery](docs/GALLERY.md) shows every dialog
-> and every banner, in both themes.
 
 ---
 
@@ -26,7 +24,6 @@ accessibility guarantees — plus the visual identity the library has always had
 - [Why it exists](#why-it-exists)
 - [Install](#install)
 - [Quick start](#quick-start)
-- [Gallery](docs/GALLERY.md)
 - [The dialogs](#the-dialogs)
 - [Notifications](#notifications)
 - [Theming](#theming)
@@ -73,7 +70,24 @@ dependencyResolutionManagement {
 ```kotlin
 // build.gradle.kts
 dependencies {
-    implementation("com.thecode.aestheticdialogs:aestheticdialogs:2.0.0")
+    implementation("com.gabrielthecode:aestheticdialogs:2.0.0")
+}
+```
+
+Or through a version catalog:
+
+```toml
+# gradle/libs.versions.toml
+[versions]
+aestheticdialogs = "2.0.0"
+
+[libraries]
+aestheticdialogs = { module = "com.gabrielthecode:aestheticdialogs", version.ref = "aestheticdialogs" }
+```
+
+```kotlin
+dependencies {
+    implementation(libs.aestheticdialogs)
 }
 ```
 
@@ -126,9 +140,7 @@ decide what to do with.
 ## The dialogs
 
 Every image below is rendered from the real component by
-`scripts/generate-docs-images.sh`, so it cannot drift from the library. The full
-set — every variant, every state, both themes — is in the
-**[gallery](docs/GALLERY.md)**.
+`scripts/generate-docs-images.sh`, so it cannot drift from the library.
 
 ### Confirmation — ask before doing something
 
@@ -405,6 +417,10 @@ dark mode is a remapping rather than a second implementation.
 No dynamic colour, deliberately: a design system exists so a warning looks like a
 warning.
 
+| Alert | Selection | Banners |
+|---|---|---|
+| ![Alert, dark](docs/images/alert-error-dark.png) | ![Selection, dark](docs/images/selection-multiple-dark.png) | ![Banners, dark](docs/images/notifications-dark.png) |
+
 ---
 
 ## Architecture
@@ -472,7 +488,7 @@ scripts/generate-docs-images.sh     # redraw everything in docs/images
 The documentation images are rendered on the JVM from the real components — no
 emulator, no screen recorder, byte-identical on every machine. Adding a dialog
 means adding a case to `Docs*.kt` in the library's test source set; the README and
-the [gallery](docs/GALLERY.md) then update themselves.
+this README then updates itself.
 
 Adding a dialog or a variant: [docs/ARCHITECTURE.md §12](docs/ARCHITECTURE.md).
 General guidelines: [CONTRIBUTING.md](CONTRIBUTING.md).

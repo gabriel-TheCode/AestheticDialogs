@@ -85,7 +85,7 @@ scripts/generate-docs-images.sh      # redraw docs/images; --baselines also reco
 
 Documentation images are rendered from the real components by Robolectric
 (`Docs*.kt` in the library test source set). Add a dialog, add a case there —
-the README and the gallery then update themselves.
+the README then updates itself.
 
 ## Public API
 
