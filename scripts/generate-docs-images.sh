@@ -20,6 +20,7 @@ FILTERS=(
   --tests 'com.thecode.aestheticdialogs.DocsHeroImageTest'
   --tests 'com.thecode.aestheticdialogs.DocsGalleryTest'
   --tests 'com.thecode.aestheticdialogs.DocsMotionGifTest'
+  --tests 'com.thecode.aestheticdialogs.DocsSocialImageTest'
 )
 
 if [[ "${1:-}" == "--baselines" ]]; then
