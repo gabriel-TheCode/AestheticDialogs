@@ -4,9 +4,11 @@
 
 # AestheticDialogs
 
-[![platform](https://img.shields.io/badge/platform-Android-yellow.svg)](https://www.android.com)
-[![API](https://img.shields.io/badge/API-24%2B-brightgreen.svg?style=flat-square)](https://android-arsenal.com/api?level=24)
-[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Maven Central](https://img.shields.io/maven-central/v/com.gabrielthecode/aestheticdialogs?style=flat-square&logo=apachemaven&logoColor=white&label=Maven%20Central&color=1257A8)](https://central.sonatype.com/artifact/com.gabrielthecode/aestheticdialogs)
+[![API](https://img.shields.io/badge/API-24%2B-3DDC84?style=flat-square&logo=android&logoColor=white)](https://developer.android.com/tools/releases/platforms)
+[![Kotlin](https://img.shields.io/badge/Kotlin-2.4-7F52FF?style=flat-square&logo=kotlin&logoColor=white)](https://kotlinlang.org)
+[![Compose](https://img.shields.io/badge/Jetpack%20Compose-BOM%202026.06-4285F4?style=flat-square&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
+[![License](https://img.shields.io/badge/License-Apache%202.0-2F7D3C?style=flat-square)](LICENSE)
 
 A **Jetpack Compose dialog design system**, built on the three-layer UI
 architecture (Component → Variant → Primitive → Tokens).
@@ -467,6 +469,12 @@ The `:app` module is a component catalog that consumes the library through its
 published API only — which makes it the cheapest test of whether that API is
 sufficient. It covers every component, every tone, both themes, long content,
 loading, empty and error states.
+
+It is on Google Play, so you can hold the components before you depend on them:
+
+[![Get it on Google Play](https://img.shields.io/badge/Google%20Play-Download%20the%20catalog-3DDC84?style=flat-square&logo=googleplay&logoColor=white)](https://play.google.com/store/apps/details?id=com.thecode.sample)
+
+Or build it yourself:
 
 ```
 ./gradlew :app:installDebug
