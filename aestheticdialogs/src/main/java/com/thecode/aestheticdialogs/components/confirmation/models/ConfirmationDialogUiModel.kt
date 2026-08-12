@@ -64,17 +64,3 @@ public sealed interface ConfirmationDialogUiModel {
         override val dismissBehavior: DialogDismissBehavior = DialogDismissBehavior.Default,
     ) : ConfirmationDialogUiModel
 }
-
-/**
- * What the user did with a confirmation dialog.
- *
- * [Cancelled] and [Dismissed] are kept apart on purpose: pressing "Cancel" is a
- * decision, while tapping the scrim or pressing back is a retreat. Analytics and
- * "are you sure you want to leave" flows care about the difference; callers that
- * do not can handle both in one branch.
- */
-public sealed interface ConfirmationDialogSignal {
-    public data object Confirmed : ConfirmationDialogSignal
-    public data object Cancelled : ConfirmationDialogSignal
-    public data object Dismissed : ConfirmationDialogSignal
-}

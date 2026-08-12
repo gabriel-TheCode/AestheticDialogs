@@ -1,4 +1,4 @@
-# AestheticDialogs 2.0 — architecture
+# AestheticDialogs — architecture
 
 AestheticDialogs is a dialog design system built on the three-layer UI
 architecture: **Component → Variant → Primitive → Tokens**. This document
@@ -11,7 +11,7 @@ decisions were made deliberately against the obvious alternative.
               ┌─────────────────────────────────────────┐
   your app    │  state  →  UI model  →  Component       │   public
               └───────────────────────────┬─────────────┘
-                                          │  signals ↑
+                                          │  callbacks ↑
               ┌───────────────────────────▼─────────────┐
    library    │  Variant   (internal)                   │
               │  Primitive (internal)                   │
@@ -24,7 +24,10 @@ decisions were made deliberately against the obvious alternative.
 One per dialog family, named `Aesthetic` + what it is:
 `AestheticConfirmationDialog`, `AestheticAlertDialog`, `AestheticSelectionDialog`,
 `AestheticContentDialog`, `AestheticInputDialog`, `AestheticFeedbackDialog`,
+`AestheticProgressDialog`, `AestheticHeaderDialog`, `AestheticSheetDialog`,
 `AestheticNotification` / `AestheticNotificationHost`.
+
+Ten families, twenty variants — every one of them in a file of its own.
 
 A component does three things and nothing else:
 
@@ -44,37 +47,77 @@ condition, that condition belongs in a variant.
 ### Variant — the visual forms
 
 Internal. A variant receives one subclass of a UI model, resolves its semantics
-(a `DialogTone`, a `DialogActionEmphasis`) into raw values, and composes
-primitives. Examples: `ConfirmationDialogDestructive`, `FeedbackDialogFlash`,
+(a `DialogTone`, a `DialogActionEmphasis`) into raw values, and **initialises one
+primitive**. Examples: `ConfirmationDialogDestructive`, `NotificationFilled`,
 `SelectionDialogMultiple`.
 
-Colour resolution lives beside the variants — `DialogActionRow`, `ToneStyling` —
+**A variant initialises; it does not assemble.** It resolves two or three values
+and calls a single primitive with them. It does not compose four primitives, does
+not build slot lambdas, and does not carry a bag of resolved styles from one call
+to the next — the moment it does, the drawing has moved up a layer and the same
+decision starts being taken in several places. The shape to copy is
+`ButtonPrimary` in the reference article: resolve colours, call the primitive,
+stop.
+
+**One variant, one file**, named after it: `NotificationFilled.kt`,
+`FeedbackDialogGradient.kt`. Grouping siblings into a `…Variants.kt` file is how
+`private` helpers appear that nobody decided to abstract — the two that are
+genuinely shared, `SelectionSurface` and the presence/live-region lookups, have
+files and names of their own.
+
+Colour resolution lives beside the variants — `ActionColors`, `ToneStyling` —
 never in the models and never in the primitives. That is what makes "the confirm
-button is green in a success dialog" one rule instead of six.
+button is green in a success dialog" one rule instead of six. A lookup that no
+variant owns — the presence dot's hue, the progress ring's — is not a variant and
+does not sit in a `variants` package: those live in `utils/ColorExtensions.kt`.
+
+**A variant is a form, not a paint.** `Filled` and `Gradient` are variants rather
+than a `style` parameter, because the reference architecture selects a variant
+from the UI model subclass and its own flagship example does exactly this for
+`ButtonPrimary` / `ButtonSecondary`. What is *not* a variant is content: an emoji
+in the leading slot and a timestamp at the trailing edge are fields, which is why
+2.0's `Emoji` and `Emotion` collapsed into `Default` and `Gradient`.
 
 ### Primitive — the visual building blocks
 
 Internal, stateless, raw parameters only: `Color`, `Dp`, `Shape`, `String`,
 lambdas. A primitive never sees a UI model and never knows what it is rendering.
 
-The shared ones are the heart of the library:
+**A primitive draws, and may contain other primitives.** It is designed to be
+usable on its own, so it takes however many parameters that requires — parameter
+count is not a smell here, a hidden assembly in the layer above is. Each family
+has one primitive that draws its whole surface and nests the shared ones:
+
+| Family primitive | Draws |
+|---|---|
+| `ConfirmationPrimitive` | Mark, question, two answers |
+| `AlertPrimitive` | Mark or caller icon, title, message, one or two actions |
+| `ContentPrimitive` | Header, caller-owned content slot, action row |
+| `InputPrimitive` | Title, text field, two answers |
+| `SelectionPrimitive` | Title, search field, rows, the way out |
+| `FeedbackPrimitive` / `FeedbackCompactPrimitive` | Centred mark, copy, single action; and the same in one row |
+| `ProgressPrimitive` | The ring — spinning or filling — the copy, and at most a way to give up |
+| `HeaderPrimitive` | Full-bleed band, then title, message and actions |
+| `SheetPrimitive` | Docked on compact widths, centred once there is room; handle, copy, actions |
+| `BannerPrimitive` | The banner card: mark, emoji, avatar, presence dot, copy, action, timestamp, close, edge bar |
+
+They rest on the shared ones:
 
 | Primitive | Owns |
 |---|---|
 | `DialogFramePrimitive` | The window, the scrim, the adaptive width, the enter transition, the accessibility pane, and the "header and actions stay, content scrolls" layout |
-| `BannerPrimitive` | The non-modal banner surface and its live region |
-| `DialogButtonPrimitive` / `DialogActionsPrimitive` | Buttons and the action row |
+| `DialogButtonPrimitive` / `DialogActionsPrimitive` / `DialogActionsRowPrimitive` | Buttons and the action row |
 | `DialogHeaderPrimitive` / `DialogMessagePrimitive` | Title, mark, close affordance, body copy |
 | `StatusBadgePrimitive` / `AestheticGlyph` | The drawn marks |
 | `SelectionRowPrimitive` / `TextFieldPrimitive` | List rows and text entry |
+| `BannerEdgeBarPrimitive` / `PresenceDotPrimitive` | The bar bonded to a banner's edge, and the availability dot |
 
-**Where this deviates from the reference architecture:** the proof of concept
-puts primitives under each component's own folder. Dialogs are different — the
-whole point of a dialog library is that eight dialogs behave *identically* when
-you press back. So the shared primitives live in one `primitives` package, and a
-primitive only lives under a component when it is genuinely specific to it.
-Duplicating `DialogFramePrimitive` per component would reintroduce exactly the
-bug 1.x had: eight slightly different dismiss behaviours.
+**Where this deviates from the reference architecture:** the proof of concept puts
+*every* primitive under its component. Here the family primitives do live there —
+`components/confirmation/primitives/ConfirmationPrimitive.kt` — but the ones every
+dialog shares stay in one `primitives` package. Duplicating `DialogFramePrimitive`
+per component would reintroduce exactly the bug 1.x had: eight slightly different
+dismiss behaviours.
 
 ### Tokens and theme — public, no exceptions
 
@@ -120,9 +163,9 @@ cannot be dropped into a preview. Callbacks are parameters.
 
 **Where models were *not* used.** `AestheticContentDialog` takes a content slot as
 a parameter, because a composable slot is not data. `AestheticInputDialog` takes
-`onValueChange` separately from `onSignal`, because a text field's edit callback
-is idiomatic Compose and folding it into a signal would make the common case
-worse.
+`onValueChange` alongside its confirm and cancel callbacks, because a text
+field's edit callback is idiomatic Compose and folding it into anything else
+would make the common case worse.
 
 **Two shapes of action API, on purpose.** A confirmation encodes its two buttons
 as `confirmLabel` and `cancelLabel`, because their roles are fixed and a caller
@@ -139,26 +182,36 @@ recomposition of the dialog when its parent recomposes; the rows are keyed by id
 and skip individually. The library does not lie to the compiler to win a
 benchmark.
 
-## 4. Signals
+## 4. Callbacks
 
-Components with more than one meaningful interaction expose one typed callback:
+A component exposes one callback per interaction, named after it:
 
 ```kotlin
-public sealed interface ConfirmationDialogSignal {
-    public data object Confirmed : ConfirmationDialogSignal
-    public data object Cancelled : ConfirmationDialogSignal
-    public data object Dismissed : ConfirmationDialogSignal
-}
+@Composable
+public fun AestheticConfirmationDialog(
+    uiModel: ConfirmationDialogUiModel,
+    onConfirm: () -> Unit,
+    onCancel: () -> Unit,
+    onDismiss: () -> Unit,
+    modifier: Modifier = Modifier,
+)
 ```
 
-`Cancelled` (a decision) and `Dismissed` (a retreat) are separate because
+`onCancel` (a decision) and `onDismiss` (a retreat) are separate because
 analytics and "are you sure you want to leave" flows care about the difference.
-Callers that do not can handle both in one branch — the `when` makes that
-explicit rather than accidental.
+Neither carries a default: callers that treat them alike pass the same lambda
+twice, which is a choice on the page rather than one the library made for them.
 
-Signals are not applied everywhere by reflex. `onValueChange: (String) -> Unit`
-stays a plain lambda, because a text field has one obvious interaction and
-wrapping it would only add ceremony.
+**Why not a single typed signal.** 2.0 shipped one `onSignal: (Signal) -> Unit`
+per component and an exhaustive `when` at every call site. It reads well in
+isolation and it ages badly in a published library: adding an interaction means
+adding a case to a public sealed hierarchy, which stops every consumer's `when`
+from compiling. The same addition as a new parameter with a default costs them
+nothing. Exhaustiveness was the argument for signals, and a parameter without a
+default buys the same guarantee.
+
+The rule stays what it always was underneath: the library reports what happened,
+the caller decides what it means.
 
 ## 5. State ownership
 
@@ -168,9 +221,11 @@ wrapping it would only add ceremony.
 | Accessibility semantics | What it says |
 | The password reveal toggle (`rememberSaveable`) | The selected values, the text being typed |
 | Retaining a banner for the length of its exit transition | Whether a tap changes the selection |
+| The offset of a banner under a swiping finger | What a banner's action means |
+| The auto-dismiss delay, and banners queued behind the one showing | Which banner comes next |
 
 Every dialog is stateless. `AestheticConfirmationDialog` never dismisses itself;
-it emits `Dismissed` and you remove it. The only state the library holds is
+it calls `onDismiss` and you remove it. The only state the library holds is
 presentation state with no meaning outside the component, and each instance is
 named in the table above.
 
@@ -180,6 +235,13 @@ gone, which means owning its visibility — the thing this architecture is built
 avoid. Banners are different: `AestheticNotificationHost` retains the last banner
 purely to draw it while it slides away, which is presentation state and nothing
 more. That is why the loud motion lives on banners, where it is honest.
+
+`AestheticNotificationHost` owns one more thing: under
+`NotificationQueuePolicy.Enqueue` it holds banners your state no longer names,
+until the one on screen goes away. That is the furthest the library goes into
+caller territory, and it is deliberate — the alternative is what 2.0 did, which
+was to drop the second banner without telling anybody. The queue is capped, the
+callbacks still reach you, and `Replace` (the default) holds nothing.
 
 ## 6. Theming
 
@@ -279,7 +341,7 @@ Three layers, each answering a different question:
 | Kind | Question | Where |
 |---|---|---|
 | Unit | Is the rule right? | `AdaptiveWidthTest`, `TokenSemanticsTest` |
-| Interaction | Does the gesture produce the right signal, and is the semantics tree correct? | `ConfirmationDialogTest`, `SelectionDialogTest`, `InputDialogTest`, `NotificationHostTest` |
+| Interaction | Does the gesture reach the right callback, and is the semantics tree correct? | `ConfirmationDialogTest`, `SelectionDialogTest`, `InputDialogTest`, `NotificationHostTest` |
 | Screenshot | Did it stop looking right? | `DialogScreenshotTest` |
 
 The screenshot suite is deliberately narrow: one representative state per
@@ -326,15 +388,20 @@ the marks scale to any size without a density bucket.
 A new variant of an existing component:
 
 1. add a subclass to the sealed UI model,
-2. write the internal variant that resolves it and composes primitives,
+2. write the internal variant **in its own file**, named after it — it resolves
+   the model into values and initialises the family primitive,
 3. add the branch to the component's `when` — the compiler will insist,
-4. add previews and a catalog entry,
+4. add previews, a catalog entry and a gallery case,
 5. run `./gradlew apiDump` and commit the API change.
 
+If the variant needs the family primitive to draw something new, the parameter
+goes on the primitive. If it needs to *assemble* something the primitive cannot
+draw, that is the signal the primitive is missing a parameter — not that the
+variant should compose.
+
 A new component: copy the shape of `components/alert` (the smallest complete
-example), keep the visibility rules, and reuse `DialogFramePrimitive`. If you
-find yourself needing a second dialog frame, that is a signal the first one needs
-a slot, not a sibling.
+example) — a model, one variant per form, one primitive under
+`primitives/`, and a component whose body is a single `when`.
 
 ## 13. Trade-offs, taken knowingly
 

@@ -188,7 +188,7 @@ internal fun dialogWidthFor(availableWidth: Dp): Dp = when {
  * whatever the host application's theme happens to specify.
  */
 @Composable
-private fun DialogScrimEffect(alpha: Float) {
+internal fun DialogScrimEffect(alpha: Float) {
     val window = (LocalView.current.parent as? DialogWindowProvider)?.window
     if (window != null) {
         LaunchedEffect(window, alpha) {

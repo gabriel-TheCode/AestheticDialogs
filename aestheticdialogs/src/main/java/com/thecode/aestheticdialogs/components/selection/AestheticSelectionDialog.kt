@@ -2,7 +2,6 @@ package com.thecode.aestheticdialogs.components.selection
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.thecode.aestheticdialogs.components.selection.models.SelectionDialogSignal
 import com.thecode.aestheticdialogs.components.selection.models.SelectionDialogUiModel
 import com.thecode.aestheticdialogs.components.selection.models.SelectionItem
 import com.thecode.aestheticdialogs.components.selection.variants.SelectionDialogMultiple
@@ -26,15 +25,10 @@ import com.thecode.aestheticdialogs.preview.WindowSizePreviews
  *         selectedId = uiState.sortId,
  *         cancelLabel = "Cancel",
  *     ),
- *     onSignal = { signal ->
- *         when (signal) {
- *             is SelectionDialogSignal.ItemClicked -> viewModel.onSortPicked(signal.id)
- *             is SelectionDialogSignal.SearchQueryChanged -> Unit
- *             SelectionDialogSignal.Confirmed,
- *             SelectionDialogSignal.Cancelled,
- *             SelectionDialogSignal.Dismissed -> viewModel.closeSortDialog()
- *         }
- *     },
+ *     onItemClick = { id -> viewModel.toggleTopic(id) },
+ *     onCancel = { viewModel.dismissDialog() },
+ *     onSearchQueryChange = { viewModel.search(it) },
+ *     onConfirm = { viewModel.saveTopics() },
  * )
  * ```
  *
@@ -42,18 +36,45 @@ import com.thecode.aestheticdialogs.preview.WindowSizePreviews
  * with a thousand rows behaves the same as one with three.
  *
  * @param uiModel the visual state; the subclass selects single or multiple choice.
- * @param onSignal receives taps, search edits and the commit or cancel decision.
+ * @param onItemClick a row was tapped. The dialog never mutates the selection:
+ *   the list you pass back is the list it draws.
+ * @param onCancel the cancel button was pressed.
+ * @param onSearchQueryChange the search field was edited. Filtering is yours.
+ * @param onConfirm the confirm button was pressed, when the model carries one.
+ * @param onDismiss the scrim was tapped or back was pressed. Defaults to
+ *   [onCancel].
  * @param modifier applied to the dialog surface.
  */
 @Composable
 public fun AestheticSelectionDialog(
     uiModel: SelectionDialogUiModel,
-    onSignal: (SelectionDialogSignal) -> Unit,
+    onItemClick: (String) -> Unit,
+    onCancel: () -> Unit,
     modifier: Modifier = Modifier,
+    onSearchQueryChange: (String) -> Unit = {},
+    onConfirm: () -> Unit = {},
+    onDismiss: () -> Unit = onCancel,
 ) {
     when (uiModel) {
-        is SelectionDialogUiModel.Single -> SelectionDialogSingle(uiModel, onSignal, modifier)
-        is SelectionDialogUiModel.Multiple -> SelectionDialogMultiple(uiModel, onSignal, modifier)
+        is SelectionDialogUiModel.Single -> SelectionDialogSingle(
+            uiModel,
+            onItemClick,
+            onSearchQueryChange,
+            onConfirm,
+            onCancel,
+            onDismiss,
+            modifier,
+        )
+
+        is SelectionDialogUiModel.Multiple -> SelectionDialogMultiple(
+            uiModel,
+            onItemClick,
+            onSearchQueryChange,
+            onConfirm,
+            onCancel,
+            onDismiss,
+            modifier,
+        )
     }
 }
 
@@ -75,7 +96,8 @@ private fun SelectionDialogSinglePreview() {
                 selectedId = "fr",
                 cancelLabel = "Cancel",
             ),
-            onSignal = {},
+            onItemClick = {},
+            onCancel = {},
         )
     }
 }
@@ -93,7 +115,8 @@ private fun SelectionDialogMultiplePreview() {
                 cancelLabel = "Cancel",
                 searchQuery = "",
             ),
-            onSignal = {},
+            onItemClick = {},
+            onCancel = {},
         )
     }
 }
@@ -110,7 +133,8 @@ private fun SelectionDialogWindowSizePreview() {
                 selectedId = "fr",
                 cancelLabel = "Cancel",
             ),
-            onSignal = {},
+            onItemClick = {},
+            onCancel = {},
         )
     }
 }
@@ -128,7 +152,8 @@ private fun SelectionDialogEmptyPreview() {
                 searchQuery = "klingon",
                 emptyText = "No language matches “klingon”.",
             ),
-            onSignal = {},
+            onItemClick = {},
+            onCancel = {},
         )
     }
 }

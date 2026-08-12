@@ -9,7 +9,7 @@ Three layers, from *Building a Scalable UI System in Jetpack Compose*
 (Gabriel TEKOMBO). Full detail in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ```
-Component  (public)    behaviour: wires the UI model, emits signals
+Component  (public)    behaviour: wires the UI model, exposes callbacks
     ↓
 Variant    (internal)  one stable visual configuration
     ↓
@@ -20,19 +20,34 @@ Tokens     (public)    colour, type, spacing, shape, motion
 
 | Layer | Owns | Must not |
 |---|---|---|
-| Component | the behavioural contract, callbacks, dispatch on the UI model | interpret what a signal *means*, navigate, hold feature state |
-| Variant | one visual configuration, minor conditional rendering | own state, know the screen, be public |
-| Primitive | rendering, layout, tokens | take a UI model, hold state, know where it is used, grow feature logic |
+| Component | the behavioural contract, callbacks, dispatch on the UI model | interpret what a callback *means*, navigate, hold feature state |
+| Variant | one visual configuration: resolve the model into values, initialise one primitive | own state, know the screen, be public, assemble primitives |
+| Primitive | rendering, layout, tokens; may nest other primitives | take a UI model, hold state, know where it is used, grow feature logic |
 
 Rules that get code rejected:
 
 - **UI models never contain lambdas.** Callbacks are component parameters.
-- **Signals travel up, never get interpreted inside the library.** The design
-  system decides how things look; the caller decides what they mean.
+- **One callback per interaction, named after it.** No single `onSignal` sack:
+  adding an interaction must not break a consumer's exhaustive `when`. Callbacks
+  travel up, never get interpreted inside the library — the design system decides
+  how things look, the caller decides what they mean.
 - **Variants and primitives stay `internal`.** `explicitApi()` enforces it.
 - Abstract only when duplication is *observed*, not anticipated.
-- A new visual form is a new Variant. A new *setting* is a parameter. Do not
-  collapse variants into a style-descriptor table — that deletes the layer.
+- A new visual form is a new Variant, selected by the UI model subclass — that
+  includes a different fill, as `ButtonPrimary` / `ButtonSecondary` are two
+  variants in the reference article. What is *not* a variant is content: an emoji
+  or a timestamp is a field.
+- **A variant initialises one primitive.** It resolves two or three values and
+  passes them. It does not compose several primitives, does not build slot
+  lambdas, and never carries a bag of resolved styles. Do not collapse variants
+  into a style-descriptor table — that deletes the layer.
+- **A primitive draws and may nest other primitives.** It is meant to be usable
+  alone, so it takes as many raw parameters as that needs; parameter count is not
+  the smell, hidden assembly one layer up is.
+- **One variant, one file**, named after it. Grouping siblings is how unreviewed
+  `private` helpers appear.
+- Helpers that are neither a variant nor a primitive live in `utils/`, and a bare
+  visual constant belongs in `tokens/`.
 
 ## Comments — the standard
 
@@ -47,7 +62,7 @@ staff engineer reviews them.
    * ...
    *
    * @param uiModel the visual state; the subclass selects the variant.
-   * @param onSignal receives what the user did.
+   * @param onConfirm the confirm button was pressed.
    * @param modifier applied to the dialog surface.
    */
   ```

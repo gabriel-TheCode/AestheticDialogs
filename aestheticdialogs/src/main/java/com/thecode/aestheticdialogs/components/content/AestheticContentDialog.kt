@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.thecode.aestheticdialogs.components.content.models.ContentDialogSignal
 import com.thecode.aestheticdialogs.components.content.models.ContentDialogUiModel
 import com.thecode.aestheticdialogs.components.content.variants.ContentDialogDefault
 import com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme
@@ -34,28 +33,36 @@ import com.thecode.aestheticdialogs.tokens.AestheticSpacing
  *         primaryAction = DialogAction("I agree"),
  *         secondaryAction = DialogAction("Not now", DialogActionEmphasis.Text),
  *     ),
- *     onSignal = { ... },
+ *     onPrimaryAction = { viewModel.acceptConsent() },
+ *     onDismiss = { viewModel.dismissConsent() },
+ *     onSecondaryAction = { viewModel.dismissConsent() },
  * ) {
  *     ConsentSummary(uiState.consent)
  * }
  * ```
  *
  * @param uiModel the visual state.
- * @param onSignal receives what the user did.
+ * @param onPrimaryAction the primary action was pressed. Only reachable when the
+ *   model carries one.
+ * @param onDismiss the scrim was tapped, back was pressed, or the close
+ *   affordance was used.
  * @param modifier applied to the dialog surface.
+ * @param onSecondaryAction the secondary action was pressed.
  * @param content your content, laid out in a column between the header and the
  *   action row. Pad it yourself: the frame does not guess at your rhythm.
  */
 @Composable
-fun AestheticContentDialog(
+public fun AestheticContentDialog(
     uiModel: ContentDialogUiModel,
-    onSignal: (ContentDialogSignal) -> Unit,
+    onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
+    onPrimaryAction: () -> Unit = {},
+    onSecondaryAction: () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit,
 ) {
     when (uiModel) {
         is ContentDialogUiModel.Default ->
-            ContentDialogDefault(uiModel, onSignal, modifier, content)
+            ContentDialogDefault(uiModel, onPrimaryAction, onSecondaryAction, onDismiss, modifier, content)
     }
 }
 
@@ -70,7 +77,7 @@ private fun ContentDialogPreview() {
                 primaryAction = DialogAction("I agree"),
                 secondaryAction = DialogAction("Not now", DialogActionEmphasis.Text),
             ),
-            onSignal = {},
+            onDismiss = {},
         ) {
             Column(
                 modifier = Modifier.padding(horizontal = AestheticSpacing.xxl),

@@ -3,6 +3,10 @@ import com.android.build.api.dsl.LibraryExtension
 import com.vanniktech.maven.publish.AndroidSingleVariantLibrary
 import com.vanniktech.maven.publish.JavadocJar
 import com.vanniktech.maven.publish.SourcesJar
+import kotlinx.validation.KotlinApiBuildTask
+import kotlinx.validation.KotlinApiCompareTask
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 plugins {
     alias(libs.plugins.android.library)
@@ -58,6 +62,12 @@ mavenPublishing {
     }
 }
 
+extensions.configure<KotlinAndroidProjectExtension> {
+    // Every public declaration is a commitment, so every declaration states its
+    // visibility and its return type.
+    explicitApi()
+}
+
 extensions.configure<LibraryExtension> {
     namespace = "com.thecode.aestheticdialogs"
     compileSdk = libs.versions.compileSdk.get().toInt()
@@ -94,6 +104,60 @@ plugins.withId("com.android.application") {
             versionName = libs.versions.versionName.get()
         }
     }
+}
+
+// --- Public API validation -----------------------------------------------------
+//
+// binary-compatibility-validator registers its tasks when it sees the
+// `kotlin-android` plugin id. AGP's built-in Kotlin never applies that id — it
+// creates the same `kotlin` extension from its own base plugin — so the
+// validator found no target, registered no task, and `api/aestheticdialogs.api`
+// silently stopped being checked. This is the wiring it would have done, against
+// the same release compilation and the same task names.
+//
+// Delete it if the module ever goes back to applying the Kotlin plugin itself:
+// two sets of `apiDump` tasks is worse than none.
+
+val apiDumpFileName = "${project.name}.api"
+
+dependencies {
+    // The validator adds this reader only when it recognises a Kotlin plugin id,
+    // which is the same check that fails above. Without it the worker cannot read
+    // Kotlin metadata and every signature is dumped as plain Java.
+    "bcv-rt-jvm-cp"(libs.kotlin.metadata.jvm)
+}
+
+val apiBuild = tasks.register<KotlinApiBuildTask>("apiBuild") {
+    description = "Dumps the public ABI of the release variant. Called by apiDump and apiCheck."
+    outputApiFile.set(layout.buildDirectory.file("api/$apiDumpFileName"))
+    runtimeClasspath.from(configurations.named("bcv-rt-jvm-cp-resolver"))
+}
+
+// Only the release variant: the debug one carries test hooks and the Compose
+// live-literal machinery, neither of which is API. The directories come from the
+// compile tasks themselves — `kotlin.target.compilations` reports none under
+// AGP's built-in Kotlin — so the dump knows it has to compile first.
+apiBuild.configure {
+    inputClassesDirs.from(
+        tasks.named<KotlinJvmCompile>("compileReleaseKotlin").flatMap { it.destinationDirectory },
+        tasks.named<JavaCompile>("compileReleaseJavaWithJavac").flatMap { it.destinationDirectory },
+    )
+}
+
+val apiCheck = tasks.register<KotlinApiCompareTask>("apiCheck") {
+    group = "verification"
+    description = "Checks the public ABI against api/$apiDumpFileName."
+    projectApiFile.set(layout.projectDirectory.file("api/$apiDumpFileName"))
+    generatedApiFile.set(apiBuild.flatMap { it.outputApiFile })
+}
+
+tasks.named("check") { dependsOn(apiCheck) }
+
+tasks.register<Copy>("apiDump") {
+    group = "other"
+    description = "Rewrites api/$apiDumpFileName from the current public ABI."
+    from(apiBuild.flatMap { it.outputApiFile })
+    into(layout.projectDirectory.dir("api"))
 }
 
 dokka {

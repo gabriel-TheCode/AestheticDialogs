@@ -46,10 +46,3 @@ public sealed interface AlertDialogUiModel {
         val dismissBehavior: DialogDismissBehavior = DialogDismissBehavior.Default,
     ) : AlertDialogUiModel
 }
-
-/** What the user did with an alert dialog. */
-public sealed interface AlertDialogSignal {
-    public data object PrimaryActionClicked : AlertDialogSignal
-    public data object SecondaryActionClicked : AlertDialogSignal
-    public data object Dismissed : AlertDialogSignal
-}

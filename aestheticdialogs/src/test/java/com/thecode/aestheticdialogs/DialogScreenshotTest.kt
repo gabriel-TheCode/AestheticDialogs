@@ -15,13 +15,19 @@ import com.thecode.aestheticdialogs.components.confirmation.AestheticConfirmatio
 import com.thecode.aestheticdialogs.components.confirmation.models.ConfirmationDialogUiModel
 import com.thecode.aestheticdialogs.components.feedback.AestheticFeedbackDialog
 import com.thecode.aestheticdialogs.components.feedback.models.FeedbackDialogUiModel
+import com.thecode.aestheticdialogs.components.header.AestheticHeaderDialog
+import com.thecode.aestheticdialogs.components.header.models.HeaderDialogUiModel
 import com.thecode.aestheticdialogs.components.input.AestheticInputDialog
 import com.thecode.aestheticdialogs.components.input.models.InputDialogUiModel
 import com.thecode.aestheticdialogs.components.notification.AestheticNotificationHost
 import com.thecode.aestheticdialogs.components.notification.models.NotificationUiModel
+import com.thecode.aestheticdialogs.components.progress.AestheticProgressDialog
+import com.thecode.aestheticdialogs.components.progress.models.ProgressDialogUiModel
 import com.thecode.aestheticdialogs.components.selection.AestheticSelectionDialog
 import com.thecode.aestheticdialogs.components.selection.models.SelectionDialogUiModel
 import com.thecode.aestheticdialogs.components.selection.models.SelectionItem
+import com.thecode.aestheticdialogs.components.sheet.AestheticSheetDialog
+import com.thecode.aestheticdialogs.components.sheet.models.SheetDialogUiModel
 import com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme
 import com.thecode.aestheticdialogs.foundation.DialogTone
 import com.thecode.aestheticdialogs.model.DialogAction
@@ -88,7 +94,8 @@ class DialogScreenshotTest {
                 primaryAction = DialogAction("Got it"),
                 showCloseButton = true,
             ),
-            onSignal = {},
+            onPrimaryAction = {},
+            onDismiss = {},
         )
     }
 
@@ -113,24 +120,42 @@ class DialogScreenshotTest {
     }
 
     @Test
-    fun feedbackFlashLight() = capture("feedback_flash_light") {
-        FlashFeedback()
+    fun feedbackGradientLight() = capture("feedback_gradient_light") {
+        GradientFeedback()
     }
 
     @Test
-    fun feedbackFlashDark() = capture("feedback_flash_dark", dark = true) {
-        FlashFeedback()
+    fun feedbackGradientDark() = capture("feedback_gradient_dark", dark = true) {
+        GradientFeedback()
     }
 
     @Test
-    fun notificationToasterLight() = capture("notification_toaster_light") {
-        ToasterBanner()
+    fun notificationDefaultLight() = capture("notification_default_light") {
+        DefaultBanner()
     }
 
     @Test
-    fun notificationToasterDark() = capture("notification_toaster_dark", dark = true) {
-        ToasterBanner()
+    fun notificationDefaultDark() = capture("notification_default_dark", dark = true) {
+        DefaultBanner()
     }
+
+    @Test
+    fun sheetLight() = capture("sheet_light") { ShareSheet() }
+
+    @Test
+    fun sheetDark() = capture("sheet_dark", dark = true) { ShareSheet() }
+
+    @Test
+    fun headerLight() = capture("header_light") { WhatsNewHeader() }
+
+    @Test
+    fun headerDark() = capture("header_dark", dark = true) { WhatsNewHeader() }
+
+    @Test
+    fun progressLight() = capture("progress_light") { DeterminateProgress() }
+
+    @Test
+    fun progressDark() = capture("progress_dark", dark = true) { DeterminateProgress() }
 
     @Test
     fun confirmationAtDoubleFontScale() =
@@ -168,7 +193,9 @@ class DialogScreenshotTest {
                 confirmLabel = "Delete album",
                 cancelLabel = "Keep it",
             ),
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
+            onDismiss = {},
         )
     }
 
@@ -182,7 +209,8 @@ class DialogScreenshotTest {
                 primaryAction = DialogAction("Retry"),
                 secondaryAction = DialogAction("Cancel", DialogActionEmphasis.Secondary),
             ),
-            onSignal = {},
+            onPrimaryAction = {},
+            onDismiss = {},
         )
     }
 
@@ -201,7 +229,8 @@ class DialogScreenshotTest {
                 cancelLabel = "Cancel",
                 searchQuery = "",
             ),
-            onSignal = {},
+            onItemClick = {},
+            onCancel = {},
         )
     }
 
@@ -218,32 +247,75 @@ class DialogScreenshotTest {
                 isConfirmEnabled = false,
             ),
             onValueChange = {},
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
         )
     }
 
     @Composable
-    private fun FlashFeedback() {
+    private fun GradientFeedback() {
         AestheticFeedbackDialog(
-            uiModel = FeedbackDialogUiModel.Flash(
+            uiModel = FeedbackDialogUiModel.Gradient(
                 title = "Message sent",
                 message = "It will arrive even if you close the app.",
                 tone = DialogTone.Success,
                 actionLabel = "Nice",
             ),
-            onSignal = {},
+            onDismiss = {},
         )
     }
 
     @Composable
-    private fun ToasterBanner() {
+    private fun ShareSheet() {
+        AestheticSheetDialog(
+            uiModel = SheetDialogUiModel.Default(
+                title = "Share this album",
+                message = "Anyone with the link can see the 24 photos inside it.",
+                primaryAction = DialogAction("Copy link"),
+                secondaryAction = DialogAction("Cancel", DialogActionEmphasis.Text),
+            ),
+            onDismiss = {},
+        )
+    }
+
+    @Composable
+    private fun WhatsNewHeader() {
+        AestheticHeaderDialog(
+            uiModel = HeaderDialogUiModel.Default(
+                title = "Albums, offline",
+                message = "Everything you starred is on the device now.",
+                primaryAction = DialogAction("Take the tour"),
+                secondaryAction = DialogAction("Later", DialogActionEmphasis.Text),
+            ),
+            onPrimaryAction = {},
+            onDismiss = {},
+        )
+    }
+
+    @Composable
+    private fun DeterminateProgress() {
+        AestheticProgressDialog(
+            uiModel = ProgressDialogUiModel.Determinate(
+                title = "Uploading",
+                message = "Keep the app open until this finishes.",
+                progress = 0.5f,
+                progressLabel = "12 of 24",
+                tone = DialogTone.Info,
+                cancelLabel = "Cancel upload",
+            ),
+            onCancel = {},
+        )
+    }
+
+    @Composable
+    private fun DefaultBanner() {
         AestheticNotificationHost(
-            notification = NotificationUiModel.Toaster(
+            notification = NotificationUiModel.Default(
                 title = "Saved",
                 message = "Your changes are on every device.",
                 tone = DialogTone.Success,
             ),
-            onSignal = {},
+            onDismiss = {},
         )
     }
 

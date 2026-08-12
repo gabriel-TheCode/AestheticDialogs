@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
@@ -84,6 +85,9 @@ internal fun CloseButtonPrimitive(
     Box(
         modifier = modifier
             .size(AestheticDimens.minTouchTarget)
+            // Clipped before the click so the press indication is a disc around
+            // the glyph; a square ripple reads as a button that is not there.
+            .clip(AestheticDialogsTheme.shapes.circle)
             .clickable(onClick = onClick, role = Role.Button)
             // The glyph is drawn, not written, so the node has no text to
             // borrow a name from: it needs one of its own.

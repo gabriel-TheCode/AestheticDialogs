@@ -28,6 +28,19 @@ public data class AestheticShapes(
     val dialog: Shape = RoundedCornerShape(AestheticRadius.lg),
     /** Notification banners, which sit against a screen edge. */
     val banner: Shape = RoundedCornerShape(AestheticRadius.md),
+    /**
+     * A sheet docked to the bottom of the window.
+     *
+     * Only the top corners are rounded: the bottom two sit off the screen, and
+     * rounding them would draw a gap between the sheet and the edge it is
+     * anchored to.
+     */
+    val sheet: Shape = RoundedCornerShape(
+        topStart = AestheticRadius.lg,
+        topEnd = AestheticRadius.lg,
+        bottomStart = AestheticRadius.none,
+        bottomEnd = AestheticRadius.none,
+    ),
     /** Buttons and other pill-shaped controls. */
     val button: Shape = RoundedCornerShape(AestheticRadius.full),
     /** Text fields, selection rows and other rectangular controls. */

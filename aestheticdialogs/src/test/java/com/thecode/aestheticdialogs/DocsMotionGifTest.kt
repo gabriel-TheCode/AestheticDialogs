@@ -83,7 +83,7 @@ class DocsMotionGifTest {
                 ) {
                     AestheticNotificationHost(
                         notification = banner.value,
-                        onSignal = {},
+                        onDismiss = {},
                         alignment = NotificationAlignment.Top,
                         animation = animation,
                     )
@@ -119,7 +119,7 @@ class DocsMotionGifTest {
         const val STAGE_BACKGROUND: Int = 0xFFF6F7F9.toInt()
 
         val SAMPLE =
-            NotificationUiModel.Toaster(
+            NotificationUiModel.Default(
                 title = "Saved",
                 message = "Your changes are on every device.",
                 tone = DialogTone.Success,

@@ -11,7 +11,6 @@ import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.text.input.KeyboardType
-import com.thecode.aestheticdialogs.components.input.models.InputDialogSignal
 import com.thecode.aestheticdialogs.components.input.models.InputDialogUiModel
 import com.thecode.aestheticdialogs.components.input.variants.InputDialogPassword
 import com.thecode.aestheticdialogs.components.input.variants.InputDialogText
@@ -39,21 +38,27 @@ import com.thecode.aestheticdialogs.preview.ThemePreviews
  *         isConfirmEnabled = uiState.nameError == null && uiState.name.isNotBlank(),
  *     ),
  *     onValueChange = viewModel::onNameChanged,
- *     onSignal = { ... },
+ *     onConfirm = { viewModel.renameAlbum() },
+ *     onCancel = { viewModel.dismissDialog() },
  * )
  * ```
  *
  * @param uiModel the visual state; the subclass selects the variant.
  * @param onValueChange called for every edit. The value lives in your state.
- * @param onSignal receives the confirm, cancel and dismiss decisions.
+ * @param onConfirm the confirm button or the keyboard's done action.
+ * @param onCancel the cancel button.
+ * @param onDismiss the scrim was tapped or back was pressed. Defaults to
+ *   [onCancel].
  * @param modifier applied to the dialog surface.
  */
 @Composable
 public fun AestheticInputDialog(
     uiModel: InputDialogUiModel,
     onValueChange: (String) -> Unit,
-    onSignal: (InputDialogSignal) -> Unit,
+    onConfirm: () -> Unit,
+    onCancel: () -> Unit,
     modifier: Modifier = Modifier,
+    onDismiss: () -> Unit = onCancel,
 ) {
     // The component owns the presentation state, so the variants stay stateless:
     // where focus goes when the dialog opens, and whether the value is revealed.
@@ -69,12 +74,14 @@ public fun AestheticInputDialog(
 
     when (uiModel) {
         is InputDialogUiModel.Text ->
-            InputDialogText(uiModel, onValueChange, onSignal, focusRequester, modifier)
+            InputDialogText(uiModel, onValueChange, onConfirm, onCancel, onDismiss, focusRequester, modifier)
 
         is InputDialogUiModel.Password -> InputDialogPassword(
             uiModel = uiModel,
             onValueChange = onValueChange,
-            onSignal = onSignal,
+            onConfirm = onConfirm,
+            onCancel = onCancel,
+            onDismiss = onDismiss,
             focusRequester = focusRequester,
             revealed = revealed,
             onRevealToggle = { revealed = !revealed },
@@ -97,7 +104,8 @@ private fun InputDialogTextPreview() {
                 cancelLabel = "Cancel",
             ),
             onValueChange = {},
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
         )
     }
 }
@@ -118,7 +126,8 @@ private fun InputDialogErrorPreview() {
                 isConfirmEnabled = false,
             ),
             onValueChange = {},
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
         )
     }
 }
@@ -137,7 +146,8 @@ private fun InputDialogPasswordPreview() {
                 cancelLabel = "Cancel",
             ),
             onValueChange = {},
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
         )
     }
 }

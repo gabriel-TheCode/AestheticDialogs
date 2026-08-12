@@ -135,37 +135,37 @@ class DocsHeroImageTest {
             verticalArrangement = Arrangement.spacedBy(AestheticSpacing.md),
         ) {
             AestheticNotification(
-                uiModel = NotificationUiModel.Toaster(
+                uiModel = NotificationUiModel.Default(
                     title = "Saved",
                     message = "Your changes are on every device.",
                     tone = DialogTone.Success,
                 ),
-                onSignal = {},
+                onDismiss = {},
             )
             AestheticNotification(
-                uiModel = NotificationUiModel.Rainbow(
+                uiModel = NotificationUiModel.Filled(
                     title = "Seven dialog families",
                     message = "One frame, one theme, one set of guarantees.",
                     tone = DialogTone.Info,
                 ),
-                onSignal = {},
+                onDismiss = {},
             )
             AestheticNotification(
-                uiModel = NotificationUiModel.Connectify(
+                uiModel = NotificationUiModel.Ambient(
                     title = "You are offline",
                     message = "We will sync as soon as you reconnect.",
                     tone = DialogTone.Warning,
                 ),
-                onSignal = {},
+                onDismiss = {},
             )
             AestheticNotification(
-                uiModel = NotificationUiModel.Emotion(
+                uiModel = NotificationUiModel.Gradient(
                     title = "Payment declined",
                     message = "Your bank refused the charge.",
                     timestamp = "13:56",
                     tone = DialogTone.Error,
                 ),
-                onSignal = {},
+                onDismiss = {},
             )
         }
     }

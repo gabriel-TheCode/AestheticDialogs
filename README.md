@@ -13,11 +13,18 @@
 A **Jetpack Compose dialog design system**, built on the three-layer UI
 architecture (Component → Variant → Primitive → Tokens).
 
-Version 2.x is a rewrite. Where 1.x offered eight decorated `AlertDialog`s, 2.x
+Version 2.x was a rewrite. Where 1.x offered eight decorated `AlertDialog`s, it
 offers seven component families — six dialogs and a set of banners — that share
 one frame, one theme and one set of accessibility guarantees — plus the visual identity the library has always had.
 
-> Coming from 1.x? Start with the [migration guide](docs/MIGRATION.md).
+**3.0 changes two things.** Every component exposes one callback per interaction —
+`onConfirm`, `onCancel`, `onDismiss` — instead of a single `onSignal` taking a
+sealed type. And banners gained the seven behaviours their model could not
+express: a trailing action, a docked status strip, swipe-to-dismiss, a queue
+policy, background progress, a presence dot and a visible countdown. Nothing that
+already existed changed how it looks.
+
+> Coming from 1.x or from 2.0? Start with the [migration guide](docs/MIGRATION.md).
 
 ---
 
@@ -73,7 +80,7 @@ dependencyResolutionManagement {
 ```kotlin
 // build.gradle.kts
 dependencies {
-    implementation("com.gabrielthecode:aestheticdialogs:2.0.0")
+    implementation("com.gabrielthecode:aestheticdialogs:3.0.0")
 }
 ```
 
@@ -82,7 +89,7 @@ Or through a version catalog:
 ```toml
 # gradle/libs.versions.toml
 [versions]
-aestheticdialogs = "2.0.0"
+aestheticdialogs = "3.0.0"
 
 [libraries]
 aestheticdialogs = { module = "com.gabrielthecode:aestheticdialogs", version.ref = "aestheticdialogs" }
@@ -128,19 +135,15 @@ if (uiState.showDeleteConfirmation) {
             cancelLabel = "Keep it",
             isConfirming = uiState.isDeleting,
         ),
-        onSignal = { signal ->
-            when (signal) {
-                ConfirmationDialogSignal.Confirmed -> viewModel.deleteAlbum()
-                ConfirmationDialogSignal.Cancelled,
-                ConfirmationDialogSignal.Dismissed -> viewModel.dismissDialog()
-            }
-        },
+        onConfirm = { viewModel.deleteAlbum() },
+        onCancel = { viewModel.dismissDialog() },
+        onDismiss = { viewModel.dismissDialog() },
     )
 }
 ```
 
 There is no `show()` and no `dismiss()`. The dialog is on screen while it is in
-the composition, and every signal — including `Dismissed` — is a request you
+the composition, and every callback — including `onDismiss` — is a request you
 decide what to do with.
 
 ---
@@ -165,13 +168,9 @@ AestheticConfirmationDialog(
         confirmLabel = "Leave",
         cancelLabel = "Keep editing",
     ),
-    onSignal = { signal ->
-        when (signal) {
-            ConfirmationDialogSignal.Confirmed -> viewModel.discardDraft()
-            ConfirmationDialogSignal.Cancelled,
-            ConfirmationDialogSignal.Dismissed -> viewModel.dismissDialog()
-        }
-    },
+    onConfirm = { viewModel.discardDraft() },
+    onCancel = { viewModel.dismissDialog() },
+    onDismiss = { viewModel.dismissDialog() },
 )
 ```
 
@@ -194,13 +193,9 @@ AestheticAlertDialog(
         primaryAction = DialogAction("Retry"),
         secondaryAction = DialogAction("Dismiss", DialogActionEmphasis.Text),
     ),
-    onSignal = { signal ->
-        when (signal) {
-            AlertDialogSignal.PrimaryActionClicked -> viewModel.retry()
-            AlertDialogSignal.SecondaryActionClicked,
-            AlertDialogSignal.Dismissed -> viewModel.dismissDialog()
-        }
-    },
+    onPrimaryAction = { viewModel.retry() },
+    onDismiss = { viewModel.dismissDialog() },
+    onSecondaryAction = { viewModel.dismissDialog() },
 )
 ```
 
@@ -225,15 +220,10 @@ AestheticSelectionDialog(
         cancelLabel = "Cancel",
         emptyText = "Nothing matches “${uiState.query}”.",
     ),
-    onSignal = { signal ->
-        when (signal) {
-            is SelectionDialogSignal.ItemClicked -> viewModel.toggleTopic(signal.id)
-            is SelectionDialogSignal.SearchQueryChanged -> viewModel.search(signal.query)
-            SelectionDialogSignal.Confirmed -> viewModel.saveTopics()
-            SelectionDialogSignal.Cancelled,
-            SelectionDialogSignal.Dismissed -> viewModel.dismissDialog()
-        }
-    },
+    onItemClick = { id -> viewModel.toggleTopic(id) },
+    onCancel = { viewModel.dismissDialog() },
+    onSearchQueryChange = { viewModel.search(it) },
+    onConfirm = { viewModel.saveTopics() },
 )
 ```
 
@@ -264,13 +254,8 @@ AestheticInputDialog(
         isConfirmEnabled = uiState.nameError == null,
     ),
     onValueChange = viewModel::onNameChange,
-    onSignal = { signal ->
-        when (signal) {
-            InputDialogSignal.Confirmed -> viewModel.renameAlbum()
-            InputDialogSignal.Cancelled,
-            InputDialogSignal.Dismissed -> viewModel.dismissDialog()
-        }
-    },
+    onConfirm = { viewModel.renameAlbum() },
+    onCancel = { viewModel.dismissDialog() },
 )
 ```
 
@@ -287,7 +272,7 @@ AestheticContentDialog(
         primaryAction = DialogAction("I agree"),
         secondaryAction = DialogAction("Not now", DialogActionEmphasis.Text),
     ),
-    onSignal = { … },
+    onDismiss = { viewModel.dismissDialog() },
 ) {
     ConsentSummary(uiState.consent)
 }
@@ -303,32 +288,31 @@ difference between an escape hatch and a raw `Dialog {}`.
 
 ### Feedback — the 1.x dialogs, rebuilt
 
-`Flat` (card) and `Flash` (gradient panel), in all five tones. The Flash gradient
-is derived from the tone accent, so a rebranded theme keeps it consistent — and
+`Default` (card) and `Gradient` (ramped panel), in all five tones. The ramp is
+derived from the tone accent, so a rebranded theme keeps it consistent — and
 warning and info finally have one.
 
 ```kotlin
 AestheticFeedbackDialog(
-    uiModel = FeedbackDialogUiModel.Flash(
+    uiModel = FeedbackDialogUiModel.Gradient(
         title = "Message sent",
         message = "It will arrive even if you close the app.",
         tone = DialogTone.Success,
         actionLabel = "Nice",
     ),
-    onSignal = { viewModel.dismissDialog() },
+    onDismiss = { viewModel.dismissDialog() },
 )
 ```
 
-| Flat | Flash, success | Flash, error |
+| Default | Gradient, success | Gradient, error |
 |---|---|---|
-| ![Flat feedback](docs/images/feedback-flat.png) | ![Flash feedback](docs/images/feedback-flash.png) | ![Flash feedback, error](docs/images/feedback-flash-error.png) |
+| ![Default feedback](docs/images/feedback-default.png) | ![Gradient feedback](docs/images/feedback-gradient.png) | ![Gradient feedback, error](docs/images/feedback-gradient-error.png) |
 
 ---
 
 ## Notifications
 
-The five edge-anchored 1.x styles — Toaster, Rainbow, Connectify, Emoji, Emotion
-— are no longer dialogs. They were never modal in spirit, and rendering them as
+The edge-anchored 1.x styles are no longer dialogs. They were never modal in spirit, and rendering them as
 windows meant an informational toast dimmed the screen, stole focus and swallowed
 the back gesture.
 
@@ -338,7 +322,8 @@ Box(Modifier.fillMaxSize()) {
 
     AestheticNotificationHost(
         notification = uiState.banner,
-        onSignal = { viewModel.dismissBanner() },
+        onDismiss = { viewModel.dismissBanner() },
+        onAction = { viewModel.undo() },
         alignment = NotificationAlignment.Top,
         animation = AestheticNotificationAnimation.Slide,
         autoDismissMillis = 4_000,
@@ -346,13 +331,55 @@ Box(Modifier.fillMaxSize()) {
 }
 ```
 
+Five shapes:
+
 | | |
 |---|---|
-| **Toaster** — tone bar down the leading edge | ![Toaster](docs/images/notification-toaster.png) |
-| **Rainbow** — tone-filled, inverted copy | ![Rainbow](docs/images/notification-rainbow.png) |
-| **Connectify** — centred, under a tone rim | ![Connectify](docs/images/notification-connectify.png) |
-| **Emoji** — a character, not a bitmap | ![Emoji](docs/images/notification-emoji.png) |
-| **Emotion** — gradient card with a timestamp | ![Emotion](docs/images/notification-emotion.png) |
+| **Default** — tone bar down the leading edge | ![Default banner](docs/images/notification-default.png) |
+| **Filled** — tone-filled, inverted copy | ![Filled banner](docs/images/notification-filled.png) |
+| **Gradient** — ramped card | ![Gradient banner](docs/images/notification-gradient.png) |
+| **Ambient** — centred, under a tone rim | ![Ambient banner](docs/images/notification-ambient.png) |
+| **Strip** — docked, square, flat, never auto-dismissed | ![Status strip](docs/images/notification-strip.png) |
+
+An emoji, a timestamp, a presence dot and a progress value are **fields**, not
+shapes — `Emoji` and `Emotion` were 2.0 variants and are now
+`Default(emoji = "👍")` and `Gradient(timestamp = "13:56")`:
+
+| | |
+|---|---|
+| A trailing action — `Undo`, with a callback of its own | ![Banner with an action](docs/images/notification-action.png) |
+| Background progress, bonded to the bottom edge | ![Banner with progress](docs/images/notification-progress.png) |
+| A leading slot and a presence dot, for banners from a person | ![Message banner](docs/images/notification-presence.png) |
+| An emoji instead of the tone mark | ![Emoji banner](docs/images/notification-emoji.png) |
+
+### What the host owns
+
+Three behaviours belong to the host rather than to your screen:
+
+```kotlin
+AestheticNotificationHost(
+    notification = uiState.banner,
+    onDismiss = { viewModel.dismissBanner() },
+    queuePolicy = NotificationQueuePolicy.Enqueue,  // Replace, Enqueue or Drop
+    swipeToDismiss = true,                          // a sideways drag asks to dismiss
+    showCountdown = true,                           // the delay, drawn as a draining hairline
+)
+```
+
+`queuePolicy` exists because an application emitting two banners in a row used to
+lose one without saying so. The default is still `Replace` — stated now, rather
+than accidental. `Enqueue` is the one case where the host holds a banner your
+state no longer names; the queue is capped, and every callback still reaches you.
+
+A `Strip` is docked instead of floated: flush against its edge, no margin, and its
+auto-dismiss delay is ignored, because a condition is still true four seconds
+later. Docked means it paints under the system bars — its copy is inset out of
+the status bar, the cutout and the navigation bar, so the strip looks continuous
+with the edge without printing its title over the clock.
+
+It also carries no close affordance by default, for the same reason it has no
+timer: a condition ends when it ends. Pass `showCloseButton = true` when the
+condition is one the user is allowed to dismiss.
 
 Banners are live regions, so screen readers announce them without the user having
 to go looking. Because the host owns nothing but the exit transition, they are

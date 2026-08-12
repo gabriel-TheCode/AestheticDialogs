@@ -2,10 +2,10 @@ package com.thecode.aestheticdialogs.components.feedback
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.thecode.aestheticdialogs.components.feedback.models.FeedbackDialogSignal
 import com.thecode.aestheticdialogs.components.feedback.models.FeedbackDialogUiModel
-import com.thecode.aestheticdialogs.components.feedback.variants.FeedbackDialogFlash
-import com.thecode.aestheticdialogs.components.feedback.variants.FeedbackDialogFlat
+import com.thecode.aestheticdialogs.components.feedback.variants.FeedbackDialogCompact
+import com.thecode.aestheticdialogs.components.feedback.variants.FeedbackDialogDefault
+import com.thecode.aestheticdialogs.components.feedback.variants.FeedbackDialogGradient
 import com.thecode.aestheticdialogs.foundation.DialogTone
 import com.thecode.aestheticdialogs.preview.AestheticPreviewSurface
 import com.thecode.aestheticdialogs.preview.ThemePreviews
@@ -15,29 +15,39 @@ import com.thecode.aestheticdialogs.preview.ThemePreviews
  *
  * ```
  * AestheticFeedbackDialog(
- *     uiModel = FeedbackDialogUiModel.Flash(
+ *     uiModel = FeedbackDialogUiModel.Default(
  *         title = "Message sent",
  *         message = "It will arrive even if you close the app.",
  *         tone = DialogTone.Success,
  *         actionLabel = "Nice",
  *     ),
- *     onSignal = { viewModel.dismissFeedback() },
+ *     onDismiss = { viewModel.dismissFeedback() },
  * )
  * ```
  *
  * @param uiModel the visual state; the subclass selects the variant.
- * @param onSignal receives the action tap and dismiss requests.
+ * @param onDismiss the scrim was tapped or back was pressed.
  * @param modifier applied to the dialog surface.
+ * @param onAction the single action was pressed. Defaults to [onDismiss],
+ *   because a feedback dialog's one button almost always means "I have read
+ *   it" — override it when yours means something else.
  */
 @Composable
 public fun AestheticFeedbackDialog(
     uiModel: FeedbackDialogUiModel,
-    onSignal: (FeedbackDialogSignal) -> Unit,
+    onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
+    onAction: () -> Unit = onDismiss,
 ) {
     when (uiModel) {
-        is FeedbackDialogUiModel.Flat -> FeedbackDialogFlat(uiModel, onSignal, modifier)
-        is FeedbackDialogUiModel.Flash -> FeedbackDialogFlash(uiModel, onSignal, modifier)
+        is FeedbackDialogUiModel.Default ->
+            FeedbackDialogDefault(uiModel, onAction, onDismiss, modifier)
+
+        is FeedbackDialogUiModel.Gradient ->
+            FeedbackDialogGradient(uiModel, onAction, onDismiss, modifier)
+
+        is FeedbackDialogUiModel.Compact ->
+            FeedbackDialogCompact(uiModel, onAction, onDismiss, modifier)
     }
 }
 
@@ -46,13 +56,13 @@ public fun AestheticFeedbackDialog(
 private fun FeedbackDialogFlatPreview() {
     AestheticPreviewSurface {
         AestheticFeedbackDialog(
-            uiModel = FeedbackDialogUiModel.Flat(
+            uiModel = FeedbackDialogUiModel.Default(
                 title = "Something went wrong",
                 message = "We could not reach the server. Try again in a moment.",
                 tone = DialogTone.Error,
                 actionLabel = "OK",
             ),
-            onSignal = {},
+            onDismiss = {},
         )
     }
 }
@@ -62,13 +72,13 @@ private fun FeedbackDialogFlatPreview() {
 private fun FeedbackDialogFlashPreview() {
     AestheticPreviewSurface {
         AestheticFeedbackDialog(
-            uiModel = FeedbackDialogUiModel.Flash(
+            uiModel = FeedbackDialogUiModel.Default(
                 title = "Message sent",
                 message = "It will arrive even if you close the app.",
                 tone = DialogTone.Success,
                 actionLabel = "Nice",
             ),
-            onSignal = {},
+            onDismiss = {},
         )
     }
 }
@@ -78,13 +88,28 @@ private fun FeedbackDialogFlashPreview() {
 private fun FeedbackDialogWarningPreview() {
     AestheticPreviewSurface {
         AestheticFeedbackDialog(
-            uiModel = FeedbackDialogUiModel.Flat(
+            uiModel = FeedbackDialogUiModel.Default(
                 title = "Check your fields",
                 message = "Two of them are still empty.",
                 tone = DialogTone.Warning,
                 actionLabel = "Go back",
             ),
-            onSignal = {},
+            onDismiss = {},
+        )
+    }
+}
+
+@ThemePreviews
+@Composable
+private fun FeedbackDialogCompactPreview() {
+    AestheticPreviewSurface {
+        AestheticFeedbackDialog(
+            uiModel = FeedbackDialogUiModel.Compact(
+                title = "Album archived",
+                tone = DialogTone.Success,
+                actionLabel = "Undo",
+            ),
+            onDismiss = {},
         )
     }
 }

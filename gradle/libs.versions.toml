@@ -5,8 +5,8 @@ kotlin = "2.4.10"
 compileSdk = "37"
 minSdk = "24"
 targetSdk = "37"
-versionCode = "2000"
-versionName = "2.0.0"
+versionCode = "3000"
+versionName = "3.0.0"
 
 # AndroidX / Compose
 composeBom = "2026.06.01"
@@ -43,6 +43,9 @@ androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-te
 androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+# Read by the API-validation tasks in the library module, not by the library itself.
+kotlin-metadata-jvm = { group = "org.jetbrains.kotlin", name = "kotlin-metadata-jvm", version.ref = "kotlin" }
 
 # Catalog application only
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivityCompose" }

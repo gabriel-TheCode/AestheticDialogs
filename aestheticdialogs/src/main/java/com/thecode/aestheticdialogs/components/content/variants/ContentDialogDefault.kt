@@ -1,72 +1,48 @@
 package com.thecode.aestheticdialogs.components.content.variants
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.thecode.aestheticdialogs.components.content.models.ContentDialogSignal
+import androidx.compose.ui.graphics.Color
 import com.thecode.aestheticdialogs.components.content.models.ContentDialogUiModel
-import com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme
-import com.thecode.aestheticdialogs.primitives.DialogFramePrimitive
-import com.thecode.aestheticdialogs.primitives.DialogHeaderPrimitive
-import com.thecode.aestheticdialogs.primitives.DialogMessagePrimitive
-import com.thecode.aestheticdialogs.tokens.AestheticSpacing
-import com.thecode.aestheticdialogs.variants.DialogActionRow
+import com.thecode.aestheticdialogs.components.content.primitives.ContentPrimitive
+import com.thecode.aestheticdialogs.variants.actionColors
 
 /** Header, caller-owned content, action row. */
 @Composable
 internal fun ContentDialogDefault(
     uiModel: ContentDialogUiModel.Default,
-    onSignal: (ContentDialogSignal) -> Unit,
+    onPrimaryAction: () -> Unit,
+    onSecondaryAction: () -> Unit,
+    onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    val hasActions = uiModel.primaryAction != null || uiModel.secondaryAction != null
+    val primary = uiModel.primaryAction?.let { actionColors(it.emphasis, enabled = it.enabled) }
+    val secondary = uiModel.secondaryAction?.let { actionColors(it.emphasis, enabled = it.enabled) }
 
-    DialogFramePrimitive(
-        onDismissRequest = { onSignal(ContentDialogSignal.Dismissed) },
+    ContentPrimitive(
+        title = uiModel.title,
+        subtitle = uiModel.subtitle,
+        onDismissRequest = onDismiss,
         dismissOnBackPress = uiModel.dismissBehavior.dismissOnBackPress,
         dismissOnClickOutside = uiModel.dismissBehavior.dismissOnClickOutside,
-        accessibilityPaneTitle = uiModel.title,
         modifier = modifier,
+        showCloseButton = uiModel.showCloseButton,
         scrollableContent = uiModel.scrollContent,
-        header = {
-            DialogHeaderPrimitive(
-                title = uiModel.title,
-                onCloseClick = if (uiModel.showCloseButton) {
-                    { onSignal(ContentDialogSignal.Dismissed) }
-                } else {
-                    null
-                },
-            )
-            uiModel.subtitle?.let { subtitle ->
-                DialogMessagePrimitive(
-                    message = subtitle,
-                    color = AestheticDialogsTheme.colors.content.muted,
-                )
-            }
-        },
-        actions = if (hasActions) {
-            {
-                DialogActionRow(
-                    primary = uiModel.primaryAction,
-                    secondary = uiModel.secondaryAction,
-                    onPrimaryClick = { onSignal(ContentDialogSignal.PrimaryActionClicked) },
-                    onSecondaryClick = { onSignal(ContentDialogSignal.SecondaryActionClicked) },
-                )
-            }
-        } else {
-            null
-        },
-    ) {
-        Spacer(Modifier.height(AestheticSpacing.lg))
-
-        content()
-        // Without an action row the content would otherwise sit on the rounded
-        // bottom edge of the surface.
-        Spacer(Modifier.height(if (hasActions) AestheticSpacing.sm else AestheticSpacing.xxl))
-    }
+        primaryLabel = uiModel.primaryAction?.label,
+        primaryContainerColor = primary?.container ?: Color.Transparent,
+        primaryContentColor = primary?.content ?: Color.Transparent,
+        primaryEnabled = uiModel.primaryAction?.enabled ?: true,
+        primaryLoading = uiModel.primaryAction?.loading ?: false,
+        onPrimaryClick = onPrimaryAction,
+        secondaryLabel = uiModel.secondaryAction?.label,
+        secondaryContainerColor = secondary?.container
+            ?: Color.Transparent,
+        secondaryContentColor = secondary?.content
+            ?: Color.Transparent,
+        secondaryBorder = secondary?.border,
+        onSecondaryClick = onSecondaryAction,
+        content = content,
+    )
 }

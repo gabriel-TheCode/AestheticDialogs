@@ -89,18 +89,3 @@ public sealed interface SelectionDialogUiModel {
         override val dismissBehavior: DialogDismissBehavior = DialogDismissBehavior.Default,
     ) : SelectionDialogUiModel
 }
-
-/**
- * What the user did with a selection dialog.
- *
- * [ItemClicked] reports a tap, not a new selection: the caller owns the selected
- * set and decides whether a tap adds, removes or replaces. That is the
- * difference between a design system and a state machine.
- */
-public sealed interface SelectionDialogSignal {
-    public data class ItemClicked(val id: String) : SelectionDialogSignal
-    public data class SearchQueryChanged(val query: String) : SelectionDialogSignal
-    public data object Confirmed : SelectionDialogSignal
-    public data object Cancelled : SelectionDialogSignal
-    public data object Dismissed : SelectionDialogSignal
-}

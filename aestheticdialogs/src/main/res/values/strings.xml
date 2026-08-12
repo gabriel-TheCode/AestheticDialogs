@@ -20,4 +20,6 @@
     <string name="aesthetic_dialogs_selected">Selected</string>
     <string name="aesthetic_dialogs_not_selected">Not selected</string>
     <string name="aesthetic_dialogs_no_results">No results</string>
+    <string name="aesthetic_dialogs_drag_handle">Drag handle</string>
+    <string name="aesthetic_dialogs_in_progress">In progress</string>
 </resources>

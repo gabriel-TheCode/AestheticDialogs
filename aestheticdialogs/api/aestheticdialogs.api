@@ -6,42 +6,15 @@ public final class com/thecode/aestheticdialogs/BuildConfig {
 }
 
 public final class com/thecode/aestheticdialogs/components/alert/AestheticAlertDialogKt {
-	public static final fun AestheticAlertDialog (Lcom/thecode/aestheticdialogs/components/alert/models/AlertDialogUiModel;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AestheticAlertDialog (Lcom/thecode/aestheticdialogs/components/alert/models/AlertDialogUiModel;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/thecode/aestheticdialogs/components/alert/ComposableSingletons$AestheticAlertDialogKt {
 	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/alert/ComposableSingletons$AestheticAlertDialogKt;
 	public fun <init> ()V
-	public final fun getLambda$-394289949$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$-956706313$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$198327283$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-}
-
-public abstract interface class com/thecode/aestheticdialogs/components/alert/models/AlertDialogSignal {
-}
-
-public final class com/thecode/aestheticdialogs/components/alert/models/AlertDialogSignal$Dismissed : com/thecode/aestheticdialogs/components/alert/models/AlertDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/alert/models/AlertDialogSignal$Dismissed;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/alert/models/AlertDialogSignal$PrimaryActionClicked : com/thecode/aestheticdialogs/components/alert/models/AlertDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/alert/models/AlertDialogSignal$PrimaryActionClicked;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/alert/models/AlertDialogSignal$SecondaryActionClicked : com/thecode/aestheticdialogs/components/alert/models/AlertDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/alert/models/AlertDialogSignal$SecondaryActionClicked;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+	public final fun getLambda$-394289949$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-956706313$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$198327283$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
 }
 
 public abstract interface class com/thecode/aestheticdialogs/components/alert/models/AlertDialogUiModel {
@@ -75,43 +48,16 @@ public final class com/thecode/aestheticdialogs/components/alert/models/AlertDia
 }
 
 public final class com/thecode/aestheticdialogs/components/confirmation/AestheticConfirmationDialogKt {
-	public static final fun AestheticConfirmationDialog (Lcom/thecode/aestheticdialogs/components/confirmation/models/ConfirmationDialogUiModel;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AestheticConfirmationDialog (Lcom/thecode/aestheticdialogs/components/confirmation/models/ConfirmationDialogUiModel;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/thecode/aestheticdialogs/components/confirmation/ComposableSingletons$AestheticConfirmationDialogKt {
 	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/confirmation/ComposableSingletons$AestheticConfirmationDialogKt;
 	public fun <init> ()V
-	public final fun getLambda$-1215622858$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$1187845897$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$924155907$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$925347850$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-}
-
-public abstract interface class com/thecode/aestheticdialogs/components/confirmation/models/ConfirmationDialogSignal {
-}
-
-public final class com/thecode/aestheticdialogs/components/confirmation/models/ConfirmationDialogSignal$Cancelled : com/thecode/aestheticdialogs/components/confirmation/models/ConfirmationDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/confirmation/models/ConfirmationDialogSignal$Cancelled;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/confirmation/models/ConfirmationDialogSignal$Confirmed : com/thecode/aestheticdialogs/components/confirmation/models/ConfirmationDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/confirmation/models/ConfirmationDialogSignal$Confirmed;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/confirmation/models/ConfirmationDialogSignal$Dismissed : com/thecode/aestheticdialogs/components/confirmation/models/ConfirmationDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/confirmation/models/ConfirmationDialogSignal$Dismissed;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+	public final fun getLambda$-1215622858$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1187845897$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$924155907$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$925347850$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
 }
 
 public abstract interface class com/thecode/aestheticdialogs/components/confirmation/models/ConfirmationDialogUiModel {
@@ -177,41 +123,14 @@ public final class com/thecode/aestheticdialogs/components/confirmation/models/C
 }
 
 public final class com/thecode/aestheticdialogs/components/content/AestheticContentDialogKt {
-	public static final fun AestheticContentDialog (Lcom/thecode/aestheticdialogs/components/content/models/ContentDialogUiModel;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AestheticContentDialog (Lcom/thecode/aestheticdialogs/components/content/models/ContentDialogUiModel;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/thecode/aestheticdialogs/components/content/ComposableSingletons$AestheticContentDialogKt {
 	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/content/ComposableSingletons$AestheticContentDialogKt;
 	public fun <init> ()V
-	public final fun getLambda$-242207096$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$1840044371$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function3;
-}
-
-public abstract interface class com/thecode/aestheticdialogs/components/content/models/ContentDialogSignal {
-}
-
-public final class com/thecode/aestheticdialogs/components/content/models/ContentDialogSignal$Dismissed : com/thecode/aestheticdialogs/components/content/models/ContentDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/content/models/ContentDialogSignal$Dismissed;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/content/models/ContentDialogSignal$PrimaryActionClicked : com/thecode/aestheticdialogs/components/content/models/ContentDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/content/models/ContentDialogSignal$PrimaryActionClicked;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/content/models/ContentDialogSignal$SecondaryActionClicked : com/thecode/aestheticdialogs/components/content/models/ContentDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/content/models/ContentDialogSignal$SecondaryActionClicked;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+	public final fun getLambda$-242207096$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$2053661457$aestheticdialogs ()Lkotlin/jvm/functions/Function3;
 }
 
 public abstract interface class com/thecode/aestheticdialogs/components/content/models/ContentDialogUiModel {
@@ -243,34 +162,16 @@ public final class com/thecode/aestheticdialogs/components/content/models/Conten
 }
 
 public final class com/thecode/aestheticdialogs/components/feedback/AestheticFeedbackDialogKt {
-	public static final fun AestheticFeedbackDialog (Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AestheticFeedbackDialog (Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/thecode/aestheticdialogs/components/feedback/ComposableSingletons$AestheticFeedbackDialogKt {
 	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/feedback/ComposableSingletons$AestheticFeedbackDialogKt;
 	public fun <init> ()V
-	public final fun getLambda$-1196541283$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$-311081132$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$-908624600$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-}
-
-public abstract interface class com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogSignal {
-}
-
-public final class com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogSignal$ActionClicked : com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogSignal$ActionClicked;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogSignal$Dismissed : com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogSignal$Dismissed;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+	public final fun getLambda$-1196541283$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-311081132$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-908624600$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$55539995$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
 }
 
 public abstract interface class com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel {
@@ -281,17 +182,16 @@ public abstract interface class com/thecode/aestheticdialogs/components/feedback
 	public abstract fun getTone ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
 }
 
-public final class com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Flash : com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel {
+public final class com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Compact : com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;)V
+	public synthetic fun <init> (Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;)Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Flash;
-	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Flash;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Flash;
+	public final fun component2 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;
+	public final fun copy (Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;)Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Compact;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Compact;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Compact;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getActionLabel ()Ljava/lang/String;
 	public fun getDismissBehavior ()Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;
@@ -302,7 +202,7 @@ public final class com/thecode/aestheticdialogs/components/feedback/models/Feedb
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Flat : com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel {
+public final class com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Default : com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;)V
 	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -311,55 +211,88 @@ public final class com/thecode/aestheticdialogs/components/feedback/models/Feedb
 	public final fun component3 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
 	public final fun component4 ()Ljava/lang/String;
 	public final fun component5 ()Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;)Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Flat;
-	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Flat;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Flat;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;)Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Default;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Default;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Default;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getActionLabel ()Ljava/lang/String;
 	public fun getDismissBehavior ()Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;
 	public fun getMessage ()Ljava/lang/String;
 	public fun getTitle ()Ljava/lang/String;
 	public fun getTone ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Gradient : com/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;)Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Gradient;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Gradient;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/feedback/models/FeedbackDialogUiModel$Gradient;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getActionLabel ()Ljava/lang/String;
+	public fun getDismissBehavior ()Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;
+	public fun getMessage ()Ljava/lang/String;
+	public fun getTitle ()Ljava/lang/String;
+	public fun getTone ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/thecode/aestheticdialogs/components/header/AestheticHeaderDialogKt {
+	public static final fun AestheticHeaderDialog (Lcom/thecode/aestheticdialogs/components/header/models/HeaderDialogUiModel;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/thecode/aestheticdialogs/components/header/ComposableSingletons$AestheticHeaderDialogKt {
+	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/header/ComposableSingletons$AestheticHeaderDialogKt;
+	public fun <init> ()V
+	public final fun getLambda$-1612739469$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$137729740$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+}
+
+public abstract interface class com/thecode/aestheticdialogs/components/header/models/HeaderDialogUiModel {
+}
+
+public final class com/thecode/aestheticdialogs/components/header/models/HeaderDialogUiModel$Default : com/thecode/aestheticdialogs/components/header/models/HeaderDialogUiModel {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/model/DialogAction;Lcom/thecode/aestheticdialogs/model/DialogAction;ZLcom/thecode/aestheticdialogs/model/DialogDismissBehavior;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/model/DialogAction;Lcom/thecode/aestheticdialogs/model/DialogAction;ZLcom/thecode/aestheticdialogs/model/DialogDismissBehavior;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
+	public final fun component4 ()Lcom/thecode/aestheticdialogs/model/DialogAction;
+	public final fun component5 ()Lcom/thecode/aestheticdialogs/model/DialogAction;
+	public final fun component6 ()Z
+	public final fun component7 ()Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/model/DialogAction;Lcom/thecode/aestheticdialogs/model/DialogAction;ZLcom/thecode/aestheticdialogs/model/DialogDismissBehavior;)Lcom/thecode/aestheticdialogs/components/header/models/HeaderDialogUiModel$Default;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/header/models/HeaderDialogUiModel$Default;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/model/DialogAction;Lcom/thecode/aestheticdialogs/model/DialogAction;ZLcom/thecode/aestheticdialogs/model/DialogDismissBehavior;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/header/models/HeaderDialogUiModel$Default;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDismissBehavior ()Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;
+	public final fun getMessage ()Ljava/lang/String;
+	public final fun getPrimaryAction ()Lcom/thecode/aestheticdialogs/model/DialogAction;
+	public final fun getSecondaryAction ()Lcom/thecode/aestheticdialogs/model/DialogAction;
+	public final fun getShowCloseButton ()Z
+	public final fun getTitle ()Ljava/lang/String;
+	public final fun getTone ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/thecode/aestheticdialogs/components/input/AestheticInputDialogKt {
-	public static final fun AestheticInputDialog (Lcom/thecode/aestheticdialogs/components/input/models/InputDialogUiModel;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AestheticInputDialog (Lcom/thecode/aestheticdialogs/components/input/models/InputDialogUiModel;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/thecode/aestheticdialogs/components/input/ComposableSingletons$AestheticInputDialogKt {
 	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/input/ComposableSingletons$AestheticInputDialogKt;
 	public fun <init> ()V
-	public final fun getLambda$-624666236$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$1796538738$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$736194925$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-}
-
-public abstract interface class com/thecode/aestheticdialogs/components/input/models/InputDialogSignal {
-}
-
-public final class com/thecode/aestheticdialogs/components/input/models/InputDialogSignal$Cancelled : com/thecode/aestheticdialogs/components/input/models/InputDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/input/models/InputDialogSignal$Cancelled;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/input/models/InputDialogSignal$Confirmed : com/thecode/aestheticdialogs/components/input/models/InputDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/input/models/InputDialogSignal$Confirmed;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/input/models/InputDialogSignal$Dismissed : com/thecode/aestheticdialogs/components/input/models/InputDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/input/models/InputDialogSignal$Dismissed;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+	public final fun getLambda$-624666236$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1796538738$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$736194925$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
 }
 
 public abstract interface class com/thecode/aestheticdialogs/components/input/models/InputDialogUiModel {
@@ -452,18 +385,30 @@ public final class com/thecode/aestheticdialogs/components/input/models/InputDia
 }
 
 public final class com/thecode/aestheticdialogs/components/notification/AestheticNotificationKt {
-	public static final fun AestheticNotification (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
-	public static final fun AestheticNotificationHost (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAlignment;Lcom/thecode/aestheticdialogs/tokens/AestheticNotificationAnimation;Ljava/lang/Long;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AestheticNotification (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AestheticNotificationHost (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function2;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAlignment;Lcom/thecode/aestheticdialogs/tokens/AestheticNotificationAnimation;Ljava/lang/Long;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationQueuePolicy;ZZLandroidx/compose/runtime/Composer;III)V
 }
 
 public final class com/thecode/aestheticdialogs/components/notification/ComposableSingletons$AestheticNotificationKt {
 	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/notification/ComposableSingletons$AestheticNotificationKt;
 	public fun <init> ()V
-	public final fun getLambda$-1324809060$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$-1359229272$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$-1760396008$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$-227487370$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$973057341$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-1359229272$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-2075493126$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1713096236$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$1875120631$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$2024399866$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+}
+
+public final class com/thecode/aestheticdialogs/components/notification/models/NotificationAction {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Ljava/lang/String;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLabel ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class com/thecode/aestheticdialogs/components/notification/models/NotificationAlignment : java/lang/Enum {
@@ -474,43 +419,44 @@ public final class com/thecode/aestheticdialogs/components/notification/models/N
 	public static fun values ()[Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAlignment;
 }
 
-public abstract interface class com/thecode/aestheticdialogs/components/notification/models/NotificationSignal {
+public final class com/thecode/aestheticdialogs/components/notification/models/NotificationPresence : java/lang/Enum {
+	public static final field Offline Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;
+	public static final field Online Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;
+	public static fun values ()[Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;
 }
 
-public final class com/thecode/aestheticdialogs/components/notification/models/NotificationSignal$Clicked : com/thecode/aestheticdialogs/components/notification/models/NotificationSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/notification/models/NotificationSignal$Clicked;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/notification/models/NotificationSignal$Dismissed : com/thecode/aestheticdialogs/components/notification/models/NotificationSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/notification/models/NotificationSignal$Dismissed;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+public final class com/thecode/aestheticdialogs/components/notification/models/NotificationQueuePolicy : java/lang/Enum {
+	public static final field Drop Lcom/thecode/aestheticdialogs/components/notification/models/NotificationQueuePolicy;
+	public static final field Enqueue Lcom/thecode/aestheticdialogs/components/notification/models/NotificationQueuePolicy;
+	public static final field Replace Lcom/thecode/aestheticdialogs/components/notification/models/NotificationQueuePolicy;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationQueuePolicy;
+	public static fun values ()[Lcom/thecode/aestheticdialogs/components/notification/models/NotificationQueuePolicy;
 }
 
 public abstract interface class com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel {
+	public abstract fun getAction ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;
 	public abstract fun getMessage ()Ljava/lang/String;
 	public abstract fun getShowCloseButton ()Z
 	public abstract fun getTitle ()Ljava/lang/String;
 	public abstract fun getTone ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
 }
 
-public final class com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Connectify : com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel {
+public final class com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Ambient : com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Z)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Z)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
-	public final fun component4 ()Z
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Z)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Connectify;
-	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Connectify;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;ZILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Connectify;
+	public final fun component4 ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;
+	public final fun component5 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Z)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Ambient;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Ambient;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;ZILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Ambient;
 	public fun equals (Ljava/lang/Object;)Z
+	public fun getAction ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;
 	public fun getMessage ()Ljava/lang/String;
 	public fun getShowCloseButton ()Z
 	public fun getTitle ()Ljava/lang/String;
@@ -519,40 +465,27 @@ public final class com/thecode/aestheticdialogs/components/notification/models/N
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Emoji : com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel {
+public final class com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Default : com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Z)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;Ljava/lang/Float;Z)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;Ljava/lang/Float;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
-	public final fun component5 ()Z
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Z)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Emoji;
-	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Emoji;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;ZILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Emoji;
+	public final fun component3 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
+	public final fun component4 ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;
+	public final fun component8 ()Ljava/lang/Float;
+	public final fun component9 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;Ljava/lang/Float;Z)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Default;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Default;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;Ljava/lang/Float;ZILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Default;
 	public fun equals (Ljava/lang/Object;)Z
+	public fun getAction ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;
 	public final fun getEmoji ()Ljava/lang/String;
 	public fun getMessage ()Ljava/lang/String;
-	public fun getShowCloseButton ()Z
-	public fun getTitle ()Ljava/lang/String;
-	public fun getTone ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Emotion : com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel {
-	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Z)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
-	public final fun component5 ()Z
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Z)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Emotion;
-	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Emotion;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;ZILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Emotion;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun getMessage ()Ljava/lang/String;
+	public final fun getPresence ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;
+	public final fun getProgress ()Ljava/lang/Float;
 	public fun getShowCloseButton ()Z
 	public final fun getTimestamp ()Ljava/lang/String;
 	public fun getTitle ()Ljava/lang/String;
@@ -561,17 +494,77 @@ public final class com/thecode/aestheticdialogs/components/notification/models/N
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Rainbow : com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel {
+public final class com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Filled : com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Z)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;Ljava/lang/Float;Z)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;Ljava/lang/Float;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
-	public final fun component4 ()Z
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Z)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Rainbow;
-	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Rainbow;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;ZILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Rainbow;
+	public final fun component4 ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;
+	public final fun component8 ()Ljava/lang/Float;
+	public final fun component9 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;Ljava/lang/Float;Z)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Filled;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Filled;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;Ljava/lang/Float;ZILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Filled;
 	public fun equals (Ljava/lang/Object;)Z
+	public fun getAction ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;
+	public final fun getEmoji ()Ljava/lang/String;
+	public fun getMessage ()Ljava/lang/String;
+	public final fun getPresence ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;
+	public final fun getProgress ()Ljava/lang/Float;
+	public fun getShowCloseButton ()Z
+	public final fun getTimestamp ()Ljava/lang/String;
+	public fun getTitle ()Ljava/lang/String;
+	public fun getTone ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Gradient : com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;Ljava/lang/Float;Z)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;Ljava/lang/Float;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
+	public final fun component4 ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;
+	public final fun component8 ()Ljava/lang/Float;
+	public final fun component9 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;Ljava/lang/Float;Z)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Gradient;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Gradient;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;Ljava/lang/Float;ZILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Gradient;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getAction ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;
+	public final fun getEmoji ()Ljava/lang/String;
+	public fun getMessage ()Ljava/lang/String;
+	public final fun getPresence ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationPresence;
+	public final fun getProgress ()Ljava/lang/Float;
+	public fun getShowCloseButton ()Z
+	public final fun getTimestamp ()Ljava/lang/String;
+	public fun getTitle ()Ljava/lang/String;
+	public fun getTone ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Strip : com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Z)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
+	public final fun component4 ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;
+	public final fun component5 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;Z)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Strip;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Strip;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;ZILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Strip;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getAction ()Lcom/thecode/aestheticdialogs/components/notification/models/NotificationAction;
 	public fun getMessage ()Ljava/lang/String;
 	public fun getShowCloseButton ()Z
 	public fun getTitle ()Ljava/lang/String;
@@ -580,19 +573,60 @@ public final class com/thecode/aestheticdialogs/components/notification/models/N
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Toaster : com/thecode/aestheticdialogs/components/notification/models/NotificationUiModel {
+public final class com/thecode/aestheticdialogs/components/progress/AestheticProgressDialogKt {
+	public static final fun AestheticProgressDialog (Lcom/thecode/aestheticdialogs/components/progress/models/ProgressDialogUiModel;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/thecode/aestheticdialogs/components/progress/ComposableSingletons$AestheticProgressDialogKt {
+	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/progress/ComposableSingletons$AestheticProgressDialogKt;
+	public fun <init> ()V
+	public final fun getLambda$148877840$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$202120721$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+}
+
+public abstract interface class com/thecode/aestheticdialogs/components/progress/models/ProgressDialogUiModel {
+	public abstract fun getCancelLabel ()Ljava/lang/String;
+	public abstract fun getMessage ()Ljava/lang/String;
+	public abstract fun getTitle ()Ljava/lang/String;
+	public abstract fun getTone ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
+}
+
+public final class com/thecode/aestheticdialogs/components/progress/models/ProgressDialogUiModel$Default : com/thecode/aestheticdialogs/components/progress/models/ProgressDialogUiModel {
 	public static final field $stable I
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Z)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
-	public final fun component4 ()Z
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Z)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Toaster;
-	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Toaster;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;ZILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/notification/models/NotificationUiModel$Toaster;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;)Lcom/thecode/aestheticdialogs/components/progress/models/ProgressDialogUiModel$Default;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/progress/models/ProgressDialogUiModel$Default;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/progress/models/ProgressDialogUiModel$Default;
 	public fun equals (Ljava/lang/Object;)Z
+	public fun getCancelLabel ()Ljava/lang/String;
 	public fun getMessage ()Ljava/lang/String;
-	public fun getShowCloseButton ()Z
+	public fun getTitle ()Ljava/lang/String;
+	public fun getTone ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/thecode/aestheticdialogs/components/progress/models/ProgressDialogUiModel$Determinate : com/thecode/aestheticdialogs/components/progress/models/ProgressDialogUiModel {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;FLjava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;FLjava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()F
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;FLjava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;)Lcom/thecode/aestheticdialogs/components/progress/models/ProgressDialogUiModel$Determinate;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/progress/models/ProgressDialogUiModel$Determinate;Ljava/lang/String;FLjava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/foundation/DialogTone;Ljava/lang/String;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/progress/models/ProgressDialogUiModel$Determinate;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getCancelLabel ()Ljava/lang/String;
+	public fun getMessage ()Ljava/lang/String;
+	public final fun getProgress ()F
+	public final fun getProgressLabel ()Ljava/lang/String;
 	public fun getTitle ()Ljava/lang/String;
 	public fun getTone ()Lcom/thecode/aestheticdialogs/foundation/DialogTone;
 	public fun hashCode ()I
@@ -600,67 +634,16 @@ public final class com/thecode/aestheticdialogs/components/notification/models/N
 }
 
 public final class com/thecode/aestheticdialogs/components/selection/AestheticSelectionDialogKt {
-	public static final fun AestheticSelectionDialog (Lcom/thecode/aestheticdialogs/components/selection/models/SelectionDialogUiModel;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AestheticSelectionDialog (Lcom/thecode/aestheticdialogs/components/selection/models/SelectionDialogUiModel;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;II)V
 }
 
 public final class com/thecode/aestheticdialogs/components/selection/ComposableSingletons$AestheticSelectionDialogKt {
 	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/selection/ComposableSingletons$AestheticSelectionDialogKt;
 	public fun <init> ()V
-	public final fun getLambda$-1829965594$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$-52401627$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$-700517716$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-	public final fun getLambda$959533853$AestheticDialogs_aestheticdialogs_release ()Lkotlin/jvm/functions/Function2;
-}
-
-public abstract interface class com/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal {
-}
-
-public final class com/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$Cancelled : com/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$Cancelled;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$Confirmed : com/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$Confirmed;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$Dismissed : com/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal {
-	public static final field $stable I
-	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$Dismissed;
-	public fun equals (Ljava/lang/Object;)Z
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$ItemClicked : com/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal {
-	public static final field $stable I
-	public fun <init> (Ljava/lang/String;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;)Lcom/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$ItemClicked;
-	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$ItemClicked;Ljava/lang/String;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$ItemClicked;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getId ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
-}
-
-public final class com/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$SearchQueryChanged : com/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal {
-	public static final field $stable I
-	public fun <init> (Ljava/lang/String;)V
-	public final fun component1 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;)Lcom/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$SearchQueryChanged;
-	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$SearchQueryChanged;Ljava/lang/String;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/selection/models/SelectionDialogSignal$SearchQueryChanged;
-	public fun equals (Ljava/lang/Object;)Z
-	public final fun getQuery ()Ljava/lang/String;
-	public fun hashCode ()I
-	public fun toString ()Ljava/lang/String;
+	public final fun getLambda$-1829965594$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-52401627$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-700517716$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$959533853$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
 }
 
 public abstract interface class com/thecode/aestheticdialogs/components/selection/models/SelectionDialogUiModel {
@@ -747,6 +730,61 @@ public final class com/thecode/aestheticdialogs/components/selection/models/Sele
 	public final fun getSupportingText ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/thecode/aestheticdialogs/components/sheet/AestheticSheetDialogKt {
+	public static final fun AestheticSheetDialog (Lcom/thecode/aestheticdialogs/components/sheet/models/SheetDialogUiModel;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AestheticSheetHost (Lcom/thecode/aestheticdialogs/components/sheet/models/SheetDialogUiModel;Lkotlin/jvm/functions/Function0;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function4;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/thecode/aestheticdialogs/components/sheet/ComposableSingletons$AestheticSheetDialogKt {
+	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/sheet/ComposableSingletons$AestheticSheetDialogKt;
+	public fun <init> ()V
+	public final fun getLambda$-1678429406$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+	public final fun getLambda$-300872648$aestheticdialogs ()Lkotlin/jvm/functions/Function4;
+	public final fun getLambda$-308074363$aestheticdialogs ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1667195785$aestheticdialogs ()Lkotlin/jvm/functions/Function3;
+	public final fun getLambda$1927058882$aestheticdialogs ()Lkotlin/jvm/functions/Function2;
+}
+
+public abstract interface class com/thecode/aestheticdialogs/components/sheet/models/SheetDialogUiModel {
+}
+
+public final class com/thecode/aestheticdialogs/components/sheet/models/SheetDialogUiModel$Default : com/thecode/aestheticdialogs/components/sheet/models/SheetDialogUiModel {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogAction;Lcom/thecode/aestheticdialogs/model/DialogAction;ZZLcom/thecode/aestheticdialogs/model/DialogDismissBehavior;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogAction;Lcom/thecode/aestheticdialogs/model/DialogAction;ZZLcom/thecode/aestheticdialogs/model/DialogDismissBehavior;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lcom/thecode/aestheticdialogs/model/DialogAction;
+	public final fun component4 ()Lcom/thecode/aestheticdialogs/model/DialogAction;
+	public final fun component5 ()Z
+	public final fun component6 ()Z
+	public final fun component7 ()Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogAction;Lcom/thecode/aestheticdialogs/model/DialogAction;ZZLcom/thecode/aestheticdialogs/model/DialogDismissBehavior;)Lcom/thecode/aestheticdialogs/components/sheet/models/SheetDialogUiModel$Default;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/components/sheet/models/SheetDialogUiModel$Default;Ljava/lang/String;Ljava/lang/String;Lcom/thecode/aestheticdialogs/model/DialogAction;Lcom/thecode/aestheticdialogs/model/DialogAction;ZZLcom/thecode/aestheticdialogs/model/DialogDismissBehavior;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/components/sheet/models/SheetDialogUiModel$Default;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDismissBehavior ()Lcom/thecode/aestheticdialogs/model/DialogDismissBehavior;
+	public final fun getMessage ()Ljava/lang/String;
+	public final fun getPrimaryAction ()Lcom/thecode/aestheticdialogs/model/DialogAction;
+	public final fun getSecondaryAction ()Lcom/thecode/aestheticdialogs/model/DialogAction;
+	public final fun getShowCloseButton ()Z
+	public final fun getShowDragHandle ()Z
+	public final fun getTitle ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/thecode/aestheticdialogs/components/sheet/primitives/ComposableSingletons$SheetPrimitiveKt {
+	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/sheet/primitives/ComposableSingletons$SheetPrimitiveKt;
+	public fun <init> ()V
+	public final fun getLambda$152073299$aestheticdialogs ()Lkotlin/jvm/functions/Function3;
+}
+
+public final class com/thecode/aestheticdialogs/components/sheet/variants/ComposableSingletons$SheetDialogDefaultKt {
+	public static final field INSTANCE Lcom/thecode/aestheticdialogs/components/sheet/variants/ComposableSingletons$SheetDialogDefaultKt;
+	public fun <init> ()V
+	public final fun getLambda$717525524$aestheticdialogs ()Lkotlin/jvm/functions/Function3;
 }
 
 public final class com/thecode/aestheticdialogs/foundation/AestheticColorSchemesKt {
@@ -975,23 +1013,35 @@ public final class com/thecode/aestheticdialogs/tokens/AestheticDimens {
 	public final fun getAccentBarHeight-D9Ej5fM ()F
 	public final fun getAccentBarWidth-D9Ej5fM ()F
 	public final fun getBannerAffordanceSlot-D9Ej5fM ()F
+	public final fun getBannerCountdownHeight-D9Ej5fM ()F
 	public final fun getBannerMinHeight-D9Ej5fM ()F
+	public final fun getBannerProgressHeight-D9Ej5fM ()F
+	public final fun getBannerSwipeDismissDistance-D9Ej5fM ()F
 	public final fun getBorderWidth-D9Ej5fM ()F
 	public final fun getBreakpointExpanded-D9Ej5fM ()F
 	public final fun getBreakpointMedium-D9Ej5fM ()F
 	public final fun getButtonHeight-D9Ej5fM ()F
 	public final fun getButtonMinWidth-D9Ej5fM ()F
+	public final fun getCompactDialogHeight-D9Ej5fM ()F
 	public final fun getCompactWindowMargin-D9Ej5fM ()F
 	public final fun getDialogWidthExpanded-D9Ej5fM ()F
 	public final fun getDialogWidthMedium-D9Ej5fM ()F
 	public final fun getFieldHeight-D9Ej5fM ()F
+	public final fun getHeaderBandHeight-D9Ej5fM ()F
 	public final fun getIconLg-D9Ej5fM ()F
 	public final fun getIconMd-D9Ej5fM ()F
 	public final fun getIconSm-D9Ej5fM ()F
 	public final fun getMinTouchTarget-D9Ej5fM ()F
 	public final fun getNotificationMaxWidth-D9Ej5fM ()F
+	public final fun getPresenceDotBorder-D9Ej5fM ()F
+	public final fun getPresenceDotSize-D9Ej5fM ()F
+	public final fun getProgressIndicatorLarge-D9Ej5fM ()F
+	public final fun getProgressIndicatorLargeStroke-D9Ej5fM ()F
 	public final fun getProgressIndicatorSize-D9Ej5fM ()F
 	public final fun getProgressIndicatorStroke-D9Ej5fM ()F
+	public final fun getSheetDragDismissDistance-D9Ej5fM ()F
+	public final fun getSheetHandleHeight-D9Ej5fM ()F
+	public final fun getSheetHandleWidth-D9Ej5fM ()F
 	public final fun getStatusGlyph-D9Ej5fM ()F
 	public final fun getStatusGlyphCompact-D9Ej5fM ()F
 }
@@ -1046,6 +1096,12 @@ public final class com/thecode/aestheticdialogs/tokens/AestheticNotificationAnim
 	public static fun values ()[Lcom/thecode/aestheticdialogs/tokens/AestheticNotificationAnimation;
 }
 
+public final class com/thecode/aestheticdialogs/tokens/AestheticOpacity {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/thecode/aestheticdialogs/tokens/AestheticOpacity;
+	public final fun getTrack ()F
+}
+
 public final class com/thecode/aestheticdialogs/tokens/AestheticRadius {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/thecode/aestheticdialogs/tokens/AestheticRadius;
@@ -1060,21 +1116,23 @@ public final class com/thecode/aestheticdialogs/tokens/AestheticShapes {
 	public static final field $stable I
 	public static final field Companion Lcom/thecode/aestheticdialogs/tokens/AestheticShapes$Companion;
 	public fun <init> ()V
-	public fun <init> (Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;)V
-	public synthetic fun <init> (Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;)V
+	public synthetic fun <init> (Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Landroidx/compose/ui/graphics/Shape;
 	public final fun component2 ()Landroidx/compose/ui/graphics/Shape;
 	public final fun component3 ()Landroidx/compose/ui/graphics/Shape;
 	public final fun component4 ()Landroidx/compose/ui/graphics/Shape;
 	public final fun component5 ()Landroidx/compose/ui/graphics/Shape;
-	public final fun copy (Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;)Lcom/thecode/aestheticdialogs/tokens/AestheticShapes;
-	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/tokens/AestheticShapes;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/tokens/AestheticShapes;
+	public final fun component6 ()Landroidx/compose/ui/graphics/Shape;
+	public final fun copy (Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;)Lcom/thecode/aestheticdialogs/tokens/AestheticShapes;
+	public static synthetic fun copy$default (Lcom/thecode/aestheticdialogs/tokens/AestheticShapes;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;Landroidx/compose/ui/graphics/Shape;ILjava/lang/Object;)Lcom/thecode/aestheticdialogs/tokens/AestheticShapes;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBanner ()Landroidx/compose/ui/graphics/Shape;
 	public final fun getButton ()Landroidx/compose/ui/graphics/Shape;
 	public final fun getCircle ()Landroidx/compose/ui/graphics/Shape;
 	public final fun getControl ()Landroidx/compose/ui/graphics/Shape;
 	public final fun getDialog ()Landroidx/compose/ui/graphics/Shape;
+	public final fun getSheet ()Landroidx/compose/ui/graphics/Shape;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }

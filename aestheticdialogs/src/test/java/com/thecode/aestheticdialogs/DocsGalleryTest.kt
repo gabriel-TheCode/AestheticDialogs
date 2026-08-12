@@ -33,13 +33,21 @@ import com.thecode.aestheticdialogs.components.content.AestheticContentDialog
 import com.thecode.aestheticdialogs.components.content.models.ContentDialogUiModel
 import com.thecode.aestheticdialogs.components.feedback.AestheticFeedbackDialog
 import com.thecode.aestheticdialogs.components.feedback.models.FeedbackDialogUiModel
+import com.thecode.aestheticdialogs.components.header.AestheticHeaderDialog
+import com.thecode.aestheticdialogs.components.header.models.HeaderDialogUiModel
 import com.thecode.aestheticdialogs.components.input.AestheticInputDialog
 import com.thecode.aestheticdialogs.components.input.models.InputDialogUiModel
 import com.thecode.aestheticdialogs.components.notification.AestheticNotification
+import com.thecode.aestheticdialogs.components.notification.models.NotificationAction
+import com.thecode.aestheticdialogs.components.notification.models.NotificationPresence
 import com.thecode.aestheticdialogs.components.notification.models.NotificationUiModel
+import com.thecode.aestheticdialogs.components.progress.AestheticProgressDialog
+import com.thecode.aestheticdialogs.components.progress.models.ProgressDialogUiModel
 import com.thecode.aestheticdialogs.components.selection.AestheticSelectionDialog
 import com.thecode.aestheticdialogs.components.selection.models.SelectionDialogUiModel
 import com.thecode.aestheticdialogs.components.selection.models.SelectionItem
+import com.thecode.aestheticdialogs.components.sheet.AestheticSheetDialog
+import com.thecode.aestheticdialogs.components.sheet.models.SheetDialogUiModel
 import com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme
 import com.thecode.aestheticdialogs.foundation.DialogTone
 import com.thecode.aestheticdialogs.model.DialogAction
@@ -89,7 +97,9 @@ class DocsGalleryTest {
                 confirmLabel = "Leave",
                 cancelLabel = "Keep editing",
             ),
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
+            onDismiss = {},
         )
     }
 
@@ -102,7 +112,9 @@ class DocsGalleryTest {
                 confirmLabel = "Delete album",
                 cancelLabel = "Keep it",
             ),
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
+            onDismiss = {},
         )
     }
 
@@ -116,7 +128,9 @@ class DocsGalleryTest {
                 cancelLabel = "Keep it",
                 isConfirming = true,
             ),
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
+            onDismiss = {},
         )
     }
 
@@ -130,7 +144,8 @@ class DocsGalleryTest {
                 primaryAction = DialogAction("Retry"),
                 secondaryAction = DialogAction("Dismiss", DialogActionEmphasis.Text),
             ),
-            onSignal = {},
+            onPrimaryAction = {},
+            onDismiss = {},
         )
     }
 
@@ -144,7 +159,8 @@ class DocsGalleryTest {
                 primaryAction = DialogAction("Retry"),
                 secondaryAction = DialogAction("Cancel", DialogActionEmphasis.Secondary),
             ),
-            onSignal = {},
+            onPrimaryAction = {},
+            onDismiss = {},
         )
     }
 
@@ -158,7 +174,8 @@ class DocsGalleryTest {
                 primaryAction = DialogAction("Retry"),
                 secondaryAction = DialogAction("Cancel", DialogActionEmphasis.Secondary),
             ),
-            onSignal = {},
+            onPrimaryAction = {},
+            onDismiss = {},
         )
     }
 
@@ -172,7 +189,8 @@ class DocsGalleryTest {
                 cancelLabel = "Cancel",
                 confirmLabel = "Use this one",
             ),
-            onSignal = {},
+            onItemClick = {},
+            onCancel = {},
         )
     }
 
@@ -187,7 +205,8 @@ class DocsGalleryTest {
                 cancelLabel = "Cancel",
                 searchQuery = "",
             ),
-            onSignal = {},
+            onItemClick = {},
+            onCancel = {},
         )
     }
 
@@ -202,7 +221,8 @@ class DocsGalleryTest {
                 cancelLabel = "Cancel",
                 searchQuery = "",
             ),
-            onSignal = {},
+            onItemClick = {},
+            onCancel = {},
         )
     }
 
@@ -217,7 +237,8 @@ class DocsGalleryTest {
                 cancelLabel = "Cancel",
             ),
             onValueChange = {},
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
         )
     }
 
@@ -234,7 +255,8 @@ class DocsGalleryTest {
                 isConfirmEnabled = false,
             ),
             onValueChange = {},
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
         )
     }
 
@@ -250,7 +272,8 @@ class DocsGalleryTest {
                 cancelLabel = "Cancel",
             ),
             onValueChange = {},
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
         )
     }
 
@@ -263,69 +286,133 @@ class DocsGalleryTest {
                 primaryAction = DialogAction("I agree"),
                 secondaryAction = DialogAction("Not now", DialogActionEmphasis.Text),
             ),
-            onSignal = {},
+            onDismiss = {},
         ) {
             ConsentPlaceholder()
         }
     }
 
     @Test
-    fun feedbackFlat() = screen("feedback-flat") {
+    fun feedbackDefault() = screen("feedback-default") {
         AestheticFeedbackDialog(
-            uiModel = FeedbackDialogUiModel.Flat(
+            uiModel = FeedbackDialogUiModel.Default(
                 title = "Album archived",
                 message = "You will find it under Archived in Settings.",
                 tone = DialogTone.Info,
                 actionLabel = "Got it",
             ),
-            onSignal = {},
+            onDismiss = {},
         )
     }
 
     @Test
-    fun feedbackFlatNeutral() = screen("feedback-flat-neutral") {
+    fun feedbackDefaultNeutral() = screen("feedback-default-neutral") {
         AestheticFeedbackDialog(
-            uiModel = FeedbackDialogUiModel.Flat(
+            uiModel = FeedbackDialogUiModel.Default(
                 title = "Album archived",
                 message = "You will find it under Archived in Settings.",
                 tone = DialogTone.Neutral,
                 actionLabel = "Got it",
             ),
-            onSignal = {},
+            onDismiss = {},
         )
     }
 
     @Test
-    fun feedbackFlash() = screen("feedback-flash") {
+    fun feedbackGradient() = screen("feedback-gradient") {
         AestheticFeedbackDialog(
-            uiModel = FeedbackDialogUiModel.Flash(
+            uiModel = FeedbackDialogUiModel.Gradient(
                 title = "Message sent",
                 message = "It will arrive even if you close the app.",
                 tone = DialogTone.Success,
                 actionLabel = "Nice",
             ),
-            onSignal = {},
+            onDismiss = {},
         )
     }
 
     @Test
-    fun feedbackFlashError() = screen("feedback-flash-error") {
+    fun feedbackGradientError() = screen("feedback-gradient-error") {
         AestheticFeedbackDialog(
-            uiModel = FeedbackDialogUiModel.Flash(
+            uiModel = FeedbackDialogUiModel.Gradient(
                 title = "Payment declined",
                 message = "Your bank refused the charge. Nothing was taken.",
                 tone = DialogTone.Error,
                 actionLabel = "Try another card",
             ),
-            onSignal = {},
+            onDismiss = {},
+        )
+    }
+
+    @Test
+    fun feedbackCompact() = screen("feedback-compact") {
+        AestheticFeedbackDialog(
+            uiModel = FeedbackDialogUiModel.Compact(
+                title = "Album archived",
+                tone = DialogTone.Success,
+                actionLabel = "Undo",
+            ),
+            onDismiss = {},
+        )
+    }
+
+    @Test
+    fun sheetDefault() = screen("sheet-default") {
+        AestheticSheetDialog(
+            uiModel = SheetDialogUiModel.Default(
+                title = "Share this album",
+                message = "Anyone with the link can see the 24 photos inside it.",
+                primaryAction = DialogAction("Copy link"),
+                secondaryAction = DialogAction("Cancel", DialogActionEmphasis.Text),
+            ),
+            onDismiss = {},
+        )
+    }
+
+    @Test
+    fun headerDefault() = screen("header-default") {
+        AestheticHeaderDialog(
+            uiModel = HeaderDialogUiModel.Default(
+                title = "Albums, offline",
+                message = "Everything you starred is on the device now.",
+                primaryAction = DialogAction("Take the tour"),
+                secondaryAction = DialogAction("Later", DialogActionEmphasis.Text),
+            ),
+            onPrimaryAction = {},
+            onDismiss = {},
+        )
+    }
+
+    @Test
+    fun progressDefault() = screen("progress-default") {
+        AestheticProgressDialog(
+            uiModel = ProgressDialogUiModel.Default(
+                title = "Signing you in",
+                message = "This takes a moment on a slow connection.",
+            ),
+        )
+    }
+
+    @Test
+    fun progressDeterminate() = screen("progress-determinate") {
+        AestheticProgressDialog(
+            uiModel = ProgressDialogUiModel.Determinate(
+                title = "Uploading",
+                message = "Keep the app open until this finishes.",
+                progress = 0.5f,
+                progressLabel = "12 of 24",
+                tone = DialogTone.Info,
+                cancelLabel = "Cancel upload",
+            ),
+            onCancel = {},
         )
     }
 
     // --- Banners ---------------------------------------------------------------
 
     @Test
-    fun notificationToaster() = banner("notification-toaster") {
-        NotificationUiModel.Toaster(
+    fun notificationDefault() = banner("notification-default") {
+        NotificationUiModel.Default(
             title = "Saved",
             message = "Your changes are on every device.",
             tone = DialogTone.Success,
@@ -333,8 +420,8 @@ class DocsGalleryTest {
     }
 
     @Test
-    fun notificationRainbow() = banner("notification-rainbow") {
-        NotificationUiModel.Rainbow(
+    fun notificationFilled() = banner("notification-filled") {
+        NotificationUiModel.Filled(
             title = "Heads up",
             message = "Two invoices are due this week.",
             tone = DialogTone.Warning,
@@ -342,8 +429,8 @@ class DocsGalleryTest {
     }
 
     @Test
-    fun notificationConnectify() = banner("notification-connectify") {
-        NotificationUiModel.Connectify(
+    fun notificationAmbient() = banner("notification-ambient") {
+        NotificationUiModel.Ambient(
             title = "Back online",
             message = "Syncing what you missed.",
             tone = DialogTone.Success,
@@ -351,8 +438,8 @@ class DocsGalleryTest {
     }
 
     @Test
-    fun notificationConnectifyLongCopy() = banner("notification-connectify-long") {
-        NotificationUiModel.Connectify(
+    fun notificationAmbientLongCopy() = banner("notification-ambient-long") {
+        NotificationUiModel.Ambient(
             title = "Reconnected to the office network after a long outage",
             message = "Syncing the twenty-four items that changed while you were away.",
             tone = DialogTone.Info,
@@ -361,20 +448,60 @@ class DocsGalleryTest {
 
     @Test
     fun notificationEmoji() = banner("notification-emoji") {
-        NotificationUiModel.Emoji(
+        NotificationUiModel.Default(
             title = "Nice one",
             message = "That was your tenth album this month.",
             tone = DialogTone.Success,
+            emoji = "\uD83D\uDC4D",
         )
     }
 
     @Test
-    fun notificationEmotion() = banner("notification-emotion") {
-        NotificationUiModel.Emotion(
+    fun notificationGradient() = banner("notification-gradient") {
+        NotificationUiModel.Gradient(
             title = "Amara sent a photo",
             message = "Tap to open the album",
             timestamp = "13:56",
             tone = DialogTone.Info,
+        )
+    }
+
+    @Test
+    fun notificationAction() = banner("notification-action") {
+        NotificationUiModel.Default(
+            title = "Album archived",
+            message = "24 photos moved out of your library.",
+            tone = DialogTone.Neutral,
+            action = NotificationAction("Undo"),
+        )
+    }
+
+    @Test
+    fun notificationProgress() = banner("notification-progress") {
+        NotificationUiModel.Default(
+            title = "Uploading 12 of 24",
+            message = "You can keep using the app.",
+            tone = DialogTone.Info,
+            progress = 0.5f,
+        )
+    }
+
+    @Test
+    fun notificationPresence() = banner("notification-presence") {
+        NotificationUiModel.Gradient(
+            title = "Amara sent a photo",
+            message = "Tap to open the album",
+            tone = DialogTone.Info,
+            timestamp = "13:56",
+            presence = NotificationPresence.Online,
+        )
+    }
+
+    @Test
+    fun notificationStrip() = banner("notification-strip") {
+        NotificationUiModel.Strip(
+            title = "You are offline",
+            message = "Showing the last version we downloaded.",
         )
     }
 
@@ -385,28 +512,28 @@ class DocsGalleryTest {
                 BannerStage {
                     Column(verticalArrangement = Arrangement.spacedBy(AestheticSpacing.lg)) {
                         AestheticNotification(
-                            uiModel = NotificationUiModel.Toaster(
+                            uiModel = NotificationUiModel.Default(
                                 title = "Saved",
                                 message = "Your changes are on every device.",
                                 tone = DialogTone.Success,
                             ),
-                            onSignal = {},
+                            onDismiss = {},
                         )
                         AestheticNotification(
-                            uiModel = NotificationUiModel.Rainbow(
+                            uiModel = NotificationUiModel.Filled(
                                 title = "Heads up",
                                 message = "Two invoices are due this week.",
                                 tone = DialogTone.Warning,
                             ),
-                            onSignal = {},
+                            onDismiss = {},
                         )
                         AestheticNotification(
-                            uiModel = NotificationUiModel.Connectify(
+                            uiModel = NotificationUiModel.Ambient(
                                 title = "Back online",
                                 message = "Syncing what you missed.",
                                 tone = DialogTone.Success,
                             ),
-                            onSignal = {},
+                            onDismiss = {},
                         )
                     }
                 }
@@ -437,7 +564,7 @@ class DocsGalleryTest {
         composeRule.setContent {
             AestheticDialogsTheme(darkTheme = false) {
                 BannerStage {
-                    AestheticNotification(uiModel = uiModel(), onSignal = {})
+                    AestheticNotification(uiModel = uiModel(), onDismiss = {})
                 }
             }
         }

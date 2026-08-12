@@ -9,7 +9,6 @@ import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
 import com.thecode.aestheticdialogs.components.input.AestheticInputDialog
-import com.thecode.aestheticdialogs.components.input.models.InputDialogSignal
 import com.thecode.aestheticdialogs.components.input.models.InputDialogUiModel
 import com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme
 import org.junit.Rule
@@ -37,7 +36,8 @@ class InputDialogTest {
                         cancelLabel = "Cancel",
                     ),
                     onValueChange = edits::add,
-                    onSignal = {},
+                    onConfirm = {},
+                    onCancel = {},
                 )
             }
         }
@@ -64,7 +64,8 @@ class InputDialogTest {
                         isConfirmEnabled = false,
                     ),
                     onValueChange = {},
-                    onSignal = {},
+                    onConfirm = {},
+                    onCancel = {},
                 )
             }
         }
@@ -78,7 +79,7 @@ class InputDialogTest {
 
     @Test
     fun `cancel emits Cancelled`() {
-        val signals = mutableListOf<InputDialogSignal>()
+        val calls = mutableListOf<String>()
         composeRule.setContent {
             AestheticDialogsTheme {
                 AestheticInputDialog(
@@ -89,13 +90,14 @@ class InputDialogTest {
                         cancelLabel = "Cancel",
                     ),
                     onValueChange = {},
-                    onSignal = signals::add,
+                    onConfirm = { calls += "confirm" },
+                    onCancel = { calls += "cancel" },
                 )
             }
         }
 
         composeRule.onNodeWithText("Cancel").performClick()
 
-        assertThat(signals).containsExactly(InputDialogSignal.Cancelled)
+        assertThat(calls).containsExactly("cancel")
     }
 }

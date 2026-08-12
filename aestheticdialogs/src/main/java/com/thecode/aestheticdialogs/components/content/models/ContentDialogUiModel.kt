@@ -34,10 +34,3 @@ public sealed interface ContentDialogUiModel {
         val dismissBehavior: DialogDismissBehavior = DialogDismissBehavior.Default,
     ) : ContentDialogUiModel
 }
-
-/** What the user did with a rich content dialog. */
-public sealed interface ContentDialogSignal {
-    public data object PrimaryActionClicked : ContentDialogSignal
-    public data object SecondaryActionClicked : ContentDialogSignal
-    public data object Dismissed : ContentDialogSignal
-}

@@ -42,8 +42,13 @@ need is a new variant or a new slot.
 **No raw visual values.** A `dp`, an `sp` or a `Color` literal inside
 `primitives/`, `variants/` or `components/` is a review failure. Add a token.
 
-**No lambdas in UI models.** Callbacks are parameters. See
-[docs/ARCHITECTURE.md §3](docs/ARCHITECTURE.md).
+**No lambdas in UI models.** Callbacks are parameters — one per interaction,
+named after it. See [docs/ARCHITECTURE.md §3](docs/ARCHITECTURE.md).
+
+**A variant initialises one primitive.** It resolves the model into values and
+passes them; it does not compose several primitives or build slot lambdas. If a
+variant needs something drawn that its family primitive cannot draw, the
+parameter goes on the primitive. One variant per file, named after it.
 
 **`@Immutable` is a promise.** Do not put it on a class holding a `List`, a `Map`
 or anything else Compose cannot prove. A slightly slower dialog is cheaper than a
@@ -57,8 +62,8 @@ diff.
 ### Adding a dialog or a variant
 
 Follow [docs/ARCHITECTURE.md §12](docs/ARCHITECTURE.md). In short: model →
-variant → the branch in the component's `when` → previews → a catalog entry →
-`apiDump`.
+variant, in a file of its own → the branch in the component's `when` → previews →
+a catalog entry → a gallery case → `apiDump`.
 
 Every public component carries `@ThemePreviews`, and the ones whose layout is
 sensitive to it also carry `@FontScalePreviews` or `@WindowSizePreviews`. The

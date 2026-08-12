@@ -10,15 +10,19 @@ import com.thecode.aestheticdialogs.foundation.DialogTone
  * readers as a live region, and never takes input away from the screen behind
  * it.
  *
- * Five silhouettes, each with the job it is meant for:
+ * Four variants, one per stable visual configuration:
  *
- * | Variant      | Silhouette                              | Reach for it when                          |
- * |--------------|-----------------------------------------|--------------------------------------------|
- * | [Toaster]    | Card, tone bar down the leading edge     | Confirming quietly. The default            |
- * | [Rainbow]    | Tone-filled card, inverted copy          | It has to stop the eye. Use it rarely      |
- * | [Connectify] | Centred card under a tone rim            | Ambient system state: network, sync        |
- * | [Emoji]      | Card with a character instead of a mark  | The tone is light: a milestone, a streak   |
- * | [Emotion]    | Gradient card with a timestamp           | It comes from a person: a message, a photo |
+ * | Variant    | Configuration                      | Reach for it when                     |
+ * |------------|------------------------------------|---------------------------------------|
+ * | [Default]  | Card, tone bar down the leading edge | Confirming quietly. The default      |
+ * | [Filled]   | Tone-filled card, inverted copy     | It has to stop the eye. Use it rarely |
+ * | [Gradient] | Tone ramp, inverted copy            | It comes from a person, or a moment   |
+ * | [Ambient]  | Centred copy under a tone rim       | System state: network, sync           |
+ *
+ * [Default.emoji] and [Default.timestamp] are fields rather than variants of
+ * their own: a character in the leading slot and a formatted time at the trailing
+ * edge are *content*, and 2.0 encoding them as types (`Emoji`, `Emotion`) is the
+ * over-abstraction the architecture warns about.
  */
 public sealed interface NotificationUiModel {
 
@@ -29,22 +33,109 @@ public sealed interface NotificationUiModel {
     /** Whether the banner shows its own close affordance. */
     public val showCloseButton: Boolean
 
+    /** A single trailing action. `null` leaves the trailing edge to the timestamp or the cross. */
+    public val action: NotificationAction?
+
     /** Card with a tone-coloured bar down the leading edge. */
     @Immutable
-    public data class Toaster(
+    public data class Default(
         override val title: String,
         override val message: String? = null,
         override val tone: DialogTone = DialogTone.Success,
+        /** A single trailing text action — `Undo`, usually. */
+        override val action: NotificationAction? = null,
+        /**
+         * Drawn instead of the tone mark.
+         *
+         * Rendered by the platform emoji font, so it scales with the user's font
+         * size and adds nothing to your APK. A banner carrying one drops the tone
+         * bar down its leading edge: a character is not a status.
+         */
+        val emoji: String? = null,
+        /**
+         * A formatted time, shown at the trailing edge. The user's locale and
+         * their 12/24-hour preference are a product decision, so the string is
+         * yours.
+         */
+        val timestamp: String? = null,
+        /** Presence dot drawn over the leading slot. For banners that come from a person. */
+        val presence: NotificationPresence? = null,
+        /**
+         * Determinate progress bonded to the bottom edge, from `0f` to `1f`.
+         *
+         * For work that does not deserve a modal: a background upload, a sync.
+         * Values outside the range are clamped.
+         */
+        val progress: Float? = null,
         override val showCloseButton: Boolean = true,
     ) : NotificationUiModel
 
     /** Tone-filled card with inverted copy. The loudest banner. */
     @Immutable
-    public data class Rainbow(
+    public data class Filled(
         override val title: String,
         override val message: String? = null,
         override val tone: DialogTone = DialogTone.Info,
+        /** A single trailing text action — `Undo`, usually. */
+        override val action: NotificationAction? = null,
+        /**
+         * Drawn instead of the tone mark.
+         *
+         * Rendered by the platform emoji font, so it scales with the user's font
+         * size and adds nothing to your APK. A banner carrying one drops the tone
+         * bar down its leading edge: a character is not a status.
+         */
+        val emoji: String? = null,
+        /**
+         * A formatted time, shown at the trailing edge. The user's locale and
+         * their 12/24-hour preference are a product decision, so the string is
+         * yours.
+         */
+        val timestamp: String? = null,
+        /** Presence dot drawn over the leading slot. For banners that come from a person. */
+        val presence: NotificationPresence? = null,
+        /**
+         * Determinate progress bonded to the bottom edge, from `0f` to `1f`.
+         *
+         * For work that does not deserve a modal: a background upload, a sync.
+         * Values outside the range are clamped.
+         */
+        val progress: Float? = null,
         override val showCloseButton: Boolean = true,
+    ) : NotificationUiModel
+
+    /** Gradient card with inverted copy, for message-like notifications. */
+    @Immutable
+    public data class Gradient(
+        override val title: String,
+        override val message: String? = null,
+        override val tone: DialogTone = DialogTone.Success,
+        /** A single trailing text action — `Undo`, usually. */
+        override val action: NotificationAction? = null,
+        /**
+         * Drawn instead of the tone mark.
+         *
+         * Rendered by the platform emoji font, so it scales with the user's font
+         * size and adds nothing to your APK. A banner carrying one drops the tone
+         * bar down its leading edge: a character is not a status.
+         */
+        val emoji: String? = null,
+        /**
+         * A formatted time, shown at the trailing edge. The user's locale and
+         * their 12/24-hour preference are a product decision, so the string is
+         * yours.
+         */
+        val timestamp: String? = null,
+        /** Presence dot drawn over the leading slot. For banners that come from a person. */
+        val presence: NotificationPresence? = null,
+        /**
+         * Determinate progress bonded to the bottom edge, from `0f` to `1f`.
+         *
+         * For work that does not deserve a modal: a background upload, a sync.
+         * Values outside the range are clamped.
+         */
+        val progress: Float? = null,
+        override val showCloseButton: Boolean = false,
     ) : NotificationUiModel
 
     /**
@@ -52,55 +143,71 @@ public sealed interface NotificationUiModel {
      * state changes.
      */
     @Immutable
-    public data class Connectify(
+    public data class Ambient(
         override val title: String,
         override val message: String? = null,
         override val tone: DialogTone = DialogTone.Success,
+        override val action: NotificationAction? = null,
         override val showCloseButton: Boolean = true,
     ) : NotificationUiModel
 
     /**
-     * Card with a large emoji instead of a drawn mark.
+     * A docked strip: full width, square corners, no shadow.
      *
-     * The character is rendered by the platform emoji font, so it scales with
-     * the user's font size and adds nothing to your APK. Leave [emoji] null and
-     * the library picks one from the tone.
+     * For a *condition* rather than an event — offline, degraded, read-only. A
+     * condition does not float above the content and does not auto-dismiss,
+     * because it is still true four seconds later; the host anchors it flush to
+     * its edge and ignores its auto-dismiss delay.
      */
     @Immutable
-    public data class Emoji(
+    public data class Strip(
         override val title: String,
         override val message: String? = null,
-        val emoji: String? = null,
-        override val tone: DialogTone = DialogTone.Success,
-        override val showCloseButton: Boolean = true,
-    ) : NotificationUiModel
-
-    /**
-     * Gradient card with a timestamp, for message-like notifications.
-     *
-     * [timestamp] is a formatted string you supply: the user's locale and their
-     * 12/24-hour preference are a product decision, not a rendering one.
-     */
-    @Immutable
-    public data class Emotion(
-        override val title: String,
-        override val message: String? = null,
-        val timestamp: String? = null,
-        override val tone: DialogTone = DialogTone.Success,
+        override val tone: DialogTone = DialogTone.Warning,
+        override val action: NotificationAction? = null,
         override val showCloseButton: Boolean = false,
     ) : NotificationUiModel
 }
 
-/** What the user did with a notification banner. */
-public sealed interface NotificationSignal {
-    /** The banner body was tapped. */
-    public data object Clicked : NotificationSignal
+/**
+ * The single trailing action of a banner.
+ *
+ * One label and nothing else: a banner is not a dialog, and the moment it needs
+ * two actions it needs to be one.
+ */
+@Immutable
+public data class NotificationAction(
+    /** The label. Supplied by the caller, so it is localised by the caller. */
+    val label: String,
+)
+
+/** Whether the person a banner comes from is available. Drawn as a dot on the leading slot. */
+public enum class NotificationPresence {
+    Online,
+    Offline,
+}
+
+/**
+ * What the host does when a banner arrives while another one is showing.
+ *
+ * Before this existed the answer was "silently replace it", which is a reasonable
+ * default and a terrible accident.
+ */
+public enum class NotificationQueuePolicy {
+    /** The newcomer takes over immediately. The default, now stated. */
+    Replace,
 
     /**
-     * The banner should go away: the close affordance was pressed, or the
-     * auto-dismiss delay elapsed.
+     * The newcomer waits until the current banner goes away.
+     *
+     * The one policy where the host holds a banner your state no longer names:
+     * it is timing, not ownership — the callbacks still reach you, and the queue
+     * is capped so an emission loop cannot fill it.
      */
-    public data object Dismissed : NotificationSignal
+    Enqueue,
+
+    /** The newcomer is discarded. For state that is re-emitted anyway. */
+    Drop,
 }
 
 /** Which edge a notification host anchors its banner to. */

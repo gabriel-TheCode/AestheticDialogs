@@ -68,4 +68,38 @@ public object AestheticDimens {
      * close button.
      */
     public val bannerAffordanceSlot: Dp = minTouchTarget + AestheticSpacing.sm
+
+    /** Determinate progress bonded to the bottom edge of a banner. */
+    public val bannerProgressHeight: Dp = 3.dp
+
+    /** The line that drains with a banner's auto-dismiss delay: a hint, not a status. */
+    public val bannerCountdownHeight: Dp = 2.dp
+
+    /** Presence dot drawn over the leading slot of a banner. */
+    public val presenceDotSize: Dp = 10.dp
+    public val presenceDotBorder: Dp = 2.dp
+
+    /** How far a banner must be swiped sideways before releasing it dismisses. */
+    public val bannerSwipeDismissDistance: Dp = 80.dp
+
+    /** The indicator the progress dialog draws where the other dialogs draw a badge. */
+    public val progressIndicatorLarge: Dp = 48.dp
+    public val progressIndicatorLargeStroke: Dp = 4.dp
+
+    /** The image or colour band at the top of a header dialog. */
+    public val headerBandHeight: Dp = 132.dp
+
+    /** Height of the single-line compact dialog, action included. */
+    public val compactDialogHeight: Dp = 72.dp
+
+    public val sheetHandleWidth: Dp = 32.dp
+    public val sheetHandleHeight: Dp = 4.dp
+
+    /**
+     * How far a sheet must be dragged down before releasing it dismisses.
+     *
+     * Short enough that the gesture does not feel resisted, long enough that a
+     * scroll starting on the handle does not throw the sheet away.
+     */
+    public val sheetDragDismissDistance: Dp = 96.dp
 }

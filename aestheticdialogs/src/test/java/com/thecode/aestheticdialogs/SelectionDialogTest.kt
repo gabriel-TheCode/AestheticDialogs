@@ -15,7 +15,6 @@ import androidx.compose.ui.test.performTextInput
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
 import com.thecode.aestheticdialogs.components.selection.AestheticSelectionDialog
-import com.thecode.aestheticdialogs.components.selection.models.SelectionDialogSignal
 import com.thecode.aestheticdialogs.components.selection.models.SelectionDialogUiModel
 import com.thecode.aestheticdialogs.components.selection.models.SelectionItem
 import com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme
@@ -41,7 +40,7 @@ class SelectionDialogTest {
 
     @Test
     fun `a tap reports the id and leaves the selection untouched`() {
-        val signals = mutableListOf<SelectionDialogSignal>()
+        val clicked = mutableListOf<String>()
         val model = SelectionDialogUiModel.Single(
             title = "App language",
             items = items,
@@ -51,13 +50,17 @@ class SelectionDialogTest {
 
         composeRule.setContent {
             AestheticDialogsTheme {
-                AestheticSelectionDialog(uiModel = model, onSignal = signals::add)
+                AestheticSelectionDialog(
+                    uiModel = model,
+                    onItemClick = clicked::add,
+                    onCancel = {},
+                )
             }
         }
 
         composeRule.onNodeWithText("English").performClick()
 
-        assertThat(signals).containsExactly(SelectionDialogSignal.ItemClicked("en"))
+        assertThat(clicked).containsExactly("en")
         // The dialog still shows the caller's selection, because the caller has
         // not changed it yet. This is the whole point of a stateless component.
         composeRule.onNodeWithText("Français").assertIsSelected()
@@ -74,7 +77,8 @@ class SelectionDialogTest {
                         selectedId = "en",
                         cancelLabel = "Cancel",
                     ),
-                    onSignal = {},
+                    onItemClick = {},
+                    onCancel = {},
                 )
             }
         }
@@ -95,7 +99,8 @@ class SelectionDialogTest {
                         confirmLabel = "Save",
                         cancelLabel = "Cancel",
                     ),
-                    onSignal = {},
+                    onItemClick = {},
+                    onCancel = {},
                 )
             }
         }
@@ -110,7 +115,7 @@ class SelectionDialogTest {
 
     @Test
     fun `a disabled item is not clickable`() {
-        val signals = mutableListOf<SelectionDialogSignal>()
+        val clicked = mutableListOf<String>()
         composeRule.setContent {
             AestheticDialogsTheme {
                 AestheticSelectionDialog(
@@ -120,18 +125,19 @@ class SelectionDialogTest {
                         selectedId = null,
                         cancelLabel = "Cancel",
                     ),
-                    onSignal = signals::add,
+                    onItemClick = clicked::add,
+                    onCancel = {},
                 )
             }
         }
 
         composeRule.onNodeWithText("Kiswahili").assertIsNotEnabled()
-        assertThat(signals).isEmpty()
+        assertThat(clicked).isEmpty()
     }
 
     @Test
     fun `typing in the search field reports the query without filtering anything`() {
-        val signals = mutableListOf<SelectionDialogSignal>()
+        val queries = mutableListOf<String>()
         composeRule.setContent {
             AestheticDialogsTheme {
                 AestheticSelectionDialog(
@@ -143,14 +149,16 @@ class SelectionDialogTest {
                         cancelLabel = "Cancel",
                         searchQuery = "",
                     ),
-                    onSignal = signals::add,
+                    onItemClick = {},
+                    onCancel = {},
+                    onSearchQueryChange = queries::add,
                 )
             }
         }
 
         composeRule.onNode(hasSetTextAction()).performTextInput("fr")
 
-        assertThat(signals).contains(SelectionDialogSignal.SearchQueryChanged("fr"))
+        assertThat(queries).contains("fr")
         // Filtering belongs to the caller, so the list is unchanged.
         composeRule.onNodeWithText("English").assertIsDisplayed()
     }
@@ -167,7 +175,8 @@ class SelectionDialogTest {
                         cancelLabel = "Cancel",
                         emptyText = "No language matches that.",
                     ),
-                    onSignal = {},
+                    onItemClick = {},
+                    onCancel = {},
                 )
             }
         }

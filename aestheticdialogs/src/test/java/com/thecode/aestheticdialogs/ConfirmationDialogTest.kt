@@ -9,7 +9,6 @@ import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
 import com.thecode.aestheticdialogs.components.confirmation.AestheticConfirmationDialog
-import com.thecode.aestheticdialogs.components.confirmation.models.ConfirmationDialogSignal
 import com.thecode.aestheticdialogs.components.confirmation.models.ConfirmationDialogUiModel
 import com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme
 import org.junit.Rule
@@ -37,7 +36,12 @@ class ConfirmationDialogTest {
     fun `renders its title, message and both actions`() {
         composeRule.setContent {
             AestheticDialogsTheme {
-                AestheticConfirmationDialog(uiModel = model, onSignal = {})
+                AestheticConfirmationDialog(
+                    uiModel = model,
+                    onConfirm = {},
+                    onCancel = {},
+                    onDismiss = {},
+                )
             }
         }
 
@@ -48,37 +52,41 @@ class ConfirmationDialogTest {
     }
 
     @Test
-    fun `confirm emits Confirmed and cancel emits Cancelled`() {
-        val signals = mutableListOf<ConfirmationDialogSignal>()
+    fun `confirm and cancel reach their own callbacks`() {
+        val calls = mutableListOf<String>()
         composeRule.setContent {
             AestheticDialogsTheme {
-                AestheticConfirmationDialog(uiModel = model, onSignal = signals::add)
+                AestheticConfirmationDialog(
+                    uiModel = model,
+                    onConfirm = { calls += "confirm" },
+                    onCancel = { calls += "cancel" },
+                    onDismiss = { calls += "dismiss" },
+                )
             }
         }
 
         composeRule.onNodeWithText("Leave").performClick()
         composeRule.onNodeWithText("Keep editing").performClick()
 
-        assertThat(signals).containsExactly(
-            ConfirmationDialogSignal.Confirmed,
-            ConfirmationDialogSignal.Cancelled,
-        ).inOrder()
+        assertThat(calls).containsExactly("confirm", "cancel").inOrder()
     }
 
     @Test
     fun `a disabled confirm action cannot be pressed`() {
-        val signals = mutableListOf<ConfirmationDialogSignal>()
+        val calls = mutableListOf<String>()
         composeRule.setContent {
             AestheticDialogsTheme {
                 AestheticConfirmationDialog(
                     uiModel = model.copy(isConfirmEnabled = false),
-                    onSignal = signals::add,
+                    onConfirm = { calls += "confirm" },
+                    onCancel = { calls += "cancel" },
+                    onDismiss = { calls += "dismiss" },
                 )
             }
         }
 
         composeRule.onNodeWithText("Leave").assertIsNotEnabled()
-        assertThat(signals).isEmpty()
+        assertThat(calls).isEmpty()
     }
 
     @Test
@@ -89,7 +97,9 @@ class ConfirmationDialogTest {
             AestheticDialogsTheme {
                 AestheticConfirmationDialog(
                     uiModel = model.copy(isConfirming = true),
-                    onSignal = {},
+                    onConfirm = {},
+                    onCancel = {},
+                    onDismiss = {},
                 )
             }
         }
@@ -99,7 +109,7 @@ class ConfirmationDialogTest {
 
     @Test
     fun `the destructive variant keeps the same two-action contract`() {
-        val signals = mutableListOf<ConfirmationDialogSignal>()
+        val calls = mutableListOf<String>()
         composeRule.setContent {
             AestheticDialogsTheme {
                 AestheticConfirmationDialog(
@@ -108,13 +118,15 @@ class ConfirmationDialogTest {
                         confirmLabel = "Delete album",
                         cancelLabel = "Keep it",
                     ),
-                    onSignal = signals::add,
+                    onConfirm = { calls += "confirm" },
+                    onCancel = { calls += "cancel" },
+                    onDismiss = { calls += "dismiss" },
                 )
             }
         }
 
         composeRule.onNodeWithText("Delete album").assertIsEnabled().performClick()
 
-        assertThat(signals).containsExactly(ConfirmationDialogSignal.Confirmed)
+        assertThat(calls).containsExactly("confirm")
     }
 }

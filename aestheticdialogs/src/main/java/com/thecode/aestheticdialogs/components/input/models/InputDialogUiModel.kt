@@ -80,11 +80,3 @@ public sealed interface InputDialogUiModel {
         override val dismissBehavior: DialogDismissBehavior = DialogDismissBehavior.Default,
     ) : InputDialogUiModel
 }
-
-/** What the user did with an input dialog. */
-public sealed interface InputDialogSignal {
-    /** The confirm button, or the keyboard's done action. */
-    public data object Confirmed : InputDialogSignal
-    public data object Cancelled : InputDialogSignal
-    public data object Dismissed : InputDialogSignal
-}

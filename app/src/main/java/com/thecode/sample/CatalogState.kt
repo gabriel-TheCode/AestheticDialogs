@@ -1,5 +1,7 @@
 package com.thecode.sample
 
+import com.thecode.aestheticdialogs.components.notification.models.NotificationAction
+import com.thecode.aestheticdialogs.components.notification.models.NotificationPresence
 import com.thecode.aestheticdialogs.components.notification.models.NotificationUiModel
 import com.thecode.aestheticdialogs.components.selection.models.SelectionItem
 import com.thecode.aestheticdialogs.foundation.DialogTone
@@ -56,13 +58,33 @@ enum class CatalogDemo(val label: String, val description: String) {
         label = "Rich content",
         description = "Your content, our frame.",
     ),
-    FeedbackFlat(
-        label = "Feedback · flat",
+    FeedbackDefault(
+        label = "Feedback · default",
         description = "Quiet card, tone mark, one action.",
     ),
-    FeedbackFlash(
-        label = "Feedback · flash",
+    FeedbackGradient(
+        label = "Feedback · gradient",
         description = "Gradient panel, inverted copy.",
+    ),
+    FeedbackCompact(
+        label = "Feedback · compact",
+        description = "One line, one action, 72dp.",
+    ),
+    Sheet(
+        label = "Sheet",
+        description = "Docked to the bottom edge, drag it away.",
+    ),
+    Header(
+        label = "Header",
+        description = "A band above the title.",
+    ),
+    ProgressDefault(
+        label = "Progress · indeterminate",
+        description = "No way out but the cancel action.",
+    ),
+    ProgressDeterminate(
+        label = "Progress · determinate",
+        description = "A count the caller owns.",
     ),
 }
 
@@ -87,29 +109,57 @@ data class CatalogData(
     ),
 )
 
-/** The banner variants the catalog can raise, in the order they are listed. */
+/** The banners the catalog can raise, in the order they are listed. */
 fun catalogNotifications(tone: DialogTone): List<Pair<String, NotificationUiModel>> = listOf(
-    "Toaster" to NotificationUiModel.Toaster(
+    "Default" to NotificationUiModel.Default(
         title = "Saved",
         message = "Your changes are on every device.",
         tone = tone,
     ),
-    "Rainbow" to NotificationUiModel.Rainbow(
+    "Filled" to NotificationUiModel.Filled(
         title = "Heads up",
         message = "Two invoices are due this week.",
         tone = tone,
     ),
-    "Connectify" to NotificationUiModel.Connectify(
+    "With an action" to NotificationUiModel.Default(
+        title = "Album archived",
+        message = "24 photos moved out of your library.",
+        tone = tone,
+        action = NotificationAction("Undo"),
+    ),
+    "Progress" to NotificationUiModel.Default(
+        title = "Uploading 12 of 24",
+        message = "You can keep using the app.",
+        tone = tone,
+        progress = 0.5f,
+    ),
+    "From a person" to NotificationUiModel.Gradient(
+        title = "Amara sent a photo",
+        message = "Tap to open the album",
+        tone = tone,
+        timestamp = "13:56",
+        presence = NotificationPresence.Online,
+    ),
+    "Status strip" to NotificationUiModel.Strip(
+        title = "You are offline",
+        message = "Showing the last version we downloaded.",
+        tone = tone,
+        // A strip never auto-dismisses, and the catalog has no connection to come
+        // back: without the cross it would stay up for the rest of the session.
+        showCloseButton = true,
+    ),
+    "Ambient" to NotificationUiModel.Ambient(
         title = "Back online",
         message = "Syncing what you missed.",
         tone = tone,
     ),
-    "Emoji" to NotificationUiModel.Emoji(
+    "Emoji" to NotificationUiModel.Default(
         title = "Nice one",
         message = "That was your tenth album this month.",
         tone = tone,
+        emoji = "\uD83D\uDC4D",
     ),
-    "Emotion" to NotificationUiModel.Emotion(
+    "Gradient" to NotificationUiModel.Gradient(
         title = "Amara sent a photo",
         message = "Tap to open the album",
         timestamp = "13:56",

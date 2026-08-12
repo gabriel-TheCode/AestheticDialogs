@@ -2,7 +2,6 @@ package com.thecode.aestheticdialogs.components.confirmation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.thecode.aestheticdialogs.components.confirmation.models.ConfirmationDialogSignal
 import com.thecode.aestheticdialogs.components.confirmation.models.ConfirmationDialogUiModel
 import com.thecode.aestheticdialogs.components.confirmation.variants.ConfirmationDialogDefault
 import com.thecode.aestheticdialogs.components.confirmation.variants.ConfirmationDialogDestructive
@@ -15,7 +14,7 @@ import com.thecode.aestheticdialogs.preview.ThemePreviews
  *
  * The dialog is stateless: it is in the composition when you decide it is, and
  * it leaves when you remove it. It never dismisses itself, which is why
- * [ConfirmationDialogSignal.Dismissed] is a request rather than a fact.
+ * [onDismiss] is a request rather than a fact.
  *
  * ```
  * if (uiState.showDeleteConfirmation) {
@@ -27,33 +26,40 @@ import com.thecode.aestheticdialogs.preview.ThemePreviews
  *             cancelLabel = "Keep it",
  *             isConfirming = uiState.isDeleting,
  *         ),
- *         onSignal = { signal ->
- *             when (signal) {
- *                 ConfirmationDialogSignal.Confirmed -> viewModel.deleteAlbum()
- *                 ConfirmationDialogSignal.Cancelled,
- *                 ConfirmationDialogSignal.Dismissed -> viewModel.dismissDeleteConfirmation()
- *             }
- *         },
+ *         onConfirm = { viewModel.deleteAlbum() },
+ *         onCancel = { viewModel.dismissDeleteConfirmation() },
+ *         onDismiss = { viewModel.dismissDeleteConfirmation() },
  *     )
  * }
  * ```
  *
+ * Pressing "Cancel" is a decision; tapping the scrim or pressing back is a
+ * retreat. They are separate callbacks because analytics and "are you sure you
+ * want to leave" flows care about the difference — and [onDismiss] defaults to
+ * [onCancel], because a confirmation always has a way back and treating a
+ * retreat as one is the right answer until a caller says otherwise.
+ *
  * @param uiModel the visual state; the subclass selects the variant.
- * @param onSignal receives what the user did. The caller decides what it means.
+ * @param onConfirm the confirm button was pressed.
+ * @param onCancel the cancel button was pressed.
  * @param modifier applied to the dialog surface, not to the window.
+ * @param onDismiss the scrim was tapped or back was pressed. Defaults to
+ *   [onCancel]. The dialog stays on screen until you remove it.
  */
 @Composable
 public fun AestheticConfirmationDialog(
     uiModel: ConfirmationDialogUiModel,
-    onSignal: (ConfirmationDialogSignal) -> Unit,
+    onConfirm: () -> Unit,
+    onCancel: () -> Unit,
     modifier: Modifier = Modifier,
+    onDismiss: () -> Unit = onCancel,
 ) {
     when (uiModel) {
         is ConfirmationDialogUiModel.Default ->
-            ConfirmationDialogDefault(uiModel, onSignal, modifier)
+            ConfirmationDialogDefault(uiModel, onConfirm, onCancel, onDismiss, modifier)
 
         is ConfirmationDialogUiModel.Destructive ->
-            ConfirmationDialogDestructive(uiModel, onSignal, modifier)
+            ConfirmationDialogDestructive(uiModel, onConfirm, onCancel, onDismiss, modifier)
     }
 }
 
@@ -68,7 +74,8 @@ private fun ConfirmationDialogDefaultPreview() {
                 confirmLabel = "Leave",
                 cancelLabel = "Keep editing",
             ),
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
         )
     }
 }
@@ -85,7 +92,8 @@ private fun ConfirmationDialogDestructivePreview() {
                 confirmLabel = "Delete album",
                 cancelLabel = "Keep it",
             ),
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
         )
     }
 }
@@ -103,7 +111,8 @@ private fun ConfirmationDialogFontScalePreview() {
                 confirmLabel = "Delete album",
                 cancelLabel = "Keep it",
             ),
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
         )
     }
 }
@@ -120,7 +129,8 @@ private fun ConfirmationDialogConfirmingPreview() {
                 cancelLabel = "Keep it",
                 isConfirming = true,
             ),
-            onSignal = {},
+            onConfirm = {},
+            onCancel = {},
         )
     }
 }

@@ -32,26 +32,26 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.thecode.aestheticdialogs.components.alert.AestheticAlertDialog
-import com.thecode.aestheticdialogs.components.alert.models.AlertDialogSignal
 import com.thecode.aestheticdialogs.components.alert.models.AlertDialogUiModel
 import com.thecode.aestheticdialogs.components.confirmation.AestheticConfirmationDialog
-import com.thecode.aestheticdialogs.components.confirmation.models.ConfirmationDialogSignal
 import com.thecode.aestheticdialogs.components.confirmation.models.ConfirmationDialogUiModel
 import com.thecode.aestheticdialogs.components.content.AestheticContentDialog
-import com.thecode.aestheticdialogs.components.content.models.ContentDialogSignal
 import com.thecode.aestheticdialogs.components.content.models.ContentDialogUiModel
 import com.thecode.aestheticdialogs.components.feedback.AestheticFeedbackDialog
-import com.thecode.aestheticdialogs.components.feedback.models.FeedbackDialogSignal
 import com.thecode.aestheticdialogs.components.feedback.models.FeedbackDialogUiModel
+import com.thecode.aestheticdialogs.components.header.AestheticHeaderDialog
+import com.thecode.aestheticdialogs.components.header.models.HeaderDialogUiModel
 import com.thecode.aestheticdialogs.components.input.AestheticInputDialog
-import com.thecode.aestheticdialogs.components.input.models.InputDialogSignal
 import com.thecode.aestheticdialogs.components.input.models.InputDialogUiModel
 import com.thecode.aestheticdialogs.components.notification.AestheticNotificationHost
-import com.thecode.aestheticdialogs.components.notification.models.NotificationSignal
+import com.thecode.aestheticdialogs.components.notification.models.NotificationQueuePolicy
 import com.thecode.aestheticdialogs.components.notification.models.NotificationUiModel
+import com.thecode.aestheticdialogs.components.progress.AestheticProgressDialog
+import com.thecode.aestheticdialogs.components.progress.models.ProgressDialogUiModel
 import com.thecode.aestheticdialogs.components.selection.AestheticSelectionDialog
-import com.thecode.aestheticdialogs.components.selection.models.SelectionDialogSignal
 import com.thecode.aestheticdialogs.components.selection.models.SelectionDialogUiModel
+import com.thecode.aestheticdialogs.components.sheet.AestheticSheetHost
+import com.thecode.aestheticdialogs.components.sheet.models.SheetDialogUiModel
 import com.thecode.aestheticdialogs.foundation.AestheticDialogsTheme
 import com.thecode.aestheticdialogs.foundation.DialogTone
 import com.thecode.aestheticdialogs.model.DialogAction
@@ -102,7 +102,7 @@ fun CatalogScreen(
             delay(1_500.milliseconds)
             isConfirming = false
             activeDemo = null
-            banner = NotificationUiModel.Toaster(
+            banner = NotificationUiModel.Default(
                 title = "Album deleted",
                 message = "24 photos went with it.",
                 tone = DialogTone.Success,
@@ -146,7 +146,11 @@ fun CatalogScreen(
             items(catalogNotifications(tone)) { (label, model) ->
                 CatalogRow(
                     title = label,
-                    subtitle = "Auto-dismisses after four seconds.",
+                    subtitle = if (model is NotificationUiModel.Strip) {
+                        "Stays docked until you close it."
+                    } else {
+                        "Auto-dismisses after four seconds."
+                    },
                     onClick = { banner = model },
                 )
             }
@@ -154,12 +158,13 @@ fun CatalogScreen(
 
         AestheticNotificationHost(
             notification = banner,
-            onSignal = { signal ->
-                when (signal) {
-                    NotificationSignal.Clicked, NotificationSignal.Dismissed -> banner = null
-                }
-            },
+            onDismiss = { banner = null },
+            onClick = { banner = null },
+            // A real screen would undo the archive here. The catalog only has to
+            // show that the two taps are told apart.
+            onAction = { banner = null },
             autoDismissMillis = 4_000,
+            queuePolicy = NotificationQueuePolicy.Enqueue,
         )
     }
 
@@ -176,7 +181,9 @@ fun CatalogScreen(
                 cancelLabel = "Keep editing",
                 tone = tone,
             ),
-            onSignal = { close() },
+            onConfirm = { close() },
+            onCancel = { close() },
+            onDismiss = { close() },
         )
 
         CatalogDemo.ConfirmationDestructive -> AestheticConfirmationDialog(
@@ -187,14 +194,9 @@ fun CatalogScreen(
                 cancelLabel = "Keep it",
                 isConfirming = isConfirming,
             ),
-            onSignal = { signal ->
-                when (signal) {
-                    ConfirmationDialogSignal.Confirmed -> isConfirming = true
-                    ConfirmationDialogSignal.Cancelled,
-                    ConfirmationDialogSignal.Dismissed,
-                    -> close()
-                }
-            },
+            onConfirm = { isConfirming = true },
+            onCancel = { close() },
+            onDismiss = { close() },
         )
 
         CatalogDemo.AlertInfo -> AestheticAlertDialog(
@@ -205,7 +207,9 @@ fun CatalogScreen(
                 primaryAction = DialogAction("Update now"),
                 secondaryAction = DialogAction("Later", DialogActionEmphasis.Text),
             ),
-            onSignal = { close() },
+            onPrimaryAction = { close() },
+            onDismiss = { close() },
+            onSecondaryAction = { close() },
         )
 
         CatalogDemo.AlertError -> AestheticAlertDialog(
@@ -216,7 +220,9 @@ fun CatalogScreen(
                 primaryAction = DialogAction("Retry"),
                 secondaryAction = DialogAction("Cancel", DialogActionEmphasis.Secondary),
             ),
-            onSignal = { close() },
+            onPrimaryAction = { close() },
+            onDismiss = { close() },
+            onSecondaryAction = { close() },
         )
 
         CatalogDemo.AlertLongContent -> AestheticAlertDialog(
@@ -227,7 +233,8 @@ fun CatalogScreen(
                 primaryAction = DialogAction("Got it"),
                 showCloseButton = true,
             ),
-            onSignal = { close() },
+            onPrimaryAction = { close() },
+            onDismiss = { close() },
         )
 
         CatalogDemo.SelectionSingle -> AestheticSelectionDialog(
@@ -237,16 +244,11 @@ fun CatalogScreen(
                 selectedId = selectedLanguage,
                 cancelLabel = "Cancel",
             ),
-            onSignal = { signal ->
-                when (signal) {
-                    is SelectionDialogSignal.ItemClicked -> {
-                        selectedLanguage = signal.id
-                        close()
-                    }
-
-                    else -> close()
-                }
+            onItemClick = { id ->
+                selectedLanguage = id
+                close()
             },
+            onCancel = { close() },
         )
 
         CatalogDemo.SelectionMultiple -> AestheticSelectionDialog(
@@ -262,21 +264,16 @@ fun CatalogScreen(
                 searchQuery = searchQuery,
                 emptyText = "Nothing matches “$searchQuery”.",
             ),
-            onSignal = { signal ->
-                when (signal) {
-                    is SelectionDialogSignal.ItemClicked -> {
-                        selectedTopics = if (signal.id in selectedTopics) {
-                            selectedTopics - signal.id
-                        } else {
-                            selectedTopics + signal.id
-                        }
-                    }
-
-                    is SelectionDialogSignal.SearchQueryChanged -> searchQuery = signal.query
-
-                    else -> close()
+            onItemClick = { id ->
+                selectedTopics = if (id in selectedTopics) {
+                    selectedTopics - id
+                } else {
+                    selectedTopics + id
                 }
             },
+            onCancel = { close() },
+            onSearchQueryChange = { searchQuery = it },
+            onConfirm = { close() },
         )
 
         CatalogDemo.SelectionEmpty -> AestheticSelectionDialog(
@@ -288,7 +285,8 @@ fun CatalogScreen(
                 searchQuery = "klingon",
                 emptyText = "No language matches “klingon”.",
             ),
-            onSignal = { close() },
+            onItemClick = { close() },
+            onCancel = { close() },
         )
 
         CatalogDemo.InputText -> AestheticInputDialog(
@@ -303,7 +301,8 @@ fun CatalogScreen(
                 isConfirmEnabled = albumName.isNotBlank(),
             ),
             onValueChange = { albumName = it },
-            onSignal = { close() },
+            onConfirm = { close() },
+            onCancel = { close() },
         )
 
         CatalogDemo.InputPassword -> AestheticInputDialog(
@@ -317,16 +316,13 @@ fun CatalogScreen(
                 isConfirmEnabled = password.length >= 8,
             ),
             onValueChange = { password = it },
-            onSignal = { signal ->
-                when (signal) {
-                    InputDialogSignal.Confirmed,
-                    InputDialogSignal.Cancelled,
-                    InputDialogSignal.Dismissed,
-                    -> {
-                        password = ""
-                        close()
-                    }
-                }
+            onConfirm = {
+                password = ""
+                close()
+            },
+            onCancel = {
+                password = ""
+                close()
             },
         )
 
@@ -337,7 +333,9 @@ fun CatalogScreen(
                 primaryAction = DialogAction("I agree"),
                 secondaryAction = DialogAction("Not now", DialogActionEmphasis.Text),
             ),
-            onSignal = { close() },
+            onDismiss = { close() },
+            onPrimaryAction = { close() },
+            onSecondaryAction = { close() },
         ) {
             Column(
                 modifier = Modifier.padding(horizontal = AestheticSpacing.xxl),
@@ -357,28 +355,94 @@ fun CatalogScreen(
             }
         }
 
-        CatalogDemo.FeedbackFlat -> AestheticFeedbackDialog(
-            uiModel = FeedbackDialogUiModel.Flat(
+        CatalogDemo.FeedbackDefault -> AestheticFeedbackDialog(
+            uiModel = FeedbackDialogUiModel.Default(
                 title = "Something went wrong",
                 message = "We could not reach the server. Try again in a moment.",
                 tone = tone,
                 actionLabel = "OK",
             ),
-            onSignal = { signal ->
-                when (signal) {
-                    FeedbackDialogSignal.ActionClicked, FeedbackDialogSignal.Dismissed -> close()
-                }
-            },
+            onDismiss = { close() },
         )
 
-        CatalogDemo.FeedbackFlash -> AestheticFeedbackDialog(
-            uiModel = FeedbackDialogUiModel.Flash(
+        CatalogDemo.FeedbackCompact -> AestheticFeedbackDialog(
+            uiModel = FeedbackDialogUiModel.Compact(
+                title = "Album archived",
+                tone = tone,
+                actionLabel = "Undo",
+            ),
+            onDismiss = { close() },
+        )
+
+        CatalogDemo.Sheet -> AestheticSheetHost(
+            sheet = SheetDialogUiModel.Default(
+                title = "Share this album",
+                message = "Anyone with the link can see the 24 photos inside it.",
+                primaryAction = DialogAction("Copy link"),
+                secondaryAction = DialogAction("Cancel", DialogActionEmphasis.Text),
+            ),
+            onDismiss = { close() },
+            onPrimaryAction = { close() },
+            onSecondaryAction = { close() },
+        ) {
+            Column(
+                modifier = Modifier.padding(horizontal = AestheticSpacing.xxl),
+                verticalArrangement = Arrangement.spacedBy(AestheticSpacing.md),
+            ) {
+                listOf("Messages", "Mail", "Nearby share").forEach { target ->
+                    Text(
+                        text = target,
+                        style = AestheticDialogsTheme.typography.itemLabel,
+                        color = AestheticDialogsTheme.colors.content.primary,
+                    )
+                }
+            }
+        }
+
+        CatalogDemo.Header -> AestheticHeaderDialog(
+            uiModel = HeaderDialogUiModel.Default(
+                title = "Albums, offline",
+                message = "Everything you starred is on the device now, and stays there " +
+                    "until you say otherwise.",
+                tone = tone,
+                primaryAction = DialogAction("Take the tour"),
+                secondaryAction = DialogAction("Later", DialogActionEmphasis.Text),
+            ),
+            onPrimaryAction = { close() },
+            onDismiss = { close() },
+            onSecondaryAction = { close() },
+        )
+
+        CatalogDemo.ProgressDefault -> AestheticProgressDialog(
+            uiModel = ProgressDialogUiModel.Default(
+                title = "Signing you in",
+                message = "This takes a moment on a slow connection.",
+                tone = tone,
+                cancelLabel = "Cancel",
+            ),
+            onCancel = { close() },
+        )
+
+        CatalogDemo.ProgressDeterminate -> AestheticProgressDialog(
+            uiModel = ProgressDialogUiModel.Determinate(
+                title = "Uploading",
+                message = "Keep the app open until this finishes.",
+                progress = 0.5f,
+                progressLabel = "12 of 24",
+                tone = tone,
+                cancelLabel = "Cancel upload",
+            ),
+            onCancel = { close() },
+        )
+
+        CatalogDemo.FeedbackGradient -> AestheticFeedbackDialog(
+            uiModel = FeedbackDialogUiModel.Gradient(
                 title = "Message sent",
                 message = "It will arrive even if you close the app.",
                 tone = tone,
                 actionLabel = "Nice",
             ),
-            onSignal = { close() },
+            onDismiss = { close() },
         )
     }
 }

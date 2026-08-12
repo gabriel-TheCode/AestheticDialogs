@@ -2,7 +2,6 @@ package com.thecode.aestheticdialogs.components.alert
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.thecode.aestheticdialogs.components.alert.models.AlertDialogSignal
 import com.thecode.aestheticdialogs.components.alert.models.AlertDialogUiModel
 import com.thecode.aestheticdialogs.components.alert.variants.AlertDialogDefault
 import com.thecode.aestheticdialogs.foundation.DialogTone
@@ -23,28 +22,35 @@ import com.thecode.aestheticdialogs.preview.ThemePreviews
  *         primaryAction = DialogAction("Retry"),
  *         secondaryAction = DialogAction("Dismiss", DialogActionEmphasis.Text),
  *     ),
- *     onSignal = { signal ->
- *         when (signal) {
- *             AlertDialogSignal.PrimaryActionClicked -> viewModel.retry()
- *             AlertDialogSignal.SecondaryActionClicked,
- *             AlertDialogSignal.Dismissed -> viewModel.dismissAlert()
- *         }
- *     },
+ *     onPrimaryAction = { viewModel.retry() },
+ *     onDismiss = { viewModel.dismissAlert() },
+ *     onSecondaryAction = { viewModel.dismissAlert() },
  * )
  * ```
  *
+ * [onDismiss] carries no default here, unlike a confirmation: an alert's second
+ * action is optional, so there is no way back to fall through to. A back gesture
+ * that reaches nobody is how a dialog becomes impossible to close.
+ *
  * @param uiModel the visual state; the subclass selects the variant.
- * @param onSignal receives what the user did.
+ * @param onPrimaryAction the primary action was pressed.
+ * @param onDismiss the scrim was tapped, back was pressed, or the close
+ *   affordance was used.
  * @param modifier applied to the dialog surface.
+ * @param onSecondaryAction the secondary action was pressed. Only reachable when
+ *   the model carries one.
  */
 @Composable
 public fun AestheticAlertDialog(
     uiModel: AlertDialogUiModel,
-    onSignal: (AlertDialogSignal) -> Unit,
+    onPrimaryAction: () -> Unit,
+    onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
+    onSecondaryAction: () -> Unit = {},
 ) {
     when (uiModel) {
-        is AlertDialogUiModel.Default -> AlertDialogDefault(uiModel, onSignal, modifier)
+        is AlertDialogUiModel.Default ->
+            AlertDialogDefault(uiModel, onPrimaryAction, onSecondaryAction, onDismiss, modifier)
     }
 }
 
@@ -60,7 +66,8 @@ private fun AlertDialogInfoPreview() {
                 primaryAction = DialogAction("Update now"),
                 secondaryAction = DialogAction("Later", DialogActionEmphasis.Text),
             ),
-            onSignal = {},
+            onPrimaryAction = {},
+            onDismiss = {},
         )
     }
 }
@@ -77,7 +84,8 @@ private fun AlertDialogErrorPreview() {
                 primaryAction = DialogAction("Retry"),
                 secondaryAction = DialogAction("Cancel", DialogActionEmphasis.Secondary),
             ),
-            onSignal = {},
+            onPrimaryAction = {},
+            onDismiss = {},
         )
     }
 }
@@ -93,7 +101,8 @@ private fun AlertDialogSingleActionPreview() {
                 tone = DialogTone.Success,
                 primaryAction = DialogAction("Got it"),
             ),
-            onSignal = {},
+            onPrimaryAction = {},
+            onDismiss = {},
         )
     }
 }
