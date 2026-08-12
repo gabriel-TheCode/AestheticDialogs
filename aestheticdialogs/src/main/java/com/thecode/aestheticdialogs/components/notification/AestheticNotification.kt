@@ -246,7 +246,7 @@ public fun AestheticNotificationHost(
     if (timed && showCountdown && motionEnabled) {
         LaunchedEffect(shown, autoDismissMillis) {
             if (shown == null) return@LaunchedEffect
-            countdown.animateTo(0f, tween(autoDismissMillis!!.toInt(), easing = LinearEasing))
+            countdown.animateTo(0f, tween(autoDismissMillis.toInt(), easing = LinearEasing))
         }
     }
 
